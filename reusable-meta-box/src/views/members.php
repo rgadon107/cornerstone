@@ -1,10 +1,10 @@
 <div>
     <label for="member_name"><strong><?php _e( 'Name', METABOX_TEXT_DOMAIN ); ?></strong></label>
     <p>
-        <span class="description"><?php _e( 'First', METABOX_TEXT_DOMAIN ); ?></span>
-        <input class="regular-text" type="text" name="<?php echo $meta_box_id; ?>[first_name]" value="<?php esc_attr_e( $custom_fields['first_name'] ); ?>">
+        <input class="regular-text" type="text" placeholder="First name" name="<?php echo $meta_box_id; ?>[first_name]" value="<?php esc_attr_e( $custom_fields['first_name'] ); ?>">
+        <span class="description" ><?php _e( 'First', METABOX_TEXT_DOMAIN ); ?></span>
+        <input class="regular-text" type="text" placeholder="Last name" name="<?php echo $meta_box_id; ?>[last_name]" value="<?php esc_attr_e( $custom_fields['last_name'] ); ?>">
         <span class="description"><?php _e( 'Last', METABOX_TEXT_DOMAIN ); ?></span>
-        <input class="regular-text" type="text" name="<?php echo $meta_box_id; ?>[last_name]" value="<?php esc_attr_e( $custom_fields['last_name'] ); ?>">
     </p>
 </div>
 <!--<p>-->

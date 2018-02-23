@@ -43,7 +43,7 @@ return array(
 		 ***********************************************************/
 		'custom_fields' => array(
 			// specify this field's meta key.  It's used in the database.
-			'location' => array(
+			'event_date' => array(
 				// True - means it's a single
 				// False - means it's an array
 				'is_single'    => true,

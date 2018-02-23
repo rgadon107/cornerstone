@@ -45,7 +45,7 @@ function add_description_beneath_post_title( $post ) {
 	if ( 'members' == get_post_type() ) {
 
 		return _e( sprintf( '<span class="description">%s</span>',
-			'Enter the tour member\'s name above (first, last name), and any biographical information below.',
+			'Enter the tour member’s name in the field above. Enter their biographical information below.',
 			CORNERSTONE_MEMBERS_PLUGIN_TEXT_DOMAIN ) );
 	}
 }
