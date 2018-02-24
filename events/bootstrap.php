@@ -74,4 +74,23 @@ function register_events_custom_configs( array $configurations )    {
 
 }
 
+/**
+ * Autoload the plugin's files.
+ *
+ * @since 1.0.0
+ *
+ * @return void
+ */
+function autoload_files() {
+	$files = array(
+		'/admin/edit-form-advanced.php',
+	);
+
+	foreach ( $files as $filename ) {
+		require __DIR__ . $filename;
+	}
+}
+
+autoload_files();
+
 CustomModule\register_plugin( __FILE__ );

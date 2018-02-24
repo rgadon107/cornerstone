@@ -31,10 +31,10 @@ return array(
 		'add_meta_box'  => array(
 			// 'id' is not needed as the meta box id/key is defined above
 			// Title of the meta box
-			'title'  => __( 'Cornerstone Reviews', METABOX_TEXT_DOMAIN ),
+			'title'  => __( 'Event Information', METABOX_TEXT_DOMAIN ),
 			// The screen or screens on which to show the box
 			// such as a post type, link, comment, etc.
-			'screen' => array( 'reviews' ),
+			'screen' => array( 'events' ),
 		),
 
 		/************************************************************
@@ -57,7 +57,7 @@ return array(
 				'sanitize'     => 'sanitize_text_field',
 			),
 			// specify this field's meta key.  It's used in the database.
-			'event_venue'  => array(
+			'event_location'  => array(
 				// True - means it's a single
 				// False - means it's an array
 				'is_single'    => true,
@@ -71,7 +71,7 @@ return array(
 				'sanitize'     => 'sanitize_text_field',
 			),
 			// specify this field's meta key.  It's used in the database.
-			'audience_review'  => array(
+			'venue_name'  => array(
 				// True - means it's a single
 				// False - means it's an array
 				'is_single'    => true,
@@ -85,7 +85,7 @@ return array(
 				'sanitize'     => 'sanitize_text_field',
 			),
 			// specify this field's meta key.  It's used in the database.
-			'review_date'  => array(
+			'venue_address'  => array(
 				// True - means it's a single
 				// False - means it's an array
 				'is_single'    => true,
@@ -99,7 +99,7 @@ return array(
 				'sanitize'     => 'sanitize_text_field',
 			),
 			// specify this field's meta key.  It's used in the database.
-			'reviewer_name'  => array(
+			'performance_time'  => array(
 				// True - means it's a single
 				// False - means it's an array
 				'is_single'    => true,
@@ -113,7 +113,7 @@ return array(
 				'sanitize'     => 'sanitize_text_field',
 			),
 			// specify this field's meta key.  It's used in the database.
-			'reviewer_title'  => array(
+			'admission_price'  => array(
 				// True - means it's a single
 				// False - means it's an array
 				'is_single'    => true,
@@ -127,7 +127,35 @@ return array(
 				'sanitize'     => 'sanitize_text_field',
 			),
 			// specify this field's meta key.  It's used in the database.
-			'reviewer_org'  => array(
+			'tel_number_event_sponsor'  => array(
+				// True - means it's a single
+				// False - means it's an array
+				'is_single'    => true,
+				// Specify the custom field's default value.
+				'default'      => '',
+				// What is the state that signals to delete this meta key
+				// from the database.
+				'delete_state' => '',
+				// callable sanitizer function such as
+				// sanitize_text_field, sanitize_email, strip_tags, intval, etc.
+				'sanitize'     => 'sanitize_text_field',
+			),
+			// specify this field's meta key.  It's used in the database.
+			'image_of_event_venue'  => array(
+				// True - means it's a single
+				// False - means it's an array
+				'is_single'    => true,
+				// Specify the custom field's default value.
+				'default'      => '',
+				// What is the state that signals to delete this meta key
+				// from the database.
+				'delete_state' => '',
+				// callable sanitizer function such as
+				// sanitize_text_field, sanitize_email, strip_tags, intval, etc.
+				'sanitize'     => 'sanitize_text_field'
+			),
+			// specify this field's meta key.  It's used in the database.
+			'map_link_for_event_venue'  => array(
 				// True - means it's a single
 				// False - means it's an array
 				'is_single'    => true,

@@ -31,10 +31,10 @@ return array(
 		'add_meta_box'  => array(
 			// 'id' is not needed as the meta box id/key is defined above
 			// Title of the meta box
-			'title'  => __( 'Subtitle', 'mbbasics' ),
+			'title'  => __( 'Recording Custom Fields', METABOX_TEXT_DOMAIN ),
 			// The screen or screens on which to show the box
 			// such as a post type, link, comment, etc.
-			'screen' => array( 'post' ),
+			'screen' => array( 'recordings' ),
 		),
 
 		/************************************************************
