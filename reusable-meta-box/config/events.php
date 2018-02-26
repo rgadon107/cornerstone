@@ -43,7 +43,49 @@ return array(
 		 ***********************************************************/
 		'custom_fields' => array(
 			// specify this field's meta key.  It's used in the database.
-			'event_date' => array(
+			'event-day' => array(
+				// True - means it's a single
+				// False - means it's an array
+				'is_single'    => true,
+				// Specify the custom field's default value.
+				'default'      => '',
+				// What is the state that signals to delete this meta key
+				// from the database.
+				'delete_state' => '',
+				// callable sanitizer function such as
+				// sanitize_text_field, sanitize_email, strip_tags, intval, etc.
+				'sanitize'     => 'strip_tags',
+			),
+			// specify this field's meta key.  It's used in the database.
+			'event-date' => array(
+				// True - means it's a single
+				// False - means it's an array
+				'is_single'    => true,
+				// Specify the custom field's default value.
+				'default'      => '',
+				// What is the state that signals to delete this meta key
+				// from the database.
+				'delete_state' => '',
+				// callable sanitizer function such as
+				// sanitize_text_field, sanitize_email, strip_tags, intval, etc.
+				'sanitize'     => 'strip_tags',
+			),
+			// specify this field's meta key.  It's used in the database.
+			'event-time' => array(
+				// True - means it's a single
+				// False - means it's an array
+				'is_single'    => true,
+				// Specify the custom field's default value.
+				'default'      => '',
+				// What is the state that signals to delete this meta key
+				// from the database.
+				'delete_state' => '',
+				// callable sanitizer function such as
+				// sanitize_text_field, sanitize_email, strip_tags, intval, etc.
+				'sanitize'     => 'strip_tags',
+			),
+			// specify this field's meta key.  It's used in the database.
+			'venue-name'  => array(
 				// True - means it's a single
 				// False - means it's an array
 				'is_single'    => true,
@@ -57,7 +99,7 @@ return array(
 				'sanitize'     => 'sanitize_text_field',
 			),
 			// specify this field's meta key.  It's used in the database.
-			'event_location'  => array(
+			'venue-address'  => array(
 				// True - means it's a single
 				// False - means it's an array
 				'is_single'    => true,
@@ -71,7 +113,7 @@ return array(
 				'sanitize'     => 'sanitize_text_field',
 			),
 			// specify this field's meta key.  It's used in the database.
-			'venue_name'  => array(
+			'venue-city'  => array(
 				// True - means it's a single
 				// False - means it's an array
 				'is_single'    => true,
@@ -85,7 +127,49 @@ return array(
 				'sanitize'     => 'sanitize_text_field',
 			),
 			// specify this field's meta key.  It's used in the database.
-			'venue_address'  => array(
+			'venue-state'  => array(
+				// True - means it's a single
+				// False - means it's an array
+				'is_single'    => true,
+				// Specify the custom field's default value.
+				'default'      => '',
+				// What is the state that signals to delete this meta key
+				// from the database.
+				'delete_state' => '',
+				// callable sanitizer function such as
+				// sanitize_text_field, sanitize_email, strip_tags, intval, etc.
+				'sanitize'     => 'strip_tags',
+			),
+			// specify this field's meta key.  It's used in the database.
+			'admission'  => array(
+				// True - means it's a single
+				// False - means it's an array
+				'is_single'    => true,
+				// Specify the custom field's default value.
+				'default'      => 1,
+				// What is the state that signals to delete this meta key
+				// from the database.
+				'delete_state' => '',
+				// callable sanitizer function such as
+				// sanitize_text_field, sanitize_email, strip_tags, intval, etc.
+				'sanitize'     => 'intval',
+			),
+			// specify this field's meta key.  It's used in the database.
+			'sponsor-tel-number'  => array(
+				// True - means it's a single
+				// False - means it's an array
+				'is_single'    => true,
+				// Specify the custom field's default value.
+				'default'      => '',
+				// What is the state that signals to delete this meta key
+				// from the database.
+				'delete_state' => '',
+				// callable sanitizer function such as
+				// sanitize_text_field, sanitize_email, strip_tags, intval, etc.
+				'sanitize'     => 'strip_tags',
+			),
+			// specify this field's meta key.  It's used in the database.
+			'event-map-url'  => array(
 				// True - means it's a single
 				// False - means it's an array
 				'is_single'    => true,
@@ -99,63 +183,7 @@ return array(
 				'sanitize'     => 'sanitize_text_field',
 			),
 			// specify this field's meta key.  It's used in the database.
-			'performance_time'  => array(
-				// True - means it's a single
-				// False - means it's an array
-				'is_single'    => true,
-				// Specify the custom field's default value.
-				'default'      => '',
-				// What is the state that signals to delete this meta key
-				// from the database.
-				'delete_state' => '',
-				// callable sanitizer function such as
-				// sanitize_text_field, sanitize_email, strip_tags, intval, etc.
-				'sanitize'     => 'sanitize_text_field',
-			),
-			// specify this field's meta key.  It's used in the database.
-			'admission_price'  => array(
-				// True - means it's a single
-				// False - means it's an array
-				'is_single'    => true,
-				// Specify the custom field's default value.
-				'default'      => '',
-				// What is the state that signals to delete this meta key
-				// from the database.
-				'delete_state' => '',
-				// callable sanitizer function such as
-				// sanitize_text_field, sanitize_email, strip_tags, intval, etc.
-				'sanitize'     => 'sanitize_text_field',
-			),
-			// specify this field's meta key.  It's used in the database.
-			'tel_number_event_sponsor'  => array(
-				// True - means it's a single
-				// False - means it's an array
-				'is_single'    => true,
-				// Specify the custom field's default value.
-				'default'      => '',
-				// What is the state that signals to delete this meta key
-				// from the database.
-				'delete_state' => '',
-				// callable sanitizer function such as
-				// sanitize_text_field, sanitize_email, strip_tags, intval, etc.
-				'sanitize'     => 'sanitize_text_field',
-			),
-			// specify this field's meta key.  It's used in the database.
-			'image_of_event_venue'  => array(
-				// True - means it's a single
-				// False - means it's an array
-				'is_single'    => true,
-				// Specify the custom field's default value.
-				'default'      => '',
-				// What is the state that signals to delete this meta key
-				// from the database.
-				'delete_state' => '',
-				// callable sanitizer function such as
-				// sanitize_text_field, sanitize_email, strip_tags, intval, etc.
-				'sanitize'     => 'sanitize_text_field'
-			),
-			// specify this field's meta key.  It's used in the database.
-			'map_link_for_event_venue'  => array(
+			'event-venue-image'  => array(
 				// True - means it's a single
 				// False - means it's an array
 				'is_single'    => true,
