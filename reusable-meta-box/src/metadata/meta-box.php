@@ -156,7 +156,6 @@ function remap_custom_fields_config( array $config ) {
 		}
 	}
 
-
 	return $remapped_config;
 }
 

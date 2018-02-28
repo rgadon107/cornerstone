@@ -4,13 +4,9 @@
         <select id="event-day" name="<?php echo $meta_box_id; ?>[event-day]"
                 value="<?php esc_attr_e( $custom_fields['event-day'] ); ?>" >
                 <option>--Select a Day--</option>
-                <option value="Sunday">Sunday</option>
-                <option value="Monday">Monday</option>
-                <option value="Tuesday">Tuesday</option>
-                <option value="Wednesday">Wednesday</option>
-                <option value="Thursday">Thursday</option>
-                <option value="Friday">Friday</option>
-                <option value="Saturday">Saturday</option>
+            <?php foreach( require $config['days_of_week'] as $day ) : ?>
+                <option value="<?php echo esc_attr( $day ); ?>"<?php selected( $custom_fields['event-day'], $day ); ?>><?php echo esc_html( $day ); ?></option>
+            <?php endforeach; ?>
         </select>
         <input id="event-date" type="date" name="<?php echo $meta_box_id; ?>[event-date]"
                value="<?php esc_attr_e( $custom_fields['event-date'] ); ?>">
@@ -59,59 +55,9 @@
             <select id="venue-state" name="<?php echo $meta_box_id; ?>[venue-state]"
                     value="<?php esc_attr_e( $custom_fields['venue-state'] ); ?>" >
                     <option>--Select a State--</option>
-                    <option value="AL">AL - Alabama</option>
-                    <option value="AK">AK - Alaska</option>
-                    <option value="AR">AR - Arkansas</option>
-                    <option value="AZ">AZ - Arizona</option>
-                    <option value="CA">CA - California</option>
-                    <option value="CO">CO - Colorado</option>
-                    <option value="CT">CT - Connecticut</option>
-                    <option value="DE">DE - Delaware</option>
-                    <option value="DC">DC - District of Columbia</option>
-                    <option value="FL">FL - Florida</option>
-                    <option value="GA">GA - Georgia</option>
-                    <option value="HI">HI - Hawaii</option>
-                    <option value="IA">IA - Iowa</option>
-                    <option value="ID">ID - Idaho</option>
-                    <option value="IL">IL - Illinois</option>
-                    <option value="IN">IN - Indiana</option>
-                    <option value="KS">KS - Kansas</option>
-                    <option value="KY">KY - Kentucky</option>
-                    <option value="LA">LA - Louisiana</option>
-                    <option value="MA">MA - Massachusetts</option>
-                    <option value="ME">ME - Maine</option>
-                    <option value="MD">MD - Maryland</option>
-                    <option value="MI">MI - Michigan</option>
-                    <option value="MN">MN - Minnesota</option>
-                    <option value="MO">MO - Missouri</option>
-                    <option value="MS">MS - Mississippi</option>
-                    <option value="MT">MT - Montana</option>
-                    <option value="NC">NC - North Carolina</option>
-                    <option value="ND">ND - North Dakota</option>
-                    <option value="NE">NE - Nebraska</option>
-                    <option value="NH">NH - New Hampshire</option>
-                    <option value="NJ">NJ - New Jersey</option>
-                    <option value="NM">NM - New Mexico</option>
-                    <option value="NV">NV - Nevada</option>
-                    <option value="NY">NY - New York</option>
-                    <option value="OH">OH - Ohio</option>
-                    <option value="OK">OK - Oklahoma</option>
-                    <option value="OR">OR - Oregon</option>
-                    <option value="PA">PA - Pennsylvania</option>
-                    <option value="PR">PR - Puerto Rico</option>
-                    <option value="RI">RI - Rhode Island</option>
-                    <option value="SC">SC - South Carolina</option>
-                    <option value="SD">SD - South Dakota</option>
-                    <option value="TN">TN - Tennessee</option>
-                    <option value="TX">TX - Texas</option>
-                    <option value="UT">UT - Utah</option>
-                    <option value="VA">VA - Virginia</option>
-                    <option value="VI">VI - Virgin Islands</option>
-                    <option value="VT">VT - Vermont</option>
-                    <option value="WA">WA - Washington</option>
-                    <option value="WI">WI - Wisconsin</option>
-                    <option value="WV">WV - West Virginia</option>
-                    <option value="WY">WY - Wyoming</option>
+	            <?php foreach( require $config['states'] as $state_id => $state_name ) : ?>
+                    <option value="<?php echo esc_attr( $state_id ); ?>"<?php selected( $custom_fields['event-day'], $state_id ); ?>><?php echo esc_html( $state_name ); ?></option>
+	            <?php endforeach; ?>
             </select>
         </p>
     <span class="description"><?php _e('We\'ll use the address City and State to allow visitors to search the event on the front end.', METABOX_TEXT_DOMAIN ); ?></span>
@@ -129,7 +75,7 @@
 <!--//END FORM BUILDING-->
     <p>
         <label for="regular-admission">Adult (USD): </label>
-        <input id="regular-admission" type="number" name="<?php echo $meta_box_id; ?>[]" value="" placeholder="20.00" step="0.50" min="0.00">
+        <input id="regular-admission" type="number" name="<?php echo $meta_box_id; ?>[regular-admission]" value="<?php echo esc_attr( $custom_fields['regular-admission'] ); ?>" placeholder="20.00" step="0.50" min="0.00">
     </p>
 </div>
 <hr>
