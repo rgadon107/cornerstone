@@ -26,6 +26,7 @@ return array(
 		 * Configuration parameters for adding the meta box.
 		 * For more information on each of the parameters, see this
 		 * article in Codex:
+		 *
 		 * @link https://developer.wordpress.org/reference/functions/add_meta_box/#parameters
 		 ***********************************************************/
 		'add_meta_box'  => array(
@@ -43,7 +44,7 @@ return array(
 		 ***********************************************************/
 		'custom_fields' => array(
 			// specify this field's meta key.  It's used in the database.
-			'event-day' => array(
+			'event-day'          => array(
 				// True - means it's a single
 				// False - means it's an array
 				'is_single'    => true,
@@ -57,7 +58,7 @@ return array(
 				'sanitize'     => 'strip_tags',
 			),
 			// specify this field's meta key.  It's used in the database.
-			'event-date' => array(
+			'event-date'         => array(
 				// True - means it's a single
 				// False - means it's an array
 				'is_single'    => true,
@@ -71,7 +72,7 @@ return array(
 				'sanitize'     => 'strip_tags',
 			),
 			// specify this field's meta key.  It's used in the database.
-			'event-time' => array(
+			'event-time'         => array(
 				// True - means it's a single
 				// False - means it's an array
 				'is_single'    => true,
@@ -85,7 +86,7 @@ return array(
 				'sanitize'     => 'strip_tags',
 			),
 			// specify this field's meta key.  It's used in the database.
-			'venue-name'  => array(
+			'venue-name'         => array(
 				// True - means it's a single
 				// False - means it's an array
 				'is_single'    => true,
@@ -99,7 +100,7 @@ return array(
 				'sanitize'     => 'sanitize_text_field',
 			),
 			// specify this field's meta key.  It's used in the database.
-			'venue-address'  => array(
+			'venue-address'      => array(
 				// True - means it's a single
 				// False - means it's an array
 				'is_single'    => true,
@@ -113,7 +114,7 @@ return array(
 				'sanitize'     => 'sanitize_text_field',
 			),
 			// specify this field's meta key.  It's used in the database.
-			'venue-city'  => array(
+			'venue-city'         => array(
 				// True - means it's a single
 				// False - means it's an array
 				'is_single'    => true,
@@ -127,7 +128,7 @@ return array(
 				'sanitize'     => 'sanitize_text_field',
 			),
 			// specify this field's meta key.  It's used in the database.
-			'venue-state'  => array(
+			'venue-state'        => array(
 				// True - means it's a single
 				// False - means it's an array
 				'is_single'    => true,
@@ -141,7 +142,7 @@ return array(
 				'sanitize'     => 'strip_tags',
 			),
 			// specify this field's meta key.  It's used in the database.
-			'admission'  => array(
+			'admission'          => array(
 				// True - means it's a single
 				// False - means it's an array
 				'is_single'    => true,
@@ -154,8 +155,21 @@ return array(
 				// sanitize_text_field, sanitize_email, strip_tags, intval, etc.
 				'sanitize'     => 'intval',
 			),
+			'regular-admission'  => array(
+				// True - means it's a single
+				// False - means it's an array
+				'is_single'    => true,
+				// Specify the custom field's default value.
+				'default'      => 1,
+				// What is the state that signals to delete this meta key
+				// from the database.
+				'delete_state' => '',
+				// callable sanitizer function such as
+				// sanitize_text_field, sanitize_email, strip_tags, intval, etc.
+				'sanitize'     => 'floatval',
+			),
 			// specify this field's meta key.  It's used in the database.
-			'sponsor-tel-number'  => array(
+			'sponsor-tel-number' => array(
 				// True - means it's a single
 				// False - means it's an array
 				'is_single'    => true,
@@ -169,7 +183,7 @@ return array(
 				'sanitize'     => 'strip_tags',
 			),
 			// specify this field's meta key.  It's used in the database.
-			'event-map-url'  => array(
+			'event-map-url'      => array(
 				// True - means it's a single
 				// False - means it's an array
 				'is_single'    => true,
@@ -202,5 +216,8 @@ return array(
 		 * Configure the absolute path to your meta box's view file.
 		 ***********************************************************/
 		'view'          => METABOX_DIR . 'src/views/events.php',
+
+		'days_of_week' => __DIR__ . '/days-of-week.php',
+		'states'       => __DIR__ . '/states.php',
 	),
 );
