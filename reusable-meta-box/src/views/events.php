@@ -45,7 +45,7 @@
             <select id="venue-state" name="<?php echo $meta_box_id; ?>[venue-state]" value="<?php echo esc_attr( $custom_fields['venue-state'] ); ?>" >
                 <option>--Select a State--</option>
             <?php foreach( require $config['states'] as $state_id => $state_name ) : ?>
-                <option value="<?php echo esc_attr( $state_id ); ?>"<?php selected( $custom_fields['event-day'], $state_id ); ?>><?php echo esc_html( $state_name ); ?></option>
+                <option value="<?php echo esc_attr( $state_id ); ?>"<?php selected( $custom_fields['venue-state'], $state_id ); ?>><?php echo esc_html( $state_name ); ?></option>
             <?php endforeach; ?>
             </select>
         </p>
@@ -53,7 +53,6 @@
 </div>
 <hr>
 <div>
-    <!--//START FORM BUILDING-->
     <p>
         <label for="admission"><strong>Admission</strong></label>
     </p>
@@ -61,7 +60,6 @@
         <input id="admission" type="checkbox" value="1" name="<?php echo $meta_box_id; ?>[admission]" <?php checked( $custom_fields['admission'], 1 ); ?>>
         <span class="description">If checked, admission will be charged for this event.</span>
     </p>
-<!--//END FORM BUILDING-->
     <p>
         <label for="regular-admission">Adult (USD): </label>
         <input id="regular-admission" type="number" name="<?php echo $meta_box_id; ?>[regular-admission]" value="<?php echo esc_attr( $custom_fields['regular-admission'] ); ?>" placeholder="20.00" step="0.50" min="0.00">

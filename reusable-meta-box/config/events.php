@@ -155,6 +155,7 @@ return array(
 				// sanitize_text_field, sanitize_email, strip_tags, intval, etc.
 				'sanitize'     => 'intval',
 			),
+			// specify this field's meta key.  It's used in the database.
 			'regular-admission'  => array(
 				// True - means it's a single
 				// False - means it's an array

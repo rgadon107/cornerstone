@@ -89,7 +89,7 @@ function render_single_faq( array $attributes, array $config ) {
 
 
 /**
- *  Process the topic FAQs by topic attibute
+ *  Process the topic FAQs by topic attribute
  *
  *  @since 1.3.0
  *
