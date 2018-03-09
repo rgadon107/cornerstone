@@ -35,6 +35,7 @@
 namespace spiralWebDb\Events;
 
 use spiralWebDb\Module\Custom as CustomModule;
+use KnowTheCode\Metadata as metaData;
 
 define( 'EVENTS_PLUGIN_TEXT_DOMAIN', 'cornerstone_events' );
 
@@ -48,17 +49,16 @@ add_filter( 'add_custom_taxonomy_runtime_config', __NAMESPACE__ . '\register_eve
  *
  * @param array $configurations Array of all of the configurations.
  *
- * @return void
+ * @return array
  */
 function register_events_custom_configs( array $configurations )    {
-
 	$doing_post_type = current_filter() == 'add_custom_post_type_runtime_config';
 
 	$filename = $doing_post_type
 		? 'post-type'
 		: 'taxonomy';
 
-	$runtime_config = (array) require( __DIR__ . '/config/' . $filename . '.php' );
+	$runtime_config = (array) require_once __DIR__ . '/config/' . $filename . '.php';
 
 	if( ! $runtime_config ) {
 		return $configurations;
@@ -71,7 +71,6 @@ function register_events_custom_configs( array $configurations )    {
 	$configurations[ $key ] = $runtime_config;
 
 	return $configurations;
-
 }
 
 /**
@@ -91,6 +90,24 @@ function autoload_files() {
 	}
 }
 
-autoload_files();
+/**
+ * Launch the plugin.
+ *
+ * @since 1.0.0
+ *
+ * @return void
+ */
+function launch() {
+	autoload_files();
 
-CustomModule\register_plugin( __FILE__ );
+	CustomModule\register_plugin( __FILE__ );
+
+	// Load configurations
+	metaData\loadConfigFromFilesystem(
+		array(
+			__DIR__ . '/config/events.php',
+		)
+	);
+}
+
+launch();

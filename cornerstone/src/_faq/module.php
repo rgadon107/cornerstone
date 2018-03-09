@@ -18,7 +18,7 @@ namespace spiralWebDb\Module\FAQ;
 use spiralWebDb\Module\Custom as CustomModule;
 
 define( 'FAQ_MODULE_TEXT_DOMAIN', CENTRAL_HUB_TEXT_DOMAIN );
-define( 'FAQ_MODULE_DIR', trailingslashit(__DIR__ ) );
+define( 'FAQ_MODULE_DIR', trailingslashit( __DIR__ ) );
 
 add_filter( 'add_custom_post_type_runtime_config', __NAMESPACE__ . '\register_faq_custom_configs' );
 add_filter( 'add_custom_taxonomy_runtime_config', __NAMESPACE__ . '\register_faq_custom_configs' );
@@ -32,7 +32,7 @@ add_filter( 'add_custom_taxonomy_runtime_config', __NAMESPACE__ . '\register_faq
  *
  * @return void
  */
-function register_faq_custom_configs( array $configurations )    {
+function register_faq_custom_configs( array $configurations ) {
 
 	$doing_post_type = current_filter() == 'add_custom_post_type_runtime_config';
 
@@ -42,7 +42,7 @@ function register_faq_custom_configs( array $configurations )    {
 
 	$runtime_config = (array) require( FAQ_MODULE_DIR . 'config/' . $filename . '.php' );
 
-	if( ! $runtime_config ) {
+	if ( ! $runtime_config ) {
 		return $configurations;
 	}
 
@@ -59,9 +59,9 @@ function register_faq_custom_configs( array $configurations )    {
 /**
  *  Autoload plugin files.
  *
- *  @since 1.3.0
+ * @since 1.3.0
  *
- *  @return array $files Array of files to autoload.
+ * @return array $files Array of files to autoload.
  */
 function autoload() {
 	$files = array(
@@ -70,19 +70,19 @@ function autoload() {
 		'template/helpers.php',
 	);
 
-	foreach( $files as $file ) {
+	foreach ( $files as $file ) {
 
 		include( FAQ_MODULE_DIR . $file );
 	}
 }
 
-add_action( 'plugins_loaded', __NAMESPACE__ . '\setup_module');
+add_action( 'plugins_loaded', __NAMESPACE__ . '\setup_module' );
 /**
  *  Setup the FAQ shortcode configuration file in the module.
  *
- *  @since 1.3.0
+ * @since 1.3.0
  *
- *  @return void
+ * @return void
  */
 function setup_module() {
 	CustomModule\register_shortcode( FAQ_MODULE_DIR . 'config/shortcode.php' );

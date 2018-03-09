@@ -1,21 +1,21 @@
 <?php
 /**
- *  Central Hub plugin
+ *  Cornerstone's Site plugin
  *
- * @package spiralWebDb\centralHub
+ * @package spiralWebDb\Cornerstone
  * @author  (c) 2017 by Robert A. Gadon
  * @license GPL-2.0+ (see license text below)
  * @link    https://spiralwebdb.com
  *
  * @wordpress-plugin
- * Plugin Name:     Central Hub Plugin
+ * Plugin Name:     Cornerstone's Site Plugin
  * Plugin URI:      https://gitlab.com/Hamammelis/cornerstone
  * Description:     Central Hub provides other plugins a central store to manage the arguments, labeling, and registration of their custom post types, taxonomies, and shortcodes, and regenerate rewrite rules on plugin activation, deactivation, and uninstall.
  * Version:         1.3.0
  * Author:          Robert A. Gadon
  * Author URI:      http://spiralwebdb.com
  * License URI:     https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:     central_hub
+ * Text Domain:     cornerstone
  * Requires WP:     4.8
  * Requires PHP:    5.6
  *
@@ -33,25 +33,41 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-namespace spiralWebDb\centralHub;
-
-use spiralWebDb\Module\Custom as CustomModule;
+namespace spiralWebDb\Cornerstone;
 
 if ( ! defined( 'ABSPATH') ) {
 	die( "Oh silly, there's nothing to see here." );
 }
 
-define( 'CENTRAL_HUB_PLUGIN', __FILE__ );
-define( 'CENTRAL_HUB_DIR', trailingslashit(__DIR__) );
+define( 'CORNERSTONE_PLUGIN', __FILE__ );
+define( 'CORNERSTONE_DIR', trailingslashit(__DIR__ ) );
 
 $plugin_url = plugin_dir_url(__FILE__ );
 
 if ( is_ssl() )   {
-	$plugin_url = $str_replace( 'http://', 'https://', $plugin_url );
+	$plugin_url = str_replace( 'http://', 'https://', $plugin_url );
 }
-define( 'CENTRAL_HUB_URL', $plugin_url );
-define( 'CENTRAL_HUB_TEXT_DOMAIN', 'central_hub' );
+define( 'CORNERSTONE_URL', $plugin_url );
+define( 'CORNERSTONE_TEXT_DOMAIN', 'cornerstone' );
 
-include( __DIR__ . '/src/plugin.php' );
+/**
+ *  Autoload plugin files.
+ *
+ *  @since 1.3.0
+ *
+ *  @return void
+ */
+function autoload() {
+	$files = array(
+		'plugin.php',
+//		'faq/module.php',
+	);
 
-CustomModule\register_plugin( __FILE__ );
+	foreach( $files as $file ) {
+		require __DIR__ . '/src/' . $file;
+	}
+
+	load_configurations();
+}
+
+autoload();
