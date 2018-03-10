@@ -36,7 +36,6 @@ use spiralWebDb\Module\Custom as CustomModule;
 use KnowTheCode\Metadata as metaData;
 
 define( 'CORNERSTONE_MEMBERS_DIR', __DIR__ );
-define( 'CORNERSTONE_MEMBERS_PLUGIN_TEXT_DOMAIN', 'cornerstone_members' );
 
 add_filter( 'add_custom_post_type_runtime_config', __NAMESPACE__ . '\register_members_custom_configs', 9 );
 add_filter( 'add_custom_taxonomy_runtime_config', __NAMESPACE__ . '\register_members_custom_configs', 9 );
