@@ -92,6 +92,21 @@ function autoload_files() {
 }
 
 /**
+ * Load the configurations.
+ *
+ * @since 1.0.0
+ *
+ * @return void
+ */
+function load_configurations() {
+	metaData\autoload_configurations(
+		array(
+			__DIR__ . '/config/events.php',
+		)
+	);
+}
+
+/**
  * Launch the plugin.
  *
  * @since 1.0.0
@@ -103,12 +118,7 @@ function launch() {
 
 	CustomModule\register_plugin( __FILE__ );
 
-	// Load configurations
-	metaData\autoload_configurations(
-		array(
-			__DIR__ . '/config/events.php',
-		)
-	);
+	load_configurations();
 }
 
 launch();
