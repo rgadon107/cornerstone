@@ -32,7 +32,7 @@ return array(
 		'add_meta_box'  => array(
 			// 'id' is not needed as the meta box id/key is defined above
 			// Title of the meta box
-			'title'  => __( 'Event Information', METABOX_TEXT_DOMAIN ),
+			'title'  => 'Event Information',
 			// The screen or screens on which to show the box
 			// such as a post type, link, comment, etc.
 			'screen' => array( 'events' ),
@@ -221,7 +221,7 @@ return array(
 		/************************************************************
 		 * ConfigStore keys.
 		 ***********************************************************/
-		'days_of_week' => 'days_of_week',
-		'states'       => 'states',
+		'days_of_week'  => 'days_of_week',
+		'states'        => 'states',
 	),
 );

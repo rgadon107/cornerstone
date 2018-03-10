@@ -33,7 +33,7 @@ return array(
 		'singular_label'                =>  'Recording',
 		'plural_label'                  =>  'Recordings',
 		'in_sentance_label'             =>  'Recordings',
-		'text_domain'                   => RECORDINGS_PLUGIN_TEXT_DOMAIN,
+		'text_domain'                   => 'cornerstone_recordings',
 		'specific_labels'               => array(),
 	),
 
@@ -69,7 +69,7 @@ return array(
 	===============================================================*/
 	'args'      => array(
 		'description'   => 'Cornerstone Chorale & Brass CD Recordings', // For informational purposes only.
-		'label'         => __( 'Recordings', RECORDINGS_PLUGIN_TEXT_DOMAIN ),
+		'label'         => 'Recordings',
 		'labels'        => '', // automatically generate the labels.
 		'public'        => true,
 		'menu_icon'     => 'dashicons-album',

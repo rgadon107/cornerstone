@@ -38,7 +38,6 @@ use spiralWebDb\Module\Custom as CustomModule;
 use KnowTheCode\Metadata as metaData;
 
 define( 'RECORDINGS_DIR', __DIR__ );
-define( 'RECORDINGS_PLUGIN_TEXT_DOMAIN', 'cornerstone_recordings' );
 
 add_filter( 'add_custom_post_type_runtime_config', __NAMESPACE__ . '\register_recordings_custom_configs' );
 add_filter( 'add_custom_taxonomy_runtime_config', __NAMESPACE__ . '\register_recordings_custom_configs' );

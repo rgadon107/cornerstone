@@ -2,10 +2,10 @@
 /**
  *  Reviews plugin
  *
- * @package spiralWebDb\Reviews
+ * @package     spiralWebDb\Reviews
  * @author  (c) 2017 by Robert A. Gadon
- * @license GPL-2.0+ (see license text below)
- * @link    https://spiralwebdb.com
+ * @license     GPL-2.0+ (see license text below)
+ * @link        https://spiralwebdb.com
  *
  * @wordpress-plugin
  * Plugin Name:     Reviews Plugin
@@ -32,13 +32,13 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
+
 namespace spiralWebDb\Reviews;
 
 use spiralWebDb\Module\Custom as CustomModule;
 use KnowTheCode\Metadata as metaData;
 
 define( 'REVIEWS_DIR', __DIR__ );
-define( 'REVIEWS_PLUGIN_TEXT_DOMAIN', 'cornerstone_reviews' );
 
 add_filter( 'add_custom_post_type_runtime_config', __NAMESPACE__ . '\register_reviews_custom_configs', 8 );
 add_filter( 'add_custom_taxonomy_runtime_config', __NAMESPACE__ . '\register_reviews_custom_configs', 8 );
@@ -52,8 +52,7 @@ add_filter( 'add_custom_taxonomy_runtime_config', __NAMESPACE__ . '\register_rev
  *
  * @return void
  */
-function register_reviews_custom_configs( array $configurations )    {
-
+function register_reviews_custom_configs( array $configurations ) {
 	$doing_post_type = current_filter() == 'add_custom_post_type_runtime_config';
 
 	$filename = $doing_post_type
@@ -62,7 +61,7 @@ function register_reviews_custom_configs( array $configurations )    {
 
 	$runtime_config = (array) require( __DIR__ . '/config/' . $filename . '.php' );
 
-	if( ! $runtime_config ) {
+	if ( ! $runtime_config ) {
 		return $configurations;
 	}
 

@@ -38,7 +38,6 @@ use spiralWebDb\Module\Custom as CustomModule;
 use KnowTheCode\Metadata as metaData;
 
 define( 'EVENTS_DIR', __DIR__ );
-define( 'EVENTS_PLUGIN_TEXT_DOMAIN', 'cornerstone_events' );
 
 add_filter( 'add_custom_post_type_runtime_config', __NAMESPACE__ . '\register_events_custom_configs', 7 );
 add_filter( 'add_custom_taxonomy_runtime_config', __NAMESPACE__ . '\register_events_custom_configs', 7 );
