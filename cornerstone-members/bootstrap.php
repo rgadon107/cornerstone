@@ -2,21 +2,18 @@
 /**
  *  Cornerstone Members plugin
  *
- * @package spiralWebDb\Members
+ * @package     spiralWebDb\Members
  * @author  (c) 2017 by Robert A. Gadon
- * @license GPL-2.0+ (see license text below)
- * @link    https://spiralwebdb.com
+ * @license     GPL-2.0+ (see license text below)
+ * @link        https://spiralwebdb.com
  *
  * @wordpress-plugin
  * Plugin Name:     Cornerstone Members
  * Plugin URI:      https://gitlab.com/Hamammelis/cornerstone
- * Description:     Members is a WordPress plugin that manages public information about Cornerstone Chorale and Brass members.
- * Author:          Robert A. Gadon
- * Author URI:      http://spiralwebdb.com
- * License URI:     https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:     cornerstone_members
- * Requires WP:     4.8
- * Requires PHP:    5.5
+ * Description:     Members is a WordPress plugin that manages public information about Cornerstone Chorale and Brass
+ * members. Author:          Robert A. Gadon Author URI:      http://spiralwebdb.com License URI:
+ * https://www.gnu.org/licenses/gpl-2.0.html Text Domain:     cornerstone_members Requires WP:     4.8 Requires PHP:
+ * 5.5
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -32,10 +29,13 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
+
 namespace spiralWebDb\Members;
 
 use spiralWebDb\Module\Custom as CustomModule;
+use KnowTheCode\Metadata as metaData;
 
+define( 'CORNERSTONE_MEMBERS_DIR', __DIR__ );
 define( 'CORNERSTONE_MEMBERS_PLUGIN_TEXT_DOMAIN', 'cornerstone_members' );
 
 add_filter( 'add_custom_post_type_runtime_config', __NAMESPACE__ . '\register_members_custom_configs', 9 );
@@ -50,8 +50,7 @@ add_filter( 'add_custom_taxonomy_runtime_config', __NAMESPACE__ . '\register_mem
  *
  * @return array $configurations
  */
-function register_members_custom_configs( array $configurations )    {
-
+function register_members_custom_configs( array $configurations ) {
 	$doing_post_type = current_filter() == 'add_custom_post_type_runtime_config';
 
 	$filename = $doing_post_type
@@ -60,7 +59,7 @@ function register_members_custom_configs( array $configurations )    {
 
 	$runtime_config = (array) require( __DIR__ . '/config/' . $filename . '.php' );
 
-	if( ! $runtime_config ) {
+	if ( ! $runtime_config ) {
 		return $configurations;
 	}
 
@@ -71,7 +70,6 @@ function register_members_custom_configs( array $configurations )    {
 	$configurations[ $key ] = $runtime_config;
 
 	return $configurations;
-
 }
 
 /**
@@ -83,7 +81,7 @@ function register_members_custom_configs( array $configurations )    {
  */
 function autoload_files() {
 	$files = array(
-		'/admin/edit-form-advanced.php',
+		'/src/admin/edit-form-advanced.php',
 	);
 
 	foreach ( $files as $filename ) {
@@ -91,6 +89,34 @@ function autoload_files() {
 	}
 }
 
-autoload_files();
+/**
+ * Load the configurations.
+ *
+ * @since 1.0.0
+ *
+ * @return void
+ */
+function load_configurations() {
+	metaData\autoload_configurations(
+		array(
+			__DIR__ . '/config/members.php',
+		)
+	);
+}
 
-CustomModule\register_plugin( __FILE__ );
+/**
+ * Launch the plugin.
+ *
+ * @since 1.0.0
+ *
+ * @return void
+ */
+function launch() {
+	autoload_files();
+
+	CustomModule\register_plugin( __FILE__ );
+
+	load_configurations();
+}
+
+launch();

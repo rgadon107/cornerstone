@@ -4,14 +4,14 @@
  *
  * 'Members' Runtime Configuration Parameters
  *
- * @package     KnowTheCode\Metadata
- * @since       1.0.0
- * @author      hellofromTonya
- * @link        https://KnowTheCode.io
- * @license     GNU-2.0+
+ * @package    spiralWebDb\Members
+ * @since      1.0.0
+ * @author     Robert A. Gadon
+ * @link       http://spiralwebdb.com
+ * @license    GPL-2.0+
  */
 
-namespace KnowTheCode\Metadata;
+namespace spiralWebDb\Members;
 
 return array(
 	/************************************************************
@@ -31,7 +31,7 @@ return array(
 		'add_meta_box'  => array(
 			// 'id' is not needed as the meta box id/key is defined above
 			// Title of the meta box
-			'title'  => __( 'Cornerstone Tour Member', METABOX_TEXT_DOMAIN ),
+			'title'  => 'Cornerstone Tour Member',
 			// The screen or screens on which to show the box
 			// such as a post type, link, comment, etc.
 			'screen' => array( 'members' ),
@@ -130,6 +130,6 @@ return array(
 		/************************************************************
 		 * Configure the absolute path to your meta box's view file.
 		 ***********************************************************/
-		'view'          => METABOX_DIR . 'src/views/members.php',
+		'view'          => CORNERSTONE_MEMBERS_DIR . '/src/meta-box/views/members.php',
 	),
 );

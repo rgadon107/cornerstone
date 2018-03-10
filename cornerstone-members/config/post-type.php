@@ -3,14 +3,10 @@
  *  The runtime configuration parameters for the Cornerstone Members Custom Post Type.
  *
  * @package    spiralWebDb\Members
- *
  * @since      1.0.0
- *
  * @author     Robert A. Gadon
- *
  * @link       http://spiralwebdb.com
- *
- * @license    GNU General Public License 2.0+
+ * @license    GPL-2.0+
  */
 namespace spiralWebDb\Members;
 
