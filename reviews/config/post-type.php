@@ -33,7 +33,7 @@ return array(
 		'singular_label'                =>  'Review',
 		'plural_label'                  =>  'Reviews',
 		'in_sentance_label'             =>  'Reviews',
-		'text_domain'                   => REVIEWS_PLUGIN_TEXT_DOMAIN,
+		'text_domain'                   => 'reviews',
 		'specific_labels'               => array(),
 	),
 
@@ -69,7 +69,7 @@ return array(
 	===============================================================*/
 	'args'      => array(
 		'description'   => 'Reviews of the Cornerstone Chorale & Brass', // For informational purposes only.
-		'label'         => __( 'Reviews', REVIEWS_PLUGIN_TEXT_DOMAIN ),
+		'label'         => 'Reviews',
 		'labels'        => '', // automatically generate the labels.
 		'public'        => true,
 		'menu_icon'     => 'dashicons-testimonial',

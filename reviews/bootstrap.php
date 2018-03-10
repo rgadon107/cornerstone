@@ -35,7 +35,9 @@
 namespace spiralWebDb\Reviews;
 
 use spiralWebDb\Module\Custom as CustomModule;
+use KnowTheCode\Metadata as metaData;
 
+define( 'REVIEWS_DIR', __DIR__ );
 define( 'REVIEWS_PLUGIN_TEXT_DOMAIN', 'cornerstone_reviews' );
 
 add_filter( 'add_custom_post_type_runtime_config', __NAMESPACE__ . '\register_reviews_custom_configs', 8 );
@@ -71,7 +73,34 @@ function register_reviews_custom_configs( array $configurations )    {
 	$configurations[ $key ] = $runtime_config;
 
 	return $configurations;
-
 }
 
-CustomModule\register_plugin( __FILE__ );
+/**
+ * Load the configurations.
+ *
+ * @since 1.0.0
+ *
+ * @return void
+ */
+function load_configurations() {
+	metaData\autoload_configurations(
+		array(
+			__DIR__ . '/config/reviews.php',
+		)
+	);
+}
+
+/**
+ * Launch the plugin.
+ *
+ * @since 1.0.0
+ *
+ * @return void
+ */
+function launch() {
+	CustomModule\register_plugin( __FILE__ );
+
+	load_configurations();
+}
+
+launch();
