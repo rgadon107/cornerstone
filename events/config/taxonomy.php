@@ -53,5 +53,5 @@ return array(
 	 * The post types to which the Taxonomy is bound.
 	 *
 	 * ===============================================================*/
-	'post_types' => array( '' ),
+	'post_types' => array( 'events' ),
 );
