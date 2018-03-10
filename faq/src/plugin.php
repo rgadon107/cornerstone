@@ -55,22 +55,3 @@ function setup_plugin() {
 		CustomModule\register_shortcode( $config_file );
 	}
 }
-
-/**
- * Load the site's general configurations into ConfigStore.
- *
- * @since 1.0.0
- *
- * @return void
- * @throws \Exception
- */
-function load_configurations()  {
-	$configurations = 		array(
-		'config/days-of-week.php',
-		'config/states.php',
-	);
-
-	foreach( $configurations as $file ) {
-		configStore\loadConfigFromFilesystem( CORNERSTONE_DIR . $file );
-	}
-}

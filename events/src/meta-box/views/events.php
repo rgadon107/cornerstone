@@ -1,9 +1,14 @@
+<?php
+
+use KnowTheCode\ConfigStore;
+
+?>
 <div class="event-date">
     <label for="event-date"><strong>Performance Date</strong></label>
     <p>
         <select id="event-day" name="<?php echo $meta_box_id; ?>[event-day]" value="<?php echo esc_attr( $custom_fields['event-day'] ); ?>" >
             <option>--Select a Day--</option>
-        <?php foreach( require $config['days_of_week'] as $day ) : ?>
+        <?php foreach( ConfigStore\getConfig( $config['days_of_week'] ) as $day ) : ?>
             <option value="<?php echo esc_attr( $day ); ?>"<?php selected( $custom_fields['event-day'], $day ); ?>><?php echo esc_html( $day ); ?></option>
         <?php endforeach; ?>
         </select>
@@ -44,7 +49,7 @@
             <input id="venue-city" type="regular-text" name="<?php echo $meta_box_id; ?>[venue-city]" value="<?php echo esc_attr( $custom_fields['venue-city'] ); ?>" placeholder="City">
             <select id="venue-state" name="<?php echo $meta_box_id; ?>[venue-state]" value="<?php echo esc_attr( $custom_fields['venue-state'] ); ?>" >
                 <option>--Select a State--</option>
-            <?php foreach( require $config['states'] as $state_id => $state_name ) : ?>
+            <?php foreach( ConfigStore\getConfig( $config['states'] ) as $state_id => $state_name ) : ?>
                 <option value="<?php echo esc_attr( $state_id ); ?>"<?php selected( $custom_fields['venue-state'], $state_id ); ?>><?php echo esc_html( $state_name ); ?></option>
             <?php endforeach; ?>
             </select>

@@ -1,14 +1,14 @@
 <?php
 /**
- *  Cornerstone's Site plugin
+ *  FAQ plugin
  *
- * @package spiralWebDb\Cornerstone
+ * @package spiralWebDb\FAQ
  * @author  (c) 2017 by Robert A. Gadon
  * @license GPL-2.0+ (see license text below)
  * @link    https://spiralwebdb.com
  *
  * @wordpress-plugin
- * Plugin Name:     Cornerstone's Site Plugin
+ * Plugin Name:     FAQ Plugin
  * Plugin URI:      https://gitlab.com/Hamammelis/cornerstone
  * Description:     Central Hub provides other plugins a central store to manage the arguments, labeling, and registration of their custom post types, taxonomies, and shortcodes, and regenerate rewrite rules on plugin activation, deactivation, and uninstall.
  * Version:         1.3.0
@@ -33,41 +33,40 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-namespace spiralWebDb\Cornerstone;
+namespace spiralWebDb\FAQ;
 
 if ( ! defined( 'ABSPATH') ) {
 	die( "Oh silly, there's nothing to see here." );
 }
 
-define( 'CORNERSTONE_PLUGIN', __FILE__ );
-define( 'CORNERSTONE_DIR', trailingslashit(__DIR__ ) );
+define( 'FAQ_PLUGIN', __FILE__ );
+define( 'FAQ_DIR', trailingslashit(__DIR__ ) );
 
 $plugin_url = plugin_dir_url(__FILE__ );
 
 if ( is_ssl() )   {
 	$plugin_url = str_replace( 'http://', 'https://', $plugin_url );
 }
-define( 'CORNERSTONE_URL', $plugin_url );
-define( 'CORNERSTONE_TEXT_DOMAIN', 'cornerstone' );
+define( 'FAQ_URL', $plugin_url );
+define( 'FAQ_TEXT_DOMAIN', 'cornerstone' );
 
 /**
  *  Autoload plugin files.
  *
- *  @since 1.3.0
+ * @since 1.0.0
  *
- *  @return void
+ * @return void
+ * @throws \Exception
  */
 function autoload() {
 	$files = array(
 		'plugin.php',
-//		'faq/module.php',
+		'faq/module.php',
 	);
 
 	foreach( $files as $file ) {
 		require __DIR__ . '/src/' . $file;
 	}
-
-	load_configurations();
 }
 
 autoload();

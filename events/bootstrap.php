@@ -37,6 +37,7 @@ namespace spiralWebDb\Events;
 use spiralWebDb\Module\Custom as CustomModule;
 use KnowTheCode\Metadata as metaData;
 
+define( 'EVENTS_DIR', __DIR__ );
 define( 'EVENTS_PLUGIN_TEXT_DOMAIN', 'cornerstone_events' );
 
 add_filter( 'add_custom_post_type_runtime_config', __NAMESPACE__ . '\register_events_custom_configs', 7 );
@@ -82,7 +83,7 @@ function register_events_custom_configs( array $configurations )    {
  */
 function autoload_files() {
 	$files = array(
-		'/admin/edit-form-advanced.php',
+		'/src/admin/edit-form-advanced.php',
 	);
 
 	foreach ( $files as $filename ) {
@@ -103,7 +104,7 @@ function launch() {
 	CustomModule\register_plugin( __FILE__ );
 
 	// Load configurations
-	metaData\loadConfigFromFilesystem(
+	metaData\autoload_configurations(
 		array(
 			__DIR__ . '/config/events.php',
 		)

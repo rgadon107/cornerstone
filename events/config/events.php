@@ -216,9 +216,12 @@ return array(
 		/************************************************************
 		 * Configure the absolute path to your meta box's view file.
 		 ***********************************************************/
-		'view'          => METABOX_DIR . 'src/views/events.php',
+		'view'          => EVENTS_DIR . '/src/meta-box/views/events.php',
 
-		'days_of_week' => __DIR__ . '/days-of-week.php',
-		'states'       => __DIR__ . '/states.php',
+		/************************************************************
+		 * ConfigStore keys.
+		 ***********************************************************/
+		'days_of_week' => 'days_of_week',
+		'states'       => 'states',
 	),
 );
