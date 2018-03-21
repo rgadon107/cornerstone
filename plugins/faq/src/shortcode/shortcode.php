@@ -24,10 +24,10 @@ CustomModule\register_shortcode( FAQ_DIR . 'config/shortcode.php' );
  *
  * @since 1.3.0
  *
- * @param array         $config  Array of runtime configuration parameters
- * @param array         $attributes    Attributes for this shortcode instance.
- * @param string|null   $content     Content between the opening and closing shortcode elements.
- * @param string        $shortcode_name     Name of the shortcode.
+ * @param array $config Array of runtime configuration parameters
+ * @param array $attributes Attributes for this shortcode instance.
+ * @param string|null $content Content between the opening and closing shortcode elements.
+ * @param string $shortcode_name Name of the shortcode.
  *
  * @return string
  */
@@ -35,7 +35,7 @@ function process_the_faq_shortcode( array $config, array $attributes, $content, 
 
 	$attributes['post_id'] = (int) $attributes['post_id'];
 
-	if ( $attributes['post_id'] < 1 && ! $attributes['topic'] )  {
+	if ( $attributes['post_id'] < 1 && ! $attributes['topic'] ) {
 		return '';
 	}
 
@@ -44,11 +44,11 @@ function process_the_faq_shortcode( array $config, array $attributes, $content, 
 	// Call the view file, capture it into the output buffer, and then return it.
 	ob_start();
 
-	if ( $attributes['post_id'] > 0 )   {
+	if ( $attributes['post_id'] > 0 ) {
 
 		render_single_faq( $attributes, $config );
 
-	} else  {
+	} else {
 
 		render_topic_faqs( $attributes, $config );
 
@@ -60,30 +60,30 @@ function process_the_faq_shortcode( array $config, array $attributes, $content, 
 /**
  * Process a single FAQ by post_id
  *
- *  @since 1.3.0
+ * @since 1.3.0
  *
- *  @param array $attributes Default configuration attributes for the single FAQ shortcode
- *  @param array $config  Runtime configuration attributes for the single FAQ view file.
+ * @param array $attributes Default configuration attributes for the single FAQ shortcode
+ * @param array $config Runtime configuration attributes for the single FAQ view file.
  *
- *  @return void
+ * @return void
  */
 function render_single_faq( array $attributes, array $config ) {
 
-	 $faq = get_post( $attributes['post_id'] );
+	$faq = get_post( $attributes['post_id'] );
 
-	 // Render error message in event there is no FAQ.
-	 if ( ! $faq )    {
-		 return render_none_found_message( $attributes );
-	 }
+	// Render error message in event there is no FAQ.
+	if ( ! $faq ) {
+		return render_none_found_message( $attributes );
+	}
 
 	$use_term_container = false;
-	$is_calling_source = 'shortcode-single-faq';
+	$is_calling_source  = 'shortcode-single-faq';
 
 	$post_title = $faq->post_title;
 
 	$content = do_shortcode( $faq->post_content );
 
-	include( $config['view']['container_single']);
+	include( $config['view']['container_single'] );
 
 }
 
@@ -91,12 +91,12 @@ function render_single_faq( array $attributes, array $config ) {
 /**
  *  Process the topic FAQs by topic attribute
  *
- *  @since 1.3.0
+ * @since 1.3.0
  *
- *  @param array $attributes Default configuration attributes for the topic FAQ shortcode
- *  @param array $config Runtime configuration attributes for the topic FAQ view file.
+ * @param array $attributes Default configuration attributes for the topic FAQ shortcode
+ * @param array $config Runtime configuration attributes for the topic FAQ view file.
  *
- *  @return void
+ * @return void
  */
 function render_topic_faqs( array $attributes, array $config ) {
 
@@ -111,22 +111,22 @@ function render_topic_faqs( array $attributes, array $config ) {
 				'terms'    => $attributes['topic'],
 			),
 		),
-		'order'         => 'ASC',
-		'orderby'       => 'menu_order',
-);
+		'order'          => 'ASC',
+		'orderby'        => 'menu_order',
+	);
 
 
 	$query = new \WP_Query( $config_args );
 
-	if ( ! $query->have_posts() )   {
+	if ( ! $query->have_posts() ) {
 		return render_none_found_message( $attributes, false );
 	}
 
 	$use_term_container = true;
-	$is_calling_source = 'shortcode-by-topic';
-	$term_slug = $attributes['topic'];
+	$is_calling_source  = 'shortcode-by-topic';
+	$term_slug          = $attributes['topic'];
 
-	include( $config['view']['container_topic']);
+	include( $config['view']['container_topic'] );
 
 	wp_reset_postdata();
 
@@ -135,24 +135,24 @@ function render_topic_faqs( array $attributes, array $config ) {
 /**
  *  Loop through the query and render out the FAQs by topic.
  *
- *  @since 1.3.0
+ * @since 1.3.0
  *
- *  @param \WP_Query    $query
- *  @param array        $attributes
- *  @param array        $config
+ * @param \WP_Query $query
+ * @param array $attributes
+ * @param array $config
  *
- *  @return void
+ * @return void
  */
-function loop_and_render_faqs_by_topic( \WP_Query $query, array $attributes, array $config )    {
+function loop_and_render_faqs_by_topic( \WP_Query $query, array $attributes, array $config ) {
 
-	while ( $query->have_posts() )  {
+	while ( $query->have_posts() ) {
 		$query->the_post();
 
 		$post_title = get_the_title();
 
 		$content = do_shortcode( get_the_content() );
 
-		include( $config['view']['faq']);
+		include( $config['view']['faq'] );
 	}
 }
 
@@ -169,7 +169,7 @@ function loop_and_render_faqs_by_topic( \WP_Query $query, array $attributes, arr
  */
 function render_none_found_message( array $attributes, $is_single_faq = true ) {
 
-	if ( ! $attributes['show_none_found_message'] )   {
+	if ( ! $attributes['show_none_found_message'] ) {
 		return;
 	}
 

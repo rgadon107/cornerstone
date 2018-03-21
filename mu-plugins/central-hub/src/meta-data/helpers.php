@@ -8,6 +8,7 @@
  * @link        https://KnowTheCode.io
  * @license     GNU-2.0+
  */
+
 namespace KnowTheCode\Metadata;
 
 use KnowTheCode\ConfigStore as configStore;
@@ -51,7 +52,7 @@ function get_custom_fields_values( $post_id, $meta_box_id, array $config ) {
 	$custom_fields = array();
 
 	foreach ( $config['custom_fields'] as $meta_key => $custom_field_config ) {
-		$custom_fields[ $meta_key ] = get_post_meta($post_id, $meta_key, $custom_field_config['is_single'] );
+		$custom_fields[ $meta_key ] = get_post_meta( $post_id, $meta_key, $custom_field_config['is_single'] );
 
 		if ( ! $custom_fields[ $meta_key ] ) {
 			$custom_fields[ $meta_key ] = $custom_field_config['default'];

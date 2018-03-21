@@ -89,10 +89,10 @@ function _merge_with_defaults( array $config, array $defaults ) {
  *
  * @since 1.0.0
  *
- * @param string $haystack  The string to be searched
- * @param string $needle    The character or substring to
+ * @param string $haystack The string to be searched
+ * @param string $needle The character or substring to
  *                          find at the start of the $haystack
- * @param string $encoding  Default is UTF-8
+ * @param string $encoding Default is UTF-8
  *
  * @return bool
  */

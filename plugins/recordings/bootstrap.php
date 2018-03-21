@@ -32,6 +32,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
+
 namespace spiralWebDb\Recordings;
 
 use spiralWebDb\Module\Custom as CustomModule;
@@ -51,7 +52,7 @@ add_filter( 'add_custom_taxonomy_runtime_config', __NAMESPACE__ . '\register_rec
  *
  * @return void
  */
-function register_recordings_custom_configs( array $configurations )    {
+function register_recordings_custom_configs( array $configurations ) {
 
 	$doing_post_type = current_filter() == 'add_custom_post_type_runtime_config';
 
@@ -61,7 +62,7 @@ function register_recordings_custom_configs( array $configurations )    {
 
 	$runtime_config = (array) require( __DIR__ . '/config/' . $filename . '.php' );
 
-	if( ! $runtime_config ) {
+	if ( ! $runtime_config ) {
 		return $configurations;
 	}
 

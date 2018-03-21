@@ -1,6 +1,7 @@
 git # Directories
+/mu-plugins/central-hub/node_modules/
+/plugins/backupbuddy
 /themes/genesis
 /themes/twentyseventeen
-/mu-plugins/central-hub/node_modules/
 /upgrade
 /uploads

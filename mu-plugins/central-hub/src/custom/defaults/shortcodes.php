@@ -22,7 +22,7 @@ return array(
 	 * Shortcode name. The name within the square brackets.
 	 *
 	 *==================================================*/
-	'shortcode_name'                => '',
+	'shortcode_name'              => '',
 
 	/**=================================================
 	 *
@@ -31,7 +31,7 @@ return array(
 	 * square brackets. Defaults to 'true'.
 	 *
 	 *==================================================*/
-	'do_shortcode_within_content'   => true,
+	'do_shortcode_within_content' => true,
 
 	/**=================================================
 	 *
@@ -40,14 +40,14 @@ return array(
 	 * processing.  Defaults to null.
 	 *
 	 *==================================================*/
-	'processing_function'           => null,
+	'processing_function'         => null,
 	/**=================================================
 	 *
 	 * The absolute path to the view file. If more than
 	 * one, use an array of view files.
 	 *
 	 *==================================================*/
-	'view'     => '',
+	'view'                        => '',
 
 	/**=================================================
 	 *
@@ -55,5 +55,5 @@ return array(
 	 *  overridable by the author.
 	 *
 	 *==================================================*/
-	'defaults'  => array(),
+	'defaults'                    => array(),
 );

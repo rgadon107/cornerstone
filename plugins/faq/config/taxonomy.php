@@ -12,6 +12,7 @@
  *
  * @license    GNU General Public License 2.0+
  */
+
 namespace spiralWebDb\FAQ;
 
 return array(
@@ -20,29 +21,29 @@ return array(
 	 *
 	 * The Taxonomy name.
 	 *
-	===============================================================*/
-	'taxonomy' => 'topic',
+	 * ===============================================================*/
+	'taxonomy'   => 'topic',
 
 	/**==============================================================
 	 *
 	 * The label configuration for the Taxonomy.
 	 *
-	===============================================================*/
-	'labels'    => array(
-		'custom_type'                   => 'topic',
-		'singular_label'                => 'Topic',
-		'plural_label'                  => 'Topics',
-		'in_sentance_label'             => 'topics',
-		'text_domain'                   => '',
-		'specific_labels'               => array(),
+	 * ===============================================================*/
+	'labels'     => array(
+		'custom_type'       => 'topic',
+		'singular_label'    => 'Topic',
+		'plural_label'      => 'Topics',
+		'in_sentance_label' => 'topics',
+		'text_domain'       => '',
+		'specific_labels'   => array(),
 	),
 
 	/**==============================================================
 	 *
 	 * The arguments for registering the Taxonomy.
 	 *
-	===============================================================*/
-	'args'     => array(
+	 * ===============================================================*/
+	'args'       => array(
 		'label'             => 'Topics',
 		'labels'            => '', // automatically generate the labels.
 		'hierarchical'      => true,
@@ -55,7 +56,7 @@ return array(
 	 *
 	 * The post types to which the Taxonomy is bound.
 	 *
-	 ===============================================================*/
-	'post_types'    => array( 'faq' ),
+	 * ===============================================================*/
+	'post_types' => array( 'faq' ),
 
 );

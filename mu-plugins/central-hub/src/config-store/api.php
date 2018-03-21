@@ -58,7 +58,7 @@ function getConfigParameter( $store_key, $parameter_key ) {
  * @since 1.0.0
  *
  * @param string $path_to_file Absolute path to the config file.
- * @param array  $defaults     (optional) Array of default parameters.
+ * @param array $defaults (optional) Array of default parameters.
  *
  * @return string
  * @throws \Exception
@@ -82,7 +82,7 @@ function loadConfigFromFilesystem( $path_to_file, array $defaults = array() ) {
  * @since 1.0.0
  *
  * @param string $store_key Unique storage key
- * @param mixed  $config    Runtime configuration parameter(s)
+ * @param mixed $config Runtime configuration parameter(s)
  */
 function loadConfig( $store_key, $config ) {
 	_the_store( $store_key, $config );
@@ -114,7 +114,7 @@ function getAllKeys() {
  */
 function getAllKeysStartingWith( $starts_with ) {
 
-	return array_filter( getAllKeys(), function( $key ) use ( $starts_with ) {
+	return array_filter( getAllKeys(), function ( $key ) use ( $starts_with ) {
 		return str_starts_with( $key, $starts_with );
 	} );
 

@@ -8,6 +8,7 @@
  * @link        https://KnowTheCode.io
  * @license     GNU-2.0+
  */
+
 namespace KnowTheCode\Metadata;
 
 use WP_Post;
@@ -53,7 +54,7 @@ function register_meta_boxes() {
  */
 function render_meta_box( WP_Post $post, array $meta_box_args ) {
 	$meta_box_id = $meta_box_args['id'];
-	$config       = configStore\getConfig( 'meta_box.' . $meta_box_id );
+	$config      = configStore\getConfig( 'meta_box.' . $meta_box_id );
 
 	// Security with a nonce
 	wp_nonce_field( $meta_box_id . '_nonce_action', $meta_box_id . '_nonce_name' );
@@ -123,7 +124,7 @@ function is_okay_to_save_meta_box( $meta_box_key ) {
 	}
 
 	// Security check.
-	return  wp_verify_nonce(
+	return wp_verify_nonce(
 		$_POST[ $meta_box_key . '_nonce_name' ],
 		$meta_box_key . '_nonce_action'
 	);

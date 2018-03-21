@@ -8,6 +8,7 @@
  * @link        https://KnowTheCode.io
  * @license     GNU-2.0+
  */
+
 namespace spiralWebDb\FAQ\Template;
 
 remove_action( 'genesis_loop', 'genesis_do_loop' );
@@ -29,6 +30,7 @@ function do_faq_archive_loop() {
 
 	if ( ! $records ) {
 		echo '<p>Sorry, there are no FAQs.</p>';
+
 		return;
 	}
 
@@ -48,23 +50,23 @@ function do_faq_archive_loop() {
 /**
  *  Loop through and render out the FAQs
  *
- *  @since 1.0.1
+ * @since 1.0.1
  *
- *  @param array $faqs
+ * @param array $faqs
  *
- *  @return void
+ * @return void
  */
 function loop_and_render_faqs( array $faqs ) {
 
 	$attributes = array(
-		'show_icon'     => 'dashicons dashicons-arrow-down-alt2',
-		'hide_icon'     => 'dashicons dashicons-arrow-up-alt2',
+		'show_icon' => 'dashicons dashicons-arrow-down-alt2',
+		'hide_icon' => 'dashicons dashicons-arrow-up-alt2',
 	);
 
-	foreach( $faqs as $faq )    {
+	foreach ( $faqs as $faq ) {
 
-		$post_title     = $faq['post_title'];
-		$content        = do_shortcode( $faq['post_content'] );
+		$post_title = $faq['post_title'];
+		$content    = do_shortcode( $faq['post_content'] );
 
 		include( FAQ_DIR . '/views/faq.php' );
 

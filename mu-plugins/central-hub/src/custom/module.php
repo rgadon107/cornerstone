@@ -15,14 +15,14 @@
 
 namespace spiralWebDb\Module\Custom;
 
-define( 'CUSTOM_MODULE_DIR', trailingslashit(__DIR__ ) );
+define( 'CUSTOM_MODULE_DIR', trailingslashit( __DIR__ ) );
 
 /**
  *  Autoload plugin files.
  *
- *  @since 1.0.0
+ * @since 1.0.0
  *
- *  @return array $files Array of files to autoload.
+ * @return array $files Array of files to autoload.
  */
 function autoload() {
 	$files = array(
@@ -34,7 +34,7 @@ function autoload() {
 
 	);
 
-	foreach( $files as $file ) {
+	foreach ( $files as $file ) {
 
 		include( CUSTOM_MODULE_DIR . $file );
 	}

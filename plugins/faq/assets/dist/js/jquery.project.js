@@ -1,13 +1,13 @@
-;(function( $, window, document, undefined ){
+;(function ($, window, document, undefined) {
     'use strict';
 
     var $visibleContents, $hiddenContents, $icons;
 
-    var init = function(){
-        $visibleContents    = $( '.central-hub--visible' );
-        $hiddenContents     = $visibleContents.next();
-        $icons              = $visibleContents.find( '.central-hub--icon' );
-        $visibleContents.on( 'click', clickHandler );
+    var init = function () {
+        $visibleContents = $('.central-hub--visible');
+        $hiddenContents = $visibleContents.next();
+        $icons = $visibleContents.find('.central-hub--icon');
+        $visibleContents.on('click', clickHandler);
 
     }
 
@@ -16,22 +16,22 @@
      *
      *  @param event
      */
-    var clickHandler = function(){
+    var clickHandler = function () {
 
-        var index = $visibleContents.index( this ),
-            $hiddenContent = $( $hiddenContents[ index ] ),
+        var index = $visibleContents.index(this),
+            $hiddenContent = $($hiddenContents[index]),
             isHiddenContentShowing = $hiddenContent.is(':visible');
 
-        if ( isHiddenContentShowing )  {
+        if (isHiddenContentShowing) {
 
-            $hiddenContent.slideUp( 500 );
+            $hiddenContent.slideUp(500);
 
-        } else  {
+        } else {
 
-            $hiddenContent.slideDown( 500 );
+            $hiddenContent.slideDown(500);
         }
 
-        changeIcon( index, isHiddenContentShowing );
+        changeIcon(index, isHiddenContentShowing);
 
     }
 
@@ -44,18 +44,18 @@
     /**
      *  Change the icon handler.
      */
-    function changeIcon( index, isHiddenContentShowing ){
-        var $iconElement = $( $icons[ index ] ),
-            showIcon = $iconElement.data( 'showIcon'),
-            hideIcon = $iconElement.data( 'hideIcon'),
+    function changeIcon(index, isHiddenContentShowing) {
+        var $iconElement = $($icons[index]),
+            showIcon = $iconElement.data('showIcon'),
+            hideIcon = $iconElement.data('hideIcon'),
             removeClass, addClass;
 
-        if ( isHiddenContentShowing )   {
+        if (isHiddenContentShowing) {
 
             addClass = showIcon;
             removeClass = hideIcon;
 
-        } else  {
+        } else {
 
             addClass = hideIcon;
             removeClass = showIcon;
@@ -63,13 +63,13 @@
         }
 
         $iconElement
-            .removeClass( removeClass )
-            .addClass( addClass );
+            .removeClass(removeClass)
+            .addClass(addClass);
     }
 
-    $(document).ready(function(){
+    $(document).ready(function () {
         init();
 
     });
 
-})( jQuery, window, document );
+})(jQuery, window, document);

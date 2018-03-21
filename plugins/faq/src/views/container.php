@@ -3,9 +3,9 @@
 use spiralWebDb\Module\FAQ\Template as Template;
 use spiralWebDb\Module\FAQ\Shortcode as Shortcode;
 
-if ( isset( $use_term_container ) && $use_term_container ) :  ?>
+if ( isset( $use_term_container ) && $use_term_container ) : ?>
 
-<div class="central-hub--term-container faq faq-topic--<?php esc_attr_e( $term_slug ); ?>">
+    <div class="central-hub--term-container faq faq-topic--<?php esc_attr_e( $term_slug ); ?>">
 
 <?php endif; ?>
 
@@ -14,23 +14,23 @@ if ( isset( $use_term_container ) && $use_term_container ) :  ?>
 <?php endif; ?>
     <dl class="central-hub--container faq">
 
-        <?php
+		<?php
 
-        if ( $is_calling_source === 'template' )    {
+		if ( $is_calling_source === 'template' ) {
 
-	        Template\loop_and_render_faqs( $record['posts'] );
+			Template\loop_and_render_faqs( $record['posts'] );
 
-        } elseif ( $is_calling_source === 'shortcode-by-topic' )    {
+		} elseif ( $is_calling_source === 'shortcode-by-topic' ) {
 
-	        Shortcode\loop_and_render_faqs_by_topic( $query, $attributes, $config );
+			Shortcode\loop_and_render_faqs_by_topic( $query, $attributes, $config );
 
-        } else
+		} else {
+			include( __DIR__ . '/faq.php' );
+		}
 
-	       include( __DIR__ . '/faq.php');
-
-        ?>
+		?>
 
     </dl>
-<?php if ( isset( $use_term_container ) && $use_term_container ) :  ?>
-</div>
+<?php if ( isset( $use_term_container ) && $use_term_container ) : ?>
+    </div>
 <?php endif; ?>

@@ -43,7 +43,7 @@ return array(
 		 ***********************************************************/
 		'custom_fields' => array(
 			// specify this field's meta key.  It's used in the database.
-			'review_location_city' => array(
+			'review_location_city'  => array(
 				// True - means it's a single
 				// False - means it's an array
 				'is_single'    => true,
@@ -71,7 +71,7 @@ return array(
 				'sanitize'     => 'strip_tags',
 			),
 			// specify this field's meta key.  It's used in the database.
-			'event_venue'  => array(
+			'event_venue'           => array(
 				// True - means it's a single
 				// False - means it's an array
 				'is_single'    => true,
@@ -85,7 +85,7 @@ return array(
 				'sanitize'     => 'sanitize_text_field',
 			),
 			// specify this field's meta key.  It's used in the database.
-			'audience_review'  => array(
+			'audience_review'       => array(
 				// True - means it's a single
 				// False - means it's an array
 				'is_single'    => true,
@@ -99,7 +99,7 @@ return array(
 				'sanitize'     => 'sanitize_text_field',
 			),
 			// specify this field's meta key.  It's used in the database.
-			'review_date'  => array(
+			'review_date'           => array(
 				// True - means it's a single
 				// False - means it's an array
 				'is_single'    => true,
@@ -113,7 +113,7 @@ return array(
 				'sanitize'     => 'sanitize_text_field',
 			),
 			// specify this field's meta key.  It's used in the database.
-			'reviewer_name'  => array(
+			'reviewer_name'         => array(
 				// True - means it's a single
 				// False - means it's an array
 				'is_single'    => true,
@@ -127,7 +127,7 @@ return array(
 				'sanitize'     => 'sanitize_text_field',
 			),
 			// specify this field's meta key.  It's used in the database.
-			'reviewer_title'  => array(
+			'reviewer_title'        => array(
 				// True - means it's a single
 				// False - means it's an array
 				'is_single'    => true,
@@ -141,7 +141,7 @@ return array(
 				'sanitize'     => 'sanitize_text_field',
 			),
 			// specify this field's meta key.  It's used in the database.
-			'reviewer_org'  => array(
+			'reviewer_org'          => array(
 				// True - means it's a single
 				// False - means it's an array
 				'is_single'    => true,

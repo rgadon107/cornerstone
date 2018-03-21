@@ -12,20 +12,21 @@
  *
  * @license    GNU General Public License 2.0+
  */
+
 namespace spiralWebDb\Module\Custom;
 
 /**
  *  Register your shortcode with the Custom Module.
  *
- *  @since 1.0.0
+ * @since 1.0.0
  *
- *  @param string $pathto_configuration_file  Absolute path to the configuration file's location.
+ * @param string $pathto_configuration_file Absolute path to the configuration file's location.
  *
- *  @return array|false
+ * @return array|false
  */
-function register_shortcode( $pathto_configuration_file )  {
+function register_shortcode( $pathto_configuration_file ) {
 
-	if( ! is_readable( $pathto_configuration_file ) )   {
+	if ( ! is_readable( $pathto_configuration_file ) ) {
 		return false;
 	}
 
@@ -33,17 +34,17 @@ function register_shortcode( $pathto_configuration_file )  {
 
 	$config = array_merge(
 		array(
-			'shortcode_name'                => '',
-			'do_shortcode_within_content'   => true,
-			'processing_function'           => null,
-			'view'                          => '',
-			'defaults'                       => array(),
+			'shortcode_name'              => '',
+			'do_shortcode_within_content' => true,
+			'processing_function'         => null,
+			'view'                        => '',
+			'defaults'                    => array(),
 
 		),
 		$config
 	);
 
-	if( ! $config['shortcode_name'] || ! $config['view'] ) {
+	if ( ! $config['shortcode_name'] || ! $config['view'] ) {
 		return false;
 	}
 
@@ -58,9 +59,9 @@ function register_shortcode( $pathto_configuration_file )  {
  *
  * @since 1.0.0
  *
- * @param array|string  $user_defined_attributes    User defined attributes for this shortcode instance.
- * @param string|null   $content            Content between the opening and closing shortcode elements.
- * @param string        $shortcode_name     Name of the shortcode.
+ * @param array|string $user_defined_attributes User defined attributes for this shortcode instance.
+ * @param string|null $content Content between the opening and closing shortcode elements.
+ * @param string $shortcode_name Name of the shortcode.
  *
  * @return string
  */
@@ -73,11 +74,11 @@ function process_the_shortcode_callback( $user_defined_attributes, $content, $sh
 		$shortcode_name
 	);
 
-	if( $content && $config['do_shortcode_within_content'] )   {
+	if ( $content && $config['do_shortcode_within_content'] ) {
 		$content = do_shortcode( $content );
 	}
 
-	if( $config['processing_function'] )    {
+	if ( $config['processing_function'] ) {
 		$function_name = $config['processing_function'];
 
 		return $function_name( $config, $attributes, $content, $shortcode_name );
@@ -124,19 +125,19 @@ function store_shortcode_configuration( $shortcode_name, $config ) {
 /**
  *  Shortcode configuration store.
  *
- *  @since 1.0.0
+ * @since 1.0.0
  *
- *  @param string $shortcode_name Name of the shortcode to be used as an array key.
- *  @param array  $config An array of runtime configuration parameters to store.
+ * @param string $shortcode_name Name of the shortcode to be used as an array key.
+ * @param array $config An array of runtime configuration parameters to store.
  *                        (optional)
  *
- *  @return array|false
+ * @return array|false
  */
-function _shortcode_configuration_store( $shortcode_name, $config = false )  {
+function _shortcode_configuration_store( $shortcode_name, $config = false ) {
 
 	static $configurations = array();
 
-	if( ! isset( $configurations[ $shortcode_name ] ) ) {
+	if ( ! isset( $configurations[ $shortcode_name ] ) ) {
 		$configurations[ $shortcode_name ] = $config;
 
 	}

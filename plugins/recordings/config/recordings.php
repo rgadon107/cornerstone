@@ -43,7 +43,7 @@ return array(
 		 ***********************************************************/
 		'custom_fields' => array(
 			// specify this field's meta key.  It's used in the database.
-			'cd-cover-image'      => array(
+			'cd-cover-image' => array(
 				// True - means it's a single
 				// False - means it's an array
 				'is_single'    => true,
@@ -57,7 +57,7 @@ return array(
 				'sanitize'     => 'sanitize_text_field',
 			),
 			// specify this field's meta key.  It's used in the database.
-			'audio-file-1'      => array(
+			'audio-file-1'   => array(
 				// True - means it's a single
 				// False - means it's an array
 				'is_single'    => true,

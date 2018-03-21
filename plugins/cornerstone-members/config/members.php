@@ -43,7 +43,7 @@ return array(
 		 ***********************************************************/
 		'custom_fields' => array(
 			// specify this field's meta key.  It's used in the database.
-			'first_name' => array(
+			'first_name'      => array(
 				// True - means it's a single
 				// False - means it's an array
 				'is_single'    => true,
@@ -57,7 +57,7 @@ return array(
 				'sanitize'     => 'sanitize_text_field',
 			),
 			// specify this field's meta key.  It's used in the database.
-			'last_name' => array(
+			'last_name'       => array(
 				// True - means it's a single
 				// False - means it's an array
 				'is_single'    => true,
@@ -71,7 +71,7 @@ return array(
 				'sanitize'     => 'sanitize_text_field',
 			),
 			// specify this field's meta key.  It's used in the database.
-			'image'  => array(
+			'image'           => array(
 				// True - means it's a single
 				// False - means it's an array
 				'is_single'    => true,
@@ -99,7 +99,7 @@ return array(
 				'sanitize'     => 'sanitize_text_field',
 			),
 			// specify this field's meta key.  It's used in the database.
-			'residence_state'  => array(
+			'residence_state' => array(
 				// True - means it's a single
 				// False - means it's an array
 				'is_single'    => true,
@@ -113,7 +113,7 @@ return array(
 				'sanitize'     => 'sanitize_text_field',
 			),
 			// specify this field's meta key.  It's used in the database.
-			'role'  => array(
+			'role'            => array(
 				// True - means it's a single
 				// False - means it's an array
 				'is_single'    => true,
@@ -127,7 +127,7 @@ return array(
 				'sanitize'     => 'sanitize_text_field',
 			),
 			// specify this field's meta key.  It's used in the database.
-			'tour_number'  => array(
+			'tour_number'     => array(
 				// True - means it's a single
 				// False - means it's an array
 				'is_single'    => true,
@@ -149,7 +149,7 @@ return array(
 		/************************************************************
 		 * ConfigStore keys.
 		 ***********************************************************/
-		'states'    => 'states',
-		'roles'     => 'roles',
+		'states'        => 'states',
+		'roles'         => 'roles',
 	),
 );
