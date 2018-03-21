@@ -12,7 +12,7 @@
  *
  * @license    GNU General Public License 2.0+
  */
-namespace spiralWebDb\Module\FAQ;
+namespace spiralWebDb\FAQ;
 
 return array(
 
@@ -33,7 +33,7 @@ return array(
 		'singular_label'                =>  'FAQ',
 		'plural_label'                  =>  'FAQs',
 		'in_sentance_label'             =>  'faqs',
-		'text_domain'                   => FAQ_MODULE_TEXT_DOMAIN,
+		'text_domain'                   => '',
 		'specific_labels'               => array(),
 	),
 
@@ -69,7 +69,7 @@ return array(
 	===============================================================*/
 	'args'      => array(
 		'description'   => 'Frequently Asked Question (FAQs)', // For informational purposes only.
-		'label'         => __( 'FAQs', FAQ_MODULE_TEXT_DOMAIN ),
+		'label'         => 'FAQs',
 		'labels'        => '', // automatically generate the labels.
 		'public'        => true,
 		'menu_icon'     => 'dashicons-editor-help',

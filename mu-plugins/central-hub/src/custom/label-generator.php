@@ -34,9 +34,9 @@ function generate_the_custom_labels( array $config, $custom_type = 'post_type' )
 			'in_sentance_label'             => '',
 			'text_domain'                   => '',
 			'specific_labels'              => array(),
-			),
-			$config
-		);
+		),
+		$config
+	);
 
 	$labels = array(
 		'name'               => _x(
@@ -68,7 +68,7 @@ function generate_the_custom_labels( array $config, $custom_type = 'post_type' )
 	$labels = array_merge(
 		$labels,
 		$custom_type_generator( $config )
-		);
+	);
 
 	if( $config['specific_labels'] )   {
 		array_merge(

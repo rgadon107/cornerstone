@@ -49,7 +49,7 @@ return array(
 			'excerpt',
 			'comments',
 			'trackbacks',
-//			'custom-fields',
+			'custom-fields',
 			'thumbnail',
 			'author',
 			'post-formats',

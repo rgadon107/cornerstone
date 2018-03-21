@@ -13,7 +13,7 @@
  * @license    GNU General Public License 2.0+
  */
 
-namespace spiralWebDb\Module\FAQ\Shortcode;
+namespace spiralWebDb\FAQ;
 
 return array(
 
@@ -48,9 +48,9 @@ return array(
 	 *
 	 *==================================================*/
 	'view'     => array(
-		'container_single'          => FAQ_MODULE_DIR . 'views/container.php',
-		'container_topic'           => FAQ_MODULE_DIR . 'views/container.php',
-		'faq'                       => FAQ_MODULE_DIR . 'views/faq.php'
+		'container_single'          => FAQ_DIR . 'views/container.php',
+		'container_topic'           => FAQ_DIR . 'views/container.php',
+		'faq'                       => FAQ_DIR . 'views/faq.php'
 	),
 
 	/**=================================================
@@ -66,7 +66,7 @@ return array(
 		'topic'                     => '',
 		'number_of_faqs'            => -1,
 		'show_none_found_message'   => '1',
-		'none_found_by_topic'       => __( 'Sorry, no FAQs were found for that topic.', FAQ_MODULE_TEXT_DOMAIN ),
-		'none_found_single_faq'     => __( 'Sorry, there is no FAQ available for that post_id.', FAQ_MODULE_TEXT_DOMAIN ),
+		'none_found_by_topic'       => 'Sorry, no FAQs were found for that topic.',
+		'none_found_single_faq'     => 'Sorry, there is no FAQ available for that post_id.',
 	)
 );

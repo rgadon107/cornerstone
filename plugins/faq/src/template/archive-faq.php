@@ -8,7 +8,7 @@
  * @link        https://KnowTheCode.io
  * @license     GNU-2.0+
  */
-namespace spiralWebDb\Module\FAQ\Template;
+namespace spiralWebDb\FAQ\Template;
 
 remove_action( 'genesis_loop', 'genesis_do_loop' );
 add_action( 'genesis_loop', __NAMESPACE__ . '\do_faq_archive_loop' );
@@ -40,7 +40,7 @@ function do_faq_archive_loop() {
 
 		$term_slug = $record['term_slug'];
 
-		include( FAQ_MODULE_DIR . '/views/container.php' );
+		include( FAQ_DIR . '/views/container.php' );
 
 	}
 }
@@ -66,7 +66,7 @@ function loop_and_render_faqs( array $faqs ) {
 		$post_title     = $faq['post_title'];
 		$content        = do_shortcode( $faq['post_content'] );
 
-		include( FAQ_MODULE_DIR . '/views/faq.php' );
+		include( FAQ_DIR . '/views/faq.php' );
 
 	}
 

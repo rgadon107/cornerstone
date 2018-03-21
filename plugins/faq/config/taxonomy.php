@@ -12,7 +12,7 @@
  *
  * @license    GNU General Public License 2.0+
  */
-namespace spiralWebDb\Module\FAQ;
+namespace spiralWebDb\FAQ;
 
 return array(
 
@@ -33,7 +33,7 @@ return array(
 		'singular_label'                => 'Topic',
 		'plural_label'                  => 'Topics',
 		'in_sentance_label'             => 'topics',
-		'text_domain'                   => FAQ_MODULE_TEXT_DOMAIN,
+		'text_domain'                   => '',
 		'specific_labels'               => array(),
 	),
 
@@ -43,7 +43,7 @@ return array(
 	 *
 	===============================================================*/
 	'args'     => array(
-		'label'             => __( 'Topics', FAQ_MODULE_TEXT_DOMAIN ),
+		'label'             => 'Topics',
 		'labels'            => '', // automatically generate the labels.
 		'hierarchical'      => true,
 		'show_admin_column' => true,

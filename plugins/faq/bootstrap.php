@@ -40,15 +40,15 @@ if ( ! defined( 'ABSPATH') ) {
 }
 
 define( 'FAQ_PLUGIN', __FILE__ );
-define( 'FAQ_DIR', trailingslashit(__DIR__ ) );
+define( 'FAQ_DIR', trailingslashit(__DIR__) );
 
 $plugin_url = plugin_dir_url(__FILE__ );
 
 if ( is_ssl() )   {
 	$plugin_url = str_replace( 'http://', 'https://', $plugin_url );
 }
+
 define( 'FAQ_URL', $plugin_url );
-define( 'FAQ_TEXT_DOMAIN', 'cornerstone' );
 
 /**
  *  Autoload plugin files.
@@ -61,7 +61,7 @@ define( 'FAQ_TEXT_DOMAIN', 'cornerstone' );
 function autoload() {
 	$files = array(
 		'plugin.php',
-		'faq/module.php',
+		'module.php',
 	);
 
 	foreach( $files as $file ) {

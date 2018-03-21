@@ -51,7 +51,7 @@ function register_the_custom_post_types() {
  *  @since 1.0.0
  *
  *  @param string $post_type Post type name to be registered with WordPress.
- *  @param array $config     An array of post type runtime configuration parameters. 
+ *  @param array $config     An array of post type runtime configuration parameters.
  *
  *  @return void
  */

@@ -13,7 +13,7 @@
  * @license    GNU General Public License 2.0+
  */
 
-namespace spiralWebDb\Module\FAQ\Template;
+namespace spiralWebDb\FAQ\Template;
 
 add_filter( 'archive_template', __NAMESPACE__ . '\load_the_faq_archive_template' );
 /**

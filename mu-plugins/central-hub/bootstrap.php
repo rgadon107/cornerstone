@@ -52,7 +52,7 @@ function autoload() {
 	$files = array(
 		'config-store/module.php',
 		'custom/module.php',
-		'metadata/module.php',
+		'meta-data/module.php',
 	);
 
 	foreach( $files as $file ) {
@@ -74,6 +74,8 @@ function load_configurations()  {
 	$configurations = 		array(
 		__DIR__ . '/config/days-of-week.php',
 		__DIR__ . '/config/states.php',
+		__DIR__ . '/config/roles.php',
+
 	);
 
 	foreach( $configurations as $file ) {

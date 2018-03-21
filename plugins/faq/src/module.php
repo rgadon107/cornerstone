@@ -13,12 +13,9 @@
  * @license    GNU General Public License 2.0+
  */
 
-namespace spiralWebDb\Module\FAQ;
+namespace spiralWebDb\FAQ\Shortcode;
 
 use spiralWebDb\Module\Custom as CustomModule;
-
-define( 'FAQ_MODULE_TEXT_DOMAIN', CENTRAL_HUB_TEXT_DOMAIN );
-define( 'FAQ_MODULE_DIR', trailingslashit( __DIR__ ) );
 
 add_filter( 'add_custom_post_type_runtime_config', __NAMESPACE__ . '\register_faq_custom_configs' );
 add_filter( 'add_custom_taxonomy_runtime_config', __NAMESPACE__ . '\register_faq_custom_configs' );
@@ -40,7 +37,7 @@ function register_faq_custom_configs( array $configurations ) {
 		? 'post-type'
 		: 'taxonomy';
 
-	$runtime_config = (array) require( FAQ_MODULE_DIR . 'config/' . $filename . '.php' );
+	$runtime_config = (array) require( FAQ_DIR . 'config/' . $filename . '.php' );
 
 	if ( ! $runtime_config ) {
 		return $configurations;
@@ -72,7 +69,7 @@ function autoload() {
 
 	foreach ( $files as $file ) {
 
-		include( FAQ_MODULE_DIR . $file );
+		include( FAQ_DIR . 'src/' . $file );
 	}
 }
 
@@ -85,7 +82,7 @@ add_action( 'plugins_loaded', __NAMESPACE__ . '\setup_module' );
  * @return void
  */
 function setup_module() {
-	CustomModule\register_shortcode( FAQ_MODULE_DIR . 'config/shortcode.php' );
+	CustomModule\register_shortcode( FAQ_DIR . 'config/shortcode.php' );
 
 }
 

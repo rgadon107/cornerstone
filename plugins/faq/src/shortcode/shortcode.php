@@ -13,11 +13,11 @@
  * @license    GNU General Public License 2.0+
  */
 
-namespace spiralWebDb\Module\FAQ\Shortcode;
+namespace spiralWebDb\FAQ\Shortcode;
 
 use spiralWebDb\Module\Custom as CustomModule;
 
-CustomModule\register_shortcode( FAQ_MODULE_DIR . 'config/shortcode.php' );
+CustomModule\register_shortcode( FAQ_DIR . 'config/shortcode.php' );
 
 /**
  *  Process the FAQ Shortcode to build a list of FAQs

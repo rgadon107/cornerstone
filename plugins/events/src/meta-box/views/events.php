@@ -46,7 +46,7 @@ use KnowTheCode\ConfigStore;
             <input id="venue-address" class="large-text" type="text" name="<?php echo $meta_box_id; ?>[venue-address]" value="<?php echo esc_attr( $custom_fields['venue-address'] ); ?>" placeholder="Street Address">
         </p>
         <p>
-            <input id="venue-city" type="regular-text" name="<?php echo $meta_box_id; ?>[venue-city]" value="<?php echo esc_attr( $custom_fields['venue-city'] ); ?>" placeholder="City">
+            <input id="venue-city" class="regular-text" type="text" placeholder="City" name="<?php echo $meta_box_id; ?>[venue-city]" value="<?php echo esc_attr( $custom_fields['venue-city'] ); ?>">
             <select id="venue-state" name="<?php echo $meta_box_id; ?>[venue-state]" value="<?php echo esc_attr( $custom_fields['venue-state'] ); ?>" >
                 <option>--Select a State--</option>
             <?php foreach( ConfigStore\getConfig( $config['states'] ) as $state_id => $state_name ) : ?>

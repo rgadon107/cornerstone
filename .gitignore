@@ -1,4 +1,6 @@
-# Directories
-/query-monitor
-/barebones-sandbox
+git # Directories
+/themes/genesis
+/themes/twentyseventeen
+/mu-plugins/central-hub/node_modules/
+/upgrade
 /uploads

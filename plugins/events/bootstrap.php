@@ -91,7 +91,7 @@ function autoload_files() {
 }
 
 /**
- * Load the configurations.
+ * Load the meta-box configurations.
  *
  * @since 1.0.0
  *

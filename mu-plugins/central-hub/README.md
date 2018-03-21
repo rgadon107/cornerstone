@@ -36,5 +36,3 @@ If you want to continue development of this plugin, you will need to have Compos
 2. Type `npm install` to install all of the `node_modules` for Gulp.
 
 3. If calling dependencies with Composer, type `composer install` to install the Composer PHP packages. By default, the baseline version of this plugin does not rely on dependancy packages. 
-
-
