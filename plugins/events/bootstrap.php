@@ -2,21 +2,18 @@
 /**
  *  Events plugin
  *
- * @package sspiralWebDb\Events
+ * @package     sspiralWebDb\Events
  * @author  (c) 2017 by Robert A. Gadon
- * @license GPL-2.0+ (see license text below)
- * @link    https://spiralwebdb.com
+ * @license     GPL-2.0+ (see license text below)
+ * @link        https://spiralwebdb.com
  *
  * @wordpress-plugin
  * Plugin Name:     Events Plugin
  * Plugin URI:      https://gitlab.com/Hamammelis/cornerstone
- * Description:     Events is a WordPress plugin that manages the performance events of the Cornerstone Chorale and Brass.
- * Author:          Robert A. Gadon
- * Author URI:      http://spiralwebdb.com
- * License URI:     https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:     cornerstone_events
- * Requires WP:     4.8
- * Requires PHP:    5.5
+ * Description:     Events is a WordPress plugin that manages the performance events of the Cornerstone Chorale and
+ * Brass. Author:          Robert A. Gadon Author URI:      http://spiralwebdb.com License URI:
+ * https://www.gnu.org/licenses/gpl-2.0.html Text Domain:     cornerstone_events Requires WP:     4.8 Requires PHP:
+ * 5.5
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License

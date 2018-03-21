@@ -60,8 +60,8 @@ function register_shortcode( $pathto_configuration_file ) {
  * @since 1.0.0
  *
  * @param array|string $user_defined_attributes User defined attributes for this shortcode instance.
- * @param string|null $content Content between the opening and closing shortcode elements.
- * @param string $shortcode_name Name of the shortcode.
+ * @param string|null  $content                 Content between the opening and closing shortcode elements.
+ * @param string       $shortcode_name          Name of the shortcode.
  *
  * @return string
  */
@@ -113,7 +113,7 @@ function get_shortcode_configuration( $shortcode_name ) {
  * @since 1.0.0
  *
  * @param string $shortcode_name Name of the shortcode.
- * @param array $config An array of runtime configuration parameters to store.
+ * @param array  $config         An array of runtime configuration parameters to store.
  *
  * @return array|false
  */
@@ -128,8 +128,8 @@ function store_shortcode_configuration( $shortcode_name, $config ) {
  * @since 1.0.0
  *
  * @param string $shortcode_name Name of the shortcode to be used as an array key.
- * @param array $config An array of runtime configuration parameters to store.
- *                        (optional)
+ * @param array  $config         An array of runtime configuration parameters to store.
+ *                               (optional)
  *
  * @return array|false
  */

@@ -20,7 +20,7 @@ namespace spiralWebDb\Module\Custom;
  *
  * @since 1.0.0
  *
- * @param string $config Array of runtime configuration parameters.
+ * @param string $config      Array of runtime configuration parameters.
  * @param string $custom_type Parameter set to either 'taxonomy' or 'post type'
  *
  * @return array

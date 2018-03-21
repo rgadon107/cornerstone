@@ -2,22 +2,19 @@
 /**
  *  Central Hub plugin
  *
- * @package spiralWebDb\centralHub
+ * @package     spiralWebDb\centralHub
  * @author  (c) 2017 by Robert A. Gadon
- * @license GPL-2.0+ (see license text below)
- * @link    https://spiralwebdb.com
+ * @license     GPL-2.0+ (see license text below)
+ * @link        https://spiralwebdb.com
  *
  * @wordpress-plugin
  * Plugin Name:     Central Hub Plugin
  * Plugin URI:      https://gitlab.com/Hamammelis/cornerstone
- * Description:     Central Hub provides other plugins a central store to manage the arguments, labeling, and registration of their custom post types, taxonomies, and shortcodes, and regenerate rewrite rules on plugin activation, deactivation, and uninstall.
- * Version:         1.3.0
- * Author:          Robert A. Gadon
- * Author URI:      http://spiralwebdb.com
- * License URI:     https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:     central_hub
- * Requires WP:     4.8
- * Requires PHP:    5.6
+ * Description:     Central Hub provides other plugins a central store to manage the arguments, labeling, and
+ * registration of their custom post types, taxonomies, and shortcodes, and regenerate rewrite rules on plugin
+ * activation, deactivation, and uninstall. Version:         1.3.0 Author:          Robert A. Gadon Author URI:
+ * http://spiralwebdb.com License URI:     https://www.gnu.org/licenses/gpl-2.0.html Text Domain:     central_hub
+ * Requires WP:     4.8 Requires PHP:    5.6
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License

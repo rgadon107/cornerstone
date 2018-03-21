@@ -2,21 +2,18 @@
 /**
  *  Recordings plugin
  *
- * @package spiralWebDb\Recordings
+ * @package     spiralWebDb\Recordings
  * @author  (c) 2017 by Robert A. Gadon
- * @license GPL-2.0+ (see license text below)
- * @link    https://spiralwebdb.com
+ * @license     GPL-2.0+ (see license text below)
+ * @link        https://spiralwebdb.com
  *
  * @wordpress-plugin
  * Plugin Name:     Recordings Plugin
  * Plugin URI:      https://gitlab.com/Hamammelis/cornerstone
- * Description:     Recordings is a WordPress plugin that organizes all the CD recordings for the Cornerstone Chorale and Brass.
- * Author:          Robert A. Gadon
- * Author URI:      http://spiralwebdb.com
- * License URI:     https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:     cornerstone_recordings
- * Requires WP:     4.8
- * Requires PHP:    5.5
+ * Description:     Recordings is a WordPress plugin that organizes all the CD recordings for the Cornerstone Chorale
+ * and Brass. Author:          Robert A. Gadon Author URI:      http://spiralwebdb.com License URI:
+ * https://www.gnu.org/licenses/gpl-2.0.html Text Domain:     cornerstone_recordings Requires WP:     4.8 Requires PHP:
+ *    5.5
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License

@@ -24,10 +24,10 @@ CustomModule\register_shortcode( FAQ_DIR . 'config/shortcode.php' );
  *
  * @since 1.3.0
  *
- * @param array $config Array of runtime configuration parameters
- * @param array $attributes Attributes for this shortcode instance.
- * @param string|null $content Content between the opening and closing shortcode elements.
- * @param string $shortcode_name Name of the shortcode.
+ * @param array       $config         Array of runtime configuration parameters
+ * @param array       $attributes     Attributes for this shortcode instance.
+ * @param string|null $content        Content between the opening and closing shortcode elements.
+ * @param string      $shortcode_name Name of the shortcode.
  *
  * @return string
  */
@@ -63,7 +63,7 @@ function process_the_faq_shortcode( array $config, array $attributes, $content, 
  * @since 1.3.0
  *
  * @param array $attributes Default configuration attributes for the single FAQ shortcode
- * @param array $config Runtime configuration attributes for the single FAQ view file.
+ * @param array $config     Runtime configuration attributes for the single FAQ view file.
  *
  * @return void
  */
@@ -94,7 +94,7 @@ function render_single_faq( array $attributes, array $config ) {
  * @since 1.3.0
  *
  * @param array $attributes Default configuration attributes for the topic FAQ shortcode
- * @param array $config Runtime configuration attributes for the topic FAQ view file.
+ * @param array $config     Runtime configuration attributes for the topic FAQ view file.
  *
  * @return void
  */
@@ -138,8 +138,8 @@ function render_topic_faqs( array $attributes, array $config ) {
  * @since 1.3.0
  *
  * @param \WP_Query $query
- * @param array $attributes
- * @param array $config
+ * @param array     $attributes
+ * @param array     $config
  *
  * @return void
  */
@@ -162,7 +162,7 @@ function loop_and_render_faqs_by_topic( \WP_Query $query, array $attributes, arr
  * @since 1.3.0
  *
  * @param array $attributes
- * @param bool $is_single_faq
+ * @param bool  $is_single_faq
  *
  * @return void
  *

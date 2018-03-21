@@ -42,9 +42,9 @@ function get_meta_box_id( $store_key ) {
  *
  * @since 1.0.0
  *
- * @param int $post_id Post's ID
+ * @param int    $post_id     Post's ID
  * @param string $meta_box_id Meta box's key (ID) - used to identify this meta box
- * @param array $config Custom field's configuration parameters
+ * @param array  $config      Custom field's configuration parameters
  *
  * @return array
  */
@@ -66,9 +66,9 @@ function get_custom_fields_values( $post_id, $meta_box_id, array $config ) {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param array $custom_fields Array of custom fields values
-	 * @param string $meta_box_id Meta box's key (ID) - used to identify this meta box
-	 * @param int $post_id Post's ID
+	 * @param array  $custom_fields Array of custom fields values
+	 * @param string $meta_box_id   Meta box's key (ID) - used to identify this meta box
+	 * @param int    $post_id       Post's ID
 	 */
 	return (array) apply_filters( 'filter_meta_box_custom_fields',
 		$custom_fields,

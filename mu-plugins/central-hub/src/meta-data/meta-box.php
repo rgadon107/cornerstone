@@ -47,8 +47,8 @@ function register_meta_boxes() {
  *
  * @since 1.0.0
  *
- * @param WP_Post $post Instance of the post for this meta box
- * @param array $meta_box_args Array of meta box arguments
+ * @param WP_Post $post          Instance of the post for this meta box
+ * @param array   $meta_box_args Array of meta box arguments
  *
  * @return void
  */
@@ -166,9 +166,9 @@ function remap_custom_fields_config( array $config ) {
  *
  * @since 1.0.0
  *
- * @param array $config Custom Fields configuration parameters.
+ * @param array  $config       Custom Fields configuration parameters.
  * @param string $meta_box_key Meta box's key (ID) - used to identify this meta box
- * @param int $post_id Post's ID
+ * @param int    $post_id      Post's ID
  *
  * @return void
  */
