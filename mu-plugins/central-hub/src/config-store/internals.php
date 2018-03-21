@@ -17,7 +17,7 @@ namespace KnowTheCode\ConfigStore;
  * @since 1.0.0
  *
  * @param string $store_key
- * @param array $config_to_store
+ * @param array  $config_to_store
  *
  * @return void
  * @throws \Exception
@@ -41,7 +41,7 @@ function _the_store( $store_key = '', $config_to_store = array() ) {
 	if ( ! array_key_exists( $store_key, $config_store ) ) {
 		throw new \Exception(
 			sprintf(
-				__('Configuration for [%s] does not exist in the ConfigStore', 'config-store'),
+				'Configuration for [%s] does not exist in the ConfigStore',
 				esc_html( $store_key )
 			)
 		);
@@ -74,7 +74,7 @@ function _load_config_from_filesystem( $path_to_file ) {
  *
  * @since 1.0.0
  *
- * @param array $config Array of configuration parameters
+ * @param array $config   Array of configuration parameters
  * @param array $defaults Array of default parameters
  *
  * @return array

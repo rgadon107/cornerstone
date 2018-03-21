@@ -2,21 +2,18 @@
 /**
  *  Recordings plugin
  *
- * @package spiralWebDb\Recordings
+ * @package     spiralWebDb\Recordings
  * @author  (c) 2017 by Robert A. Gadon
- * @license GPL-2.0+ (see license text below)
- * @link    https://spiralwebdb.com
+ * @license     GPL-2.0+ (see license text below)
+ * @link        https://spiralwebdb.com
  *
  * @wordpress-plugin
  * Plugin Name:     Recordings Plugin
  * Plugin URI:      https://gitlab.com/Hamammelis/cornerstone
- * Description:     Recordings is a WordPress plugin that organizes all the CD recordings for the Cornerstone Chorale and Brass.
- * Author:          Robert A. Gadon
- * Author URI:      http://spiralwebdb.com
- * License URI:     https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:     cornerstone_recordings
- * Requires WP:     4.8
- * Requires PHP:    5.5
+ * Description:     Recordings is a WordPress plugin that organizes all the CD recordings for the Cornerstone Chorale
+ * and Brass. Author:          Robert A. Gadon Author URI:      http://spiralwebdb.com License URI:
+ * https://www.gnu.org/licenses/gpl-2.0.html Text Domain:     cornerstone_recordings Requires WP:     4.8 Requires PHP:
+ *    5.5
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -32,6 +29,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
+
 namespace spiralWebDb\Recordings;
 
 use spiralWebDb\Module\Custom as CustomModule;
@@ -51,7 +49,7 @@ add_filter( 'add_custom_taxonomy_runtime_config', __NAMESPACE__ . '\register_rec
  *
  * @return void
  */
-function register_recordings_custom_configs( array $configurations )    {
+function register_recordings_custom_configs( array $configurations ) {
 
 	$doing_post_type = current_filter() == 'add_custom_post_type_runtime_config';
 
@@ -61,7 +59,7 @@ function register_recordings_custom_configs( array $configurations )    {
 
 	$runtime_config = (array) require( __DIR__ . '/config/' . $filename . '.php' );
 
-	if( ! $runtime_config ) {
+	if ( ! $runtime_config ) {
 		return $configurations;
 	}
 

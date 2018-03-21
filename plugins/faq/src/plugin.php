@@ -9,7 +9,7 @@
  * @license    GPL-2.0+
  */
 
-namespace spiralWebDb\Cornerstone;
+namespace spiralWebDb\FAQ;
 
 use spiralWebDb\Module\Custom as CustomModule;
 use KnowTheCode\ConfigStore as configStore;
@@ -26,8 +26,8 @@ function enqueue_assets() {
 	wp_enqueue_style( 'dashicons' );
 
 	wp_enqueue_script(
-		'central-hub-plugin-script',
-		CENTRAL_HUB_URL . 'assets/dist/js/jquery.project.min.js', // Note: including '/jquery.project.min.js' to the string returns 404 error in my local Console.
+		'faq-plugin-script',
+		FAQ_DIR . 'assets/dist/js/jquery.project.min.js', // Note: including '/jquery.project.min.js' to the string returns 404 error in my local Console.
 		array( 'jquery' ),
 		'1.0.0',
 		true
@@ -51,7 +51,7 @@ add_action( 'plugins_loaded', __NAMESPACE__ . '\setup_plugin' );
 function setup_plugin() {
 
 	foreach ( array( 'qa', 'teaser' ) as $shortcode ) {
-		$config_file = sprintf( '%s/config/shortcode/%s.php', CORNERSTONE_DIR, $shortcode );
+		$config_file = sprintf( '%s/config/shortcode/%s.php', FAQ_DIR, $shortcode );
 		CustomModule\register_shortcode( $config_file );
 	}
 }

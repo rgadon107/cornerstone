@@ -45,7 +45,8 @@
     "run-sequence": "^1.2.0"
   },
   "dependencies": {
-    "app-root-path": "^1.0.0"
+    "app-root-path": "^1.0.0",
+    "npm": "^5.7.1"
   },
   "gulpConfig": "./config/gulp/config.js"
 }

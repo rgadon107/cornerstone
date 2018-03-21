@@ -15,6 +15,7 @@
  *
  * @license    GNU General Public License 2.0+
  */
+
 namespace spiralWebDb\Module\Custom;
 
 add_action( 'init', __NAMESPACE__ . '\register_the_custom_taxonomies' );
@@ -34,9 +35,9 @@ function register_the_custom_taxonomies() {
 	 *  Add the custom taxonomy runtime configurations for generating and
 	 *  registering each with WordPress
 	 *
-	 *  @since 1.0.0
+	 * @since 1.0.0
 	 *
-	 *  @param array Array of configurations.
+	 * @param array Array of configurations.
 	 */
 	$configs = (array) apply_filters( 'add_custom_taxonomy_runtime_config', $configs );
 

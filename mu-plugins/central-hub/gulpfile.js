@@ -15,28 +15,28 @@
  * Declarations
  *********************************************/
 var gulp = require( 'gulp' ),
-	/**
-	 * Fetch all of the plugins out of the package.json file.
-	 * This reduces redundancy and keeps us DRY.
-	 */
-	plugins = require( 'gulp-load-plugins' )( {
-		pattern: '*'
-	} ),
-	/**
-	 * Fetch where the `config.js` is located within the theme.  This value
-	 * is stored in the `package.json` file and keyed by `gulpConfig`.
-	 */
-	gulpConfig = require( './package' ).gulpConfig,
-	/**
-	 * We want to make sure we have the module's root, as files are being
-	 * loaded and processed from subfolders.
-	 */
-	moduleRoot = require( 'app-root-path' ).resolve( './' ),
-	/**
-	 * Now load the `config.js` file, which has all of the
-	 * settings and parameters for the tasks.
-	 */
-	config = require( "./" + gulpConfig )( moduleRoot );
+    /**
+     * Fetch all of the plugins out of the package.json file.
+     * This reduces redundancy and keeps us DRY.
+     */
+    plugins = require( 'gulp-load-plugins' )( {
+        pattern: '*'
+    } ),
+    /**
+     * Fetch where the `config.js` is located within the theme.  This value
+     * is stored in the `package.json` file and keyed by `gulpConfig`.
+     */
+    gulpConfig = require( './package' ).gulpConfig,
+    /**
+     * We want to make sure we have the module's root, as files are being
+     * loaded and processed from subfolders.
+     */
+    moduleRoot = require( 'app-root-path' ).resolve( './' ),
+    /**
+     * Now load the `config.js` file, which has all of the
+     * settings and parameters for the tasks.
+     */
+    config = require( "./" + gulpConfig )( moduleRoot );
 
 /**
  * Load up the reload into plugins.
@@ -60,14 +60,14 @@ plugins.reload = plugins.browserSync.reload;
  * @returns {*}
  */
 function getTask( task ) {
-	var taskDir = config.gulpDir + 'tasks/' + task;
+    var taskDir = config.gulpDir + 'tasks/' + task;
 
-	return require( taskDir )( gulp, plugins, config );
+    return require( taskDir )( gulp, plugins, config );
 }
 
 var tasks = ['i18n', 'icons', 'imagemin', 'styles', 'scripts', 'sprites', 'watch'];
 for ( var index in tasks ) {
-	getTask( tasks[ index ] );
+    getTask( tasks[ index ] );
 }
 
 /**********************************************

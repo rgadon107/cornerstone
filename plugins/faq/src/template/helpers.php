@@ -13,7 +13,7 @@
  * @license    GNU General Public License 2.0+
  */
 
-namespace spiralWebDb\Module\FAQ\Template;
+namespace spiralWebDb\FAQ\Template;
 
 add_filter( 'archive_template', __NAMESPACE__ . '\load_the_faq_archive_template' );
 /**
@@ -53,7 +53,7 @@ function load_the_faq_archive_template( $theme_archive_template ) {
  * @since 1.0.0
  *
  * @param string $post_type_name Post type to limit query to
- * @param string $taxonomy_name Taxonomy to limit query to
+ * @param string $taxonomy_name  Taxonomy to limit query to
  *
  * @return array|false
  */
@@ -94,7 +94,7 @@ function get_posts_grouped_by_term( $post_type_name, $taxonomy_name ) {
  * @since 1.0.0
  *
  * @param string $post_type_name Post type to limit query to
- * @param string $taxonomy_name Taxonomy to limit query to
+ * @param string $taxonomy_name  Taxonomy to limit query to
  *
  * @return array|false
  */

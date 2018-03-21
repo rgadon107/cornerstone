@@ -11,7 +11,7 @@
  * @license     GNU-2.0+
  */
 
-namespace KnowTheCode\Metadata;
+namespace spiralWebDB\Recordings;
 
 return array(
 	/************************************************************
@@ -43,7 +43,7 @@ return array(
 		 ***********************************************************/
 		'custom_fields' => array(
 			// specify this field's meta key.  It's used in the database.
-			'subtitle'      => array(
+			'cd-cover-image' => array(
 				// True - means it's a single
 				// False - means it's an array
 				'is_single'    => true,
@@ -57,18 +57,18 @@ return array(
 				'sanitize'     => 'sanitize_text_field',
 			),
 			// specify this field's meta key.  It's used in the database.
-			'show_subtitle' => array(
+			'audio-file-1'   => array(
 				// True - means it's a single
 				// False - means it's an array
 				'is_single'    => true,
 				// Specify the custom field's default value.
-				'default'      => 0,
+				'default'      => '',
 				// What is the state that signals to delete this meta key
 				// from the database.
-				'delete_state' => 0,
+				'delete_state' => '',
 				// callable sanitizer function such as
 				// sanitize_text_field, sanitize_email, strip_tags, intval, etc.
-				'sanitize'     => 'intval',
+				'sanitize'     => 'sanitize_text_field',
 			),
 		),
 

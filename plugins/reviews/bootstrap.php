@@ -75,7 +75,24 @@ function register_reviews_custom_configs( array $configurations ) {
 }
 
 /**
- * Load the configurations.
+ * Autoload the plugin's files.
+ *
+ * @since 1.0.0
+ *
+ * @return void
+ */
+function autoload_files() {
+	$files = array(
+		'/src/admin/edit-form-advanced.php',
+	);
+
+	foreach ( $files as $filename ) {
+		require __DIR__ . $filename;
+	}
+}
+
+/**
+ * Load the meta-box configurations.
  *
  * @since 1.0.0
  *
@@ -97,6 +114,8 @@ function load_configurations() {
  * @return void
  */
 function launch() {
+	autoload_files();
+
 	CustomModule\register_plugin( __FILE__ );
 
 	load_configurations();
