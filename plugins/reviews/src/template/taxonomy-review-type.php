@@ -1,6 +1,6 @@
 <?php
 /**
- *  Single page for Reviews custom post type
+ *  Template for Review-type custom taxonomy
  *
  * @package    spiralWebDb\Reviews
  *

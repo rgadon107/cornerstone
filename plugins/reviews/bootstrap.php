@@ -36,7 +36,7 @@
 namespace spiralWebDb\Reviews;
 
 use spiralWebDb\Module\Custom as CustomModule;
-use KnowTheCode\Metadata as metaData;
+use spiralWebDb\Metadata as metaData;
 
 define( 'REVIEWS_DIR', __DIR__ );
 
@@ -72,6 +72,19 @@ function register_reviews_custom_configs( array $configurations ) {
 	$configurations[ $key ] = $runtime_config;
 
 	return $configurations;
+}
+
+add_filter( 'add_custom_plugin_path_to_template_files', __NAMESPACE__ . '\path_to_plugin_template_files', 8 );
+/**
+ * Return configuration of absolute paths to plugin template files.
+ *
+ * @since 1.0.0
+ *
+ * @param array $configuration Array of paths to plugin template files
+ */
+function path_to_plugin_template_files( array $configuration ) {
+	$configuration = require __DIR__ . '/config/template.php';
+	return $configuration;
 }
 
 /**

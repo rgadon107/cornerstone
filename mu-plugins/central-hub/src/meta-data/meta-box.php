@@ -2,14 +2,14 @@
 /**
  * Meta Box Generator.
  *
- * @package     KnowTheCode\Metadata
+ * @package     spiralWebDb\Metadata
  * @since       1.0.0
  * @author      hellofromTonya
  * @link        https://KnowTheCode.io
  * @license     GNU-2.0+
  */
 
-namespace KnowTheCode\Metadata;
+namespace spiralWebDB\Metadata;
 
 use WP_Post;
 use KnowTheCode\ConfigStore as configStore;

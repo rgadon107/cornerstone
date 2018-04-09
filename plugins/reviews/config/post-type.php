@@ -2,7 +2,7 @@
 /**
  *  Runtime configuration for the Portfolio custom post type.
  *
- * @package    spiralWebDb\reviews
+ * @package    spiralWebDb\Reviews
  *
  * @since      1.0.0
  *
@@ -13,7 +13,7 @@
  * @license    GNU General Public License 2.0+
  */
 
-namespace spiralWebDb\reviews;
+namespace spiralWebDb\Reviews;
 
 return array(
 

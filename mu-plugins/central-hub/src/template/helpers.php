@@ -11,6 +11,33 @@
 
 namespace spiralWebDB\Module\Template;
 
+add_action( 'init', __NAMESPACE__ . '\register_path_to_custom_plugin_template_files');
+/**
+ * Register the absolute path to template files within a custom plugin.
+ *
+ * @since 1.0.0
+ *
+ * @return void
+ */
+function register_path_to_custom_plugin_template_files() {
+	/**
+	 * Return and process the absolute path to template files within
+	 * each custom plugin.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param array Array of configurations
+	 */
+	$configs = (array) apply_filters( 'add_custom_plugin_path_to_template_files', array() );
+
+	ddd( $configs );
+	// Loop the $configs and register the template files for each add-on plugin.
+	foreach( $configs as $template => $template_type ) {
+		// load each plugin template configuration into memory
+	}
+}
+
+
 add_filter( 'template_include', __NAMESPACE__ . '\include_custom_plugin_templates' );
 /**
  * Pass back the template file to the front-end loader
@@ -33,20 +60,45 @@ function include_custom_plugin_templates( $template ) {
 			return $template;
 		}
 
-		if ( 'accommodation' === get_post_type( $post->ID ) ) {
-			return get_template( $template, 'single-accommodation' );
+		if ( 'members' === get_post_type( $post->ID ) ) {
+			return get_template( $template, 'single-members' );
+		}
+
+		if ( 'events' === get_post_type( $post->ID ) ) {
+			return get_template( $template, 'single-events' );
+		}
+
+		if ( 'recordings' === get_post_type( $post->ID ) ) {
+			return get_template( $template, 'single-recordings' );
+		}
+
+		if ( 'reviews' === get_post_type( $post->ID ) ) {
+			return get_template( $template, 'single-reviews' );
 		}
 
 		return $template;
 	}
 
-	if ( is_post_type_archive( 'accommodation' ) ) {
-		return get_template( $template, 'archive-accommodation' );
+	if ( is_post_type_archive( 'members' ) ) {
+		return get_template( $template, 'archive-members' );
 	}
 
-	if ( is_tax( 'accommodation-type' ) ) {
-		return get_template( $template, 'taxonomy-accommodation-type' );
+	if ( is_post_type_archive( 'events' ) ) {
+		return get_template( $template, 'archive-events' );
 	}
+
+	if ( is_post_type_archive( 'faq' ) ) {
+		return get_template( $template, 'archive-faq' );
+	}
+
+	if ( is_post_type_archive( 'recordings' ) ) {
+		return get_template( $template, 'archive-recordings' );
+	}
+
+	if ( is_post_type_archive( 'reviews' ) ) {
+		return get_template( $template, 'archive-reviews' );
+	}
+
 
 	return $template;
 }
@@ -56,27 +108,31 @@ function include_custom_plugin_templates( $template ) {
  *
  * @since 1.0.0
  *
- * @param string $original      The original template.
- * @param string $template_name The name of the template.
+ * @param string $theme_archive_template      The them archive template.
+ * @param string $plugin_archive_templatename The plugin archive template.
  *
  * @return string
  */
-function get_template( $original, $template_name ) {
-	$template_name .= '.php';
-
+function get_template( $theme_archive_template, $plugin_archive_template ) {
+	d( $theme_archive_template );
+	d( $plugin_archive_template );
+	$template_name = $plugin_archive_template .'.php';
+	d( $template_name );
 	// Let the theme override the plugin.
 	$theme_file = locate_template( array( $template_name ) );
+
 	if ( $theme_file && is_readable( $theme_file ) ) {
 		return $theme_file;
 	}
 
 	// If the plugin has the template, return it.
 	$template_file = __DIR__ . '/' . $template_name;
+	d( $template_file );
 	if ( is_readable( $template_file ) ) {
 		return $template_file;
 	}
 
-	return $original;
+	return $theme_archive_template;
 }
 
 /**
@@ -90,7 +146,7 @@ function get_template( $original, $template_name ) {
  */
 function build_template_file_path_and_name( $template_slug ) {
 
-	return $template_slug . '-accommodation.php';
+	return $template_slug . '-reviews.php';
 }
 
 /**
@@ -142,9 +198,9 @@ function get_posts_grouped_by_term( $post_type_name, $taxonomy_name ) {
 			'post_id'            => $post_id,
 			'post_title'         => $record->post_title,
 			'post_content'       => $record->post_content,
-			'thumbnail_id'       => $record->thumbnail_id,
-			'thumbnail_url'      => $record->thumbnail_url,
-			'thumbnail_metadata' => maybe_unserialize( $record->thumbnail_metadata ),
+//			'thumbnail_id'       => $record->thumbnail_id,
+//			'thumbnail_url'      => $record->thumbnail_url,
+//			'thumbnail_metadata' => maybe_unserialize( $record->thumbnail_metadata ),
 			'menu_order'         => $record->menu_order,
 		);
 
@@ -178,16 +234,16 @@ function get_posts_grouped_by_term_from_db( $post_type_name, $taxonomy_name ) {
 		    p.post_title, 
 		    p.post_content, 
 		    p.menu_order, 
-		    pm.meta_value AS thumbnail_id, 
-		    thumbnail.guid AS thumbnail_url, 
-		    thumbnail_meta.meta_value AS thumbnail_metadata
+		    pm.post_id,
+//		    thumbnail.guid AS thumbnail_url, 
+//		    thumbnail_meta.meta_value AS thumbnail_metadata
 		FROM {$wpdb->term_taxonomy} AS tt
 		INNER JOIN {$wpdb->terms} AS t ON (tt.term_id = t.term_id)
 		INNER JOIN {$wpdb->term_relationships} AS tr ON (tt.term_taxonomy_id = tr.term_taxonomy_id)
 		INNER JOIN {$wpdb->posts} AS p ON (tr.object_id = p.ID)
-		INNER JOIN {$wpdb->postmeta} AS pm ON (p.ID = pm.post_id AND pm.meta_key = '_thumbnail_id')
-		INNER JOIN {$wpdb->posts} AS thumbnail ON (pm.meta_value = thumbnail.ID)
-		INNER JOIN {$wpdb->postmeta} AS thumbnail_meta ON (thumbnail.ID = thumbnail_meta.post_id AND thumbnail_meta.meta_key = '_wp_attachment_metadata')
+		INNER JOIN {$wpdb->postmeta} AS pm ON (p.ID = pm.post_id)
+//		INNER JOIN {$wpdb->posts} AS thumbnail ON (pm.meta_value = thumbnail.ID)
+//		INNER JOIN {$wpdb->postmeta} AS thumbnail_meta ON (thumbnail.ID = thumbnail_meta.post_id AND thumbnail_meta.meta_key = '_wp_attachment_metadata')
 		WHERE p.post_status = 'publish' AND p.post_type = %s AND tt.taxonomy = %s
 		GROUP BY t.term_id, p.ID
 		ORDER BY t.term_id, p.menu_order ASC";
@@ -200,34 +256,4 @@ function get_posts_grouped_by_term_from_db( $post_type_name, $taxonomy_name ) {
 	}
 
 	return $results;
-}
-
-/**
- * Render the accommodation's image.
- *
- * @since 1.0.0
- *
- * @param null|int $accommodation_id Optional. The given accommodation's ID. Default is null.
- *
- * @return void
- */
-function render_accommodation_image( $accommodation_id = null ) {
-	$img = genesis_get_image( array(
-		'post_id' => $accommodation_id,
-		'format'  => 'html',
-		'size'    => genesis_get_option( 'image_size' ),
-		'context' => 'archive',
-		'attr'    => array(
-			'class'    => 'alignnone post-image entry-image',
-			'alt'      => get_the_title( $accommodation_id ),
-			'itemprop' => 'image',
-		),
-	) );
-	if ( empty( $img ) ) {
-		return;
-	}
-
-	genesis_markup( array(
-		'content' => wp_make_content_images_responsive( $img ),
-	) );
 }

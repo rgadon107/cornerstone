@@ -2,14 +2,14 @@
 /**
  * Metadata Helpers for the metadata module.
  *
- * @package     KnowTheCode\Metadata
+ * @package     spiralWebDb\Metadata
  * @since       1.0.0
  * @author      hellofromTonya
  * @link        https://KnowTheCode.io
  * @license     GNU-2.0+
  */
 
-namespace KnowTheCode\Metadata;
+namespace spiralWebDB\Metadata;
 
 use KnowTheCode\ConfigStore as configStore;
 

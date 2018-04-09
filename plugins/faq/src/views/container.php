@@ -1,7 +1,7 @@
 <?php
 
-use spiralWebDb\Module\FAQ\Template as Template;
-use spiralWebDb\Module\FAQ\Shortcode as Shortcode;
+use spiralWebDb\FAQ\Template as Template;
+use spiralWebDb\FAQ\Shortcode as Shortcode;
 
 if ( isset( $use_term_container ) && $use_term_container ) : ?>
 

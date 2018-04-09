@@ -11,9 +11,12 @@
  * Plugin Name:     Cornerstone Members
  * Plugin URI:      https://gitlab.com/Hamammelis/cornerstone
  * Description:     Members is a WordPress plugin that manages public information about Cornerstone Chorale and Brass
- * members. Author:          Robert A. Gadon Author URI:      http://spiralwebdb.com License URI:
- * https://www.gnu.org/licenses/gpl-2.0.html Text Domain:     cornerstone_members Requires WP:     4.8 Requires PHP:
- * 5.5
+ * members.
+ * Author:          Robert A. Gadon Author
+ * URI:      http://spiralwebdb.com License URI:
+ * https://www.gnu.org/licenses/gpl-2.0.html
+ * Text Domain:     cornerstone_members Requires WP:     4.8
+ * Requires PHP: 5.5
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -33,7 +36,7 @@
 namespace spiralWebDb\Members;
 
 use spiralWebDb\Module\Custom as CustomModule;
-use KnowTheCode\Metadata as metaData;
+use spiralWebDb\Metadata as metaData;
 
 define( 'CORNERSTONE_MEMBERS_DIR', __DIR__ );
 
@@ -69,6 +72,19 @@ function register_members_custom_configs( array $configurations ) {
 	$configurations[ $key ] = $runtime_config;
 
 	return $configurations;
+}
+
+add_filter( 'add_custom_plugin_path_to_template_files', __NAMESPACE__ . '\path_to_plugin_template_files', 7 );
+/**
+ * Return configuration of absolute paths to plugin template files.
+ *
+ * @since 1.0.0
+ *
+ * @param array $configuration Array of paths to plugin template files
+ */
+function path_to_plugin_template_files( array $configuration ) {
+	$configuration = require __DIR__ . '/config/template.php';
+	return $configuration;
 }
 
 /**

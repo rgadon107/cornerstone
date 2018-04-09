@@ -1,8 +1,8 @@
 <?php
 /**
- *  Single page for Reviews custom post type
+ *  Single page for Cornerstone Members custom post type
  *
- * @package    spiralWebDb\Reviews
+ * @package    spiralWebDb\Members
  *
  * @since      1.0.0
  *
@@ -12,7 +12,7 @@
  *
  * @license    GNU General Public License 2.0+
  */
-namespace spiralWebDb\Reviews;
+namespace spiralWebDb\Members;
 
 
 

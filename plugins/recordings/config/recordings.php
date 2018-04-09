@@ -4,7 +4,7 @@
  *
  * 'Recordings' Runtime Configuration Parameters
  *
- * @package     KnowTheCode\Metadata
+ * @package     spiralWebDb\Metadata
  * @since       1.0.0
  * @author      hellofromTonya
  * @link        https://KnowTheCode.io

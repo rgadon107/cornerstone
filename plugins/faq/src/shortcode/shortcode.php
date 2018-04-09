@@ -2,7 +2,7 @@
 /**
  *  Shortcode processing for single FAQ or topic FAQs.
  *
- * @package    spiralWebDb\Module\FAQ\Shortcode
+ * @package    spiralWebDb\FAQ\Shortcode
  *
  * @since      1.3.0
  *

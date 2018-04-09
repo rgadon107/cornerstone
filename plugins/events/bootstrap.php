@@ -33,7 +33,7 @@
 namespace spiralWebDb\Events;
 
 use spiralWebDb\Module\Custom as CustomModule;
-use KnowTheCode\Metadata as metaData;
+use spiralWebDb\Metadata as metaData;
 
 define( 'EVENTS_DIR', __DIR__ );
 
