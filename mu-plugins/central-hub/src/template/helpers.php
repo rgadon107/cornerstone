@@ -11,7 +11,7 @@
 
 namespace spiralWebDB\Module\Template;
 
-add_action( 'init', __NAMESPACE__ . '\register_path_to_custom_plugin_template_files');
+add_action( 'init', __NAMESPACE__ . '\register_path_to_custom_plugin_template_files' );
 /**
  * Register the absolute path to template files within a custom plugin.
  *
@@ -21,8 +21,8 @@ add_action( 'init', __NAMESPACE__ . '\register_path_to_custom_plugin_template_fi
  */
 function register_path_to_custom_plugin_template_files() {
 	/**
-	 * Return and process the absolute path to template files within
-	 * each custom plugin.
+	 * Load and store the add-on plugin template files from
+	 * each custom plugin for processing by the template handler.
 	 *
 	 * @since 1.0.0
 	 *
@@ -30,13 +30,18 @@ function register_path_to_custom_plugin_template_files() {
 	 */
 	$configs = (array) apply_filters( 'add_custom_plugin_path_to_template_files', array() );
 
-	ddd( $configs );
 	// Loop the $configs and register the template files for each add-on plugin.
-	foreach( $configs as $template => $template_type ) {
+	foreach ( $configs as $template => $template_type ) {
 		// load each plugin template configuration into memory
 	}
 }
 
+// Load the template file configuration from each add-on plugin into memory
+// Provide a function to get each configuration from memory
+// Use conditional checks to check which template type is called for.
+// Get the correct 'template-slug' to build the template file. Determine whether template
+//      is provided by the theme or plugin. Give the theme precedence over the plugin.
+// Build the absolute path to whichever template file is called.
 
 add_filter( 'template_include', __NAMESPACE__ . '\include_custom_plugin_templates' );
 /**
@@ -60,6 +65,8 @@ function include_custom_plugin_templates( $template ) {
 			return $template;
 		}
 
+// Question: Since the structure of the conditional check is the same, can this
+// be refactored to accept an array of inputs?
 		if ( 'members' === get_post_type( $post->ID ) ) {
 			return get_template( $template, 'single-members' );
 		}
@@ -79,16 +86,14 @@ function include_custom_plugin_templates( $template ) {
 		return $template;
 	}
 
+// Question: Since the structure of the conditional check is the same, can this
+// be refactored to accept an array of inputs?
 	if ( is_post_type_archive( 'members' ) ) {
 		return get_template( $template, 'archive-members' );
 	}
 
 	if ( is_post_type_archive( 'events' ) ) {
 		return get_template( $template, 'archive-events' );
-	}
-
-	if ( is_post_type_archive( 'faq' ) ) {
-		return get_template( $template, 'archive-faq' );
 	}
 
 	if ( is_post_type_archive( 'recordings' ) ) {
@@ -99,25 +104,38 @@ function include_custom_plugin_templates( $template ) {
 		return get_template( $template, 'archive-reviews' );
 	}
 
+	if ( is_tax( 'review-type' ) ) {
+		return get_template( $template, 'taxonomy-review-type' );
+	}
+
+	if ( is_tax( 'review-type' ) ) {
+		return get_template( $template, 'taxonomy-member-role' );
+	}
+
+	if ( is_tax( 'event-type' ) ) {
+		return get_template( $template, 'taxonomy-event-type' );
+	}
 
 	return $template;
 }
+
+// Does the $original parameter refer to the template returned by WordPress?
+// The name of the parameter is vague.
 
 /**
  * Get the template file from the theme or plugin.
  *
  * @since 1.0.0
  *
- * @param string $theme_archive_template      The them archive template.
- * @param string $plugin_archive_templatename The plugin archive template.
+ * @param string $original      The original template.
+ * @param string $template_name The name of the template.
  *
  * @return string
  */
-function get_template( $theme_archive_template, $plugin_archive_template ) {
-	d( $theme_archive_template );
-	d( $plugin_archive_template );
-	$template_name = $plugin_archive_template .'.php';
-	d( $template_name );
+function get_template( $original, $template_name ) {
+
+	$template_name .= '.php';
+
 	// Let the theme override the plugin.
 	$theme_file = locate_template( array( $template_name ) );
 
@@ -126,15 +144,17 @@ function get_template( $theme_archive_template, $plugin_archive_template ) {
 	}
 
 	// If the plugin has the template, return it.
-	$template_file = __DIR__ . '/' . $template_name;
-	d( $template_file );
+	$template_file = __DIR__ . '/config/' . $template_name;
+
 	if ( is_readable( $template_file ) ) {
 		return $template_file;
 	}
 
-	return $theme_archive_template;
+	return $original;
 }
 
+// Does the output of all the conditional checks from
+// 'include_custom_plugin_templates' get passed to $template_slug?
 /**
  * Build the templates full path and filename
  *
@@ -165,6 +185,8 @@ function extract_template_slug_from_fullpath( $template_fullpath ) {
 	return rtrim( $template, '.php' );
 }
 
+// References to 'thumbnail' was commented out as none of the add-on plugins
+// will include a 'featured image'.
 /**
  * Gets all of the posts grouped by terms for the specified
  * post type and taxonomy.
@@ -195,13 +217,13 @@ function get_posts_grouped_by_term( $post_type_name, $taxonomy_name ) {
 			);
 		}
 		$groupings[ $term_id ]['posts'][ $post_id ] = array(
-			'post_id'            => $post_id,
-			'post_title'         => $record->post_title,
-			'post_content'       => $record->post_content,
+			'post_id'      => $post_id,
+			'post_title'   => $record->post_title,
+			'post_content' => $record->post_content,
 //			'thumbnail_id'       => $record->thumbnail_id,
 //			'thumbnail_url'      => $record->thumbnail_url,
 //			'thumbnail_metadata' => maybe_unserialize( $record->thumbnail_metadata ),
-			'menu_order'         => $record->menu_order,
+			'menu_order'   => $record->menu_order,
 		);
 
 	}
@@ -209,6 +231,8 @@ function get_posts_grouped_by_term( $post_type_name, $taxonomy_name ) {
 	return $groupings;
 }
 
+// References to 'thumbnail' was commented out as none of the add-on plugins
+// will include a 'featured image'.
 /**
  * Gets all of the posts grouped by terms for the specified
  * post type and taxonomy.
