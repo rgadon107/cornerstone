@@ -32,44 +32,9 @@
 
 namespace spiralWebDb\Events;
 
-use spiralWebDb\Module\Custom as CustomModule;
-use spiralWebDb\Metadata as metaData;
+use spiralWebDb\Module\Custom;
 
 define( 'EVENTS_DIR', __DIR__ );
-
-add_filter( 'add_custom_post_type_runtime_config', __NAMESPACE__ . '\register_events_custom_configs', 7 );
-add_filter( 'add_custom_taxonomy_runtime_config', __NAMESPACE__ . '\register_events_custom_configs', 7 );
-/**
- *  Loading in the post type and taxonomy runtime configurations with
- *  the Custom module.
- *
- * @since 1.0.0
- *
- * @param array $configurations Array of all of the configurations.
- *
- * @return array
- */
-function register_events_custom_configs( array $configurations ) {
-	$doing_post_type = current_filter() == 'add_custom_post_type_runtime_config';
-
-	$filename = $doing_post_type
-		? 'post-type'
-		: 'taxonomy';
-
-	$runtime_config = (array) require_once __DIR__ . '/config/' . $filename . '.php';
-
-	if ( ! $runtime_config ) {
-		return $configurations;
-	}
-
-	$key = $doing_post_type
-		? $runtime_config['post_type']
-		: $runtime_config['taxonomy'];
-
-	$configurations[ $key ] = $runtime_config;
-
-	return $configurations;
-}
 
 /**
  * Autoload the plugin's files.
@@ -80,27 +45,13 @@ function register_events_custom_configs( array $configurations ) {
  */
 function autoload_files() {
 	$files = array(
+		'/src/config-loader.php',
 		'/src/admin/edit-form-advanced.php',
 	);
 
 	foreach ( $files as $filename ) {
 		require __DIR__ . $filename;
 	}
-}
-
-/**
- * Load the meta-box configurations.
- *
- * @since 1.0.0
- *
- * @return void
- */
-function load_configurations() {
-	metaData\autoload_configurations(
-		array(
-			__DIR__ . '/config/events.php',
-		)
-	);
 }
 
 /**
@@ -113,7 +64,7 @@ function load_configurations() {
 function launch() {
 	autoload_files();
 
-	CustomModule\register_plugin( __FILE__ );
+	Custom\register_plugin( __FILE__ );
 
 	load_configurations();
 }

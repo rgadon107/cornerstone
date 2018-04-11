@@ -12,7 +12,7 @@
 namespace spiralWebDB\Module\Template;
 
 function autoload() {
-	include __DIR__ . '/helpers.php';
+	require __DIR__ . '/loader.php';
 }
 
 autoload();
