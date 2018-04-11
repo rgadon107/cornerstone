@@ -14,6 +14,6 @@
  */
 namespace spiralWebDb\Members;
 
-
+ddd( 'Loading the single-members template' );
 
 genesis();

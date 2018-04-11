@@ -43,8 +43,9 @@ return array(
 	 *
 	 * ===============================================================*/
 	'args'       => array(
-		'label'  => 'Role',
-		'labels' => '', // automatically generate the labels.
+		'label'        => 'Role',
+		'labels'       => '', // automatically generate the labels.
+		'hierarchical' => true,
 	),
 
 	/**==============================================================

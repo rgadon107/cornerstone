@@ -11,6 +11,8 @@
 
 namespace spiralWebDb\Members;
 
+ddd( 'Loading the archive-members template' );
+
 use spiralWebDB\Module\Template as Template;
 
 remove_action( 'genesis_loop', 'genesis_do_loop' );
