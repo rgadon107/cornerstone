@@ -42,20 +42,13 @@ function include_custom_plugin_templates( $template ) {
 		return locate_single_template( $template, $plugin_templates );
 	}
 
-	if ( is_post_type_archive( 'members' ) ) {
-		return get_template( $template, 'archive-members' );
+	if ( ! is_archive() ) {
+		return $template;
 	}
 
-	if ( is_post_type_archive( 'events' ) ) {
-		return get_template( $template, 'archive-events' );
-	}
-
-	if ( is_post_type_archive( 'recordings' ) ) {
-		return get_template( $template, 'archive-recordings' );
-	}
-
-	if ( is_post_type_archive( 'reviews' ) ) {
-		return get_template( $template, 'archive-reviews' );
+	$post_type = get_post_type_from_archive_query();
+	if ( is_post_type_archive( $post_type ) ) {
+		return locate_post_type_archive_template( $template, $post_type, $plugin_templates['post_type_archive'] );
 	}
 
 	if ( is_tax( 'review-type' ) ) {
@@ -104,6 +97,50 @@ function locate_single_template( $original_template, array $plugin_templates ) {
 		"single-{$post_type}.php",
 		$plugin_templates['single'][ $post_type ]
 	);
+}
+
+/**
+ * Attempt to locate the custom post type archive template either in the theme or one of the add-on plugins.
+ *
+ * @since 1.0.0
+ *
+ * @param string $original_template The original template provided by WordPress to the Template Loader.
+ * @param string $post_type         The requested custom post type.
+ * @param array  $plugin_templates  Array of plugin post type archive template locations.
+ *
+ * @return string
+ */
+function locate_post_type_archive_template( $original_template, $post_type, array $plugin_templates ) {
+	if ( empty( $plugin_templates ) ) {
+		return $original_template;
+	}
+
+	if ( ! isset( $plugin_templates[ $post_type ] ) ) {
+		return $original_template;
+	}
+
+	return get_template(
+		$original_template,
+		"archive-{$post_type}.php",
+		$plugin_templates[ $post_type ]
+	);
+}
+
+/**
+ * Get the post type from the archive query.
+ *
+ * @since 1.0.0
+ *
+ * @return bool|string
+ */
+function get_post_type_from_archive_query() {
+	global $wp_query;
+
+	if ( ! is_array( $wp_query->query ) || ! isset( $wp_query->query['post_type'] ) ) {
+		return false;
+	}
+
+	return $wp_query->query['post_type'];
 }
 
 // Question: Does the $original parameter refer to the template returned by WordPress?
