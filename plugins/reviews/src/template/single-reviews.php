@@ -1,18 +1,15 @@
 <?php
 /**
- *  Single page for Reviews custom post type
+ * Template for a single events post type.
  *
- * @package    spiralWebDb\Reviews
- *
- * @since      1.0.0
- *
- * @author     Robert A. Gadon
- *
- * @link       http://spiralwebdb.com
- *
- * @license    GNU General Public License 2.0+
+ * @package     spiralWebDb\Reviews\Template
+ * @since       1.0.0
+ * @author      Robert A. Gadon
+ * @link        http://spiralwebdb.com
+ * @license     GNU-2.0+
  */
-namespace spiralWebDb\Reviews;
+
+namespace spiralWebDb\Reviews\Template;
 
 ddd( 'Loading the single-reviews template' );
 
