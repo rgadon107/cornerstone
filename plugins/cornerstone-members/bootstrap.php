@@ -1,36 +1,25 @@
 <?php
 /**
- *  Cornerstone Members plugin
+ *  Loads the Cornerstone Members plugin.
  *
- * @package     spiralWebDb\Members
- * @author  (c) 2017 by Robert A. Gadon
- * @license     GPL-2.0+ (see license text below)
- * @link        https://spiralwebdb.com
+ * @package    spiralWebDb\Members
+ * @since      1.0.0
+ * @author     Robert A. Gadon
+ * @link       http://spiralwebdb.com
+ * @license    GNU-2.0+
  *
  * @wordpress-plugin
  * Plugin Name:     Cornerstone Members
  * Plugin URI:      https://gitlab.com/Hamammelis/cornerstone
- * Description:     Members is a WordPress plugin that manages public information about Cornerstone Chorale and Brass
- * members.
- * Author:          Robert A. Gadon Author
- * URI:      http://spiralwebdb.com License URI:
- * https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:     cornerstone_members Requires WP:     4.8
- * Requires PHP: 5.5
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * as published by the Free Software Foundation; either version 2
- * of the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ * Description:     Members is a WordPress plugin that manages public information about Cornerstone Chorale
+ *                  and Brass members.
+ * Version:         1.0.0
+ * Author:          Robert A. Gadon
+ * Author URI:      http://spiralwebdb.com
+ * License URI:     https://www.gnu.org/licenses/gpl-2.0.html
+ * Text Domain:     cornerstone_reviews
+ * Requires WP:     4.9
+ * Requires PHP:    5.6
  */
 
 namespace spiralWebDb\Members;
@@ -84,6 +73,7 @@ add_filter( 'add_custom_plugin_path_to_template_files', __NAMESPACE__ . '\path_t
  */
 function path_to_plugin_template_files( array $configuration ) {
 	$configuration = require __DIR__ . '/config/template.php';
+
 	return $configuration;
 }
 

@@ -2,7 +2,7 @@
 /**
  * Handler for loading the plugin's configurations.
  *
- * @package     spiralWebDb\Reviews
+ * @package     spiralWebDb\Events
  * @since       1.0.0
  * @author      Robert A. Gadon
  * @link        http://spiralwebdb.com
