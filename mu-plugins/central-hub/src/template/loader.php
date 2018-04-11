@@ -173,12 +173,11 @@ function extract_template_slug_from_fullpath( $template_fullpath ) {
  */
 function get_configured_templates() {
 	/**
-	 * Load and store the add-on plugin template files from
-	 * each custom plugin for processing by the template handler.
+	 * Register the plugin(s) template files with the Template Loader.
 	 *
 	 * @since 1.0.0
 	 *
 	 * @param array Array of configurations
 	 */
-	return (array) apply_filters( 'add_custom_plugin_path_to_template_files', array() );
+	return (array) apply_filters( 'register_templates_with_template_loader', array() );
 }

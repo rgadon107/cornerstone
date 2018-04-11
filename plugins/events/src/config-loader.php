@@ -61,3 +61,23 @@ function load_configurations() {
 		)
 	);
 }
+
+add_filter( 'register_templates_with_template_loader', __NAMESPACE__ . '\register_the_template_files' );
+/**
+ * Register this plugin's template files with the Template Loader.
+ *
+ * @since 1.0.0
+ *
+ * @param array $templates Array of templates.
+ *
+ * @return array
+ */
+function register_the_template_files( array $templates ) {
+	$config = require EVENTS_DIR . '/config/templates.php';
+
+	if ( empty( $templates ) ) {
+		return $config;
+	}
+
+	return array_merge( $templates, $config );
+}
