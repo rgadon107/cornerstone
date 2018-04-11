@@ -45,25 +45,16 @@ function include_custom_plugin_templates( $template ) {
 			return $template;
 		}
 
-// Question: Since the structure of the conditional check is the same, can this
-// be refactored to accept an array of inputs?
-		if ( 'members' === get_post_type( $post->ID ) ) {
-			return get_template( $template, 'single-members' );
+		$post_type = get_post_type( $post->ID );
+		if ( ! isset( $configured_templates['single'][ $post_type ] ) ) {
+			return $template;
 		}
 
-		if ( 'events' === get_post_type( $post->ID ) ) {
-			return get_template( $template, 'single-events' );
-		}
-
-		if ( 'recordings' === get_post_type( $post->ID ) ) {
-			return get_template( $template, 'single-recordings' );
-		}
-
-		if ( 'reviews' === get_post_type( $post->ID ) ) {
-			return get_template( $template, 'single-reviews' );
-		}
-
-		return $template;
+		return get_template(
+			$template,
+			"single-{$post_type}.php",
+			$configured_templates['single'][ $post_type ]
+		);
 	}
 
 // Question: Since the structure of the conditional check is the same, can this
@@ -99,38 +90,56 @@ function include_custom_plugin_templates( $template ) {
 	return $template;
 }
 
-// Does the $original parameter refer to the template returned by WordPress?
-// The name of the parameter is vague.
+// Question: Does the $original parameter refer to the template returned by WordPress?
+// Answer: Yes.
 
 /**
  * Get the template file from the theme or plugin.
  *
  * @since 1.0.0
  *
- * @param string $original      The original template.
- * @param string $template_name The name of the template.
+ * @param string $original        The original template.
+ * @param string $template_file   Template file, i.e. it's relative name.
+ * @param string $plugin_template Absolute path to the template in the plugin.
  *
  * @return string
  */
-function get_template( $original, $template_name ) {
-
-	$template_name .= '.php';
-
+function get_template( $original, $template_file, $plugin_template ) {
 	// Let the theme override the plugin.
-	$theme_file = locate_template( array( $template_name ) );
-
-	if ( $theme_file && is_readable( $theme_file ) ) {
-		return $theme_file;
+	$theme_template = get_template_from_theme( $template_file );
+	if ( ! empty( $theme_template ) ) {
+		return $theme_template;
 	}
 
-	// If the plugin has the template, return it.
-	$template_file = __DIR__ . '/config/' . $template_name;
-
-	if ( is_readable( $template_file ) ) {
-		return $template_file;
+	// If the plugin's template exists, load that one.
+	if ( is_readable( $plugin_template ) ) {
+		return $plugin_template;
 	}
 
 	return $original;
+}
+
+/**
+ * Get the template from the theme, if it exists.
+ *
+ * @since 1.0.0
+ *
+ * @param string $template_name Name of the template to find.
+ *
+ * @return bool|string
+ */
+function get_template_from_theme( $template_name ) {
+	$theme_file = locate_template( array( $template_name ) );
+
+	if ( empty( $theme_file ) ) {
+		return false;
+	}
+
+	if ( ! is_readable( $theme_file ) ) {
+		return false;
+	}
+
+	return $theme_file;
 }
 
 // Does the output of all the conditional checks from
