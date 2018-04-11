@@ -43,8 +43,6 @@ function include_custom_plugin_templates( $template ) {
 		return locate_single_template( $template, $plugin_templates );
 	}
 
-// Question: Since the structure of the conditional check is the same, can this
-// be refactored to accept an array of inputs?
 	if ( is_post_type_archive( 'members' ) ) {
 		return get_template( $template, 'archive-members' );
 	}
@@ -87,6 +85,11 @@ function include_custom_plugin_templates( $template ) {
  * @return string
  */
 function locate_single_template( $original_template, array $plugin_templates ) {
+	// If there are no single templates in any of the plugins, then bail out.
+	if ( empty( $plugin_templates['single'] ) ) {
+		return $original_template;
+	}
+
 	global $post;
 	if ( ! is_object( $post ) ) {
 		return $original_template;
