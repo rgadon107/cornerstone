@@ -14,6 +14,6 @@
  */
 namespace spiralWebDb\Reviews;
 
-
+ddd( 'Loading the review taxonomy template' );
 
 genesis();

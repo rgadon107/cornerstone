@@ -5,14 +5,15 @@
  *
  * @package     spiralWebDb\Events\Templates
  * @since       1.0.0
- * @author      hellofromTonya
- * @link        https://KnowTheCode.io
+ * @author      Robert A. Gadon
+ * @link        http://spiralwebdb.com
  * @license     GNU-2.0+
  */
+
 namespace spiralWebDb\Events\Templates;
 
 return array(
-	'single' => array(
+	'single'            => array(
 		'events' => EVENTS_DIR . '/src/templates/single-events.php',
 	),
 	'post_type_archive' => array(

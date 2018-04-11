@@ -40,8 +40,9 @@ return array(
 	 *
 	 * ===============================================================*/
 	'args'       => array(
-		'label'  => '',
-		'labels' => '', // automatically generate the labels.
+		'label'        => '',
+		'labels'       => '', // automatically generate the labels.
+		'hierarchical' => true,
 	),
 
 	/**==============================================================

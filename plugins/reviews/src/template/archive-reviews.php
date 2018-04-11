@@ -11,6 +11,8 @@
 
 namespace spiralWebDb\Reviews;
 
+ddd( 'Loading the archive-reviews template' );
+
 use spiralWebDB\Module\Template as Template;
 
 remove_action( 'genesis_loop', 'genesis_do_loop' );
