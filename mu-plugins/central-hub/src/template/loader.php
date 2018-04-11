@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Helpers
+ * Template Loader
  *
  * @package     spiralWebDB\Module\Template
  * @since       1.0.0
@@ -10,31 +10,6 @@
  */
 
 namespace spiralWebDB\Module\Template;
-
-add_action( 'init', __NAMESPACE__ . '\register_path_to_custom_plugin_template_files' );
-/**
- * Register the absolute path to template files within a custom plugin.
- *
- * @since 1.0.0
- *
- * @return void
- */
-function register_path_to_custom_plugin_template_files() {
-	/**
-	 * Load and store the add-on plugin template files from
-	 * each custom plugin for processing by the template handler.
-	 *
-	 * @since 1.0.0
-	 *
-	 * @param array Array of configurations
-	 */
-	$configs = (array) apply_filters( 'add_custom_plugin_path_to_template_files', array() );
-
-	// Loop the $configs and register the template files for each add-on plugin.
-	foreach ( $configs as $template => $template_type ) {
-		// load each plugin template configuration into memory
-	}
-}
 
 // Load the template file configuration from each add-on plugin into memory
 // Provide a function to get each configuration from memory
@@ -54,6 +29,11 @@ add_filter( 'template_include', __NAMESPACE__ . '\include_custom_plugin_template
  * @return string
  */
 function include_custom_plugin_templates( $template ) {
+	$configured_templates = get_configured_templates();
+
+	if ( empty( $configured_templates ) ) {
+		return $template;
+	}
 
 	if ( is_page() ) {
 		return $template;
@@ -165,7 +145,6 @@ function get_template( $original, $template_name ) {
  * @return string
  */
 function build_template_file_path_and_name( $template_slug ) {
-
 	return $template_slug . '-reviews.php';
 }
 
@@ -185,99 +164,21 @@ function extract_template_slug_from_fullpath( $template_fullpath ) {
 	return rtrim( $template, '.php' );
 }
 
-// References to 'thumbnail' was commented out as none of the add-on plugins
-// will include a 'featured image'.
 /**
- * Gets all of the posts grouped by terms for the specified
- * post type and taxonomy.
- *
- * Results are grouped by terms and ordered by the term and post IDs.
+ * Register the absolute path to template files within a custom plugin.
  *
  * @since 1.0.0
  *
- * @param string $post_type_name Post type to limit query to
- * @param string $taxonomy_name  Taxonomy to limit query to
- *
- * @return array|false
+ * @return array
  */
-function get_posts_grouped_by_term( $post_type_name, $taxonomy_name ) {
-	$records = get_posts_grouped_by_term_from_db( $post_type_name, $taxonomy_name );
-
-	$groupings = array();
-	foreach ( $records as $record ) {
-		$term_id = (int) $record->term_id;
-		$post_id = (int) $record->post_id;
-
-		if ( ! array_key_exists( $term_id, $groupings ) ) {
-			$groupings[ $term_id ] = array(
-				'term_id'   => $term_id,
-				'term_name' => $record->term_name,
-				'term_slug' => $record->term_slug,
-				'posts'     => array(),
-			);
-		}
-		$groupings[ $term_id ]['posts'][ $post_id ] = array(
-			'post_id'      => $post_id,
-			'post_title'   => $record->post_title,
-			'post_content' => $record->post_content,
-//			'thumbnail_id'       => $record->thumbnail_id,
-//			'thumbnail_url'      => $record->thumbnail_url,
-//			'thumbnail_metadata' => maybe_unserialize( $record->thumbnail_metadata ),
-			'menu_order'   => $record->menu_order,
-		);
-
-	}
-
-	return $groupings;
-}
-
-// References to 'thumbnail' was commented out as none of the add-on plugins
-// will include a 'featured image'.
-/**
- * Gets all of the posts grouped by terms for the specified
- * post type and taxonomy.
- *
- * Results are grouped by terms and ordered by the term and post IDs.
- *
- * @since 1.0.0
- *
- * @param string $post_type_name Post type to limit query to
- * @param string $taxonomy_name  Taxonomy to limit query to
- *
- * @return array|false
- */
-function get_posts_grouped_by_term_from_db( $post_type_name, $taxonomy_name ) {
-	global $wpdb;
-
-	$sql_query =
-		"SELECT 
-		    t.term_id, 
-		    t.name AS term_name, 
-		    t.slug AS term_slug, 
-		    p.ID AS post_id, 
-		    p.post_title, 
-		    p.post_content, 
-		    p.menu_order, 
-		    pm.post_id,
-//		    thumbnail.guid AS thumbnail_url, 
-//		    thumbnail_meta.meta_value AS thumbnail_metadata
-		FROM {$wpdb->term_taxonomy} AS tt
-		INNER JOIN {$wpdb->terms} AS t ON (tt.term_id = t.term_id)
-		INNER JOIN {$wpdb->term_relationships} AS tr ON (tt.term_taxonomy_id = tr.term_taxonomy_id)
-		INNER JOIN {$wpdb->posts} AS p ON (tr.object_id = p.ID)
-		INNER JOIN {$wpdb->postmeta} AS pm ON (p.ID = pm.post_id)
-//		INNER JOIN {$wpdb->posts} AS thumbnail ON (pm.meta_value = thumbnail.ID)
-//		INNER JOIN {$wpdb->postmeta} AS thumbnail_meta ON (thumbnail.ID = thumbnail_meta.post_id AND thumbnail_meta.meta_key = '_wp_attachment_metadata')
-		WHERE p.post_status = 'publish' AND p.post_type = %s AND tt.taxonomy = %s
-		GROUP BY t.term_id, p.ID
-		ORDER BY t.term_id, p.menu_order ASC";
-
-	$sql_query = $wpdb->prepare( $sql_query, $post_type_name, $taxonomy_name );
-	$results   = $wpdb->get_results( $sql_query );
-
-	if ( ! $results || ! is_array( $results ) ) {
-		return array();
-	}
-
-	return $results;
+function get_configured_templates() {
+	/**
+	 * Load and store the add-on plugin template files from
+	 * each custom plugin for processing by the template handler.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param array Array of configurations
+	 */
+	return (array) apply_filters( 'add_custom_plugin_path_to_template_files', array() );
 }
