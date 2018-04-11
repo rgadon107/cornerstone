@@ -29,13 +29,12 @@ add_filter( 'template_include', __NAMESPACE__ . '\include_custom_plugin_template
  * @return string
  */
 function include_custom_plugin_templates( $template ) {
-	$plugin_templates = get_plugin_templates();
-
-	if ( empty( $plugin_templates ) ) {
+	if ( is_page() ) {
 		return $template;
 	}
 
-	if ( is_page() ) {
+	$plugin_templates = get_plugin_templates();
+	if ( empty( $plugin_templates ) ) {
 		return $template;
 	}
 
