@@ -39,7 +39,7 @@ function include_custom_plugin_templates( $template ) {
 	}
 
 	if ( is_single() ) {
-		return locate_single_template( $template, $plugin_templates );
+		return locate_single_template( $template, $plugin_templates['single'] );
 	}
 
 	if ( ! is_archive() ) {
@@ -72,13 +72,13 @@ function include_custom_plugin_templates( $template ) {
  * @since 1.0.0
  *
  * @param string $original_template The original template provided by WordPress to the Template Loader.
- * @param array  $plugin_templates  Array of plugin templates.
+ * @param array  $plugin_templates  Array of plugin single template locations.
  *
  * @return string
  */
 function locate_single_template( $original_template, array $plugin_templates ) {
-	// If there are no single templates in any of the plugins, then bail out.
-	if ( empty( $plugin_templates['single'] ) ) {
+	// If there are no single plugin templates, then bail out.
+	if ( empty( $plugin_templates ) ) {
 		return $original_template;
 	}
 
@@ -88,14 +88,14 @@ function locate_single_template( $original_template, array $plugin_templates ) {
 	}
 
 	$post_type = get_post_type( $post->ID );
-	if ( ! isset( $plugin_templates['single'][ $post_type ] ) ) {
+	if ( ! isset( $plugin_templates[ $post_type ] ) ) {
 		return $original_template;
 	}
 
 	return get_template(
 		$original_template,
 		"single-{$post_type}.php",
-		$plugin_templates['single'][ $post_type ]
+		$plugin_templates[ $post_type ]
 	);
 }
 
