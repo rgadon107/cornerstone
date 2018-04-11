@@ -1,18 +1,15 @@
 <?php
 /**
- *  Template for Cornerstone Members role custom taxonomy
+ * Template for the role taxonomy archive.
  *
- * @package    spiralWebDb\Members
- *
- * @since      1.0.0
- *
- * @author     Robert A. Gadon
- *
- * @link       http://spiralwebdb.com
- *
- * @license    GNU General Public License 2.0+
+ * @package     spiralWebDb\Members\Template
+ * @since       1.0.0
+ * @author      Robert A. Gadon
+ * @link        http://spiralwebdb.com
+ * @license     GNU-2.0+
  */
-namespace spiralWebDb\Members;
+
+namespace spiralWebDb\Members\Template;
 
 ddd( 'Loading the role taxonomy template' );
 
