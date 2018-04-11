@@ -18,5 +18,4 @@ return array(
 	'post_type_archive' => array(
 		'events' => EVENTS_DIR . '/src/templates/archive-events.php',
 	),
-	'taxonomy' => array(),
 );

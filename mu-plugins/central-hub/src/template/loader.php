@@ -29,7 +29,7 @@ add_filter( 'template_include', __NAMESPACE__ . '\include_custom_plugin_template
  * @return string
  */
 function include_custom_plugin_templates( $template ) {
-	$plugin_templates = get_configured_templates();
+	$plugin_templates = get_plugin_templates();
 
 	if ( empty( $plugin_templates ) ) {
 		return $template;
@@ -80,7 +80,7 @@ function include_custom_plugin_templates( $template ) {
  * @since 1.0.0
  *
  * @param string $original_template The original template provided by WordPress to the Template Loader.
- * @param array $plugin_templates Array of plugin templates.
+ * @param array  $plugin_templates  Array of plugin templates.
  *
  * @return string
  */
@@ -191,19 +191,42 @@ function extract_template_slug_from_fullpath( $template_fullpath ) {
 }
 
 /**
- * Register the absolute path to template files within a custom plugin.
+ * Get the plugin templates, i.e. the absolute paths to each template file
+ * in the plugin.
  *
  * @since 1.0.0
  *
- * @return array
+ * @return array|false
  */
-function get_configured_templates() {
+function get_plugin_templates() {
+	$schema = array(
+		'single'            => array(),
+		'post_type_archive' => array(),
+		'taxonomy'          => array(),
+	);
+
 	/**
 	 * Register the plugin(s) template files with the Template Loader.
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param array Array of configurations
+	 * @param array Array of absolute paths to each plugin template file.
 	 */
-	return (array) apply_filters( 'register_templates_with_template_loader', array() );
+	$plugin_templates = (array) apply_filters( 'register_templates_with_template_loader', $schema );
+
+	/**
+	 * Merge what is returned with the default schema (i.e. array structure).
+	 * Why? One of the plugin might have overwritten the structure. Doing this step protects the
+	 * Template Loader from throwing a fatal error for a missing key in the check below.
+	 */
+	$plugin_templates = array_merge( $schema, $plugin_templates );
+
+	// If there are no plugins registered, bail out.
+	if ( empty( $plugin_templates['single'] ) &&
+	     empty( $plugin_templates['post_type_archive'] ) &&
+	     empty( $plugin_templates['taxonomy'] ) ) {
+		return false;
+	}
+
+	return $plugin_templates;
 }
