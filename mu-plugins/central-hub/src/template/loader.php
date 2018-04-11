@@ -51,16 +51,11 @@ function include_custom_plugin_templates( $template ) {
 		return locate_post_type_archive_template( $template, $post_type, $plugin_templates['post_type_archive'] );
 	}
 
-	if ( is_tax( 'review-type' ) ) {
-		return get_template( $template, 'taxonomy-review-type' );
-	}
-
-	if ( is_tax( 'review-type' ) ) {
-		return get_template( $template, 'taxonomy-member-role' );
-	}
-
-	if ( is_tax( 'event-type' ) ) {
-		return get_template( $template, 'taxonomy-event-type' );
+	if ( is_tax() ) {
+		$taxonomy = get_taxonomy_from_archive_query();
+		if ( is_tax( $taxonomy ) ) {
+			return locate_taxonomy_archive_template( $template, $taxonomy, $plugin_templates['taxonomy'] );
+		}
 	}
 
 	return $template;
@@ -127,6 +122,33 @@ function locate_post_type_archive_template( $original_template, $post_type, arra
 }
 
 /**
+ * Attempt to locate the taxonomy archive template either in the theme or one of the add-on plugins.
+ *
+ * @since 1.0.0
+ *
+ * @param string $original_template The original template provided by WordPress to the Template Loader.
+ * @param string $taxonomy          The requested taxonomy.
+ * @param array  $plugin_templates  Array of plugin post type archive template locations.
+ *
+ * @return string
+ */
+function locate_taxonomy_archive_template( $original_template, $taxonomy, array $plugin_templates ) {
+	if ( empty( $plugin_templates ) ) {
+		return $original_template;
+	}
+
+	if ( ! isset( $plugin_templates[ $taxonomy ] ) ) {
+		return $original_template;
+	}
+
+	return get_template(
+		$original_template,
+		"taxonomy-{$taxonomy}.php",
+		$plugin_templates[ $taxonomy ]
+	);
+}
+
+/**
  * Get the post type from the archive query.
  *
  * @since 1.0.0
@@ -141,6 +163,23 @@ function get_post_type_from_archive_query() {
 	}
 
 	return $wp_query->query['post_type'];
+}
+
+/**
+ * Get the post type from the archive query.
+ *
+ * @since 1.0.0
+ *
+ * @return bool|string
+ */
+function get_taxonomy_from_archive_query() {
+	global $wp_query;
+
+	if ( ! is_array( $wp_query->query ) ) {
+		return false;
+	}
+
+	return array_pop( array_keys( $wp_query->query ) );
 }
 
 // Question: Does the $original parameter refer to the template returned by WordPress?
