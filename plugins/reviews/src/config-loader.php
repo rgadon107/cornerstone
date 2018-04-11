@@ -8,6 +8,7 @@
  * @link        http://spiralwebdb.com
  * @license     GNU-2.0+
  */
+
 namespace spiralWebDb\Reviews;
 
 use spiralWebDb\Metadata;
@@ -73,10 +74,9 @@ add_filter( 'register_templates_with_template_loader', __NAMESPACE__ . '\registe
  */
 function register_the_template_files( array $templates ) {
 	$config = require REVIEWS_DIR . '/config/templates.php';
-
-	if ( empty( $templates ) ) {
-		return $config;
+	if ( empty( $config ) ) {
+		return $templates;
 	}
 
-	return array_merge( $templates, $config );
+	return array_merge_recursive( $templates, $config );
 }
