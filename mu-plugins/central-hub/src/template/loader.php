@@ -44,14 +44,16 @@ function include_custom_plugin_templates( $template ) {
 
 	if ( is_post_type_archive() ) {
 		$post_type = get_post_type_from_archive_query();
-		if ( is_post_type_archive( $post_type ) ) {
+		if ( ! empty( $post_type ) ) {
 			return locate_post_type_archive_template( $template, $post_type, $plugin_templates['post_type_archive'] );
 		}
+
+		return $template;
 	}
 
 	if ( is_tax() ) {
 		$taxonomy = get_taxonomy_from_archive_query();
-		if ( is_tax( $taxonomy ) ) {
+		if ( ! empty( $taxonomy ) ) {
 			return locate_taxonomy_archive_template( $template, $taxonomy, $plugin_templates['taxonomy'] );
 		}
 	}
