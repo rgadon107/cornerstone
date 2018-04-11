@@ -29,9 +29,9 @@ add_filter( 'template_include', __NAMESPACE__ . '\include_custom_plugin_template
  * @return string
  */
 function include_custom_plugin_templates( $template ) {
-	$configured_templates = get_configured_templates();
+	$plugin_templates = get_configured_templates();
 
-	if ( empty( $configured_templates ) ) {
+	if ( empty( $plugin_templates ) ) {
 		return $template;
 	}
 
@@ -40,21 +40,7 @@ function include_custom_plugin_templates( $template ) {
 	}
 
 	if ( is_single() ) {
-		global $post;
-		if ( ! is_object( $post ) ) {
-			return $template;
-		}
-
-		$post_type = get_post_type( $post->ID );
-		if ( ! isset( $configured_templates['single'][ $post_type ] ) ) {
-			return $template;
-		}
-
-		return get_template(
-			$template,
-			"single-{$post_type}.php",
-			$configured_templates['single'][ $post_type ]
-		);
+		return locate_single_template( $template, $plugin_templates );
 	}
 
 // Question: Since the structure of the conditional check is the same, can this
@@ -88,6 +74,34 @@ function include_custom_plugin_templates( $template ) {
 	}
 
 	return $template;
+}
+
+/**
+ * Attempt to locate the single template either in the theme or one of the add-on plugins.
+ *
+ * @since 1.0.0
+ *
+ * @param string $original_template The original template provided by WordPress to the Template Loader.
+ * @param array $plugin_templates Array of plugin templates.
+ *
+ * @return string
+ */
+function locate_single_template( $original_template, array $plugin_templates ) {
+	global $post;
+	if ( ! is_object( $post ) ) {
+		return $original_template;
+	}
+
+	$post_type = get_post_type( $post->ID );
+	if ( ! isset( $plugin_templates['single'][ $post_type ] ) ) {
+		return $original_template;
+	}
+
+	return get_template(
+		$original_template,
+		"single-{$post_type}.php",
+		$plugin_templates['single'][ $post_type ]
+	);
 }
 
 // Question: Does the $original parameter refer to the template returned by WordPress?
