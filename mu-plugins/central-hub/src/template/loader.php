@@ -42,13 +42,11 @@ function include_custom_plugin_templates( $template ) {
 		return locate_single_template( $template, $plugin_templates['single'] );
 	}
 
-	if ( ! is_archive() ) {
-		return $template;
-	}
-
-	$post_type = get_post_type_from_archive_query();
-	if ( is_post_type_archive( $post_type ) ) {
-		return locate_post_type_archive_template( $template, $post_type, $plugin_templates['post_type_archive'] );
+	if ( is_post_type_archive() ) {
+		$post_type = get_post_type_from_archive_query();
+		if ( is_post_type_archive( $post_type ) ) {
+			return locate_post_type_archive_template( $template, $post_type, $plugin_templates['post_type_archive'] );
+		}
 	}
 
 	if ( is_tax() ) {
