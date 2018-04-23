@@ -2,7 +2,7 @@
 /**
  *  Template Helpers
  *
- * @package    spiralWebDb\Module\FAQ\Template
+ * @package    spiralWebDb\FAQ\Template
  *
  * @since      1.0.0
  *

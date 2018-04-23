@@ -2,7 +2,7 @@
 /**
  *  FAQ shortcode's runtime configuration parameters
  *
- * @package    spiralWebDb\Module\FAQ\Shortcode
+ * @package    spiralWebDb\FAQ\Shortcode
  *
  * @since      1.0.0
  *

@@ -1,7 +1,13 @@
-git # Directories
+# Directories
 /mu-plugins/central-hub/node_modules/
 /plugins/backupbuddy
+/plugins/genesis-visual-hook-guide
+/plugins/query-monitor
 /themes/genesis
-/themes/twentyseventeen
+/themes/ktc-child-theme
+/themes/twentyseventeen/*
 /upgrade
 /uploads
+
+# Files
+db.php

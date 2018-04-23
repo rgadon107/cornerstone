@@ -2,7 +2,7 @@
 /**
  * FAQ Archive Template
  *
- * @package     spiralWebDb\Module\FAQ\Template;
+ * @package     spiralWebDb\FAQ\Template;
  * @since       1.0.0
  * @author      hellofromTonya
  * @link        https://KnowTheCode.io
@@ -10,6 +10,8 @@
  */
 
 namespace spiralWebDb\FAQ\Template;
+
+ddd( 'Loaded the archive-faq template.' ) .
 
 remove_action( 'genesis_loop', 'genesis_do_loop' );
 add_action( 'genesis_loop', __NAMESPACE__ . '\do_faq_archive_loop' );

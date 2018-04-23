@@ -53,6 +53,25 @@ function register_faq_custom_configs( array $configurations ) {
 
 }
 
+//add_filter( 'register_templates_with_template_loader', __NAMESPACE__ . '\register_the_template_files' );
+/**
+ * Register this plugin's template files with the Template Loader.
+ *
+ * @since 1.0.0
+ *
+ * @param array $templates Array of templates.
+ *
+ * @return array
+ */
+function register_the_template_files( array $templates ) {
+	$config = require FAQ_DIR . 'config/templates.php';
+	if ( empty( $config ) ) {
+		return $templates;
+	}
+
+	return array_merge_recursive( $templates, $config );
+}
+
 /**
  *  Autoload plugin files.
  *
@@ -65,6 +84,10 @@ function autoload() {
 
 		'shortcode/shortcode.php',
 		'template/helpers.php',
+//		'template/archive-faq.php',
+//		'template/single-faq.php',
+//		'template/taxonomy-faq-topic.php',
+
 	);
 
 	foreach ( $files as $file ) {
@@ -77,9 +100,9 @@ add_action( 'plugins_loaded', __NAMESPACE__ . '\setup_module' );
 /**
  *  Setup the FAQ shortcode configuration file in the module.
  *
- * @since 1.3.0
+ *  @since 1.3.0
  *
- * @return void
+ *  @return void
  */
 function setup_module() {
 	CustomModule\register_shortcode( FAQ_DIR . 'config/shortcode.php' );

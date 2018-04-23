@@ -51,6 +51,7 @@ function autoload() {
 		'config-store/module.php',
 		'custom/module.php',
 		'meta-data/module.php',
+		'template/module.php'
 	);
 
 	foreach ( $files as $file ) {
