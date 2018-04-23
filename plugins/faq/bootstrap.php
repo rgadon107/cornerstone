@@ -53,7 +53,7 @@ function autoload() {
 	);
 
 	foreach ( $files as $file ) {
-		require __DIR__ . '/src/' . $file;
+		require FAQ_DIR . 'src/' . $file;
 	}
 }
 

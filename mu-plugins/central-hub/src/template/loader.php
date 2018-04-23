@@ -11,13 +11,6 @@
 
 namespace spiralWebDB\Module\Template;
 
-// Load the template file configuration from each add-on plugin into memory
-// Provide a function to get each configuration from memory
-// Use conditional checks to check which template type is called for.
-// Get the correct 'template-slug' to build the template file. Determine whether template
-//      is provided by the theme or plugin. Give the theme precedence over the plugin.
-// Build the absolute path to whichever template file is called.
-
 add_filter( 'template_include', __NAMESPACE__ . '\include_custom_plugin_templates' );
 /**
  * Pass back the template file to the front-end loader
@@ -34,6 +27,7 @@ function include_custom_plugin_templates( $template ) {
 	}
 
 	$plugin_templates = get_plugin_templates();
+
 	if ( empty( $plugin_templates ) ) {
 		return $template;
 	}
@@ -72,6 +66,7 @@ function include_custom_plugin_templates( $template ) {
  * @return string
  */
 function locate_single_template( $original_template, array $plugin_templates ) {
+
 	// If there are no single plugin templates, then bail out.
 	if ( empty( $plugin_templates ) ) {
 		return $original_template;
@@ -106,6 +101,7 @@ function locate_single_template( $original_template, array $plugin_templates ) {
  * @return string
  */
 function locate_post_type_archive_template( $original_template, $post_type, array $plugin_templates ) {
+
 	if ( empty( $plugin_templates ) ) {
 		return $original_template;
 	}
@@ -182,9 +178,6 @@ function get_taxonomy_from_archive_query() {
 	return array_pop( array_keys( $wp_query->query ) );
 }
 
-// Question: Does the $original parameter refer to the template returned by WordPress?
-// Answer: Yes.
-
 /**
  * Get the template file from the theme or plugin.
  *
@@ -197,6 +190,7 @@ function get_taxonomy_from_archive_query() {
  * @return string
  */
 function get_template( $original, $template_file, $plugin_template ) {
+
 	// Let the theme override the plugin.
 	$theme_template = get_template_from_theme( $template_file );
 	if ( ! empty( $theme_template ) ) {
@@ -232,37 +226,6 @@ function get_template_from_theme( $template_name ) {
 	}
 
 	return $theme_file;
-}
-
-// Does the output of all the conditional checks from
-// 'include_custom_plugin_templates' get passed to $template_slug?
-/**
- * Build the templates full path and filename
- *
- * @since 1.0.0
- *
- * @param string $template_slug
- *
- * @return string
- */
-function build_template_file_path_and_name( $template_slug ) {
-	return $template_slug . '-reviews.php';
-}
-
-/**
- * Extract template's slug from the fullpath
- *
- * @since 1.0.0
- *
- * @param string $template_fullpath
- *
- * @return string
- */
-function extract_template_slug_from_fullpath( $template_fullpath ) {
-	$parts    = explode( '/', $template_fullpath );
-	$template = array_pop( $parts );
-
-	return rtrim( $template, '.php' );
 }
 
 /**
