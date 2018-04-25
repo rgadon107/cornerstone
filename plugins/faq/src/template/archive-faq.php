@@ -11,7 +11,11 @@
 
 namespace spiralWebDb\FAQ\Template;
 
-ddd( 'Loaded the archive-faq template.' ) .
+use spiralWebDb\FAQ\Asset;
+
+ddd( 'Loaded the archive-faq template.' );
+
+Asset\enqueue_script_ondemand();
 
 remove_action( 'genesis_loop', 'genesis_do_loop' );
 add_action( 'genesis_loop', __NAMESPACE__ . '\do_faq_archive_loop' );

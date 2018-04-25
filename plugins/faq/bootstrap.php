@@ -44,10 +44,11 @@ define( 'FAQ_URL', $plugin_url );
  * @return void
  */
 function autoload_files() {
-	$files = array(
+	$files = [
 		'/src/config-loader.php',
 		'/src/shortcode/faq.php',
-	);
+		'/src/asset/handler.php',
+	];
 
 	foreach ( $files as $filename ) {
 		require __DIR__ . $filename;

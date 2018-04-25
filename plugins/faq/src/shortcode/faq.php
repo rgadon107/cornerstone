@@ -1,19 +1,17 @@
 <?php
 /**
- *  Shortcode processing for single FAQ or topic FAQs.
+ * Shortcode processing for single FAQ or topic FAQs.
  *
  * @package    spiralWebDb\FAQ\Shortcode
- *
  * @since      1.3.0
- *
  * @author     Robert A. Gadon
- *
  * @link       http://spiralwebdb.com
- *
- * @license    GNU General Public License 2.0+
+ * @license    GPL-2.0+
  */
 
 namespace spiralWebDb\FAQ\Shortcode;
+
+use function spiralWebDb\FAQ\Asset\maybe_enqueue_script;
 
 /**
  *  Process the FAQ Shortcode to build a list of FAQs
@@ -23,6 +21,7 @@ namespace spiralWebDb\FAQ\Shortcode;
  * @param array $config     Array of runtime configuration parameters
  * @param array $attributes Attributes for this shortcode instance.
  *
+ *
  * @return string
  */
 function process_the_faq_shortcode( array $config, array $attributes ) {
@@ -30,6 +29,8 @@ function process_the_faq_shortcode( array $config, array $attributes ) {
 	if ( $attributes['post_id'] < 1 && ! $attributes['topic'] ) {
 		return '';
 	}
+
+	maybe_enqueue_script( $config['shortcode_name'] );
 
 	$attributes['show_icon'] = esc_attr( $attributes['show_icon'] );
 
