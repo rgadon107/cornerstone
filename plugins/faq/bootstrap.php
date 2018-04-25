@@ -23,9 +23,7 @@
 
 namespace spiralWebDb\FAQ;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	die( "Oh silly, there's nothing to see here." );
-}
+use spiralWebDb\Module\Custom;
 
 define( 'FAQ_PLUGIN', __FILE__ );
 define( 'FAQ_DIR', trailingslashit( __DIR__ ) );
@@ -39,22 +37,33 @@ if ( is_ssl() ) {
 define( 'FAQ_URL', $plugin_url );
 
 /**
- *  Autoload plugin files.
+ * Autoload the plugin's files.
  *
  * @since 1.0.0
  *
  * @return void
- * @throws \Exception
  */
-function autoload() {
+function autoload_files() {
 	$files = array(
-		'plugin.php',
-		'module.php',
+		'/src/config-loader.php',
 	);
 
-	foreach ( $files as $file ) {
-		require FAQ_DIR . 'src/' . $file;
+	foreach ( $files as $filename ) {
+		require __DIR__ . $filename;
 	}
 }
 
-autoload();
+/**
+ * Launch the plugin.
+ *
+ * @since 1.0.0
+ *
+ * @return void
+ */
+function launch() {
+	autoload_files();
+
+	Custom\register_plugin( __FILE__ );
+}
+
+launch();
