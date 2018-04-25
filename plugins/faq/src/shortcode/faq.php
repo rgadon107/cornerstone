@@ -20,14 +20,12 @@ namespace spiralWebDb\FAQ\Shortcode;
  *
  * @since 1.3.0
  *
- * @param array       $config         Array of runtime configuration parameters
- * @param array       $attributes     Attributes for this shortcode instance.
- * @param string|null $content        Content between the opening and closing shortcode elements.
- * @param string      $shortcode_name Name of the shortcode.
+ * @param array $config     Array of runtime configuration parameters
+ * @param array $attributes Attributes for this shortcode instance.
  *
  * @return string
  */
-function process_the_faq_shortcode( array $config, array $attributes, $content, $shortcode_name ) {
+function process_the_faq_shortcode( array $config, array $attributes ) {
 	$attributes['post_id'] = (int) $attributes['post_id'];
 
 	if ( $attributes['post_id'] < 1 && ! $attributes['topic'] ) {
@@ -40,13 +38,10 @@ function process_the_faq_shortcode( array $config, array $attributes, $content, 
 	ob_start();
 
 	if ( $attributes['post_id'] > 0 ) {
-
 		render_single_faq( $attributes, $config );
 
 	} else {
-
 		render_topic_faqs( $attributes, $config );
-
 	}
 
 	return ob_get_clean();
