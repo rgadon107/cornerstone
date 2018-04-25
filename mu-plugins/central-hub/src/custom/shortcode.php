@@ -15,6 +15,9 @@
 
 namespace spiralWebDb\Module\Custom;
 
+use function KnowTheCode\ConfigStore\getConfig;
+use function KnowTheCode\ConfigStore\loadConfigFromFilesystem;
+
 /**
  *  Register your shortcode with the Custom Module.
  *
@@ -22,36 +25,26 @@ namespace spiralWebDb\Module\Custom;
  *
  * @param string $pathto_configuration_file Absolute path to the configuration file's location.
  *
- * @return array|false
+ * @return false|void
+ * @throws \Exception
  */
 function register_shortcode( $pathto_configuration_file ) {
+	$store_key = loadConfigFromFilesystem( $pathto_configuration_file, array(
+		'shortcode_name'              => '',
+		'do_shortcode_within_content' => true,
+		'processing_function'         => null,
+		'view'                        => '',
+		'defaults'                    => array(),
 
-	if ( ! is_readable( $pathto_configuration_file ) ) {
-		return false;
-	}
+	) );
 
-	$config = (array) require( $pathto_configuration_file );
+	$config = getConfig( $store_key );
 
-	$config = array_merge(
-		array(
-			'shortcode_name'              => '',
-			'do_shortcode_within_content' => true,
-			'processing_function'         => null,
-			'view'                        => '',
-			'defaults'                    => array(),
-
-		),
-		$config
-	);
-
-	if ( ! $config['shortcode_name'] || ! $config['view'] ) {
+	if ( empty( $config ) || empty( $config['shortcode_name'] ) || empty( $config['view'] ) ) {
 		return false;
 	}
 
 	add_shortcode( $config['shortcode_name'], __NAMESPACE__ . '\process_the_shortcode_callback' );
-
-	return store_shortcode_configuration( $config['shortcode_name'], $config );
-
 }
 
 /**
@@ -64,9 +57,13 @@ function register_shortcode( $pathto_configuration_file ) {
  * @param string       $shortcode_name          Name of the shortcode.
  *
  * @return string
+ * @throws \Exception
  */
 function process_the_shortcode_callback( $user_defined_attributes, $content, $shortcode_name ) {
-	$config = get_shortcode_configuration( $shortcode_name );
+	$config = get_shortcode_config( $shortcode_name );
+	if ( false === $config ) {
+		return '';
+	}
 
 	$attributes = shortcode_atts(
 		$config['defaults'],
@@ -78,70 +75,65 @@ function process_the_shortcode_callback( $user_defined_attributes, $content, $sh
 		$content = do_shortcode( $content );
 	}
 
-	if ( $config['processing_function'] ) {
-		$function_name = $config['processing_function'];
+	return render_and_return( $shortcode_name, $config, $attributes, $content );
+}
 
-		return $function_name( $config, $attributes, $content, $shortcode_name );
+/**
+ * Get the shortcode's configuration from ConfigStore.
+ *
+ * @since 1.0.0
+ *
+ * @param string $shortcode_name Name of the shortcode.
+ *
+ * @return bool|array
+ * @throws \Exception
+ */
+function get_shortcode_config( $shortcode_name ) {
+	$config = getConfig( "shortcode.{$shortcode_name}" );
+
+	if ( empty( $config ) ) {
+		return false;
 	}
 
-	// Call the view file, capture it into the output buffer, and then return it.
+	return $config;
+}
+
+/**
+ * Render and return the shortcode's HTML.
+ *
+ * @since 1.0.0
+ *
+ * @param string       $shortcode_name Name of the shortcode.
+ * @param array        $config         Array of configuration parameters.
+ * @param array        $attributes     Array of instance attributes.
+ * @param  string|null $content        Content between the opening and closing shortcode elements.
+ *
+ * @return mixed|string
+ */
+function render_and_return( $shortcode_name, array $config, array $attributes, $content ) {
+	if ( $config['processing_function'] ) {
+		return call_processing_function( $shortcode_name, $config, $attributes, $attributes, $content );
+	}
+
 	ob_start();
-
-	include( $config['view'] );
-
+	include $config['view'];
 	return ob_get_clean();
 }
 
 /**
- *  Get the runtime configuration parameters for the specified shortcode.
+ * Call the processing function.
  *
  * @since 1.0.0
  *
- * @param string $shortcode_name Name of the shortcode.
+ * @param string       $shortcode_name Name of the shortcode.
+ * @param array        $config         Array of configuration parameters.
+ * @param array        $attributes     Array of instance attributes.
+ * @param  string|null $content        Content between the opening and closing shortcode elements.
  *
- * @return array|false
+ * @return string
  */
-function get_shortcode_configuration( $shortcode_name ) {
+function call_processing_function( $shortcode_name, array $config, array $attributes, $content ) {
+	$function_name = $config['processing_function'];
 
-	return _shortcode_configuration_store( $shortcode_name );
-}
-
-/**
- *  Store the shortcode runtime configuration parameters
- *  into the static store.
- *
- * @since 1.0.0
- *
- * @param string $shortcode_name Name of the shortcode.
- * @param array  $config         An array of runtime configuration parameters to store.
- *
- * @return array|false
- */
-function store_shortcode_configuration( $shortcode_name, $config ) {
-	return _shortcode_configuration_store( $shortcode_name, $config );
-}
-
-
-/**
- *  Shortcode configuration store.
- *
- * @since 1.0.0
- *
- * @param string $shortcode_name Name of the shortcode to be used as an array key.
- * @param array  $config         An array of runtime configuration parameters to store.
- *                               (optional)
- *
- * @return array|false
- */
-function _shortcode_configuration_store( $shortcode_name, $config = false ) {
-
-	static $configurations = array();
-
-	if ( ! isset( $configurations[ $shortcode_name ] ) ) {
-		$configurations[ $shortcode_name ] = $config;
-
-	}
-
-	return $configurations[ $shortcode_name ];
-
+	return $function_name( $config, $attributes, $content, $shortcode_name );
 }

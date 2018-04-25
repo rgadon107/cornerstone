@@ -46,6 +46,7 @@ define( 'FAQ_URL', $plugin_url );
 function autoload_files() {
 	$files = array(
 		'/src/config-loader.php',
+		'/src/shortcode/faq.php',
 	);
 
 	foreach ( $files as $filename ) {

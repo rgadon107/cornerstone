@@ -15,10 +15,6 @@
 
 namespace spiralWebDb\FAQ\Shortcode;
 
-use spiralWebDb\Module\Custom as CustomModule;
-
-CustomModule\register_shortcode( FAQ_DIR . 'config/shortcode.php' );
-
 /**
  *  Process the FAQ Shortcode to build a list of FAQs
  *
@@ -32,7 +28,6 @@ CustomModule\register_shortcode( FAQ_DIR . 'config/shortcode.php' );
  * @return string
  */
 function process_the_faq_shortcode( array $config, array $attributes, $content, $shortcode_name ) {
-
 	$attributes['post_id'] = (int) $attributes['post_id'];
 
 	if ( $attributes['post_id'] < 1 && ! $attributes['topic'] ) {
@@ -68,7 +63,6 @@ function process_the_faq_shortcode( array $config, array $attributes, $content, 
  * @return void
  */
 function render_single_faq( array $attributes, array $config ) {
-
 	$faq = get_post( $attributes['post_id'] );
 
 	// Render error message in event there is no FAQ.
@@ -84,7 +78,6 @@ function render_single_faq( array $attributes, array $config ) {
 	$content = do_shortcode( $faq->post_content );
 
 	include( $config['view']['container_single'] );
-
 }
 
 
