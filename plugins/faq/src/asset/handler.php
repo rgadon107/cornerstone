@@ -11,6 +11,8 @@
 
 namespace spiralWebDb\FAQ\Asset;
 
+use function spiralWebDb\FAQ\_get_plugin_directory;
+use function spiralWebDb\FAQ\_get_plugin_url;
 use function spiralWebDb\Module\Custom\Shortcode\did_shortcode;
 
 /**
@@ -47,7 +49,7 @@ function enqueue_script_ondemand() {
 	$file = 'assets/dist/js/jquery.project.js';
 	wp_enqueue_script(
 		'faq_script',
-		FAQ_URL . '/' . $file,
+	_get_plugin_url() . '/' . $file,
 		array( 'jquery' ),
 		_get_asset_version( $file ),
 		true
@@ -66,5 +68,5 @@ function enqueue_script_ondemand() {
  * @return bool|int
  */
 function _get_asset_version( $relative_path ) {
-	return filemtime( FAQ_DIR . $relative_path );
+	return filemtime( _get_plugin_directory() . $relative_path );
 }

@@ -32,7 +32,7 @@ function register_custom_configs( array $configurations ) {
 		? 'post-type'
 		: 'taxonomy';
 
-	$runtime_config = (array) require_once FAQ_DIR . '/config/' . $filename . '.php';
+	$runtime_config = (array) require_once _get_plugin_directory() . '/config/' . $filename . '.php';
 
 	if ( ! $runtime_config ) {
 		return $configurations;
@@ -58,7 +58,7 @@ add_filter( 'register_templates_with_template_loader', __NAMESPACE__ . '\registe
  * @return array
  */
 function register_the_template_files( array $templates ) {
-	$config = require FAQ_DIR . '/config/templates.php';
+	$config = require _get_plugin_directory() . '/config/templates.php';
 	if ( empty( $config ) ) {
 		return $templates;
 	}
@@ -66,4 +66,4 @@ function register_the_template_files( array $templates ) {
 	return array_merge_recursive( $templates, $config );
 }
 
-register_shortcode( FAQ_DIR . '/config/shortcode.php' );
+register_shortcode( _get_plugin_directory() . '/config/shortcode.php' );

@@ -25,16 +25,37 @@ namespace spiralWebDb\FAQ;
 
 use spiralWebDb\Module\Custom;
 
-define( 'FAQ_PLUGIN', __FILE__ );
-define( 'FAQ_DIR', trailingslashit( __DIR__ ) );
-
-$plugin_url = plugin_dir_url( __FILE__ );
-
-if ( is_ssl() ) {
-	$plugin_url = str_replace( 'http://', 'https://', $plugin_url );
+/**
+ * Gets this plugin's absolute directory path.
+ *
+ * @since  1.0.0
+ * @ignore
+ * @access private
+ *
+ * @return string
+ */
+function _get_plugin_directory() {
+	return __DIR__;
 }
 
-define( 'FAQ_URL', $plugin_url );
+/**
+ * Gets this plugin's URL.
+ *
+ * @since  1.0.0
+ * @ignore
+ * @access private
+ *
+ * @return string
+ */
+function _get_plugin_url() {
+	static $plugin_url;
+
+	if ( empty( $plugin_url ) ) {
+		$plugin_url = plugins_url( null, __FILE__ );
+	}
+
+	return $plugin_url;
+}
 
 /**
  * Autoload the plugin's files.
