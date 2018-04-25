@@ -11,7 +11,7 @@
 
 namespace spiralWebDb\FAQ;
 
-use function spiralWebDb\Module\Custom\register_shortcode;
+use function spiralWebDb\Module\Custom\Shortcode\register_shortcode;
 
 add_filter( 'add_custom_post_type_runtime_config', __NAMESPACE__ . '\register_custom_configs', 7 );
 add_filter( 'add_custom_taxonomy_runtime_config', __NAMESPACE__ . '\register_custom_configs', 7 );

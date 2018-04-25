@@ -3,14 +3,10 @@
  *  Custom Module Handler - bootstrap file for the module.
  *
  * @package    spiralWebDb\Module\Custom
- *
  * @since      1.0.0
- *
  * @author     Robert A. Gadon
- *
  * @link       http://spiralwebdb.com
- *
- * @license    GNU General Public License 2.0+
+ * @license    GPL-2.0+
  */
 
 namespace spiralWebDb\Module\Custom;
@@ -26,12 +22,11 @@ define( 'CUSTOM_MODULE_DIR', trailingslashit( __DIR__ ) );
  */
 function autoload() {
 	$files = array(
-
 		'label-generator.php',
 		'post-type.php',
 		'taxonomy.php',
-		'shortcode.php'
-
+		'shortcode/class-handler.php',
+		'shortcode/api.php',
 	);
 
 	foreach ( $files as $file ) {

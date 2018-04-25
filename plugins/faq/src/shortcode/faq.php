@@ -27,7 +27,6 @@ namespace spiralWebDb\FAQ\Shortcode;
  */
 function process_the_faq_shortcode( array $config, array $attributes ) {
 	$attributes['post_id'] = (int) $attributes['post_id'];
-
 	if ( $attributes['post_id'] < 1 && ! $attributes['topic'] ) {
 		return '';
 	}
