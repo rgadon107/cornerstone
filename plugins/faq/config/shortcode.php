@@ -56,9 +56,9 @@ return array(
 		 *
 		 *==================================================*/
 		'view'                        => array(
-			'container_single' => FAQ_DIR . 'views/container.php',
-			'container_topic'  => FAQ_DIR . 'views/container.php',
-			'faq'              => FAQ_DIR . 'views/faq.php',
+			'container_single' => FAQ_DIR . '/src/views/container.php',
+			'container_topic'  => FAQ_DIR . '/src/views/container.php',
+			'faq'              => FAQ_DIR . '/src/views/faq.php',
 		),
 
 		/**=================================================
