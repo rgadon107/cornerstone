@@ -49,7 +49,7 @@ function enqueue_script_ondemand() {
 	$file = 'assets/dist/js/jquery.project.js';
 	wp_enqueue_script(
 		'faq_script',
-	_get_plugin_url() . '/' . $file,
+		_get_plugin_url() . '/' . $file,
 		array( 'jquery' ),
 		_get_asset_version( $file ),
 		true

@@ -15,6 +15,8 @@
 
 namespace spiralWebDb\FAQ\Shortcode;
 
+use function spiralWebDb\FAQ\_get_plugin_directory;
+
 return array(
 
 	/************************************************************
@@ -56,9 +58,9 @@ return array(
 		 *
 		 *==================================================*/
 		'view'                        => array(
-			'container_single' => FAQ_DIR . '/src/views/container.php',
-			'container_topic'  => FAQ_DIR . '/src/views/container.php',
-			'faq'              => FAQ_DIR . '/src/views/faq.php',
+			'container_single' => _get_plugin_directory() . '/src/views/container.php',
+			'container_topic'  => _get_plugin_directory() . '/src/views/container.php',
+			'faq'              => _get_plugin_directory() . '/src/views/faq.php',
 		),
 
 		/**=================================================

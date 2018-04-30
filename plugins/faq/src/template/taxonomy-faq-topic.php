@@ -1,6 +1,6 @@
 <?php
 /**
- * Template for the review taxonomy archive.
+ * Template for the FAQ topic taxonomy.
  *
  * @package     spiralWebDb\FAQ\Template
  * @since       1.0.0
