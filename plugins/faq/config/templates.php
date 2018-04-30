@@ -12,14 +12,18 @@
 
 namespace spiralWebDb\FAQ\Template;
 
+use function spiralWebDb\FAQ\_get_plugin_directory;
+
+$plugin_directory = _get_plugin_directory();
+
 return array(
 	'single'            => array(
-		'faq' => FAQ_DIR . '/src/template/single-faq.php',
+		'faq' => $plugin_directory . '/src/template/single-faq.php',
 	),
 	'post_type_archive' => array(
-		'faq' => FAQ_DIR . '/src/template/archive-faq.php',
+		'faq' => $plugin_directory . '/src/template/archive-faq.php',
 	),
 	'taxonomy'          => array(
-		'faq' => FAQ_DIR . '/src/template/taxonomy-faq-topic.php',
+		'faq' => $plugin_directory . '/src/template/taxonomy-faq-topic.php',
 	)
 );

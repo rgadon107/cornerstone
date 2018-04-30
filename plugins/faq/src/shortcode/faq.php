@@ -1,43 +1,36 @@
 <?php
 /**
- *  Shortcode processing for single FAQ or topic FAQs.
+ * Shortcode processing for single FAQ or topic FAQs.
  *
  * @package    spiralWebDb\FAQ\Shortcode
- *
  * @since      1.3.0
- *
  * @author     Robert A. Gadon
- *
  * @link       http://spiralwebdb.com
- *
- * @license    GNU General Public License 2.0+
+ * @license    GPL-2.0+
  */
 
 namespace spiralWebDb\FAQ\Shortcode;
 
-use spiralWebDb\Module\Custom as CustomModule;
-
-CustomModule\register_shortcode( FAQ_DIR . 'config/shortcode.php' );
+use function spiralWebDb\FAQ\Asset\maybe_enqueue_script;
 
 /**
  *  Process the FAQ Shortcode to build a list of FAQs
  *
  * @since 1.3.0
  *
- * @param array       $config         Array of runtime configuration parameters
- * @param array       $attributes     Attributes for this shortcode instance.
- * @param string|null $content        Content between the opening and closing shortcode elements.
- * @param string      $shortcode_name Name of the shortcode.
+ * @param array $config     Array of runtime configuration parameters
+ * @param array $attributes Attributes for this shortcode instance.
+ *
  *
  * @return string
  */
-function process_the_faq_shortcode( array $config, array $attributes, $content, $shortcode_name ) {
-
+function process_the_faq_shortcode( array $config, array $attributes ) {
 	$attributes['post_id'] = (int) $attributes['post_id'];
-
 	if ( $attributes['post_id'] < 1 && ! $attributes['topic'] ) {
 		return '';
 	}
+
+	maybe_enqueue_script( $config['shortcode_name'] );
 
 	$attributes['show_icon'] = esc_attr( $attributes['show_icon'] );
 
@@ -45,13 +38,10 @@ function process_the_faq_shortcode( array $config, array $attributes, $content, 
 	ob_start();
 
 	if ( $attributes['post_id'] > 0 ) {
-
 		render_single_faq( $attributes, $config );
 
 	} else {
-
 		render_topic_faqs( $attributes, $config );
-
 	}
 
 	return ob_get_clean();
@@ -68,7 +58,6 @@ function process_the_faq_shortcode( array $config, array $attributes, $content, 
  * @return void
  */
 function render_single_faq( array $attributes, array $config ) {
-
 	$faq = get_post( $attributes['post_id'] );
 
 	// Render error message in event there is no FAQ.
@@ -84,7 +73,6 @@ function render_single_faq( array $attributes, array $config ) {
 	$content = do_shortcode( $faq->post_content );
 
 	include( $config['view']['container_single'] );
-
 }
 
 

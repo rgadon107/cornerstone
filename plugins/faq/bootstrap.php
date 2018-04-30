@@ -23,38 +23,70 @@
 
 namespace spiralWebDb\FAQ;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	die( "Oh silly, there's nothing to see here." );
-}
-
-define( 'FAQ_PLUGIN', __FILE__ );
-define( 'FAQ_DIR', trailingslashit( __DIR__ ) );
-
-$plugin_url = plugin_dir_url( __FILE__ );
-
-if ( is_ssl() ) {
-	$plugin_url = str_replace( 'http://', 'https://', $plugin_url );
-}
-
-define( 'FAQ_URL', $plugin_url );
+use spiralWebDb\Module\Custom;
 
 /**
- *  Autoload plugin files.
+ * Gets this plugin's absolute directory path.
+ *
+ * @since  1.0.0
+ * @ignore
+ * @access private
+ *
+ * @return string
+ */
+function _get_plugin_directory() {
+	return __DIR__;
+}
+
+/**
+ * Gets this plugin's URL.
+ *
+ * @since  1.0.0
+ * @ignore
+ * @access private
+ *
+ * @return string
+ */
+function _get_plugin_url() {
+	static $plugin_url;
+
+	if ( empty( $plugin_url ) ) {
+		$plugin_url = plugins_url( null, __FILE__ );
+	}
+
+	return $plugin_url;
+}
+
+/**
+ * Autoload the plugin's files.
  *
  * @since 1.0.0
  *
  * @return void
- * @throws \Exception
  */
-function autoload() {
-	$files = array(
-		'plugin.php',
-		'module.php',
-	);
+function autoload_files() {
+	$files = [
+		'/src/config-loader.php',
+		'/src/shortcode/faq.php',
+		'/src/asset/handler.php',
+	];
 
-	foreach ( $files as $file ) {
-		require FAQ_DIR . 'src/' . $file;
+	foreach ( $files as $filename ) {
+		require __DIR__ . $filename;
 	}
 }
 
-autoload();
+/**
+ * Launch the plugin.
+ *
+ * @since 1.0.0
+ *
+ * @return void
+ */
+function launch() {
+	autoload_files();
+
+	Custom\register_plugin( __FILE__ );
+}
+
+launch();

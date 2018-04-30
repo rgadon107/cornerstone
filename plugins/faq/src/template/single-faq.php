@@ -11,6 +11,10 @@
 
 namespace spiralWebDb\FAQ\Template;
 
+use spiralWebDb\FAQ\Asset;
+
 ddd( 'Loaded the single-faq template.' );
+
+Asset\enqueue_script_ondemand();
 
 genesis();

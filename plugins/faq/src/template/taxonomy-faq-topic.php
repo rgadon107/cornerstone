@@ -11,6 +11,10 @@
 
 namespace spiralWebDb\FAQ\Template;
 
-ddd( 'Loading the faq '\topic\' taxonomy template.' );
+use spiralWebDb\FAQ\Asset;
+
+ddd( 'Loading the faq "topic" taxonomy template.' );
+
+Asset\enqueue_script_ondemand();
 
 genesis();
