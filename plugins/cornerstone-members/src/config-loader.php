@@ -32,7 +32,7 @@ function register_members_custom_configs( array $configurations ) {
 		? 'post-type'
 		: 'taxonomy';
 
-	$runtime_config = (array) require CORNERSTONE_MEMBERS_DIR . '/config/' . $filename . '.php';
+	$runtime_config = (array) require _get_plugin_directory() . '/config/' . $filename . '.php';
 
 	if ( ! $runtime_config ) {
 		return $configurations;
@@ -57,7 +57,7 @@ function register_members_custom_configs( array $configurations ) {
 function load_configurations() {
 	metaData\autoload_configurations(
 		array(
-			CORNERSTONE_MEMBERS_DIR . '/config/members.php',
+			_get_plugin_directory() . '/config/members.php',
 		)
 	);
 }
@@ -73,7 +73,7 @@ add_filter( 'register_templates_with_template_loader', __NAMESPACE__ . '\registe
  * @return array
  */
 function register_the_template_files( array $templates ) {
-	$config = require CORNERSTONE_MEMBERS_DIR . '/config/templates.php';
+	$config = require _get_plugin_directory() . '/config/templates.php';
 	if ( empty( $config ) ) {
 		return $templates;
 	}

@@ -144,7 +144,7 @@ return array(
 		/************************************************************
 		 * Configure the absolute path to your meta box's view file.
 		 ***********************************************************/
-		'view'          => CORNERSTONE_MEMBERS_DIR . '/src/meta-box/views/members.php',
+		'view'          => _get_plugin_directory() . '/src/meta-box/views/members.php',
 
 		/************************************************************
 		 * ConfigStore keys.
