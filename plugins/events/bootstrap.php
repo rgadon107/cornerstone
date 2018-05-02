@@ -16,7 +16,7 @@
  * Author:          Robert A. Gadon
  * Author URI:      http://spiralwebdb.com
  * License URI:     https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:     cornerstone_reviews
+ * Text Domain:     cornerstone_events
  * Requires WP:     4.9
  * Requires PHP:    5.6
  */
@@ -25,7 +25,18 @@ namespace spiralWebDb\Events;
 
 use spiralWebDb\Module\Custom;
 
-define( 'EVENTS_DIR', __DIR__ );
+/**
+ * Gets this plugin's absolute directory path.
+ *
+ * @since  1.0.0
+ * @ignore
+ * @access private
+ *
+ * @return string
+ */
+function _get_plugin_directory() {
+	return __DIR__;
+}
 
 /**
  * Autoload the plugin's files.
@@ -35,10 +46,10 @@ define( 'EVENTS_DIR', __DIR__ );
  * @return void
  */
 function autoload_files() {
-	$files = array(
+	$files = [
 		'/src/config-loader.php',
 		'/src/admin/edit-form-advanced.php',
-	);
+	];
 
 	foreach ( $files as $filename ) {
 		require __DIR__ . $filename;

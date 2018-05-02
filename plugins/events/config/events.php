@@ -13,6 +13,8 @@
 
 namespace spiralWebDB\Metadata;
 
+use function spiralWebDb\Events\_get_plugin_directory;
+
 return array(
 	/************************************************************
 	 * Configure a unique ID for your meta box.
@@ -216,7 +218,7 @@ return array(
 		/************************************************************
 		 * Configure the absolute path to your meta box's view file.
 		 ***********************************************************/
-		'view'          => EVENTS_DIR . '/src/meta-box/views/events.php',
+		'view'          => _get_plugin_directory() . '/src/meta-box/views/events.php',
 
 		/************************************************************
 		 * ConfigStore keys.
