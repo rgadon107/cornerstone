@@ -2,17 +2,17 @@
 /**
  * Asset Handler.
  *
- * @package    spiralWebDb\FAQ\Asset
+ * @package    spiralWebDb\Reviews\Asset
  * @since      1.3.0
  * @author     Robert A. Gadon
  * @link       http://spiralwebdb.com
  * @license    GPL-2.0+
  */
 
-namespace spiralWebDb\FAQ\Asset;
+namespace spiralWebDb\Reviews\Asset;
 
-use function spiralWebDb\FAQ\_get_plugin_directory;
-use function spiralWebDb\FAQ\_get_plugin_url;
+use function spiralWebDb\Reviews\_get_plugin_directory;
+use function spiralWebDb\Reviews\_get_plugin_url;
 use function spiralWebDb\Module\Custom\Shortcode\did_shortcode;
 
 /**
@@ -39,16 +39,16 @@ function maybe_enqueue_script( $shortcode_name ) {
 }
 
 /**
- * Enqueue the FAQ script on-demand.
+ * Enqueue the Reviews script on-demand.
  *
  * @since 1.0.0
  *
  * @return void
  */
 function enqueue_script_ondemand() {
-	$file = 'assets/js/jquery.plugin.js';
+	$file = 'assets/dist/js/jquery.project.js';
 	wp_enqueue_script(
-		'faq_script',
+		'reviews_script',
 		_get_plugin_url() . '/' . $file,
 		array( 'jquery' ),
 		_get_asset_version( $file ),

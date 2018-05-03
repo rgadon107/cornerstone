@@ -25,7 +25,37 @@ namespace spiralWebDb\Reviews;
 
 use spiralWebDb\Module\Custom;
 
-define( 'REVIEWS_DIR', __DIR__ );
+/**
+ * Gets this plugin's absolute directory path.
+ *
+ * @since  1.0.0
+ * @ignore
+ * @access private
+ *
+ * @return string
+ */
+function _get_plugin_directory() {
+	return __DIR__;
+}
+
+/**
+ * Gets this plugin's URL.
+ *
+ * @since  1.0.0
+ * @ignore
+ * @access private
+ *
+ * @return string
+ */
+function _get_plugin_url() {
+	static $plugin_url;
+
+	if ( empty( $plugin_url ) ) {
+		$plugin_url = plugins_url( null, __FILE__ );
+	}
+
+	return $plugin_url;
+}
 
 /**
  * Autoload the plugin's files.
@@ -35,10 +65,12 @@ define( 'REVIEWS_DIR', __DIR__ );
  * @return void
  */
 function autoload_files() {
-	$files = array(
-		'/src/config-loader.php',
+	$files = [
 		'/src/admin/edit-form-advanced.php',
-	);
+		'/src/asset/handler.php',
+		'/src/config-loader.php',
+		'/src/shortcode/reviews.php',
+	];
 
 	foreach ( $files as $filename ) {
 		require __DIR__ . $filename;

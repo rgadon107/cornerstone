@@ -75,6 +75,6 @@ return array(
 		/************************************************************
 		 * Configure the absolute path to your meta box's view file.
 		 ***********************************************************/
-		'view'          => RECORDINGS_DIR . '/src/meta-box/views/recordings.php',
+		'view'          => _get_plugin_directory() . '/src/meta-box/views/recordings.php',
 	),
 );

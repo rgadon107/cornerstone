@@ -1,7 +1,7 @@
 <?php
 /**
  * Templates configuration, providing the absolute path to each template
- * in this plugin which the Template Loader will load.
+ * in this plugin that the Template Loader will load.
  *
  * @package    spiralWebDb\Reviews\Templates
  * @since      1.0.0
@@ -12,14 +12,16 @@
 
 namespace spiralWebDb\Reviews\Templates;
 
+use function spiralWebDb\Reviews\_get_plugin_directory;
+
 return array(
 	'single'            => array(
-		'reviews' => REVIEWS_DIR . '/src/template/single-reviews.php',
+		'reviews' => _get_plugin_directory() . '/src/template/single-reviews.php',
 	),
 	'post_type_archive' => array(
-		'reviews' => REVIEWS_DIR . '/src/template/archive-reviews.php',
+		'reviews' => _get_plugin_directory() . '/src/template/archive-reviews.php',
 	),
 	'taxonomy'          => array(
-		'review' => REVIEWS_DIR . '/src/template/taxonomy-review-type.php',
+		'reviews' => _get_plugin_directory() . '/src/template/taxonomy-review-type.php',
 	),
 );

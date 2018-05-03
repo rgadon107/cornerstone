@@ -13,6 +13,8 @@
 
 namespace spiralWebDB\Metadata;
 
+use function spiralWebDb\Reviews\_get_plugin_directory;
+
 return array(
 	/************************************************************
 	 * Configure a unique ID for your meta box.
@@ -159,7 +161,7 @@ return array(
 		/************************************************************
 		 * Configure the absolute path to your meta box's view file.
 		 ***********************************************************/
-		'view'          => REVIEWS_DIR . '/src/meta-box/views/reviews.php',
+		'view'          => _get_plugin_directory() . '/src/meta-box/views/reviews.php',
 
 		/************************************************************
 		 * ConfigStore keys.

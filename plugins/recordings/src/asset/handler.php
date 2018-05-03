@@ -2,17 +2,17 @@
 /**
  * Asset Handler.
  *
- * @package    spiralWebDb\FAQ\Asset
+ * @package    spiralWebDb\Recordings\Asset
  * @since      1.3.0
  * @author     Robert A. Gadon
  * @link       http://spiralwebdb.com
  * @license    GPL-2.0+
  */
 
-namespace spiralWebDb\FAQ\Asset;
+namespace spiralWebDb\Recordings\Asset;
 
-use function spiralWebDb\FAQ\_get_plugin_directory;
-use function spiralWebDb\FAQ\_get_plugin_url;
+use function spiralWebDb\Recordings\_get_plugin_directory;
+use function spiralWebDb\Recordings\_get_plugin_url;
 use function spiralWebDb\Module\Custom\Shortcode\did_shortcode;
 
 /**
@@ -39,7 +39,7 @@ function maybe_enqueue_script( $shortcode_name ) {
 }
 
 /**
- * Enqueue the FAQ script on-demand.
+ * Enqueue the Recording script on-demand.
  *
  * @since 1.0.0
  *
@@ -48,7 +48,7 @@ function maybe_enqueue_script( $shortcode_name ) {
 function enqueue_script_ondemand() {
 	$file = 'assets/js/jquery.plugin.js';
 	wp_enqueue_script(
-		'faq_script',
+		'recording_script',
 		_get_plugin_url() . '/' . $file,
 		array( 'jquery' ),
 		_get_asset_version( $file ),
