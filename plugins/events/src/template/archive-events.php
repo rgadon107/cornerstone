@@ -13,16 +13,22 @@ namespace spiralWebDb\Events\Template;
 
 ddd( 'Loaded the archive-events template' );
 
-// Thought: I need to get the post_id and the post_title from the WP_Query class object.
-// public static get_instance($post_id)->ID  get the post_id
-// public static get_instance($post_id)->post_title   get the post_title
+// 1. Remove the default genesis_loop and replace with a custom events loop
+// to display all the single events.
 
-// Thought: Do I need to build a loop to loop through each of the single-events.php files?
-// Thought: If I do, can I customize the loop to return a subset of data not presented in the
-// in the single-events.php template?
-// Thought: Aren't I going to have to get the permalink for the single-events post in order
-// to open the single template?
+// 2. Get all the records for the 'events' post type.
+// Question: If I don't have a custom taxonomy term to add to my db query,
+// would I use the global $wp_query object instead to get the post_id and post_title?
 
+// 3. If there are no records to display, render a message that there are no records.
+
+// 4. Call the container view file for archive-events.
+
+// 5. Loop through and render the single-events view file to build the archive view.
+// Question: Can I customize the loop to render less data than what's presented in the
+// single-events.php template?
+
+// Data that I want to render in each single-event within the Events archive:
 // Image of Event Venue; postmeta: 'events[event-venue-image]'
 // Performance Date (day-of-week; postmeta: 'events[event-day]',
 // Performance Date (date (MMDDYYYY); postmeta: 'events[event-date]',
