@@ -20,15 +20,15 @@ return array(
 	/**==============================================================
 	 * The Taxonomy name.
 	 * ===============================================================*/
-	'taxonomy'   => 'review',
+	'taxonomy'   => 'review_type',
 
 	/**==============================================================
 	 * The label configuration for the Taxonomy.
 	 * ===============================================================*/
 	'labels'     => array(
 		'custom_type'       => 'review',
-		'singular_label'    => 'Review',
-		'plural_label'      => 'Reviews',
+		'singular_label'    => 'Review Type',
+		'plural_label'      => 'Review Types',
 		'in_sentance_label' => 'reviews',
 		'text_domain'       => '',
 		'specific_labels'   => array(),

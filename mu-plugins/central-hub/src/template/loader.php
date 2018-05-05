@@ -129,6 +129,7 @@ function locate_post_type_archive_template( $original_template, $post_type, arra
  * @return string
  */
 function locate_taxonomy_archive_template( $original_template, $taxonomy, array $plugin_templates ) {
+
 	if ( empty( $plugin_templates ) ) {
 		return $original_template;
 	}
@@ -136,6 +137,7 @@ function locate_taxonomy_archive_template( $original_template, $taxonomy, array 
 	if ( ! isset( $plugin_templates[ $taxonomy ] ) ) {
 		return $original_template;
 	}
+
 
 	return get_template(
 		$original_template,
@@ -162,7 +164,7 @@ function get_post_type_from_archive_query() {
 }
 
 /**
- * Get the post type from the archive query.
+ * Get the taxonomy from the archive query.
  *
  * @since 1.0.0
  *

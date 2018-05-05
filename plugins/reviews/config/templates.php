@@ -22,6 +22,6 @@ return array(
 		'reviews' => _get_plugin_directory() . '/src/template/archive-reviews.php',
 	),
 	'taxonomy'          => array(
-		'reviews' => _get_plugin_directory() . '/src/template/taxonomy-review-type.php',
+		'review' => _get_plugin_directory() . '/src/template/taxonomy-review-type.php',
 	),
 );
