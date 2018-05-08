@@ -1,6 +1,6 @@
 <?php
 /**
- * Template for the review taxonomy archive.
+ * Template for the review_type taxonomy archive.
  *
  * @package     spiralWebDb\Reviews\Template
  * @since       1.0.0
@@ -11,6 +11,6 @@
 
 namespace spiralWebDb\Reviews\Template;
 
-ddd( 'Loading the review taxonomy template' );
+ddd( 'Loading the taxonomy-review_type template.' );
 
 genesis();

@@ -26,6 +26,7 @@ namespace spiralWebDb\Reviews\Shortcode;
  * @return string
  */
 function process_the_reviews_shortcode( array $config, array $attributes ) {
+
 	$attributes['post_id'] = (int) $attributes['post_id'];
 	// Delete '&& ! $attributes['topic']' since no 'topic' shortcode attribute.
 	if ( $attributes['post_id'] < 1 && ! $attributes['topic'] ) {
@@ -73,7 +74,7 @@ function render_single_review( array $attributes, array $config ) {
 //	$use_term_container = false;
 //	$is_calling_source  = 'shortcode-reviews';
 
-	$post_title = $faq->post_title;
+	$post_title = $review->post_title;
 
 	$content = do_shortcode( $reviews->post_content );
 

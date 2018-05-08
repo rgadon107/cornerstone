@@ -26,10 +26,10 @@ return array(
 	 * The label configuration for the Taxonomy.
 	 * ===============================================================*/
 	'labels'     => array(
-		'custom_type'       => 'review',
+		'custom_type'       => 'review type',
 		'singular_label'    => 'Review Type',
 		'plural_label'      => 'Review Types',
-		'in_sentance_label' => 'reviews',
+		'in_sentance_label' => 'review type',
 		'text_domain'       => '',
 		'specific_labels'   => array(),
 	),
@@ -43,6 +43,7 @@ return array(
 		'label'        => '',
 		'labels'       => '', // automatically generate the labels.
 		'hierarchical' => true,
+		'public'       => true,
 	),
 
 	/**==============================================================

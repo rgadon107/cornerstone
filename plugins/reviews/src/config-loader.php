@@ -76,6 +76,7 @@ add_filter( 'register_templates_with_template_loader', __NAMESPACE__ . '\registe
  */
 function register_the_template_files( array $templates ) {
 	$config = require _get_plugin_directory() . '/config/templates.php';
+
 	if ( empty( $config ) ) {
 		return $templates;
 	}
