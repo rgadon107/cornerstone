@@ -68,5 +68,5 @@ function enqueue_script_ondemand() {
  * @return bool|int
  */
 function _get_asset_version( $relative_path ) {
-	return filemtime( _get_plugin_directory() . $relative_path );
+	return filemtime( _get_plugin_directory() . '/' . $relative_path );
 }
