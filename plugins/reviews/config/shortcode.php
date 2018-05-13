@@ -69,7 +69,7 @@ return array(
 		 *
 		 *==================================================*/
 		'defaults'                    => array(
-			'post_id'                  => 0,
+			'review_id'                => 0,
 			'dashicon'                 => '',
 			'post_title'               => '',
 			'post_content'             => '',
@@ -81,5 +81,5 @@ return array(
 			'show_none_found_message'  => '1',
 			'none_found_single_review' => 'Sorry, there is no Review available for that post_id.',
 		),
-	)
+	),
 );

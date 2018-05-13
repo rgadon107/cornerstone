@@ -23,8 +23,8 @@ namespace spiralWebDb\Reviews\Shortcode;
  */
 function process_the_reviews_shortcode( array $config, array $attributes ) {
 
-	$attributes['post_id'] = (int) $attributes['post_id'];
-	if ( $attributes['post_id'] < 1 ) {
+	$attributes['post_id'] = (int) $attributes['review_id'];
+	if ( $attributes['review_id'] < 1 ) {
 		return '';
 	}
 
@@ -35,7 +35,7 @@ function process_the_reviews_shortcode( array $config, array $attributes ) {
 }
 
 /**
- * Process a single Review by post_id
+ * Process a single review.
  *
  * @since 1.4.0
  *
@@ -45,7 +45,7 @@ function process_the_reviews_shortcode( array $config, array $attributes ) {
  * @return void
  */
 function render_single_review( array $attributes, array $config ) {
-	$review = get_post( $attributes['post_id'] );
+	$review = get_post( $attributes['review_id'] );
 
 	// Render the error message when the review does not exist.
 	if ( ! $review ) {
