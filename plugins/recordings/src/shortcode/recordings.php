@@ -24,7 +24,7 @@ use function spiralWebDb\Recordings\Asset\maybe_enqueue_script;
  *
  * @return string
  */
-function process_the_faq_shortcode( array $config, array $attributes ) {
+function process_the_recording_shortcode( array $config, array $attributes ) {
 	$attributes['post_id'] = (int) $attributes['post_id'];
 	// Delete '&& ! $attributes['topic']' since no 'topic' shortcode attribute.
 	if ( $attributes['post_id'] < 1 && ! $attributes['topic'] ) {
