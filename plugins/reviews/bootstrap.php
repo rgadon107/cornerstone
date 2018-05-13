@@ -70,6 +70,7 @@ function autoload_files() {
 		'/src/asset/handler.php',
 		'/src/config-loader.php',
 		'/src/shortcode/reviews.php',
+		'/src/meta.php',
 	];
 
 	foreach ( $files as $filename ) {

@@ -66,19 +66,16 @@ function process_the_reviews_shortcode( array $config, array $attributes ) {
 function render_single_review( array $attributes, array $config ) {
 	$review = get_post( $attributes['post_id'] );
 
-	// Render error message in event there is no FAQ.
+	// Render the error message when the review does not exist.
 	if ( ! $review ) {
 		return render_none_found_message( $attributes );
 	}
-// Delete these variables as they will not be checked.
-//	$use_term_container = false;
-//	$is_calling_source  = 'shortcode-reviews';
 
+	$review_id  = (int) $review->ID;
 	$post_title = $review->post_title;
+	$content    = wpautop( $review->post_content );
 
-	$content = do_shortcode( $reviews->post_content );
-
-	include( $config['view']['review'] );
+	include $config['view']['review'];
 }
 
 // The following code can be removed as there will be no looping through Reviews.
