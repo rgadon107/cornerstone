@@ -79,7 +79,7 @@ return array(
 			'reviewer_name'            => '',
 			'reviewer_org'             => '',
 			'show_none_found_message'  => '1',
-			'none_found_single_review' => 'Sorry, there is no Review available for that post_id.',
+			'none_found_single_review' => 'Sorry, there is no Review available for that review ID.',
 		),
 	),
 );
