@@ -32,8 +32,6 @@ function process_the_faq_shortcode( array $config, array $attributes ) {
 
 	maybe_enqueue_script( $config['shortcode_name'] );
 
-	$attributes['show_icon'] = esc_attr( $attributes['show_icon'] );
-
 	// Call the view file, capture it into the output buffer, and then return it.
 	ob_start();
 
@@ -69,10 +67,11 @@ function render_single_faq( array $attributes, array $config ) {
 	$is_calling_source  = 'shortcode-single-faq';
 
 	$post_title = $faq->post_title;
+	$content    = do_shortcode( $faq->post_content );
+	$show_icon  = esc_attr( $attributes['show_icon'] );
+	$hide_icon  = esc_attr( $attributes['hide_icon'] );
 
-	$content = do_shortcode( $faq->post_content );
-
-	include( $config['view']['container_single'] );
+	include $config['view']['container_single'];
 }
 
 
@@ -114,7 +113,7 @@ function render_topic_faqs( array $attributes, array $config ) {
 	$is_calling_source  = 'shortcode-by-topic';
 	$term_slug          = $attributes['topic'];
 
-	include( $config['view']['container_topic'] );
+	include $config['view']['container_topic'];
 
 	wp_reset_postdata();
 
@@ -137,10 +136,11 @@ function loop_and_render_faqs_by_topic( \WP_Query $query, array $attributes, arr
 		$query->the_post();
 
 		$post_title = get_the_title();
+		$content    = do_shortcode( get_the_content() );
+		$show_icon  = esc_attr( $attributes['show_icon'] );
+		$hide_icon  = esc_attr( $attributes['hide_icon'] );
 
-		$content = do_shortcode( get_the_content() );
-
-		include( $config['view']['faq'] );
+		include $config['view']['faq'];
 	}
 }
 
@@ -165,5 +165,5 @@ function render_none_found_message( array $attributes, $is_single_faq = true ) {
 		? $attributes['none_found_single_faq']
 		: $attributes['none_found_by_topic'];
 
-	printf ( '<em>%s</em>', esc_html( $message ) );
+	printf( '<em>%s</em>', esc_html( $message ) );
 }
