@@ -15,7 +15,7 @@ namespace spiralWebDb\Recordings;
         </span> <span itemprop="name"><?php echo esc_html( $post_title ); ?></span>
     </div>
     <div class="revealer--hidden" itemprop="description" style="display: none;">
-        <?php  ?>
+        <?php echo get_the_post_thumbnail( $recording_id, 'full', [ 'class' => 'alignleft recording-album-cover' ] ); ?>
         <?php echo wpautop( $content ); ?>
     </div>
 </div>
