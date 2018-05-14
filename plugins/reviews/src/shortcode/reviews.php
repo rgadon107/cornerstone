@@ -57,7 +57,6 @@ function render_single_review( array $attributes, array $config ) {
 	}
 
 	$review_id  = (int) $review->ID;
-	$post_title = $review->post_title;
 	$content    = wpautop( $review->post_content );
 
 	include $config['view']['review'];
