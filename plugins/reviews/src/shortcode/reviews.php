@@ -25,7 +25,7 @@ use function spiralWebDb\FAQ\Asset\enqueue_script_ondemand;
  */
 function process_the_reviews_shortcode( array $config, array $attributes ) {
 
-	$attributes['post_id'] = (int) $attributes['review_id'];
+	$attributes['review_id'] = (int) $attributes['review_id'];
 	if ( $attributes['review_id'] < 1 ) {
 		return '';
 	}
