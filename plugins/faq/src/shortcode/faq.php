@@ -165,6 +165,5 @@ function render_none_found_message( array $attributes, $is_single_faq = true ) {
 		? $attributes['none_found_single_faq']
 		: $attributes['none_found_by_topic'];
 
-	echo "<em>{$message}</em>";
-
+	printf ( '<em>%s</em>', esc_html( $message ) );
 }
