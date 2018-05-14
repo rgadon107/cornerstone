@@ -14,7 +14,7 @@ namespace spiralWebDb\Recordings\Shortcode;
 use function spiralWebDb\FAQ\Asset\enqueue_script_ondemand;
 
 /**
- *  Process the Shortcode to display content about a single recording.
+ * Process the [recording] shortcode to display content about a single recording.
  *
  * @since 1.4.0
  *

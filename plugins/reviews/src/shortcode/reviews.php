@@ -12,7 +12,7 @@
 namespace spiralWebDb\Reviews\Shortcode;
 
 /**
- *  Process the FAQ Shortcode to build a list of FAQs
+ * Process the [review] shortcode to display a single event review.
  *
  * @since 1.4.0
  *
@@ -22,7 +22,6 @@ namespace spiralWebDb\Reviews\Shortcode;
  * @return string
  */
 function process_the_reviews_shortcode( array $config, array $attributes ) {
-
 	$attributes['review_id'] = (int) $attributes['review_id'];
 	if ( $attributes['review_id'] < 1 ) {
 		return '';
