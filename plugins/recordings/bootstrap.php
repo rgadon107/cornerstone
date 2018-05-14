@@ -66,7 +66,6 @@ function _get_plugin_url() {
  */
 function autoload_files() {
 	$files = [
-//		'/src/asset/handler.php',
 		'/src/config-loader.php',
 		'/src/shortcode/recordings.php',
 	];
