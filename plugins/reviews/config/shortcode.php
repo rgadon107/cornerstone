@@ -70,14 +70,6 @@ return array(
 		 *==================================================*/
 		'defaults'                    => array(
 			'review_id'                => 0,
-			'dashicon'                 => '',
-			'post_title'               => '',
-			'post_content'             => '',
-			'event_venue'              => '',
-			'review_location_city'     => '',
-			'review_location_state'    => '',
-			'reviewer_name'            => '',
-			'reviewer_org'             => '',
 			'show_none_found_message'  => '1',
 			'none_found_single_review' => 'Sorry, there is no Review available for that review ID.',
 		),
