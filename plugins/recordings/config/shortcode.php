@@ -70,9 +70,9 @@ return array(
 		'defaults'                    => array(
 			'show_icon'                   => 'dashicons dashicons-arrow-down-alt2',
 			'hide_icon'                   => 'dashicons dashicons-arrow-up-alt2',
-			'post_id'                     => 0,
+			'id'                          => 0,
 			'show_none_found_message'     => '1',
 			'none_found_single_recording' => 'Sorry, there is no information available for this recording.',
 		),
-	)
+	),
 );
