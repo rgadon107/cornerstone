@@ -4,9 +4,9 @@
     var $visibleContents, $hiddenContents, $icons;
 
     var init = function(){
-        $visibleContents    = $( '.faq--visible' );
+        $visibleContents    = $( '.revealer--visible' );
         $hiddenContents     = $visibleContents.next();
-        $icons              = $visibleContents.find( '.faq--icon' );
+        $icons              = $visibleContents.find( '.revealer--icon' );
         $visibleContents.on( 'click', clickHandler );
 
     }
