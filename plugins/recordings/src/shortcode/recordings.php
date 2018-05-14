@@ -57,10 +57,11 @@ function render_single_recording( array $attributes, array $config ) {
 		return render_none_found_message( $attributes );
 	}
 
-	$post_title = $recording->post_title;
-	$content    = do_shortcode( $recording->post_content );
-	$show_icon  = esc_attr( $attributes['show_icon'] );
-	$hide_icon  = esc_attr( $attributes['hide_icon'] );
+	$recording_id = (int) $recording->ID;
+	$post_title   = $recording->post_title;
+	$content      = do_shortcode( $recording->post_content );
+	$show_icon    = esc_attr( $attributes['show_icon'] );
+	$hide_icon    = esc_attr( $attributes['hide_icon'] );
 
 	include $config['view']['recording'];
 }
