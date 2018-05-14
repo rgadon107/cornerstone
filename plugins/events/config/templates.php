@@ -12,11 +12,13 @@
 
 namespace spiralWebDb\Events\Template;
 
+use function spiralWebDb\Events\_get_plugin_directory;
+
 return array(
 	'single'            => array(
-		'events' => EVENTS_DIR . '/src/template/single-events.php',
+		'events' => _get_plugin_directory() . '/src/template/single-events.php',
 	),
 	'post_type_archive' => array(
-		'events' => EVENTS_DIR . '/src/template/archive-events.php',
+		'events' => _get_plugin_directory() . '/src/template/archive-events.php',
 	),
 );

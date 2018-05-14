@@ -1,8 +1,8 @@
 <?php
 /**
- *  FAQ shortcode's runtime configuration parameters
+ *  Reviews shortcode runtime configuration parameters.
  *
- * @package    spiralWebDb\FAQ\Shortcode
+ * @package    spiralWebDb\Reviews\Shortcode
  *
  * @since      1.0.0
  *
@@ -13,9 +13,9 @@
  * @license    GNU General Public License 2.0+
  */
 
-namespace spiralWebDb\FAQ\Shortcode;
+namespace spiralWebDb\Reviews\Shortcode;
 
-use function spiralWebDb\FAQ\_get_plugin_directory;
+use function spiralWebDb\Reviews\_get_plugin_directory;
 
 return array(
 
@@ -25,14 +25,14 @@ return array(
 	 * This ID is used for storing and getting the configuration
 	 * in/out of the Config Store.
 	 ***********************************************************/
-	'shortcode.faq' => array(
+	'shortcode.reviews' => array(
 
 		/**=================================================
 		 *
-		 * Shortcode name [faq]
+		 * Shortcode name [reviews]
 		 *
 		 *==================================================*/
-		'shortcode_name'              => 'faq',
+		'shortcode_name'              => 'reviews',
 
 		/**=================================================
 		 *
@@ -50,17 +50,16 @@ return array(
 		 * processing.
 		 *
 		 *==================================================*/
-		'processing_function'         => __NAMESPACE__ . '\process_the_faq_shortcode',
+		'processing_function'         => __NAMESPACE__ . '\process_the_reviews_shortcode',
 
 		/**=================================================
 		 *
 		 * Paths to the view files.
 		 *
 		 *==================================================*/
+		// Review this for accuracy.
 		'view'                        => array(
-			'container_single' => _get_plugin_directory() . '/src/views/container.php',
-			'container_topic'  => _get_plugin_directory() . '/src/views/container.php',
-			'faq'              => _get_plugin_directory() . '/src/views/faq.php',
+			'review' => _get_plugin_directory() . '/src/views/review.php',
 		),
 
 		/**=================================================
@@ -70,14 +69,9 @@ return array(
 		 *
 		 *==================================================*/
 		'defaults'                    => array(
-			'show_icon'               => 'dashicons dashicons-arrow-down-alt2',
-			'hide_icon'               => 'dashicons dashicons-arrow-up-alt2',
-			'post_id'                 => 0,
-			'topic'                   => '',
-			'number_of_faqs'          => - 1,
-			'show_none_found_message' => '1',
-			'none_found_by_topic'     => 'Sorry, no FAQs were found for that topic.',
-			'none_found_single_faq'   => 'Sorry, there is no FAQ available for that post_id.',
+			'review_id'                => 0,
+			'show_none_found_message'  => '1',
+			'none_found_single_review' => 'Sorry, there is no Review available for that review ID.',
 		),
 	),
 );

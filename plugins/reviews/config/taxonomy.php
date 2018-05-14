@@ -20,16 +20,16 @@ return array(
 	/**==============================================================
 	 * The Taxonomy name.
 	 * ===============================================================*/
-	'taxonomy'   => 'review',
+	'taxonomy'   => 'review_type',
 
 	/**==============================================================
 	 * The label configuration for the Taxonomy.
 	 * ===============================================================*/
 	'labels'     => array(
-		'custom_type'       => 'review',
-		'singular_label'    => 'Review',
-		'plural_label'      => 'Reviews',
-		'in_sentance_label' => 'reviews',
+		'custom_type'       => 'review type',
+		'singular_label'    => 'Review Type',
+		'plural_label'      => 'Review Types',
+		'in_sentance_label' => 'review type',
 		'text_domain'       => '',
 		'specific_labels'   => array(),
 	),
@@ -43,6 +43,7 @@ return array(
 		'label'        => '',
 		'labels'       => '', // automatically generate the labels.
 		'hierarchical' => true,
+		'public'       => true,
 	),
 
 	/**==============================================================

@@ -4,14 +4,16 @@
  *
  * @package     spiralWebDb\FAQ\Template;
  * @since       1.0.0
- * @author      hellofromTonya
- * @link        https://KnowTheCode.io
+ * @author      Robert A. Gadon
+ * @link        http://spiralwebdb.com
  * @license     GNU-2.0+
  */
 
 namespace spiralWebDb\FAQ\Template;
 
 use spiralWebDb\FAQ\Asset;
+
+use function spiralWebDb\FAQ\_get_plugin_directory;
 
 ddd( 'Loaded the archive-faq template.' );
 
@@ -48,7 +50,7 @@ function do_faq_archive_loop() {
 
 		$term_slug = $record['term_slug'];
 
-		include( FAQ_DIR . '/views/container.php' );
+		include( _get_plugin_directory() . '/src/views/container.php' );
 
 	}
 }
@@ -74,7 +76,7 @@ function loop_and_render_faqs( array $faqs ) {
 		$post_title = $faq['post_title'];
 		$content    = do_shortcode( $faq['post_content'] );
 
-		include( FAQ_DIR . '/views/faq.php' );
+		include( _get_plugin_directory() . '/src/views/faq.php' );
 
 	}
 

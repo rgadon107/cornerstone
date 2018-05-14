@@ -48,7 +48,7 @@ return array(
 		'labels'            => '', // automatically generate the labels.
 		'hierarchical'      => true,
 		'show_admin_column' => true,
-		'public'            => false,
+		'public'            => true,
 		'show_ui'           => true,
 	),
 

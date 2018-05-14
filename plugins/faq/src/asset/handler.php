@@ -46,10 +46,10 @@ function maybe_enqueue_script( $shortcode_name ) {
  * @return void
  */
 function enqueue_script_ondemand() {
-	$file = 'assets/dist/js/jquery.project.js';
+	$file = 'assets/js/jquery.plugin.js';
 	wp_enqueue_script(
 		'faq_script',
-	_get_plugin_url() . '/' . $file,
+		_get_plugin_url() . '/' . $file,
 		array( 'jquery' ),
 		_get_asset_version( $file ),
 		true
@@ -59,7 +59,7 @@ function enqueue_script_ondemand() {
 /**
  * Get's the asset file's version number by using it's modification timestamp.
  *
- * @since 1.0.0
+ * @since  1.0.0
  * @ignore
  * @access private
  *
@@ -68,5 +68,5 @@ function enqueue_script_ondemand() {
  * @return bool|int
  */
 function _get_asset_version( $relative_path ) {
-	return filemtime( _get_plugin_directory() . $relative_path );
+	return filemtime( _get_plugin_directory() . '/' . $relative_path );
 }

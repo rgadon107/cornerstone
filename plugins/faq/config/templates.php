@@ -24,6 +24,6 @@ return array(
 		'faq' => $plugin_directory . '/src/template/archive-faq.php',
 	),
 	'taxonomy'          => array(
-		'faq' => $plugin_directory . '/src/template/taxonomy-faq-topic.php',
+		'topic' => $plugin_directory . '/src/template/taxonomy-faq-topic.php',
 	)
 );

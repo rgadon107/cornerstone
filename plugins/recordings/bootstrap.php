@@ -23,13 +23,39 @@
 
 namespace spiralWebDb\Recordings;
 
-use spiralWebDb\Module\Custom as CustomModule;
+use spiralWebDb\Module\Custom;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	die( "Oh silly, there's nothing to see here." );
+/**
+ * Gets this plugin's absolute directory path.
+ *
+ * @since  1.0.0
+ * @ignore
+ * @access private
+ *
+ * @return string
+ */
+function _get_plugin_directory() {
+	return __DIR__;
 }
 
-define( 'RECORDINGS_DIR', __DIR__ );
+/**
+ * Gets this plugin's URL.
+ *
+ * @since  1.0.0
+ * @ignore
+ * @access private
+ *
+ * @return string
+ */
+function _get_plugin_url() {
+	static $plugin_url;
+
+	if ( empty( $plugin_url ) ) {
+		$plugin_url = plugins_url( null, __FILE__ );
+	}
+
+	return $plugin_url;
+}
 
 /**
  * Autoload the plugin's files.
@@ -39,12 +65,13 @@ define( 'RECORDINGS_DIR', __DIR__ );
  * @return void
  */
 function autoload_files() {
-	$files = array(
+	$files = [
 		'/src/config-loader.php',
-	);
+		'/src/shortcode/recordings.php',
+	];
 
 	foreach ( $files as $filename ) {
-		require RECORDINGS_DIR . $filename;
+		require __DIR__ . $filename;
 	}
 }
 
@@ -58,7 +85,7 @@ function autoload_files() {
 function launch() {
 	autoload_files();
 
-	CustomModule\register_plugin( __FILE__ );
+	Custom\register_plugin( __FILE__ );
 
 	load_configurations();
 

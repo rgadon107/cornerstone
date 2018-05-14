@@ -2,7 +2,7 @@
 /**
  * Loads the FAQ plugin.
  *
- * @package    spiralWebDb\Reviews
+ * @package    spiralWebDb\FAQ
  * @since      1.0.0
  * @author     Robert A. Gadon
  * @link       http://spiralwebdb.com
@@ -16,7 +16,7 @@
  * Author:          Robert A. Gadon
  * Author URI:      http://spiralwebdb.com
  * License URI:     https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:     cornerstone_reviews
+ * Text Domain:     cornerstone_faq
  * Requires WP:     4.9
  * Requires PHP:    5.6
  */

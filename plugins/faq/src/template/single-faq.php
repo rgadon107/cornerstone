@@ -1,6 +1,6 @@
 <?php
 /**
- * Template for a single events post type.
+ * Single FAQ Template.
  *
  * @package     spiralWebDb\FAQ\Template
  * @since       1.0.0

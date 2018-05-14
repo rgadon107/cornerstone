@@ -13,6 +13,8 @@ namespace spiralWebDb\Reviews;
 
 use spiralWebDb\Metadata;
 
+use function spiralWebDb\Module\Custom\Shortcode\register_shortcode;
+
 add_filter( 'add_custom_post_type_runtime_config', __NAMESPACE__ . '\register_reviews_custom_configs', 8 );
 add_filter( 'add_custom_taxonomy_runtime_config', __NAMESPACE__ . '\register_reviews_custom_configs', 8 );
 /**
@@ -32,7 +34,7 @@ function register_reviews_custom_configs( array $configurations ) {
 		? 'post-type'
 		: 'taxonomy';
 
-	$runtime_config = (array) require REVIEWS_DIR . '/config/' . $filename . '.php';
+	$runtime_config = (array) require _get_plugin_directory() . '/config/' . $filename . '.php';
 
 	if ( ! $runtime_config ) {
 		return $configurations;
@@ -57,7 +59,7 @@ function register_reviews_custom_configs( array $configurations ) {
 function load_configurations() {
 	Metadata\autoload_configurations(
 		array(
-			REVIEWS_DIR . '/config/reviews.php',
+			_get_plugin_directory() . '/config/reviews.php',
 		)
 	);
 }
@@ -73,10 +75,13 @@ add_filter( 'register_templates_with_template_loader', __NAMESPACE__ . '\registe
  * @return array
  */
 function register_the_template_files( array $templates ) {
-	$config = require REVIEWS_DIR . '/config/templates.php';
+	$config = require _get_plugin_directory() . '/config/templates.php';
+
 	if ( empty( $config ) ) {
 		return $templates;
 	}
 
 	return array_merge_recursive( $templates, $config );
 }
+
+register_shortcode( _get_plugin_directory() . '/config/shortcode.php' );

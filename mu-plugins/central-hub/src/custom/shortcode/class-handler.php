@@ -182,7 +182,7 @@ class Handler {
 	 */
 	private function render_and_return( $shortcode_name, array $config, array $attributes, $content ) {
 		if ( $config['processing_function'] ) {
-			return $this->call_processing_function( $shortcode_name, $config, $attributes, $attributes, $content );
+			return $this->call_processing_function( $shortcode_name, $config, $attributes, $content );
 		}
 
 		ob_start();

@@ -11,6 +11,6 @@
 
 namespace spiralWebDb\Recordings\Template;
 
-ddd( 'Loaded the single-recordings template.' );
+d( 'Loaded the single-recordings template.' );
 
 genesis();

@@ -32,7 +32,7 @@ function register_events_custom_configs( array $configurations ) {
 		? 'post-type'
 		: 'taxonomy';
 
-	$runtime_config = (array) require_once EVENTS_DIR . '/config/' . $filename . '.php';
+	$runtime_config = (array) require_once _get_plugin_directory() . '/config/' . $filename . '.php';
 
 	if ( ! $runtime_config ) {
 		return $configurations;
@@ -57,7 +57,7 @@ function register_events_custom_configs( array $configurations ) {
 function load_configurations() {
 	Metadata\autoload_configurations(
 		array(
-			EVENTS_DIR . '/config/events.php',
+			_get_plugin_directory() . '/config/events.php',
 		)
 	);
 }
@@ -73,7 +73,7 @@ add_filter( 'register_templates_with_template_loader', __NAMESPACE__ . '\registe
  * @return array
  */
 function register_the_template_files( array $templates ) {
-	$config = require EVENTS_DIR . '/config/templates.php';
+	$config = require _get_plugin_directory() . '/config/templates.php';
 	if ( empty( $config ) ) {
 		return $templates;
 	}
