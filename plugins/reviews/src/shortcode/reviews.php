@@ -11,8 +11,6 @@
 
 namespace spiralWebDb\Reviews\Shortcode;
 
-use function spiralWebDb\FAQ\Asset\enqueue_script_ondemand;
-
 /**
  *  Process the FAQ Shortcode to build a list of FAQs
  *
@@ -29,8 +27,6 @@ function process_the_reviews_shortcode( array $config, array $attributes ) {
 	if ( $attributes['review_id'] < 1 ) {
 		return '';
 	}
-
-	enqueue_script_ondemand();
 
 	// Call the view file, capture it into the output buffer, and then return it.
 	ob_start();
