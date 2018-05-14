@@ -80,6 +80,5 @@ function render_none_found_message( array $attributes ) {
 
 	$message = esc_html( $attributes['none_found_single_review'] );
 
-	echo "<em>{$message}</em>";
-
+	printf( '<em>%s</em>', esc_html( $message ) );
 }
