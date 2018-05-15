@@ -12,6 +12,7 @@
 namespace spiralWebDb\Reviews\Template;
 
 remove_all_actions( 'genesis_entry_header' );
+remove_filter( 'genesis_attr_entry-content', 'genesis_attributes_entry_content' );
 
 add_action( 'genesis_before_entry_content', __NAMESPACE__ . '\add_opening_blockquote', 999999 );
 /**
