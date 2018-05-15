@@ -11,6 +11,5 @@
 
 namespace spiralWebDb\Reviews\Template;
 
-ddd( 'Loading the taxonomy-review_type template.' );
-
-genesis();
+// Let's reuse the single review template.
+include __DIR__ . '/single-reviews.php';
