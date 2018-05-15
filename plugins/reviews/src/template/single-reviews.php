@@ -11,6 +11,6 @@
 
 namespace spiralWebDb\Reviews\Template;
 
-ddd( 'Loading the single-reviews template' );
+remove_all_actions( 'genesis_entry_header' );
 
 genesis();
