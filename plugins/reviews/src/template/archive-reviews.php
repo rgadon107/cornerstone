@@ -11,6 +11,5 @@
 
 namespace spiralWebDb\Reviews\Template;
 
-ddd( 'Loading the archive-reviews template' );
-
-genesis();
+// Let's reuse the single review template.
+include __DIR__ . '/single-reviews.php';
