@@ -17,9 +17,6 @@ use function spiralWebDb\FAQ\_get_plugin_directory;
 $plugin_directory = _get_plugin_directory();
 
 return array(
-	'single'            => array(
-		'faq' => $plugin_directory . '/src/template/single-faq.php',
-	),
 	'post_type_archive' => array(
 		'faq' => $plugin_directory . '/src/template/archive-faq.php',
 	),
