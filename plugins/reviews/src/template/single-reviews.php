@@ -41,7 +41,21 @@ function add_opening_blockquote() {
 	printf( '<blockquote class="review review-%s" itemprop="text">', (int) get_the_ID() );
 }
 
-add_action( 'genesis_after_entry_content', __NAMESPACE__ . '\add_closing_blockquote', 0 );
+add_action( 'genesis_after_entry_content', __NAMESPACE__ . '\add_review_extra_information', 0 );
+/**
+ * Add the extra information for the review.
+ *
+ * @since 1.0.0
+ *
+ * @return void
+ */
+function add_review_extra_information() {
+	$review_id = (int) get_the_ID();
+
+	require dirname( __DIR__ ) . '/views/review-footer.php';
+}
+
+add_action( 'genesis_after_entry_content', __NAMESPACE__ . '\add_closing_blockquote', 1 );
 /**
  * Change the markup attributes for the review.
  *
