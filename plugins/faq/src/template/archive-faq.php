@@ -15,8 +15,6 @@ use spiralWebDb\FAQ\Asset;
 
 use function spiralWebDb\FAQ\_get_plugin_directory;
 
-ddd( 'Loaded the archive-faq template.' );
-
 Asset\enqueue_script_ondemand();
 
 remove_action( 'genesis_loop', 'genesis_do_loop' );
@@ -33,12 +31,11 @@ add_action( 'genesis_loop', __NAMESPACE__ . '\do_faq_archive_loop' );
  * @return void
  */
 function do_faq_archive_loop() {
-
+	require_once __DIR__ . '/helpers.php';
 	$records = get_posts_grouped_by_term( 'faq', 'topic' );
 
 	if ( ! $records ) {
 		echo '<p>Sorry, there are no FAQs.</p>';
-
 		return;
 	}
 
@@ -47,11 +44,9 @@ function do_faq_archive_loop() {
 	$is_calling_source  = 'template';
 
 	foreach ( $records as $record ) {
-
 		$term_slug = $record['term_slug'];
 
-		include( _get_plugin_directory() . '/src/views/container.php' );
-
+		include _get_plugin_directory() . '/src/views/container.php';
 	}
 }
 
@@ -65,21 +60,19 @@ function do_faq_archive_loop() {
  * @return void
  */
 function loop_and_render_faqs( array $faqs ) {
-
 	$attributes = array(
 		'show_icon' => 'dashicons dashicons-arrow-down-alt2',
 		'hide_icon' => 'dashicons dashicons-arrow-up-alt2',
 	);
 
 	foreach ( $faqs as $faq ) {
-
 		$post_title = $faq['post_title'];
 		$content    = do_shortcode( $faq['post_content'] );
+		$show_icon  = esc_attr( $attributes['show_icon'] );
+		$hide_icon  = esc_attr( $attributes['hide_icon'] );
 
-		include( _get_plugin_directory() . '/src/views/faq.php' );
-
+		include _get_plugin_directory() . '/src/views/faq.php';
 	}
-
 }
 
 genesis();
