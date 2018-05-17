@@ -186,6 +186,48 @@ return array(
 				'sanitize'     => 'strip_tags',
 			),
 			// specify this field's meta key.  It's used in the database.
+			'sponsor-website' => array(
+				// True - means it's a single
+				// False - means it's an array
+				'is_single'    => true,
+				// Specify the custom field's default value.
+				'default'      => '',
+				// What is the state that signals to delete this meta key
+				// from the database.
+				'delete_state' => '',
+				// callable sanitizer function such as
+				// sanitize_text_field, sanitize_email, strip_tags, intval, etc.
+				'sanitize'     => 'strip_tags',
+			),
+			// specify this field's meta key.  It's used in the database.
+			'sponsor-facebook' => array(
+				// True - means it's a single
+				// False - means it's an array
+				'is_single'    => true,
+				// Specify the custom field's default value.
+				'default'      => '',
+				// What is the state that signals to delete this meta key
+				// from the database.
+				'delete_state' => '',
+				// callable sanitizer function such as
+				// sanitize_text_field, sanitize_email, strip_tags, intval, etc.
+				'sanitize'     => 'strip_tags',
+			),
+			// specify this field's meta key.  It's used in the database.
+			'sponsor-twitter' => array(
+				// True - means it's a single
+				// False - means it's an array
+				'is_single'    => true,
+				// Specify the custom field's default value.
+				'default'      => '',
+				// What is the state that signals to delete this meta key
+				// from the database.
+				'delete_state' => '',
+				// callable sanitizer function such as
+				// sanitize_text_field, sanitize_email, strip_tags, intval, etc.
+				'sanitize'     => 'strip_tags',
+			),
+			// specify this field's meta key.  It's used in the database.
 			'event-map-url'      => array(
 				// True - means it's a single
 				// False - means it's an array
