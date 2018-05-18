@@ -11,7 +11,7 @@
 
 namespace spiralWebDb\Events\Template;
 
-ddd( 'Loaded the single-events template' );
+d( 'Loaded the single-events template' );
 
 // From WP_Post, $post->ID so that we can call each metakey linked to it's post_id.
 // Image of Event Venue; postmeta: 'events[event-venue-image]'
