@@ -85,11 +85,38 @@ use KnowTheCode\ConfigStore;
 <hr>
 <div>
     <p>
-        <label for="telephone-number"><strong>Telephone Number for Event Sponsor</strong></label>
+        <label for="sponsor-website"><strong>Web Address (URL) for Event Sponsor</strong></label>
     </p>
     <p>
-        <input id="telephone-number" type="tel" name="<?php echo $meta_box_id; ?>[sponsor-tel-number]"
-               value="<?php echo esc_attr( $custom_fields['sponsor-tel-number'] ); ?>" placeholder="###-###-####">
+        <input id="sponsor-website" class="regular-text" type="url" name="<?php echo $meta_box_id; ?>[sponsor-website]"
+               value="<?php echo esc_attr( $custom_fields['sponsor-website'] ); ?>" placeholder="https://{url}">
+    </p>
+    <span class="description">Enter the web address (URL) for the sponsoring organization in the field above.</span>
+    <p>
+    <p>
+        <label for="sponsor-facebook"><strong>Facebook web address (URL) for the Event Sponsor</strong></label>
+    </p>
+    <p>
+        <input id="sponsor-facebook" class="regular-text" type="url"
+               name="<?php echo $meta_box_id; ?>[sponsor-facebook]"
+               value="<?php echo esc_attr( $custom_fields['sponsor-facebook'] ); ?>"
+               placeholder="https://www.facebook.com/{name-of-organization}">
+    </p>
+    <span class="description">Enter the sponsoring organization's Facebook URL in the field above.</span>
+    </p>
+    <p>
+        <label for="sponsor-twitter"><strong>Twitter handle for the Event Sponsor</strong></label>
+    </p>
+    <p>
+        <input id="sponsor-twitter" class="regular-text" type="text" name="<?php echo $meta_box_id; ?>[sponsor-twitter]"
+               value="<?php echo esc_attr( $custom_fields['sponsor-twitter'] ); ?>" placeholder="@{twitter-handle}">
+    </p>
+    <span class="description">If the sponsor has a Twitter account, add their 'handle' in the field above. The account name is preceded by an '@' symbol.</span>
+    <hr>
+    <label for="telephone-number"><strong>Telephone Number for Event Sponsor</strong></label>
+    </p>
+    <input id="telephone-number" type="tel" name="<?php echo $meta_box_id; ?>[sponsor-tel-number]"
+           value="<?php echo esc_attr( $custom_fields['sponsor-tel-number'] ); ?>" placeholder="###-###-####">
     </p>
     <span class="description">Enter 10-digit telephone number, area code first.</span>
 </div>
