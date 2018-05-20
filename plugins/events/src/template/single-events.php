@@ -25,7 +25,7 @@ add_filter( 'genesis_attr_entry', __NAMESPACE__ . '\modify_entry_content_attribu
 function modify_entry_content_attributes( $attributes ) {
 
 	$attributes['class']    .= ' events-' . (int) get_the_ID();
-	$attributes['itemtype'] = 'https://schema.org/MusicEvent';
+	$attributes['itemtype']  = 'https://schema.org/MusicEvent';
 
 	return $attributes;
 }
@@ -42,8 +42,8 @@ add_filter( 'genesis_attr_entry-title', __NAMESPACE__ . '\modify_entry_title_att
 function modify_entry_title_attributes( $attributes ) {
 
 	$attributes['class']    .= ' event-title';
-	$attributes['itemprop'] = 'performance-venue';
-	$attributes['itemtype'] = 'https://schema.org/MusicVenue';
+	$attributes['itemprop']  = 'performance-venue';
+	$attributes['itemtype']  = 'https://schema.org/MusicVenue';
 
 	return $attributes;
 }
