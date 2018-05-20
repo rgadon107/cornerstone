@@ -48,32 +48,17 @@ function modify_entry_title_attributes( $attributes ) {
 	return $attributes;
 }
 
-add_filter( 'genesis_post_date_shortcode', __NAMESPACE__ . '\modify_post_date_shortcode', 99 );
+add_filter( 'genesis_post_info', __NAMESPACE__ . 'unregister_entry_meta_before_content' );
 /*
- * Filter the Genesis [post_date] shortcode in the 'post-meta-before-entry'.
+ * Unregister the entry meta before the post content.
  *
  * @since 1.0
  *
- * @param array $attributes Array of assigned attributes.
- * @return array $attributes Modified attributes.
+ * @return void
  */
-function modify_post_date_shortcode( $output ) {
-	return $output = '';
+function unregister_entry_meta_before_content() {
+	return '';
 }
-
-add_filter( 'edit_post_link', __NAMESPACE__ . '\modify_edit_post_link', 99 );
-/*
- * Filter the output of the post-meta 'post-edit-link'.
- *
- * @since 1.0
- *
- * @param array $attributes Array of assigned attributes.
- * @return array $attributes Modified attributes.
- */
-function modify_edit_post_link( $link ) {
-	return $link = '';
-}
-
 // From WP_Post, $post->ID so that we can call each metakey linked to it's post_id.
 // Image of Event Venue; postmeta: 'events[event-venue-image]'
 // Performance Date (day-of-week; postmeta: 'events[event-day]',
