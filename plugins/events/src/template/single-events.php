@@ -13,6 +13,67 @@ namespace spiralWebDb\Events\Template;
 
 d( 'Loaded the single-events template' );
 
+add_filter( 'genesis_attr_entry', __NAMESPACE__ . '\modify_entry_content_attributes', 99 );
+/**
+ * Modify the Genesis entry-content class attributes and microdata schema.
+ *
+ * @since 1.0
+ *
+ * @param array $attributes Array of assigned attributes.
+ * @return array $attributes Modified attributes.
+ */
+function modify_entry_content_attributes( $attributes ) {
+
+	$attributes['class']    .= ' events-' . (int) get_the_ID();
+	$attributes['itemtype'] = 'https://schema.org/MusicEvent';
+
+	return $attributes;
+}
+
+add_filter( 'genesis_attr_entry-title', __NAMESPACE__ . '\modify_entry_title_attributes', 99 );
+/*
+ * Modify the Genesis entry-title class attributes and microdata schema.
+ *
+ * @since 1.0
+ *
+ * @param array $attributes Array of assigned attributes.
+ * @return array $attributes Modified attributes.
+ */
+function modify_entry_title_attributes( $attributes ) {
+
+	$attributes['class']    .= ' event-title';
+	$attributes['itemprop'] = 'performance-venue';
+	$attributes['itemtype'] = 'https://schema.org/MusicVenue';
+
+	return $attributes;
+}
+
+add_filter( 'genesis_post_date_shortcode', __NAMESPACE__ . '\modify_post_date_shortcode', 99 );
+/*
+ * Filter the Genesis [post_date] shortcode in the 'post-meta-before-entry'.
+ *
+ * @since 1.0
+ *
+ * @param array $attributes Array of assigned attributes.
+ * @return array $attributes Modified attributes.
+ */
+function modify_post_date_shortcode( $output ) {
+	return $output = '';
+}
+
+add_filter( 'edit_post_link', __NAMESPACE__ . '\modify_edit_post_link', 99 );
+/*
+ * Filter the output of the post-meta 'post-edit-link'.
+ *
+ * @since 1.0
+ *
+ * @param array $attributes Array of assigned attributes.
+ * @return array $attributes Modified attributes.
+ */
+function modify_edit_post_link( $link ) {
+	return $link = '';
+}
+
 // From WP_Post, $post->ID so that we can call each metakey linked to it's post_id.
 // Image of Event Venue; postmeta: 'events[event-venue-image]'
 // Performance Date (day-of-week; postmeta: 'events[event-day]',
