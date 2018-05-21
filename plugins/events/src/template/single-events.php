@@ -15,18 +15,6 @@ use function spiralWebDb\Events\_get_plugin_directory;
 
 d( 'Loaded the single-events template' );
 
-add_filter( 'genesis_entry_title_wrap', __NAMESPACE__ . '\modify_entry_title_html_wrap', 999 );
-/*
- * Modify Event entry-title HTML wrap.
- *
- * @since 1.0.0
- *
- * @param string $wrap The post title HTML wrapping element
- */
-function modify_entry_title_html_wrap( $wrap ) {
-	return 'h2';
-}
-
 add_filter( 'genesis_attr_entry', __NAMESPACE__ . '\modify_entry_content_attributes', 99 );
 /**
  * Modify the Genesis entry-content class attributes and microdata schema.
@@ -43,6 +31,18 @@ function modify_entry_content_attributes( $attributes ) {
 	$attributes['itemtype'] = 'https://schema.org/MusicEvent';
 
 	return $attributes;
+}
+
+add_filter( 'genesis_entry_title_wrap', __NAMESPACE__ . '\modify_entry_title_html_wrap', 999 );
+/*
+ * Modify Event entry-title HTML wrap.
+ *
+ * @since 1.0.0
+ *
+ * @param string $wrap The post title HTML wrapping element
+ */
+function modify_entry_title_html_wrap( $wrap ) {
+	return 'h2';
 }
 
 add_filter( 'genesis_attr_entry-title', __NAMESPACE__ . '\modify_entry_title_attributes', 99 );
