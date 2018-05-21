@@ -135,12 +135,12 @@ use KnowTheCode\ConfigStore;
 <hr>
 <div>
     <p>
-        <label for="event-venue-image"><strong>Image of Event Venue</strong></label>
+        <label for="venue-image"><strong>Image of Event Venue</strong></label>
     </p>
     <p>
-        <input id="event-venue-image" class="large-text" type="url"
-               name="<?php echo $meta_box_id; ?>[event-venue-image]"
-               value="<?php echo esc_url( $custom_fields['event-venue-image'] ); ?>"
+        <input id="venue-image" class="large-text" type="url"
+               name="<?php echo $meta_box_id; ?>[venue-image]"
+               value="<?php echo esc_url( $custom_fields['venue-image'] ); ?>"
                placeholder="https://cornerstonechorale.org/wp-content/uploads/{yyyy}/{mm}/{filename}">
     </p>
     <span class="description">Upload the image of the event venue to the Media Library. Then copy the image URL from the Media Library and paste it here.</span>

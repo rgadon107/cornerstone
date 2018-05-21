@@ -242,7 +242,7 @@ return array(
 				'sanitize'     => 'sanitize_text_field',
 			),
 			// specify this field's meta key.  It's used in the database.
-			'event-venue-image'  => array(
+			'venue-image'  => array(
 				// True - means it's a single
 				// False - means it's an array
 				'is_single'    => true,

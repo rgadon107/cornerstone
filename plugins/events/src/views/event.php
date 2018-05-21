@@ -4,7 +4,12 @@
  */
 namespace spiralWebDb\Events;
 
+$metadata = 'Here is some metadata on the performance.';
+
+echo '<p class="entry-meta" itemprop="performance-date">' . 'Performance Date: ' . $metadata . '</p>';
 ?>
+
+<!--
 <article class="post-(ID) events type-events status-publish entry" itemtype itemscope="https://schema.org/CreativeWork">
 <!--May want to add a class 'events-{post-ID}' and change the itemscope. Check schema.org
 for Musical Events. Register a cb to 'add_filter( 'genesis_attr_entry') to add attributes.-->
