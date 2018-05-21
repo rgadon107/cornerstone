@@ -13,11 +13,23 @@ namespace spiralWebDb\Events\Template;
 
 d( 'Loaded the single-events template' );
 
+add_filter( 'genesis_entry_title_wrap', __NAMESPACE__ . '\modify_entry_title_html_wrap', 999 );
+/*
+ * Modify Event entry-title HTML wrap.
+ *
+ * @since 1.0.0
+ *
+ * @param string $wrap The post title HTML wrapping element
+ */
+function modify_entry_title_html_wrap( $wrap )  {
+	return 'h2';
+}
+
 add_filter( 'genesis_attr_entry', __NAMESPACE__ . '\modify_entry_content_attributes', 99 );
 /**
  * Modify the Genesis entry-content class attributes and microdata schema.
  *
- * @since 1.0
+ * @since 1.0.0
  *
  * @param array $attributes Array of assigned attributes.
  * @return array $attributes Modified attributes.
@@ -34,7 +46,7 @@ add_filter( 'genesis_attr_entry-title', __NAMESPACE__ . '\modify_entry_title_att
 /*
  * Modify the Genesis entry-title class attributes and microdata schema.
  *
- * @since 1.0
+ * @since 1.0.0
  *
  * @param array $attributes Array of assigned attributes.
  * @return array $attributes Modified attributes.
@@ -52,13 +64,14 @@ add_filter( 'genesis_post_info', __NAMESPACE__ . 'unregister_entry_meta_before_c
 /*
  * Unregister the entry meta before the post content.
  *
- * @since 1.0
+ * @since 1.0.0
  *
  * @return void
  */
 function unregister_entry_meta_before_content() {
 	return '';
 }
+
 // From WP_Post, $post->ID so that we can call each metakey linked to it's post_id.
 // Image of Event Venue; postmeta: 'events[event-venue-image]'
 // Performance Date (day-of-week; postmeta: 'events[event-day]',
