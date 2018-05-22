@@ -63,6 +63,16 @@ function modify_entry_title_attributes( $attributes ) {
 	return $attributes;
 }
 
+add_filter( 'the_title', __NAMESPACE__ . '\prepend_icon_to_post_title' );
+/*
+ *
+ */
+function prepend_icon_to_post_title( $title)    {
+
+	return $title;
+}
+$title, $id );
+
 add_filter( 'genesis_post_info', __NAMESPACE__ . '\modify_entry_meta_before_content', 999 );
 /*
  * Modify the entry meta before the post content.
