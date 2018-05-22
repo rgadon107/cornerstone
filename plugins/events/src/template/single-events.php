@@ -71,7 +71,6 @@ function prepend_icon_to_post_title( $title)    {
 
 	return $title;
 }
-$title, $id );
 
 add_filter( 'genesis_post_info', __NAMESPACE__ . '\modify_entry_meta_before_content', 999 );
 /*
