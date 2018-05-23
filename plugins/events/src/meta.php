@@ -11,19 +11,32 @@
 
 namespace spiralWebDb\Events;
 
-// Function to render the Performance Venue Address, City and State,
-// and link to Google Maps.
 /**
  * Render the Event metadata
  *
  * @since 1.4.0
  *
- * @param int $review_id The event ID.
+ * @param int $event_id The event ID.
  *
  * @return void
  */
 function render_the_event_meta( $event_id ) {
-	$event_day      = (string) esc_html( get_post_meta( $event_id, 'event_day', true ) );
+	$event_date = (string) esc_html( get_post_meta( $event_id, 'event-date', true ) );
+	$event_time = (string) esc_html( get_post_meta( $event_id, 'event-time', true ) );
+
+	$event_date     = strtotime( $event_date );
+	$formatted_date = date( 'l, F j, Y', $event_date );
+
+	$event_time     = strtotime( $event_time );
+	$formatted_time = date( 'g:i A', $event_time );
+
+	if ( $event_date && $event_time ) {
+		echo 'Scheduled Performance:  ' . $formatted_date . ' at ' . $formatted_time;
+	} else {
+		echo 'Scheduled Performance:  ' . $formatted_date;
+	}
+}
+
 //	$event_date     = (string) get_post_meta( $event_id, 'event_date', true );
 //	$event_time     = (string) get_post_meta( $event_id, 'event_time', true );
 //	$event_map_link = (string) get_post_meta( $event_id, 'event_map_url', true );
@@ -49,4 +62,3 @@ function render_the_event_meta( $event_id ) {
 //	if ( $state ) {
 //		echo esc_html( $state );
 //	}
-}
