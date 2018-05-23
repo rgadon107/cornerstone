@@ -11,6 +11,8 @@
 
 namespace spiralWebDb\Events\Template;
 
+use spiralWebDb\Events;
+
 use function spiralWebDb\Events\_get_plugin_directory;
 
 d( 'Loaded the single-events template' );
@@ -63,14 +65,17 @@ function modify_entry_title_attributes( $attributes ) {
 	return $attributes;
 }
 
-add_filter( 'the_title', __NAMESPACE__ . '\prepend_icon_to_post_title' );
-/*
- *
- */
-function prepend_icon_to_post_title( $title)    {
-
-	return $title;
-}
+//add_filter( 'the_title', __NAMESPACE__ . '\prepend_icon_to_post_title' );
+///*
+// *
+// */
+//function prepend_icon_to_post_title( $title ) {
+//	if ( is_single() && 'events' == get_post_type() ) {
+//		$pre_text = 'Some text ';
+//	}
+//
+//	return $pre_text . $title;
+//}
 
 add_filter( 'genesis_post_info', __NAMESPACE__ . '\modify_entry_meta_before_content', 999 );
 /*
@@ -82,11 +87,11 @@ add_filter( 'genesis_post_info', __NAMESPACE__ . '\modify_entry_meta_before_cont
  */
 function modify_entry_meta_before_content() {
 
-//	$metadata = 'Here is some metadata on the performance.';
-//
-//	echo '<p class="entry-meta" itemprop="performance-date">' . 'Performance Date: ' . $metadata . '</p>';
+	$event_id = (int) get_the_ID();
 
-	require _get_plugin_directory() . '/src/views/event.php';
+	include _get_plugin_directory() . '/src/views/entry-meta-before-event.php';
+
+}
 
 // Notes: Even though Tonya includes a view file at '/src/views/review.php', she didn't
 // call it into her 'single-review.php' file at '/src/templates/single-events.php'
@@ -98,7 +103,7 @@ function modify_entry_meta_before_content() {
 // '/genesis/lib/structure/loop.php'. The value of '/src/views/review.php' is
 // that is gives you an overall structure to aim for. But it's not used in it's
 // entirety.
-}
+
 
 //add_filter( 'genesis_attr_entry-meta-before-content', __NAMESPACE__ . '\modify_entry_meta_before_content_atts' );
 //function modify_entry_meta_before_content_atts( $attributes ) {
