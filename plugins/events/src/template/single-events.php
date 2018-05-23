@@ -11,10 +11,6 @@
 
 namespace spiralWebDb\Events\Template;
 
-use spiralWebDb\Events;
-
-use function spiralWebDb\Events\_get_plugin_directory;
-
 d( 'Loaded the single-events template' );
 
 add_filter( 'genesis_attr_entry', __NAMESPACE__ . '\modify_entry_content_attributes', 99 );
@@ -86,10 +82,9 @@ add_filter( 'genesis_post_info', __NAMESPACE__ . '\modify_entry_meta_before_cont
  * @return void
  */
 function modify_entry_meta_before_content() {
-
 	$event_id = (int) get_the_ID();
 
-	include _get_plugin_directory() . '/src/views/entry-meta-before-event.php';
+	require dirname( __DIR__ ) . '/views/entry-meta-before-event.php';
 
 }
 
