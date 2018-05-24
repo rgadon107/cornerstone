@@ -31,9 +31,9 @@ function render_the_event_meta( $event_id ) {
 	$formatted_time = date( 'g:i A', $event_time );
 
 	if ( $event_date && $event_time ) {
-		echo 'Scheduled Performance:  ' . $formatted_date . ' at ' . $formatted_time;
+		echo $formatted_date . ' at ' . $formatted_time;
 	} else {
-		echo 'Scheduled Performance:  ' . $formatted_date;
+		echo $formatted_date;
 	}
 }
 
