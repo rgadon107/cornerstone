@@ -75,7 +75,7 @@ function modify_entry_title_attributes( $attributes ) {
 
 add_filter( 'genesis_post_info', __NAMESPACE__ . '\modify_entry_meta_before_content', 999 );
 /*
- * Modify the entry meta before the post content.
+ * Modify the event entry meta before the post content.
  *
  * @since 1.0.0
  *
@@ -85,6 +85,21 @@ function modify_entry_meta_before_content() {
 	$event_id = (int) get_the_ID();
 
 	require dirname( __DIR__ ) . '/views/entry-meta-before-event.php';
+
+}
+
+add_filter( 'genesis_post_meta',  __NAMESPACE__ . '\modify_entry_meta_after_content', 999 );
+/*
+ * Modify the event entry meta after post content.
+ *
+ * @since 1.0.0
+ *
+ * @return void
+ */
+function modify_entry_meta_after_content()  {
+	$event_id = (int) get_the_ID();
+
+	require dirname( __DIR__ ) . '/views/event-footer.php';
 
 }
 
