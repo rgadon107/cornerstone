@@ -45,6 +45,7 @@
 - Plugins
 	- Genesis eNews Extended
 	- Jetpack
+	- Font Awesome
 - Skip Links
 - Site Header
 	- Title Area
@@ -1004,6 +1005,46 @@ img.alignright,
 
 #wpstats {
 	display: none;
+}
+
+/* ## Font Awesome
+--------------------------------------------- */
+.fontawesome::before {
+	display: inline-block;
+	font-style: normal;
+	font-variant: normal;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+}
+
+.social-icon::before {
+	margin-right: 10px;
+	font-family: "Font Awesome 5 Brands";
+}
+
+.generic-icon::before {
+	margin-right: 10px;
+	font-family: "Font Awesome 5 Free";
+}
+
+.twitter::before {
+	content: "\f099";
+}
+
+.facebook::before {
+	content: "\f39e";
+}
+
+.instagram::before {
+	content: "\f16d";
+}
+
+.pinterest::before {
+	content: "\f231";
+}
+
+.email::before {
+	content: "\f0e0";
 }
 
 
