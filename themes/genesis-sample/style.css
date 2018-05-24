@@ -1009,7 +1009,16 @@ img.alignright,
 
 /* ## Font Awesome
 --------------------------------------------- */
-.fontawesome::before {
+.fa::before,
+.fab::before,
+.fal::before,
+.far::before,
+.fas::before	{
+	margin-right: 10px;
+}
+
+.far::before,
+.fab::before	{
 	display: inline-block;
 	font-style: normal;
 	font-variant: normal;
@@ -1020,11 +1029,14 @@ img.alignright,
 .social-icon::before {
 	margin-right: 10px;
 	font-family: "Font Awesome 5 Brands";
+	font-weight: 900;
+	color: #000000;
 }
 
 .generic-icon::before {
 	margin-right: 10px;
 	font-family: "Font Awesome 5 Free";
+	font-weight: 900;
 }
 
 .twitter::before {
