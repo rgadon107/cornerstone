@@ -42,47 +42,64 @@ function render_performance_address( $event_id ) {
 	$event_city    = (string) esc_html( get_post_meta( $event_id, 'venue-city', true ) );
 	$event_state   = (string) esc_html( get_post_meta( $event_id, 'venue-state', true ) );
 
+	$message = 'The performance address is not yet confirmed. Check back soon for updated information.';
+
 	if ( $event_address && $event_city && $event_state ) {
 		echo $event_address . ', ' . $event_city . ', ' . $event_state;
 	} elseif ( $event_city && $event_state ) {
 		echo $event_city . ', ' . $event_state;
 	} else {
-		echo 'The performance address is not yet confirmed. Check back soon for updated information.';
+		echo $message;
 	}
 }
 
 function render_event_map( $event_id ) {
 	$event_map = (string) esc_html( get_post_meta( $event_id, 'event-map-url', true ) );
 
-	if ( ! $event_map )   {
+	if ( ! $event_map ) {
 		return '';
 	} else {
 		echo $event_map;
 	}
 }
 
-//	$event_date     = (string) get_post_meta( $event_id, 'event_date', true );
-//	$event_time     = (string) get_post_meta( $event_id, 'event_time', true );
-//	$event_map_link = (string) get_post_meta( $event_id, 'event_map_url', true );
-//	if ( $day ) {
-//		echo 'Venue: ' . esc_html( $venue );
-//	}
-//
-//	$city  = (string) get_post_meta( $review_id, 'review_location_city', true );
-//	$state = (string) get_post_meta( $review_id, 'review_location_state', true );
-//
-//	if ( $city || $state ) {
-//		echo '<br>Location: ';
-//	}
-//
-//	if ( $city ) {
-//		echo esc_html( $city );
-//	}
-//
-//	if ( $city && $state ) {
-//		echo ', ';
-//	}
-//
-//	if ( $state ) {
-//		echo esc_html( $state );
-//	}
+function render_event_tel_number( $event_id ) {
+	$tel_number = (string) esc_html( get_post_meta( $event_id, 'sponsor-tel-number', true ) );
+
+	if ( ! $tel_number ) {
+		return '';
+	} else {
+		echo $tel_number;
+	}
+}
+
+function render_event_website( $event_id ) {
+	$website = (string) esc_html( get_post_meta( $event_id, 'sponsor-website', true ) );
+
+	if ( ! $website ) {
+		return '';
+	} else {
+		echo $website;
+	}
+}
+
+function render_event_facebook_link( $event_id ) {
+	$facebook = (string) esc_html( get_post_meta( $event_id, 'sponsor-facebook', true ) );
+
+	if ( ! $facebook ) {
+		return '';
+	} else {
+		echo $facebook;
+	}
+}
+
+function render_event_twitter_link( $event_id ) {
+	$twitter = (string) esc_html( get_post_meta( $event_id, 'sponsor-twitter', true ) );
+
+	if ( ! $twitter ) {
+		return '';
+	} else {
+		echo $twitter;
+	}
+
+}
