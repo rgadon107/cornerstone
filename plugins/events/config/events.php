@@ -172,7 +172,7 @@ return array(
 				'sanitize'     => 'strip_tags',
 			),
 			// specify this field's meta key.  It's used in the database.
-			'sponsor-website' => array(
+			'sponsor-domain-name' => array(
 				// True - means it's a single
 				// False - means it's an array
 				'is_single'    => true,
@@ -183,7 +183,7 @@ return array(
 				'delete_state' => '',
 				// callable sanitizer function such as
 				// sanitize_text_field, sanitize_email, strip_tags, intval, etc.
-				'sanitize'     => 'strip_tags',
+				'sanitize'     => 'sanitize_text_field',
 			),
 			// specify this field's meta key.  It's used in the database.
 			'sponsor-facebook' => array(
