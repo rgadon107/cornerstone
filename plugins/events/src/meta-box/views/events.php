@@ -6,13 +6,6 @@ use KnowTheCode\ConfigStore;
 <div class="event-date">
     <label for="event-date"><strong>Performance Date</strong></label>
     <p>
-        <select id="event-day" name="<?php echo $meta_box_id; ?>[event-day]"
-                value="<?php echo esc_attr( $custom_fields['event-day'] ); ?>">
-            <option>--Select a Day--</option>
-			<?php foreach ( ConfigStore\getConfig( $config['days_of_week'] ) as $day ) : ?>
-                <option value="<?php echo esc_attr( $day ); ?>"<?php selected( $custom_fields['event-day'], $day ); ?>><?php echo esc_html( $day ); ?></option>
-			<?php endforeach; ?>
-        </select>
         <input id="event-date" type="date" name="<?php echo $meta_box_id; ?>[event-date]"
                value="<?php echo esc_attr( $custom_fields['event-date'] ); ?>">
     </p>

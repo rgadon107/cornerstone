@@ -71,7 +71,6 @@ function autoload() {
  */
 function load_configurations() {
 	$configurations = array(
-		__DIR__ . '/config/days-of-week.php',
 		__DIR__ . '/config/states.php',
 		__DIR__ . '/config/roles.php',
 
