@@ -1,0 +1,2 @@
+<a href="<?php echo esc_url( $url ); ?>" target="_blank" itemprop="sharedContent"
+   itemtype="http://schema.org/WebSite"><span class="fas fa-globe" aria-label="WorldWideWeb" $role="img"></span> Web</a>
