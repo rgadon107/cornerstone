@@ -10,6 +10,7 @@ namespace spiralWebDb\Events;
         <span class="fas fa-mobile-alt" itemprop="telephone"
               itemtype="http://schema.org/ContactPoint"></span><?php render_event_tel_number( $event_id ); ?>
     </div>
+    <hr>
     <div class="social-links sponsor-social-links">
         <div><span class="fas fa-globe" itemprop="url" itemtype="http://schema.org/WebSite"></span>
             <a href="<?php render_event_website( $event_id ); ?>" target="_blank">Web</a>
