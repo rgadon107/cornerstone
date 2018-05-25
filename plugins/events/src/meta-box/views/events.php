@@ -78,24 +78,24 @@ use KnowTheCode\ConfigStore;
 <hr>
 <div>
     <p>
-        <label for="sponsor-website"><strong>Web Address (URL) for Event Sponsor</strong></label>
+        <label for="sponsor-domain-name"><strong>Web Address (domain name) for the Event sponsor</strong></label>
     </p>
     <p>
-        <input id="sponsor-website" class="regular-text" type="url" name="<?php echo $meta_box_id; ?>[sponsor-website]"
-               value="<?php echo esc_attr( $custom_fields['sponsor-website'] ); ?>" placeholder="https://{url}">
+        <input id="sponsor-domain-name" class="regular-text" type="text" name="<?php echo $meta_box_id; ?>[sponsor-domain-name]"
+               value="<?php echo esc_attr( $custom_fields['sponsor-domain-name'] ); ?>" placeholder="{domain-name}">
     </p>
-    <span class="description">Enter the web address (URL) for the sponsoring organization in the field above.</span>
+    <span class="description">Enter the web address (domain name) for the event sponsor. There is no need to precede the name with 'http://' or 'https://'.</span>
     <p>
     <p>
-        <label for="sponsor-facebook"><strong>Facebook web address (URL) for the Event Sponsor</strong></label>
+        <label for="sponsor-facebook"><strong>Facebook name for the Event sponsor</strong></label>
     </p>
     <p>
-        <input id="sponsor-facebook" class="regular-text" type="url"
+        <input id="sponsor-facebook" class="regular-text" type="text"
                name="<?php echo $meta_box_id; ?>[sponsor-facebook]"
                value="<?php echo esc_attr( $custom_fields['sponsor-facebook'] ); ?>"
-               placeholder="https://www.facebook.com/{name-of-organization}">
+               placeholder="{name-of-organization}">
     </p>
-    <span class="description">Enter the sponsoring organization's Facebook URL in the field above.</span>
+    <span class="description">Enter the event sponsor's Facebook name in the field above. There is no need to precede the name with 'https://facebook.com/...'.</span>
     </p>
     <p>
         <label for="sponsor-twitter"><strong>Twitter handle for the Event Sponsor</strong></label>
