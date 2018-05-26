@@ -64,7 +64,7 @@ function render_event_map( $event_id ) {
 }
 
 function render_event_tel_number( $event_id ) {
-	$tel_number = (string) esc_html( get_post_meta( $event_id, 'sponsor-tel-number', true ) );
+	$tel_number = (string) get_post_meta( $event_id, 'sponsor-tel-number', true );
 
 	if ( empty( $tel_number ) ) {
 		return;
@@ -74,35 +74,32 @@ function render_event_tel_number( $event_id ) {
 }
 
 function render_event_url( $event_id ) {
-	$domain = (string) esc_html( get_post_meta( $event_id, 'sponsor-domain-name', true ) );
-//	ddd( $domain );
+	$domain = (string) get_post_meta( $event_id, 'sponsor-domain-name', true );
+
 	if ( empty( $domain ) ) {
 		return;
 	}
-
-	$url = is_ssl() ? 'https://' : 'http://';
-	$url .=  $domain;
 
 	require _get_plugin_directory() . '/src/views/sponsor-url.php';
 }
 
 
 function render_event_facebook_link( $event_id ) {
-	$facebook = (string) esc_html( get_post_meta( $event_id, 'sponsor-facebook', true ) );
+	$facebook = (string) get_post_meta( $event_id, 'sponsor-facebook', true );
 
 	if ( empty( $facebook ) ) {
 		return;
 	}
+
 	require _get_plugin_directory() . '/src/views/facebook.php';
 }
 
 function render_event_twitter_link( $event_id ) {
-	$twitter = (string) esc_html( get_post_meta( $event_id, 'sponsor-twitter', true ) );
+	$twitter = (string) get_post_meta( $event_id, 'sponsor-twitter', true );
 
 	if ( empty( $twitter ) ) {
 		return;
 	}
 
 	require _get_plugin_directory() . '/src/views/twitter.php';
-
 }
