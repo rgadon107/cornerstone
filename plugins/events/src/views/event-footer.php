@@ -5,12 +5,13 @@
 namespace spiralWebDb\Events;
 
 ?>
-<footer class="entry-footer">
-    <div class="wrap--sponsor-tel-number"><?php render_event_tel_number( $event_id ); ?></div>
+<ul>
+    <li class="tel-number sponsor-tel-number"><?php render_event_tel_number( $event_id ); ?></li>
     <hr>
-    <div class="web-site sponsor-web-site"><?php render_event_url( $event_id ); ?></div>
-    <div class="social-links sponsor-social-links">
-        <div><?php render_event_facebook_link( $event_id ); ?></div>
-        <div><?php render_event_twitter_link( $event_id ); ?></div>
-    </div>
-</footer>
+    <li class="web-site sponsor-web-site"><?php render_event_url( $event_id ); ?></li>
+
+    <ul class="social-links sponsor-social-links">
+        <li><?php render_event_facebook_link( $event_id ); ?></li>
+        <li><?php render_event_twitter_link( $event_id ); ?></li>
+    </ul>
+</ul>
