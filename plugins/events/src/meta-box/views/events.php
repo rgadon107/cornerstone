@@ -57,6 +57,29 @@ use KnowTheCode\ConfigStore;
         </select>
     </p>
     <span class="description">We'll use the address City and State to allow visitors to search the event on the front end.</span>
+    <hr>
+    <div>
+        <p>
+            <label for="telephone-number"><strong>Event Sponsor Telephone Number</strong></label>
+        </p>
+        <input id="telephone-number" type="tel" name="<?php echo $meta_box_id; ?>[sponsor-tel-number]"
+               value="<?php echo esc_attr( $custom_fields['sponsor-tel-number'] ); ?>" placeholder="###-###-####">
+        </p>
+        <span class="description">Enter 10-digit telephone number, area code first.</span>
+    </div>
+    <div>
+        <p>
+            <label for="maplink-to-event-venue"><strong>Google Maps web address (URI) for Event
+                    location</strong></label>
+        </p>
+        <p>
+            <input id="maplink-to-event-venue" class="regular-text" type="url"
+                   name="<?php echo $meta_box_id; ?>[event-map-url]"
+                   value="<?php echo esc_url( $custom_fields['event-map-url'] ); ?>"
+                   placeholder="https://goo.gl/maps/{remaining-uri}">
+        </p>
+        <span class="description">Open Google Maps and enter the address for the performance location. Select the 'Share' button. A box will display a 'Link to Share'. Select the 'Copy Link' button to copy the short URI to your clipboard. Paste the short URI into this custom field.</span>
+    </div>
 </div>
 <hr>
 <div>
@@ -78,52 +101,36 @@ use KnowTheCode\ConfigStore;
 <hr>
 <div>
     <p>
-        <label for="sponsor-domain-name"><strong>Web Address (domain name) for the Event sponsor</strong></label>
+        <label for="sponsor-domain-name"><strong>Web address (URI) for the Event sponsor</strong></label>
     </p>
     <p>
-        <input id="sponsor-domain-name" class="regular-text" type="text" name="<?php echo $meta_box_id; ?>[sponsor-domain-name]"
-               value="<?php echo esc_attr( $custom_fields['sponsor-domain-name'] ); ?>" placeholder="{domain-name}">
+        <input id="sponsor-domain-name" class="regular-text" type="url"
+               name="<?php echo $meta_box_id; ?>[sponsor-domain-name]"
+               value="<?php echo esc_attr( $custom_fields['sponsor-domain-name'] ); ?>"
+               placeholder="http:// or https://{event-uri-here}">
     </p>
-    <span class="description">Enter the web address (domain name) for the event sponsor. There is no need to precede the name with 'http://' or 'https://'.</span>
+    <span class="description">Open the event sponsor's website on their front page. Copy the web address (URI) from the browser address bar. Paste the entire web address into this custom field. If the event sponsor has a website, it will display as a link on the front end.</span>
     <p>
     <p>
-        <label for="sponsor-facebook"><strong>Facebook name for the Event sponsor</strong></label>
+        <label for="sponsor-facebook"><strong>Facebook web address (URI) for the Event sponsor</strong></label>
     </p>
     <p>
-        <input id="sponsor-facebook" class="regular-text" type="text"
+        <input id="sponsor-facebook" class="large-text" type="url"
                name="<?php echo $meta_box_id; ?>[sponsor-facebook]"
                value="<?php echo esc_attr( $custom_fields['sponsor-facebook'] ); ?>"
-               placeholder="{name-of-organization}">
+               placeholder="https://facebook.com/{event-sponsor-facebook-page}">
     </p>
-    <span class="description">Enter the event sponsor's Facebook name in the field above. There is no need to precede the name with 'https://facebook.com/...'.</span>
-    </p>
-    <p>
-        <label for="sponsor-twitter"><strong>Twitter handle for the Event Sponsor</strong></label>
+    <span class="description">Open the event sponsor's Facebook page on the 'Home' option tab. Copy the web address (URI) from the browser address bar. Paste the entire web address into this custom field. If the event sponsor has a Facebook account, it will display as a link on the front end.</span>
     </p>
     <p>
-        <input id="sponsor-twitter" class="regular-text" type="text" name="<?php echo $meta_box_id; ?>[sponsor-twitter]"
-               value="<?php echo esc_attr( $custom_fields['sponsor-twitter'] ); ?>" placeholder="@{twitter-handle}">
-    </p>
-    <span class="description">If the sponsor has a Twitter account, add their 'handle' in the field above. The account name is preceded by an '@' symbol.</span>
-    <hr>
-    <label for="telephone-number"><strong>Telephone Number for Event Sponsor</strong></label>
-    </p>
-    <input id="telephone-number" type="tel" name="<?php echo $meta_box_id; ?>[sponsor-tel-number]"
-           value="<?php echo esc_attr( $custom_fields['sponsor-tel-number'] ); ?>" placeholder="###-###-####">
-    </p>
-    <span class="description">Enter 10-digit telephone number, area code first.</span>
-</div>
-<hr>
-<div>
-    <p>
-        <label for="maplink-to-event-venue"><strong>Map to Event Venue</strong></label>
+        <label for="sponsor-twitter"><strong>Twitter web address (URI) for the Event Sponsor</strong></label>
     </p>
     <p>
-        <input id="maplink-to-event-venue" class="regular-text" type="url"
-               name="<?php echo $meta_box_id; ?>[event-map-url]"
-               value="<?php echo esc_url( $custom_fields['event-map-url'] ); ?>" placeholder="https://{url}">
+        <input id="sponsor-twitter" class="large-text" type="url" name="<?php echo $meta_box_id; ?>[sponsor-twitter]"
+               value="<?php echo esc_attr( $custom_fields['sponsor-twitter'] ); ?>"
+               placeholder="https://twitter.com/{event-sponsor-account-name}?lang=en">
     </p>
-    <span class="description">Enter the URL for the event address. In Google Maps, select the "Share" link to display the map URL, then select the "short URL" option.  Copy and paste the shortened URL to this form.</span>
+    <span class="description">Open the event sponsor's Twitter page. Copy the web address (URI) from the browser address bar. Paste the entire web address into this custom field. If the event sponsor has a Twitter account, it will display as a link on the front end.</span>
 </div>
 <hr>
 <div>
@@ -136,5 +143,12 @@ use KnowTheCode\ConfigStore;
                value="<?php echo esc_url( $custom_fields['venue-image'] ); ?>"
                placeholder="https://cornerstonechorale.org/wp-content/uploads/{yyyy}/{mm}/{filename}">
     </p>
-    <span class="description">Upload the image of the event venue to the Media Library. Then copy the image URL from the Media Library and paste it here.</span>
+    <span class="description">(1) Upload an image of the event venue to the site Media Library at 'Media' -> 'Add New'.</br>
+        (2) Open 'Media' -> 'Library' and select the image you intend to use for this Event.</br>
+        (3) Double click on the selected image to view 'Attachment Details'.</br>
+        (4) On the right side of the 'Attachment Details' box, highlight the URL for the image. Copy the URL to your clipboard.</br>
+        (5) Paste the attachment URL to the custom field above.</br>
+        </br>
+        If an image is not available, a music icon will be displayed instead.</br>
+    </span>
 </div>
