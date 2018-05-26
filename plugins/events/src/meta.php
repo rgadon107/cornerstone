@@ -21,8 +21,8 @@ namespace spiralWebDb\Events;
  * @return void
  */
 function render_performance_date_and_time( $event_id ) {
-	$event_date = (string) esc_html( get_post_meta( $event_id, 'event-date', true ) );
-	$event_time = (string) esc_html( get_post_meta( $event_id, 'event-time', true ) );
+	$event_date = (string) get_post_meta( $event_id, 'event-date', true );
+	$event_time = (string) get_post_meta( $event_id, 'event-time', true );
 
 	$event_date     = strtotime( $event_date );
 	$formatted_date = date( 'l, F j, Y', $event_date );
@@ -31,35 +31,35 @@ function render_performance_date_and_time( $event_id ) {
 	$formatted_time = date( 'g:i A', $event_time );
 
 	if ( $event_date && $event_time ) {
-		echo $formatted_date . ' at ' . $formatted_time;
+		echo esc_html( $formatted_date ) . ' at ' . esc_html( $formatted_time );
 	} else {
-		echo $formatted_date;
+		echo esc_html( $formatted_date );
 	}
 }
 
 function render_performance_address( $event_id ) {
-	$event_address = (string) esc_html( get_post_meta( $event_id, 'venue-address', true ) );
-	$event_city    = (string) esc_html( get_post_meta( $event_id, 'venue-city', true ) );
-	$event_state   = (string) esc_html( get_post_meta( $event_id, 'venue-state', true ) );
+	$event_address  = (string) get_post_meta( $event_id, 'venue-address', true ) );
+	$event_city     = (string) get_post_meta( $event_id, 'venue-city', true ) );
+	$event_state    = (string) get_post_meta( $event_id, 'venue-state', true ) );
 
 	$message = 'The performance address is not yet confirmed. Check back soon for updated information.';
 
 	if ( $event_address && $event_city && $event_state ) {
-		echo $event_address . ', ' . $event_city . ', ' . $event_state;
+		echo esc_html( $event_address ) . ', ' . esc_html( $event_city ) . ', ' . esc_html( $event_state );
 	} elseif ( $event_city && $event_state ) {
-		echo $event_city . ', ' . $event_state;
+		echo esc_html( $event_city ) . ', ' . esc_html( $event_state );
 	} else {
 		echo $message;
 	}
 }
 
 function render_event_map( $event_id ) {
-	$event_map = (string) esc_html( get_post_meta( $event_id, 'event-map-url', true ) );
+	$event_map = (string) get_post_meta( $event_id, 'event-map-url', true );
 
 	if ( ! $event_map ) {
 		return '';
 	} else {
-		echo $event_map;
+		echo esc_html( $event_map );
 	}
 }
 
