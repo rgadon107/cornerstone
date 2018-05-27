@@ -13,6 +13,26 @@ namespace spiralWebDb\Events\Template;
 
 d( 'Loaded the single-events template' );
 
+add_action( 'genesis_entry_header', __NAMESPACE__ . '\add_content_wrap_markup_open', 3 );
+/*
+ *
+ */
+function add_content_wrap_markup_open() {
+	$event_id = (int) get_the_ID();
+
+	printf( '<div %s>', genesis_attr( 'before-entry-header-wrap' ) );
+
+	require dirname( __DIR__ ) . '/views/before-entry-header.php';
+}
+
+add_action( 'genesis_entry_header', __NAMESPACE__ . '\add_content_wrap_markup_close', 99 );
+/*
+ *
+ */
+function add_content_wrap_markup_close() {
+	echo '</div>';
+}
+
 add_filter( 'genesis_attr_entry', __NAMESPACE__ . '\modify_entry_content_attributes', 99 );
 /**
  * Modify the Genesis entry-content class attributes and microdata schema.
@@ -61,18 +81,6 @@ function modify_entry_title_attributes( $attributes ) {
 	return $attributes;
 }
 
-//add_filter( 'the_title', __NAMESPACE__ . '\prepend_icon_to_post_title' );
-///*
-// *
-// */
-//function prepend_icon_to_post_title( $title ) {
-//	if ( is_single() && 'events' == get_post_type() ) {
-//		$pre_text = 'Some text ';
-//	}
-//
-//	return $pre_text . $title;
-//}
-
 add_filter( 'genesis_post_info', __NAMESPACE__ . '\modify_entry_meta_before_content', 999 );
 /*
  * Modify the event entry meta before the post content.
@@ -88,7 +96,7 @@ function modify_entry_meta_before_content() {
 
 }
 
-add_filter( 'genesis_post_meta',  __NAMESPACE__ . '\modify_entry_meta_after_content', 999 );
+add_filter( 'genesis_post_meta', __NAMESPACE__ . '\modify_entry_meta_after_content', 999 );
 /*
  * Modify the event entry meta after post content.
  *
@@ -96,7 +104,7 @@ add_filter( 'genesis_post_meta',  __NAMESPACE__ . '\modify_entry_meta_after_cont
  *
  * @return void
  */
-function modify_entry_meta_after_content()  {
+function modify_entry_meta_after_content() {
 	$event_id = (int) get_the_ID();
 
 	require dirname( __DIR__ ) . '/views/event-footer.php';
