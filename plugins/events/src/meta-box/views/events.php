@@ -87,16 +87,27 @@ use KnowTheCode\ConfigStore;
         <label for="admission"><strong>Admission</strong></label>
     </p>
     <p>
-        <input id="admission" type="checkbox" value="1"
-               name="<?php echo $meta_box_id; ?>[admission]" <?php checked( $custom_fields['admission'], 1 ); ?>>
-        <span class="description">If checked, admission will be charged for this event.</span>
+        <label for="regular-admission">Adult General Admission (USD): </label>
     </p>
     <p>
-        <label for="regular-admission">Adult (USD): </label>
         <input id="regular-admission" type="number" name="<?php echo $meta_box_id; ?>[regular-admission]"
                value="<?php echo esc_attr( $custom_fields['regular-admission'] ); ?>" placeholder="20.00" step="0.50"
                min="0.00">
     </p>
+    </p>
+        <span class="description">Enter the amount to display for general admission. The default value is $15.00. Can be set to '0' for free events.</span>
+    </p>
+    <p>
+        <label for="admission-text-field">Admission Text Field (optional)</label>
+    </p>
+    <p>
+        <input id="admission-text-field" class="large-text" type="text"
+               name="<?php echo $meta_box_id; ?>[admission-text-field]"
+               value="<?php echo esc_attr( $custom_fields['admission-text-field'] ); ?>">
+    </p>
+    <span class="description">Add any comments about the event admission here. Examples include:</br></br> (1) whether tickets are available for advanced purchase or only at the door;<br> (2) special admission rates that apply for youth, teens, or college students;</br>
+        (3) whether event proceeds will benefit a specific charity; or</br>(4) free admission offered by a sponsoring organization.</span>
+
 </div>
 <hr>
 <div>
@@ -109,7 +120,7 @@ use KnowTheCode\ConfigStore;
                value="<?php echo esc_attr( $custom_fields['sponsor-domain-name'] ); ?>"
                placeholder="http:// or https://{event-uri-here}">
     </p>
-    <span class="description">Open the event sponsor's website on their front page. Copy the web address (URI) from the browser address bar. Paste the entire web address into this custom field. If the event sponsor has a website, it will display as a link on the front end.</span>
+    <span class="description">Open the event sponsor's website on their front page. Copy the web address (URI) from the browser address bar. Paste the entire web address into this custom field. If the event sponsor has a website, it will display and icon and a link on the front end.</span>
     <p>
     <p>
         <label for="sponsor-facebook"><strong>Facebook web address (URI) for the Event sponsor</strong></label>
@@ -120,7 +131,7 @@ use KnowTheCode\ConfigStore;
                value="<?php echo esc_attr( $custom_fields['sponsor-facebook'] ); ?>"
                placeholder="https://facebook.com/{event-sponsor-facebook-page}">
     </p>
-    <span class="description">Open the event sponsor's Facebook page on the 'Home' option tab. Copy the web address (URI) from the browser address bar. Paste the entire web address into this custom field. If the event sponsor has a Facebook account, it will display as a link on the front end.</span>
+    <span class="description">Open the event sponsor's Facebook page. If the site has an 'Events' option tab, you want to open that. Copy the web address (URI) from the browser address bar. Paste the entire web address into this custom field. If the event sponsor has a Facebook account, it will display an icon and a link on the front end.</span>
     </p>
     <p>
         <label for="sponsor-twitter"><strong>Twitter web address (URI) for the Event Sponsor</strong></label>
@@ -130,7 +141,7 @@ use KnowTheCode\ConfigStore;
                value="<?php echo esc_attr( $custom_fields['sponsor-twitter'] ); ?>"
                placeholder="https://twitter.com/{event-sponsor-account-name}?lang=en">
     </p>
-    <span class="description">Open the event sponsor's Twitter page. Copy the web address (URI) from the browser address bar. Paste the entire web address into this custom field. If the event sponsor has a Twitter account, it will display as a link on the front end.</span>
+    <span class="description">Open the event sponsor's Twitter page. Copy the web address (URI) from the browser address bar. Paste the entire web address into this custom field. If the event sponsor has a Twitter account, it will display an icon and a link on the front end.</span>
 </div>
 <hr>
 <div>
