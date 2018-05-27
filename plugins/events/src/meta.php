@@ -156,3 +156,22 @@ function render_event_twitter_link( $event_id ) {
 
 	require _get_plugin_directory() . '/src/views/twitter.php';
 }
+
+/*
+ * Render the Event sponsor's post thumbnail image.
+ *
+ * @since 1.4.0
+ *
+ * @param int $event_id The event ID.
+ *
+ * @return void
+ */
+function render_event_venue_image( $event_id )  {
+	$image = (string) get_post_meta( $event_id, 'venue-image', true );
+
+	if ( empty( $image ) ) {
+		return;
+	}
+
+	echo esc_html( $image );
+}
