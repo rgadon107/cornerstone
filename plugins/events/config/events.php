@@ -130,12 +130,12 @@ return array(
 				'sanitize'     => 'strip_tags',
 			),
 			// specify this field's meta key.  It's used in the database.
-			'admission'          => array(
+			'regular-admission'  => array(
 				// True - means it's a single
 				// False - means it's an array
 				'is_single'    => true,
 				// Specify the custom field's default value.
-				'default'      => 1.00,
+				'default'      => '15.00',
 				// What is the state that signals to delete this meta key
 				// from the database.
 				'delete_state' => '',
@@ -144,18 +144,18 @@ return array(
 				'sanitize'     => 'floatval',
 			),
 			// specify this field's meta key.  It's used in the database.
-			'regular-admission'  => array(
+			'admission-text-field'  => array(
 				// True - means it's a single
 				// False - means it's an array
 				'is_single'    => true,
 				// Specify the custom field's default value.
-				'default'      => 1,
+				'default'      => '',
 				// What is the state that signals to delete this meta key
 				// from the database.
 				'delete_state' => '',
 				// callable sanitizer function such as
 				// sanitize_text_field, sanitize_email, strip_tags, intval, etc.
-				'sanitize'     => 'floatval',
+				'sanitize'     => 'sanitize_text_field',
 			),
 			// specify this field's meta key.  It's used in the database.
 			'sponsor-tel-number' => array(
@@ -169,7 +169,7 @@ return array(
 				'delete_state' => '',
 				// callable sanitizer function such as
 				// sanitize_text_field, sanitize_email, strip_tags, intval, etc.
-				'sanitize'     => 'strip_tags',
+				'sanitize'     => 'sanitize_text_field',
 			),
 			// specify this field's meta key.  It's used in the database.
 			'sponsor-domain-name' => array(
