@@ -47,9 +47,9 @@ function render_performance_date_and_time( $event_id ) {
  * @return void
  */
 function render_performance_address( $event_id ) {
-	$event_address  = (string) get_post_meta( $event_id, 'venue-address', true );
-	$event_city     = (string) get_post_meta( $event_id, 'venue-city', true );
-	$event_state    = (string) get_post_meta( $event_id, 'venue-state', true );
+	$event_address = (string) get_post_meta( $event_id, 'venue-address', true );
+	$event_city    = (string) get_post_meta( $event_id, 'venue-city', true );
+	$event_state   = (string) get_post_meta( $event_id, 'venue-state', true );
 
 	$message = 'The performance address is not yet confirmed. Check back soon for updated information.';
 
@@ -166,7 +166,7 @@ function render_event_twitter_link( $event_id ) {
  *
  * @return void
  */
-function render_event_venue_image( $event_id )  {
+function render_event_venue_image( $event_id ) {
 	$image = (string) get_post_meta( $event_id, 'venue-image', true );
 
 	if ( empty( $image ) ) {
