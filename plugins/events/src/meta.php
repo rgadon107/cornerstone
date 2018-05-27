@@ -12,7 +12,7 @@
 namespace spiralWebDb\Events;
 
 /**
- * Render the Event metadata
+ * Render the Event performance date and time.
  *
  * @since 1.4.0
  *
@@ -37,6 +37,15 @@ function render_performance_date_and_time( $event_id ) {
 	}
 }
 
+/*
+ * Render the Event performance address.
+ *
+ * @since 1.4.0
+ *
+ * @param int $event_id The event ID.
+ *
+ * @return void
+ */
 function render_performance_address( $event_id ) {
 	$event_address  = (string) get_post_meta( $event_id, 'venue-address', true );
 	$event_city     = (string) get_post_meta( $event_id, 'venue-city', true );
@@ -53,6 +62,15 @@ function render_performance_address( $event_id ) {
 	}
 }
 
+/*
+ * Render the Event Google Map link.
+ *
+ * @since 1.4.0
+ *
+ * @param int $event_id The event ID.
+ *
+ * @return void
+ */
 function render_event_map( $event_id ) {
 	$event_map = (string) get_post_meta( $event_id, 'event-map-url', true );
 
@@ -63,6 +81,15 @@ function render_event_map( $event_id ) {
 	}
 }
 
+/*
+ * Render the Event sponsor's telephone number.
+ *
+ * @since 1.4.0
+ *
+ * @param int $event_id The event ID.
+ *
+ * @return void
+ */
 function render_event_tel_number( $event_id ) {
 	$tel_number = (string) get_post_meta( $event_id, 'sponsor-tel-number', true );
 
@@ -73,6 +100,15 @@ function render_event_tel_number( $event_id ) {
 	require _get_plugin_directory() . '/src/views/tel-number.php';
 }
 
+/*
+ * Render the link to the Event sponsor's website.
+ *
+ * @since 1.4.0
+ *
+ * @param int $event_id The event ID.
+ *
+ * @return void
+ */
 function render_event_url( $event_id ) {
 	$domain = (string) get_post_meta( $event_id, 'sponsor-domain-name', true );
 
@@ -83,7 +119,15 @@ function render_event_url( $event_id ) {
 	require _get_plugin_directory() . '/src/views/sponsor-url.php';
 }
 
-
+/*
+ * Render the link to the Event sponsor's Facebook page.
+ *
+ * @since 1.4.0
+ *
+ * @param int $event_id The event ID.
+ *
+ * @return void
+ */
 function render_event_facebook_link( $event_id ) {
 	$facebook = (string) get_post_meta( $event_id, 'sponsor-facebook', true );
 
@@ -94,6 +138,15 @@ function render_event_facebook_link( $event_id ) {
 	require _get_plugin_directory() . '/src/views/facebook.php';
 }
 
+/*
+ * Render the link to the Event sponsor's Twitter page.
+ *
+ * @since 1.4.0
+ *
+ * @param int $event_id The event ID.
+ *
+ * @return void
+ */
 function render_event_twitter_link( $event_id ) {
 	$twitter = (string) get_post_meta( $event_id, 'sponsor-twitter', true );
 
