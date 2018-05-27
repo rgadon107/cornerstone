@@ -1,6 +1,6 @@
 <?php
 /*
- * Before entry header view file. 
+ * Before entry header view file.
  */
 namespace spiralWebDb\Events;
 ?>

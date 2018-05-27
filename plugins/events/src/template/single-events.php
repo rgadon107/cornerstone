@@ -15,7 +15,11 @@ d( 'Loaded the single-events template' );
 
 add_action( 'genesis_entry_header', __NAMESPACE__ . '\add_content_wrap_markup_open', 3 );
 /*
+ * Add content wrap around Event entry_header.
  *
+ * @since 1.0.0
+ *
+ * return void
  */
 function add_content_wrap_markup_open() {
 	$event_id = (int) get_the_ID();
@@ -27,7 +31,11 @@ function add_content_wrap_markup_open() {
 
 add_action( 'genesis_entry_header', __NAMESPACE__ . '\add_content_wrap_markup_close', 99 );
 /*
+ * Close content wrap around Event entry_header.
  *
+ * @since 1.0.0
+ *
+ * return void
  */
 function add_content_wrap_markup_close() {
 	echo '</div>';
