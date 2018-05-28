@@ -12,4 +12,5 @@ namespace spiralWebDb\Events;
         <?php render_performance_address( $event_id ); ?></p>
     <p class="event-map" itemprop="hasMap"><span class="fas fa-map-marker"></span>
         <a itemprop="map" itemtype="http://schema.org/Map" href="<?php render_event_map( $event_id ); ?>" target="_blank"> Google Map</a></p>
+    <p class="event-admission" itemprop="price" itemtype="http://schema.org/Ticket"><span class="fas fa-ticket-alt"></span><?php render_addmission_information( $event_id ); ?></p>
 </div>
