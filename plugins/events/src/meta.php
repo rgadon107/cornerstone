@@ -11,6 +11,25 @@
 
 namespace spiralWebDb\Events;
 
+/*
+ * Render the Event sponsor's post thumbnail image.
+ *
+ * @since 1.4.0
+ *
+ * @param int $event_id The event ID.
+ *
+ * @return void
+ */
+function render_event_venue_image( $event_id ) {
+	$image = (string) get_post_meta( $event_id, 'venue-image', true );
+
+	if ( empty( $image ) ) {
+		return;
+	}
+
+	echo esc_html( $image );
+}
+
 /**
  * Render the Event performance date and time.
  *
@@ -78,6 +97,33 @@ function render_event_map( $event_id ) {
 		return '';
 	} else {
 		echo esc_html( $event_map );
+	}
+}
+
+/*
+ * Render the Event admission information
+ *
+ * @since 1.4.0
+ *
+ * @param int $event_id The event ID.
+ *
+ * @return void
+ */
+function render_addmission_information( $event_id ) {
+	$admission            = (string) get_post_meta( $event_id, 'regular-admission', true );
+	$admission_text_field = (string) get_post_meta( $event_id, 'admission-text-field', true );
+
+	if ( empty( $admission ) && empty( $admission_text_field ) ) {
+		return;
+	}
+
+	if ( $admission && $admission_text_field ) {
+		echo 'General Admission: $' .esc_html( $admission ) . '</br>' .
+		     esc_html( $admission_text_field );
+	} elseif ( $admission ) {
+		echo 'General Admission: $' . esc_html( $admission );
+	} else {
+		echo esc_html( $admission_text_field );
 	}
 }
 
@@ -155,23 +201,4 @@ function render_event_twitter_link( $event_id ) {
 	}
 
 	require _get_plugin_directory() . '/src/views/twitter.php';
-}
-
-/*
- * Render the Event sponsor's post thumbnail image.
- *
- * @since 1.4.0
- *
- * @param int $event_id The event ID.
- *
- * @return void
- */
-function render_event_venue_image( $event_id ) {
-	$image = (string) get_post_meta( $event_id, 'venue-image', true );
-
-	if ( empty( $image ) ) {
-		return;
-	}
-
-	echo esc_html( $image );
 }
