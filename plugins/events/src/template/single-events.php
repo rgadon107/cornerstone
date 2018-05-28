@@ -11,8 +11,6 @@
 
 namespace spiralWebDb\Events\Template;
 
-d( 'Loaded the single-events template' );
-
 add_action( 'genesis_entry_header', __NAMESPACE__ . '\add_content_wrap_markup_open', 3 );
 /*
  * Add content wrap around Event entry_header.
@@ -103,6 +101,9 @@ function modify_entry_meta_before_content() {
 	require dirname( __DIR__ ) . '/views/entry-meta-before-event.php';
 
 }
+
+// Ensure that no content in the editor is accidentally rendered on the front-end.
+remove_all_filters( 'genesis_entry_content' );
 
 add_filter( 'genesis_post_meta', __NAMESPACE__ . '\modify_entry_meta_after_content', 999 );
 /*
