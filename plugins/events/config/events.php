@@ -1,19 +1,15 @@
 <?php
 /**
- * Portfolio Meta Box Configuration Model
+ * Events Meta Box Runtime Configuration Parameters
  *
- * 'Events' Runtime Configuration Parameters
- *
- * @package     spiralWebDb\Metadata
- * @since       1.0.0
- * @author      hellofromTonya
- * @link        https://KnowTheCode.io
- * @license     GNU-2.0+
+ * @package    spiralWebDb\Events
+ * @since      1.4.0
+ * @author     Robert A. Gadon
+ * @link       http://spiralwebdb.com
+ * @license    GPL-2.0+
  */
 
-namespace spiralWebDB\Metadata;
-
-use function spiralWebDb\Events\_get_plugin_directory;
+namespace spiralWebDB\Events;
 
 return array(
 	/************************************************************
