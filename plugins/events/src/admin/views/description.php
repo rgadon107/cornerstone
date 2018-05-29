@@ -1,0 +1,1 @@
+<span class="description">Enter a title in the field above for this performance event. Enter the event information below in the box labeled "Event Information".</span>

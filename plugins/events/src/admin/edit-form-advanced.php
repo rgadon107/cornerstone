@@ -38,10 +38,9 @@ add_action( 'edit_form_before_permalink', __NAMESPACE__ . '\add_description_bene
  * @return void
  */
 function add_description_beneath_post_title() {
-	if ( 'events' == get_post_type() ) {
-
-		echo sprintf( '<span class="description">%s</span>',
-			'Enter a title in the field above for this performance event. 
-			Enter the event information below in the box labeled "Event Information".' );
+	if ( 'events' !== get_post_type() ) {
+		return;
 	}
+
+	include __DIR__ . '/views/description.php';
 }
