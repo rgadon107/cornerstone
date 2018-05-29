@@ -21,13 +21,18 @@ namespace spiralWebDb\Events;
  * @return void
  */
 function render_event_venue_image( $event_id ) {
-	$image = (string) get_post_meta( $event_id, 'venue-image', true );
 
-	if ( empty( $image ) ) {
+	// If there's no image, bail out.
+	if ( ! has_post_thumbnail( $event_id ) ) {
 		return;
 	}
 
-	echo esc_html( $image );
+	echo get_the_post_thumbnail( $event_id, 'full', [
+		'class'    => 'first event-thumbnail',
+		'itemprop' => 'thumbnail',
+		'itemscope' > 'itemscope',
+		'itemtype' => 'http://schema.org/ImageObject',
+	] );
 }
 
 /**

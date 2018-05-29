@@ -143,23 +143,3 @@ use KnowTheCode\ConfigStore;
     </p>
     <span class="description">Open the event sponsor's Twitter page. Copy the web address (URI) from the browser address bar. Paste the entire web address into this custom field. If the event sponsor has a Twitter account, it will display an icon and a link on the front end.</span>
 </div>
-<hr>
-<div>
-    <p>
-        <label for="venue-image"><strong>Image of Event Venue</strong></label>
-    </p>
-    <p>
-        <input id="venue-image" class="large-text" type="url"
-               name="<?php echo $meta_box_id; ?>[venue-image]"
-               value="<?php echo esc_url( $custom_fields['venue-image'] ); ?>"
-               placeholder="https://cornerstonechorale.org/wp-content/uploads/{yyyy}/{mm}/{filename}">
-    </p>
-    <span class="description">(1) Upload an image of the event venue to the site Media Library at 'Media' -> 'Add New'.</br>
-        (2) Open 'Media' -> 'Library' and select the image you intend to use for this Event.</br>
-        (3) Double click on the selected image to view 'Attachment Details'.</br>
-        (4) On the right side of the 'Attachment Details' box, highlight the URL for the image. Copy the URL to your clipboard.</br>
-        (5) Paste the attachment URL to the custom field above.</br>
-        </br>
-        If an image is not available, a music icon will be displayed instead.</br>
-    </span>
-</div>

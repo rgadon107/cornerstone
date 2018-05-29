@@ -50,7 +50,7 @@ return array(
 			'comments',
 			'trackbacks',
 //			'custom-fields',
-			'thumbnail',
+//			'thumbnail',
 			'author',
 			'post-formats',
 			'genesis-seo',

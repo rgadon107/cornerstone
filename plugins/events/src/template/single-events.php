@@ -11,6 +11,8 @@
 
 namespace spiralWebDb\Events\Template;
 
+use function spiralWebDb\Events\render_event_venue_image;
+
 add_action( 'genesis_entry_header', __NAMESPACE__ . '\add_content_wrap_markup_open', 3 );
 /*
  * Add content wrap around Event entry_header.
@@ -24,7 +26,7 @@ function add_content_wrap_markup_open() {
 
 	printf( '<div %s>', genesis_attr( 'before-entry-header-wrap' ) );
 
-	require dirname( __DIR__ ) . '/views/before-entry-header.php';
+	render_event_venue_image( $event_id );
 }
 
 add_action( 'genesis_entry_header', __NAMESPACE__ . '\add_content_wrap_markup_close', 99 );
