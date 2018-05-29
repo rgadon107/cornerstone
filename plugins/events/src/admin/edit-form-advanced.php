@@ -22,11 +22,11 @@ add_filter( 'enter_title_here', __NAMESPACE__ . '\change_title_placeholder_text'
  * @return string $text
  */
 function change_title_placeholder_text( $text ) {
-	if ( 'events' == get_post_type() ) {
-		$text = esc_html( 'Title of performance event.' );
+	if ( 'events' !== get_post_type() ) {
+		return $text;
 	}
 
-	return $text;
+	return 'Title of performance event.';
 }
 
 add_action( 'edit_form_before_permalink', __NAMESPACE__ . '\add_description_beneath_post_title' );
