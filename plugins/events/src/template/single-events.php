@@ -52,7 +52,6 @@ add_filter( 'genesis_attr_entry', __NAMESPACE__ . '\modify_entry_content_attribu
  * @return array $attributes Modified attributes.
  */
 function modify_entry_content_attributes( $attributes ) {
-
 	$attributes['class']    .= ' event-' . (int) get_the_ID();
 	$attributes['itemtype'] = 'https://schema.org/MusicEvent';
 
@@ -69,7 +68,6 @@ add_filter( 'genesis_attr_entry-title', __NAMESPACE__ . '\modify_entry_title_att
  * @return array $attributes Modified attributes.
  */
 function modify_entry_title_attributes( $attributes ) {
-
 	$attributes['class']    .= ' event-title';
 	$attributes['itemprop'] = 'location';
 	$attributes['itemtype'] = 'https://schema.org/MusicVenue';
@@ -89,7 +87,6 @@ function modify_entry_meta_before_content() {
 	$event_id = (int) get_the_ID();
 
 	require dirname( __DIR__ ) . '/views/entry-meta-before-event.php';
-
 }
 
 // Ensure that no content in the editor is accidentally rendered on the front-end.
@@ -107,7 +104,6 @@ function modify_entry_meta_after_content() {
 	$event_id = (int) get_the_ID();
 
 	require dirname( __DIR__ ) . '/views/event-footer.php';
-
 }
 
 // Notes: Even though Tonya includes a view file at '/src/views/review.php', she didn't
