@@ -13,8 +13,34 @@ namespace spiralWebDb\Events\Template;
 
 ddd( 'Loaded the archive-events template' );
 
+remove_action( 'genesis_loop', 'genesis_do_loop' );
+add_action( 'genesis_loop', __NAMESPACE__ . '\loop_and_render_events' );
+
+/**
+ *  Loop through and render out the Events
+ *
+ * @since 1.0.0
+ *
+ * @param array $events
+ *
+ * @return void
+ */
+function loop_and_render_events( array $events ) {
+
+	foreach ( $events as $event ) {
+		$post_title = $faq['post_title'];
+		$content    = do_shortcode( $faq['post_content'] );
+		$show_icon  = esc_attr( $attributes['show_icon'] );
+		$hide_icon  = esc_attr( $attributes['hide_icon'] );
+
+		include _get_plugin_directory() . '/src/views/faq.php';
+	}
+}
+
 // 1. Remove the default genesis_loop and replace with a custom events loop
-// to display all the single events.
+// to display all the single events. Review `wp-content/plugins/faq/src/template/archive-faq.php`
+// and walk the code. Determine how the faqs get rendered. What will apply in this
+// plugin?
 
 // 2. Get all the records for the 'events' post type.
 // Question: If I don't have a custom taxonomy term to add to my db query,
@@ -27,15 +53,5 @@ ddd( 'Loaded the archive-events template' );
 // 5. Loop through and render the single-events view file to build the archive view.
 // Question: Can I customize the loop to render less data than what's presented in the
 // single-events.php template?
-
-// Data that I want to render in each single-event within the Events archive:
-// Image of Event Venue; postmeta: 'events[event-venue-image]'
-// Performance Date (day-of-week; postmeta: 'events[event-day]',
-// Performance Date (date (MMDDYYYY); postmeta: 'events[event-date]',
-// Performance Time; postmeta: 'events[event-time]',
-// Performance Venue -- Address (Street); postmeta: 'events[venue-address]',
-// Performance Venue -- Address (City); postmeta: 'events[venue-city]',
-// Performance Venue -- Address (State); postmeta: 'events[venue-state]',
-// Admission Price; postmeta: 'events[admission]',
 
 genesis();
