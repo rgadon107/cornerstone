@@ -99,7 +99,7 @@ function render_event_map( $event_id ) {
 	$event_map = (string) get_post_meta( $event_id, 'event-map-url', true );
 
 	if ( ! $event_map ) {
-		return '';
+		return;
 	} else {
 		echo esc_html( $event_map );
 	}
@@ -123,7 +123,7 @@ function render_addmission_information( $event_id ) {
 	}
 
 	if ( $admission && $admission_text_field ) {
-		echo 'General Admission: $' .esc_html( $admission ) . '</br>' .
+		echo 'General Admission: $' . esc_html( $admission ) . '</br>' .
 		     esc_html( $admission_text_field );
 	} elseif ( $admission ) {
 		echo 'General Admission: $' . esc_html( $admission );
