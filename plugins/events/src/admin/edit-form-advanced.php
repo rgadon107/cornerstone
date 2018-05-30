@@ -3,14 +3,10 @@
  *  Customize the post Admin title area.
  *
  * @package    spiralWebDb\Events
- *
  * @since      1.0.0
- *
  * @author     Robert A. Gadon
- *
  * @link       http://spiralwebdb.com
- *
- * @license    GNU General Public License 2.0+
+ * @license    GPL-2.0+
  */
 
 namespace spiralWebDb\Events;
@@ -26,11 +22,11 @@ add_filter( 'enter_title_here', __NAMESPACE__ . '\change_title_placeholder_text'
  * @return string $text
  */
 function change_title_placeholder_text( $text ) {
-	if ( 'events' == get_post_type() ) {
-		$text = esc_html( 'Title of performance event.' );
+	if ( 'events' !== get_post_type() ) {
+		return $text;
 	}
 
-	return $text;
+	return 'Title of performance event.';
 }
 
 add_action( 'edit_form_before_permalink', __NAMESPACE__ . '\add_description_beneath_post_title' );
@@ -42,10 +38,9 @@ add_action( 'edit_form_before_permalink', __NAMESPACE__ . '\add_description_bene
  * @return void
  */
 function add_description_beneath_post_title() {
-	if ( 'events' == get_post_type() ) {
-
-		echo sprintf( '<span class="description">%s</span>',
-			'Enter a title in the field above for this performance event. 
-			Enter the event information below in the box labeled "Event Information".' );
+	if ( 'events' !== get_post_type() ) {
+		return;
 	}
+
+	include __DIR__ . '/views/description.php';
 }

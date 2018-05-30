@@ -1,19 +1,15 @@
 <?php
 /**
- * Portfolio Meta Box Configuration Model
+ * Events Meta Box Runtime Configuration Parameters
  *
- * 'Events' Runtime Configuration Parameters
- *
- * @package     spiralWebDb\Metadata
- * @since       1.0.0
- * @author      hellofromTonya
- * @link        https://KnowTheCode.io
- * @license     GNU-2.0+
+ * @package    spiralWebDb\Events
+ * @since      1.4.0
+ * @author     Robert A. Gadon
+ * @link       http://spiralwebdb.com
+ * @license    GPL-2.0+
  */
 
-namespace spiralWebDB\Metadata;
-
-use function spiralWebDb\Events\_get_plugin_directory;
+namespace spiralWebDB\Events;
 
 return array(
 	/************************************************************
@@ -45,20 +41,6 @@ return array(
 		 * value, delete_state, and sanitizing function.
 		 ***********************************************************/
 		'custom_fields' => array(
-			// specify this field's meta key.  It's used in the database.
-			'event-day'          => array(
-				// True - means it's a single
-				// False - means it's an array
-				'is_single'    => true,
-				// Specify the custom field's default value.
-				'default'      => '',
-				// What is the state that signals to delete this meta key
-				// from the database.
-				'delete_state' => '',
-				// callable sanitizer function such as
-				// sanitize_text_field, sanitize_email, strip_tags, intval, etc.
-				'sanitize'     => 'strip_tags',
-			),
 			// specify this field's meta key.  It's used in the database.
 			'event-date'         => array(
 				// True - means it's a single
@@ -144,26 +126,12 @@ return array(
 				'sanitize'     => 'strip_tags',
 			),
 			// specify this field's meta key.  It's used in the database.
-			'admission'          => array(
-				// True - means it's a single
-				// False - means it's an array
-				'is_single'    => true,
-				// Specify the custom field's default value.
-				'default'      => 1.00,
-				// What is the state that signals to delete this meta key
-				// from the database.
-				'delete_state' => '',
-				// callable sanitizer function such as
-				// sanitize_text_field, sanitize_email, strip_tags, intval, etc.
-				'sanitize'     => 'floatval',
-			),
-			// specify this field's meta key.  It's used in the database.
 			'regular-admission'  => array(
 				// True - means it's a single
 				// False - means it's an array
 				'is_single'    => true,
 				// Specify the custom field's default value.
-				'default'      => 1,
+				'default'      => '15.00',
 				// What is the state that signals to delete this meta key
 				// from the database.
 				'delete_state' => '',
@@ -172,7 +140,63 @@ return array(
 				'sanitize'     => 'floatval',
 			),
 			// specify this field's meta key.  It's used in the database.
+			'admission-text-field'  => array(
+				// True - means it's a single
+				// False - means it's an array
+				'is_single'    => true,
+				// Specify the custom field's default value.
+				'default'      => '',
+				// What is the state that signals to delete this meta key
+				// from the database.
+				'delete_state' => '',
+				// callable sanitizer function such as
+				// sanitize_text_field, sanitize_email, strip_tags, intval, etc.
+				'sanitize'     => 'sanitize_text_field',
+			),
+			// specify this field's meta key.  It's used in the database.
 			'sponsor-tel-number' => array(
+				// True - means it's a single
+				// False - means it's an array
+				'is_single'    => true,
+				// Specify the custom field's default value.
+				'default'      => '',
+				// What is the state that signals to delete this meta key
+				// from the database.
+				'delete_state' => '',
+				// callable sanitizer function such as
+				// sanitize_text_field, sanitize_email, strip_tags, intval, etc.
+				'sanitize'     => 'sanitize_text_field',
+			),
+			// specify this field's meta key.  It's used in the database.
+			'sponsor-domain-name' => array(
+				// True - means it's a single
+				// False - means it's an array
+				'is_single'    => true,
+				// Specify the custom field's default value.
+				'default'      => '',
+				// What is the state that signals to delete this meta key
+				// from the database.
+				'delete_state' => '',
+				// callable sanitizer function such as
+				// sanitize_text_field, sanitize_email, strip_tags, intval, etc.
+				'sanitize'     => 'sanitize_text_field',
+			),
+			// specify this field's meta key.  It's used in the database.
+			'sponsor-facebook' => array(
+				// True - means it's a single
+				// False - means it's an array
+				'is_single'    => true,
+				// Specify the custom field's default value.
+				'default'      => '',
+				// What is the state that signals to delete this meta key
+				// from the database.
+				'delete_state' => '',
+				// callable sanitizer function such as
+				// sanitize_text_field, sanitize_email, strip_tags, intval, etc.
+				'sanitize'     => 'strip_tags',
+			),
+			// specify this field's meta key.  It's used in the database.
+			'sponsor-twitter' => array(
 				// True - means it's a single
 				// False - means it's an array
 				'is_single'    => true,
@@ -199,20 +223,6 @@ return array(
 				// sanitize_text_field, sanitize_email, strip_tags, intval, etc.
 				'sanitize'     => 'sanitize_text_field',
 			),
-			// specify this field's meta key.  It's used in the database.
-			'event-venue-image'  => array(
-				// True - means it's a single
-				// False - means it's an array
-				'is_single'    => true,
-				// Specify the custom field's default value.
-				'default'      => '',
-				// What is the state that signals to delete this meta key
-				// from the database.
-				'delete_state' => '',
-				// callable sanitizer function such as
-				// sanitize_text_field, sanitize_email, strip_tags, intval, etc.
-				'sanitize'     => 'sanitize_text_field',
-			),
 		),
 
 		/************************************************************
@@ -223,7 +233,6 @@ return array(
 		/************************************************************
 		 * ConfigStore keys.
 		 ***********************************************************/
-		'days_of_week'  => 'days_of_week',
 		'states'        => 'states',
 	),
 );

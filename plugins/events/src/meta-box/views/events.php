@@ -6,13 +6,6 @@ use KnowTheCode\ConfigStore;
 <div class="event-date">
     <label for="event-date"><strong>Performance Date</strong></label>
     <p>
-        <select id="event-day" name="<?php echo $meta_box_id; ?>[event-day]"
-                value="<?php echo esc_attr( $custom_fields['event-day'] ); ?>">
-            <option>--Select a Day--</option>
-			<?php foreach ( ConfigStore\getConfig( $config['days_of_week'] ) as $day ) : ?>
-                <option value="<?php echo esc_attr( $day ); ?>"<?php selected( $custom_fields['event-day'], $day ); ?>><?php echo esc_html( $day ); ?></option>
-			<?php endforeach; ?>
-        </select>
         <input id="event-date" type="date" name="<?php echo $meta_box_id; ?>[event-date]"
                value="<?php echo esc_attr( $custom_fields['event-date'] ); ?>">
     </p>
@@ -64,6 +57,29 @@ use KnowTheCode\ConfigStore;
         </select>
     </p>
     <span class="description">We'll use the address City and State to allow visitors to search the event on the front end.</span>
+    <hr>
+    <div>
+        <p>
+            <label for="telephone-number"><strong>Event Sponsor Telephone Number</strong></label>
+        </p>
+        <input id="telephone-number" type="tel" name="<?php echo $meta_box_id; ?>[sponsor-tel-number]"
+               value="<?php echo esc_attr( $custom_fields['sponsor-tel-number'] ); ?>" placeholder="###-###-####">
+        </p>
+        <span class="description">Enter 10-digit telephone number, area code first.</span>
+    </div>
+    <div>
+        <p>
+            <label for="maplink-to-event-venue"><strong>Google Maps web address (URI) for Event
+                    location</strong></label>
+        </p>
+        <p>
+            <input id="maplink-to-event-venue" class="regular-text" type="url"
+                   name="<?php echo $meta_box_id; ?>[event-map-url]"
+                   value="<?php echo esc_url( $custom_fields['event-map-url'] ); ?>"
+                   placeholder="https://goo.gl/maps/{remaining-uri}">
+        </p>
+        <span class="description">Open Google Maps and enter the address for the performance location. Select the 'Share' button. A box will display a 'Link to Share'. Select the 'Copy Link' button to copy the short URI to your clipboard. Paste the short URI into this custom field.</span>
+    </div>
 </div>
 <hr>
 <div>
@@ -71,50 +87,59 @@ use KnowTheCode\ConfigStore;
         <label for="admission"><strong>Admission</strong></label>
     </p>
     <p>
-        <input id="admission" type="checkbox" value="1"
-               name="<?php echo $meta_box_id; ?>[admission]" <?php checked( $custom_fields['admission'], 1 ); ?>>
-        <span class="description">If checked, admission will be charged for this event.</span>
+        <label for="regular-admission">Adult General Admission (USD): </label>
     </p>
     <p>
-        <label for="regular-admission">Adult (USD): </label>
         <input id="regular-admission" type="number" name="<?php echo $meta_box_id; ?>[regular-admission]"
                value="<?php echo esc_attr( $custom_fields['regular-admission'] ); ?>" placeholder="20.00" step="0.50"
                min="0.00">
     </p>
+    </p>
+        <span class="description">Enter the amount to display for general admission. The default value is $15.00. Can be set to '0' for free events.</span>
+    </p>
+    <p>
+        <label for="admission-text-field">Admission Text Field (optional)</label>
+    </p>
+    <p>
+        <input id="admission-text-field" class="large-text" type="text"
+               name="<?php echo $meta_box_id; ?>[admission-text-field]"
+               value="<?php echo esc_attr( $custom_fields['admission-text-field'] ); ?>">
+    </p>
+    <span class="description">Add any comments about the event admission here. Examples include:</br></br> (1) whether tickets are available for advanced purchase or only at the door;<br> (2) special admission rates that apply for youth, teens, or college students;</br>
+        (3) whether event proceeds will benefit a specific charity; or</br>(4) free admission offered by a sponsoring organization.</span>
+
 </div>
 <hr>
 <div>
     <p>
-        <label for="telephone-number"><strong>Telephone Number for Event Sponsor</strong></label>
+        <label for="sponsor-domain-name"><strong>Web address (URI) for the Event sponsor</strong></label>
     </p>
     <p>
-        <input id="telephone-number" type="tel" name="<?php echo $meta_box_id; ?>[sponsor-tel-number]"
-               value="<?php echo esc_attr( $custom_fields['sponsor-tel-number'] ); ?>" placeholder="###-###-####">
+        <input id="sponsor-domain-name" class="regular-text" type="url"
+               name="<?php echo $meta_box_id; ?>[sponsor-domain-name]"
+               value="<?php echo esc_attr( $custom_fields['sponsor-domain-name'] ); ?>"
+               placeholder="http:// or https://{event-uri-here}">
     </p>
-    <span class="description">Enter 10-digit telephone number, area code first.</span>
-</div>
-<hr>
-<div>
+    <span class="description">Open the event sponsor's website on their front page. Copy the web address (URI) from the browser address bar. Paste the entire web address into this custom field. If the event sponsor has a website, it will display and icon and a link on the front end.</span>
     <p>
-        <label for="maplink-to-event-venue"><strong>Map to Event Venue</strong></label>
-    </p>
     <p>
-        <input id="maplink-to-event-venue" class="regular-text" type="url"
-               name="<?php echo $meta_box_id; ?>[event-map-url]"
-               value="<?php echo esc_url( $custom_fields['event-map-url'] ); ?>" placeholder="https://{url}">
-    </p>
-    <span class="description">Enter the URL for the event address. In Google Maps, select the "Share" link to display the map URL, then select the "short URL" option.  Copy and paste the shortened URL to this form.</span>
-</div>
-<hr>
-<div>
-    <p>
-        <label for="event-venue-image"><strong>Image of Event Venue</strong></label>
+        <label for="sponsor-facebook"><strong>Facebook web address (URI) for the Event sponsor</strong></label>
     </p>
     <p>
-        <input id="event-venue-image" class="large-text" type="url"
-               name="<?php echo $meta_box_id; ?>[event-venue-image]"
-               value="<?php echo esc_url( $custom_fields['event-venue-image'] ); ?>"
-               placeholder="https://cornerstonechorale.org/wp-content/uploads/{yyyy}/{mm}/{filename}">
+        <input id="sponsor-facebook" class="large-text" type="url"
+               name="<?php echo $meta_box_id; ?>[sponsor-facebook]"
+               value="<?php echo esc_attr( $custom_fields['sponsor-facebook'] ); ?>"
+               placeholder="https://facebook.com/{event-sponsor-facebook-page}">
     </p>
-    <span class="description">Upload the image of the event venue to the Media Library. Then copy the image URL from the Media Library and paste it here.</span>
+    <span class="description">Open the event sponsor's Facebook page. If the site has an 'Events' option tab, you want to open that. Copy the web address (URI) from the browser address bar. Paste the entire web address into this custom field. If the event sponsor has a Facebook account, it will display an icon and a link on the front end.</span>
+    </p>
+    <p>
+        <label for="sponsor-twitter"><strong>Twitter web address (URI) for the Event Sponsor</strong></label>
+    </p>
+    <p>
+        <input id="sponsor-twitter" class="large-text" type="url" name="<?php echo $meta_box_id; ?>[sponsor-twitter]"
+               value="<?php echo esc_attr( $custom_fields['sponsor-twitter'] ); ?>"
+               placeholder="https://twitter.com/{event-sponsor-account-name}?lang=en">
+    </p>
+    <span class="description">Open the event sponsor's Twitter page. Copy the web address (URI) from the browser address bar. Paste the entire web address into this custom field. If the event sponsor has a Twitter account, it will display an icon and a link on the front end.</span>
 </div>

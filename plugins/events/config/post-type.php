@@ -3,14 +3,10 @@
  *  Runtime configuration for the Events custom post type.
  *
  * @package    spiralWebDb\Events
- *
  * @since      1.0.0
- *
  * @author     Robert A. Gadon
- *
  * @link       http://spiralwebdb.com
- *
- * @license    GNU General Public License 2.0+
+ * @license    GPL-2.0+
  */
 
 namespace spiralWebDb\Events;
@@ -50,7 +46,7 @@ return array(
 			'comments',
 			'trackbacks',
 //			'custom-fields',
-			'thumbnail',
+//			'thumbnail',
 			'author',
 			'post-formats',
 			'genesis-seo',
