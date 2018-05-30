@@ -106,37 +106,4 @@ function modify_entry_meta_after_content() {
 	require dirname( __DIR__ ) . '/views/event-footer.php';
 }
 
-// Notes: Even though Tonya includes a view file at '/src/views/review.php', she didn't
-// call it into her 'single-review.php' file at '/src/templates/single-events.php'
-// Instead, she created a '/src/meta.php' file in which she called the plugin metadata.
-// Then she created a '/src/review-footer.php' file in which she called the functions
-// she created in '/src/meta.php'. _Then_ she hooked into an event in '/genesis/lib/structure/loop.php'
-// and called a view from '/src/review-footer.php'. The rest of the markup in
-// '/src/views/review.php' was registered to events called by Genesis in
-// '/genesis/lib/structure/loop.php'. The value of '/src/views/review.php' is
-// that is gives you an overall structure to aim for. But it's not used in it's
-// entirety.
-
-
-//add_filter( 'genesis_attr_entry-meta-before-content', __NAMESPACE__ . '\modify_entry_meta_before_content_atts' );
-//function modify_entry_meta_before_content_atts( $attributes ) {
-//	$attibutes['class']     .= 'entry-meta-before-content';
-//	$attributes['itemtype']  = 'performance-date';
-//
-//	return $attributes;
-//}
-
-// From WP_Post, $post->ID so that we can call each metakey linked to it's post_id.
-// Image of Event Venue; postmeta: 'events[venue-image]'
-// Performance Date (day-of-week; postmeta: 'events[event-day]',
-// Performance Date (date (MMDDYYYY); postmeta: 'events[event-date]',
-// Performance Time; postmeta: 'events[event-time]',
-// Performance Venue - Name; postmeta: 'events[venue-name]',
-// Performance Venue -- Address (Street); postmeta: 'events[venue-address]',
-// Performance Venue -- Address (City); postmeta: 'events[venue-city]',
-// Performance Venue -- Address (State); postmeta: 'events[venue-state]',
-// Admission Price; postmeta: 'events[admission]',
-// Telephone Number for Event Sponsor; postmeta: 'events[sponsor-tel-number]',
-// URL link; Map to Event Venue; postmeta: 'events[event-map-url]',
-
 genesis();
