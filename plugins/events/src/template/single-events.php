@@ -75,18 +75,23 @@ function modify_entry_title_attributes( $attributes ) {
 	return $attributes;
 }
 
-add_filter( 'genesis_post_info', __NAMESPACE__ . '\modify_entry_meta_before_content', 999 );
+
+add_filter( 'genesis_post_info', __NAMESPACE__ . '\render_event_meta_before_content', 20 );
 /*
- * Modify the event entry meta before the post content.
+ * Render the event entry-meta-before-content
  *
  * @since 1.0.0
  *
  * @return void
  */
-function modify_entry_meta_before_content() {
+function render_event_meta_before_content() {
 	$event_id = (int) get_the_ID();
+	echo sprintf( '<div %s>', genesis_attr( 'before-entry-content-meta' ) );
 
-	require dirname( __DIR__ ) . '/views/entry-meta-before-event.php';
+	require dirname( __DIR__ ) . '/views/performance-date-time.php';
+	require dirname( __DIR__ ) . '/views/event-map.php';
+	require dirname( __DIR__ ) . '/views/event-admission.php';
+
 }
 
 // Ensure that no content in the editor is accidentally rendered on the front-end.
