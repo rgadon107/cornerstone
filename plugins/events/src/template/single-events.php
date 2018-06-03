@@ -29,18 +29,6 @@ function add_content_wrap_markup_open() {
 	render_event_venue_image( $event_id );
 }
 
-add_action( 'genesis_entry_header', __NAMESPACE__ . '\add_content_wrap_markup_close', 99 );
-/*
- * Close content wrap around Event entry_header.
- *
- * @since 1.0.0
- *
- * return void
- */
-function add_content_wrap_markup_close() {
-	echo '</div>';
-}
-
 add_filter( 'genesis_attr_entry', __NAMESPACE__ . '\modify_entry_content_attributes', 99 );
 /**
  * Modify the Genesis entry-content class attributes and microdata schema.
@@ -75,6 +63,15 @@ function modify_entry_title_attributes( $attributes ) {
 	return $attributes;
 }
 
+add_filter( 'genesis_attr_entry-header', __NAMESPACE__ . '\add_entry_header_attributes', 20);
+/*
+ *
+ */
+function add_entry_header_attributes( $attributes ) {
+	$attributes['class']    .= ' two-thirds';
+
+	return $attributes;
+}
 
 add_filter( 'genesis_post_info', __NAMESPACE__ . '\render_event_meta_before_content', 20 );
 /*

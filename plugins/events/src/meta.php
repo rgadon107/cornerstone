@@ -28,7 +28,7 @@ function render_event_venue_image( $event_id ) {
 	}
 
 	echo get_the_post_thumbnail( $event_id, 'full', [
-		'class'    => 'first event-thumbnail',
+		'class'    => 'first one-third event-thumbnail',
 		'itemprop' => 'thumbnail',
 		'itemscope' > 'itemscope',
 		'itemtype' => 'http://schema.org/ImageObject',
