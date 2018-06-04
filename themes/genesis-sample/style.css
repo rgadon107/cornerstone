@@ -662,7 +662,7 @@ th:first-child {
 .three-sixths,
 .two-fourths,
 .two-sixths,
-.two-thirds {
+.two-thirds		{
 	float: left;
 	margin-left: 2.564102564102564%;
 }
@@ -698,6 +698,14 @@ th:first-child {
 .five-sixths {
 	width: 82.90598290598291%;
 }
+
+/*.two-ninths	{*/
+	/*width: 22.2222%;*/
+/*}*/
+
+/*.four-ninths {*/
+	/*width: 44.4444%;*/
+/*}*/
 
 .first {
 	clear: both;
