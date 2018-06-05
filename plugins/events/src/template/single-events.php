@@ -12,6 +12,7 @@
 namespace spiralWebDb\Events\Template;
 
 use function spiralWebDb\Events\render_event_venue_image;
+//use function spiralWebDb\FAQ\Asset\enqueue_script_ondemand;
 
 add_action( 'genesis_entry_header', __NAMESPACE__ . '\add_content_wrap_markup_open', 3 );
 /*
@@ -63,12 +64,12 @@ function modify_entry_title_attributes( $attributes ) {
 	return $attributes;
 }
 
-add_filter( 'genesis_attr_entry-header', __NAMESPACE__ . '\add_entry_header_attributes', 20);
+add_filter( 'genesis_attr_entry-header', __NAMESPACE__ . '\add_entry_header_attributes', 20 );
 /*
  *
  */
 function add_entry_header_attributes( $attributes ) {
-	$attributes['class']    .= ' two-thirds';
+	$attributes['class'] .= ' two-thirds';
 
 	return $attributes;
 }
@@ -105,7 +106,17 @@ add_filter( 'genesis_post_meta', __NAMESPACE__ . '\modify_entry_meta_after_conte
 function modify_entry_meta_after_content() {
 	$event_id = (int) get_the_ID();
 
+//	$show_icon = esc_attr( 'dashicons dashicons-plus' );
+//	$hide_icon = esc_attr( 'dashicons dashicons-minus' );
+//
+//	enqueue_script_ondemand();
+
+	// Call the view file, capture it into the output buffer, and then return it.
+//	ob_start();
+
 	require dirname( __DIR__ ) . '/views/event-footer.php';
+
+//	return ob_get_clean();
 }
 
 genesis();
