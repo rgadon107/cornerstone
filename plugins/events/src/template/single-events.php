@@ -111,12 +111,7 @@ function modify_entry_meta_after_content() {
 
 	enqueue_script_ondemand();
 
-	// Call the view file, capture it into the output buffer, and then return it.
-//	ob_start();
-
 	require dirname( __DIR__ ) . '/views/event-footer.php';
-
-//	return ob_get_clean();
 }
 
 genesis();
