@@ -12,7 +12,7 @@
 namespace spiralWebDb\Events\Template;
 
 use function spiralWebDb\Events\render_event_venue_image;
-//use function spiralWebDb\FAQ\Asset\enqueue_script_ondemand;
+use function spiralWebDb\FAQ\Asset\enqueue_script_ondemand;
 
 add_action( 'genesis_entry_header', __NAMESPACE__ . '\add_content_wrap_markup_open', 3 );
 /*
@@ -106,17 +106,12 @@ add_filter( 'genesis_post_meta', __NAMESPACE__ . '\modify_entry_meta_after_conte
 function modify_entry_meta_after_content() {
 	$event_id = (int) get_the_ID();
 
-//	$show_icon = esc_attr( 'dashicons dashicons-plus' );
-//	$hide_icon = esc_attr( 'dashicons dashicons-minus' );
-//
-//	enqueue_script_ondemand();
+	$show_icon = esc_attr( 'dashicons dashicons-plus' );
+	$hide_icon = esc_attr( 'dashicons dashicons-minus' );
 
-	// Call the view file, capture it into the output buffer, and then return it.
-//	ob_start();
+	enqueue_script_ondemand();
 
 	require dirname( __DIR__ ) . '/views/event-footer.php';
-
-//	return ob_get_clean();
 }
 
 genesis();
