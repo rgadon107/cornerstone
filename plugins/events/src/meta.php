@@ -96,14 +96,10 @@ function render_performance_address( $event_id ) {
  * @return void
  */
 function render_event_map( $event_id ) {
-	$event_map = (string) get_post_meta( $event_id, 'event-map-url', true );
+	$event_map_url = (string) get_post_meta( $event_id, 'event-map-url', true );
 
-	if ( empty( $event_map ) ) {
-		return;
-	} 
 		
-	echo esc_url( $event_map );
-
+	require __DIR__ . '/views/event-map.php';
 }
 
 /*
