@@ -19,18 +19,16 @@ add_action( 'genesis_entry_header', __NAMESPACE__ . '\render_event_archive_perfo
  *
  * @since 1.0.0
  *
- * @return voic
+ * @return void
  */
 function render_event_archive_performance_data() {
 	$event_id = (int) get_the_ID();
 	echo sprintf( '<div %s>', genesis_attr( 'before-entry-content-meta' ) );
 
 	require dirname( __DIR__ ) . '/views/performance-date-time.php';
-	require dirname( __DIR__ ) . '/views/event-map.php';
+	render_event_map( $event_id );
 }
 
 remove_action( 'genesis_entry_footer', 'genesis_post_meta' );
 
 require __DIR__ . '/single-events.php';
-
-genesis();
