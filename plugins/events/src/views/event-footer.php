@@ -17,11 +17,10 @@ namespace spiralWebDb\Events;
     </div>
     <div class="revealer--hidden" itemprop="description" style="display: none;">
         <ul class="event-footer-content">
-            <li class="first sponsor-tel-number" itemprop="telephone"
-                itemtype="http://schema.org/ContactPoint"><?php render_event_tel_number( $event_id ); ?></li>
-            <li class="web-site sponsor-web-site"><?php render_event_url( $event_id ); ?></li>
-            <li class="sponsor-facebook"><?php render_event_facebook_link( $event_id ); ?></li>
-            <li class="sponsor-twitter"><?php render_event_twitter_link( $event_id ); ?></li>
+            <?php render_event_tel_number( $event_id ); ?>
+            <?php render_event_url( $event_id ); ?>
+            <?php render_event_facebook_link( $event_id ); ?>
+            <?php render_event_twitter_link( $event_id ); ?>
         </ul>
     </div>
 </div>
