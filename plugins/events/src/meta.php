@@ -115,7 +115,7 @@ function render_event_map( $event_id ) {
  *
  * @return void
  */
-function render_addmission_information( $event_id ) {
+function render_admission_information( $event_id ) {
 	$admission            = (string) get_post_meta( $event_id, 'regular-admission', true );
 	$admission_text_field = (string) get_post_meta( $event_id, 'admission-text-field', true );
 
@@ -123,13 +123,10 @@ function render_addmission_information( $event_id ) {
 		return;
 	}
 
-	if ( $admission && $admission_text_field ) {
-		echo 'General Admission: $' . esc_html( $admission ) . '</br>' .
-		     esc_html( $admission_text_field );
-	} elseif ( $admission ) {
-		echo 'General Admission: $' . esc_html( $admission );
-	} else {
-		echo esc_html( $admission_text_field );
+	echo 'General Admission: $' . esc_html( $admission );
+		
+	if ( $admission_text_field )  {
+		echo '</br>' . esc_html( $admission_text_field );
 	}
 }
 
