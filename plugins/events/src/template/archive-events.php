@@ -10,6 +10,7 @@
  */
 
 namespace spiralWebDb\Events\Template;
+use function spiralWebDb\Events\render_event_map;
 
 remove_action( 'genesis_entry_header', 'genesis_post_info', 12 );
 
