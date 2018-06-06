@@ -12,6 +12,7 @@
 namespace spiralWebDb\Events\Template;
 
 use function spiralWebDb\Events\render_event_venue_image;
+use function spiralWebDb\Events\render_event_map;
 use function spiralWebDb\FAQ\Asset\enqueue_script_ondemand;
 
 add_action( 'genesis_entry_header', __NAMESPACE__ . '\add_content_wrap_markup_open', 3 );
@@ -87,9 +88,8 @@ function render_event_meta_before_content() {
 	echo sprintf( '<div %s>', genesis_attr( 'before-entry-content-meta' ) );
 
 	require dirname( __DIR__ ) . '/views/performance-date-time.php';
-	require dirname( __DIR__ ) . '/views/event-map.php';
+	render_event_map( $event_id );
 	require dirname( __DIR__ ) . '/views/event-admission.php';
-
 }
 
 // Ensure that no content in the editor is accidentally rendered on the front-end.
