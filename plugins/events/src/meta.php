@@ -28,7 +28,7 @@ function render_event_venue_image( $event_id ) {
 	}
 
 	echo get_the_post_thumbnail( $event_id, 'full', [
-		'class'    => 'first event-thumbnail',
+		'class'    => 'first one-third event-thumbnail',
 		'itemprop' => 'thumbnail',
 		'itemscope' > 'itemscope',
 		'itemtype' => 'http://schema.org/ImageObject',
@@ -96,13 +96,10 @@ function render_performance_address( $event_id ) {
  * @return void
  */
 function render_event_map( $event_id ) {
-	$event_map = (string) get_post_meta( $event_id, 'event-map-url', true );
+	$event_map_url = (string) get_post_meta( $event_id, 'event-map-url', true );
 
-	if ( ! $event_map ) {
-		return '';
-	} else {
-		echo esc_html( $event_map );
-	}
+		
+	require __DIR__ . '/views/event-map.php';
 }
 
 /*
@@ -114,7 +111,7 @@ function render_event_map( $event_id ) {
  *
  * @return void
  */
-function render_addmission_information( $event_id ) {
+function render_admission_information( $event_id ) {
 	$admission            = (string) get_post_meta( $event_id, 'regular-admission', true );
 	$admission_text_field = (string) get_post_meta( $event_id, 'admission-text-field', true );
 
@@ -122,13 +119,10 @@ function render_addmission_information( $event_id ) {
 		return;
 	}
 
-	if ( $admission && $admission_text_field ) {
-		echo 'General Admission: $' .esc_html( $admission ) . '</br>' .
-		     esc_html( $admission_text_field );
-	} elseif ( $admission ) {
-		echo 'General Admission: $' . esc_html( $admission );
-	} else {
-		echo esc_html( $admission_text_field );
+	echo 'General Admission: $' . esc_html( $admission );
+		
+	if ( $admission_text_field )  {
+		echo '</br>' . esc_html( $admission_text_field );
 	}
 }
 

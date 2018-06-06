@@ -57,29 +57,30 @@ use KnowTheCode\ConfigStore;
         </select>
     </p>
     <span class="description">We'll use the address City and State to allow visitors to search the event on the front end.</span>
-    <hr>
-    <div>
-        <p>
-            <label for="telephone-number"><strong>Event Sponsor Telephone Number</strong></label>
-        </p>
-        <input id="telephone-number" type="tel" name="<?php echo $meta_box_id; ?>[sponsor-tel-number]"
-               value="<?php echo esc_attr( $custom_fields['sponsor-tel-number'] ); ?>" placeholder="###-###-####">
-        </p>
-        <span class="description">Enter 10-digit telephone number, area code first.</span>
-    </div>
-    <div>
-        <p>
-            <label for="maplink-to-event-venue"><strong>Google Maps web address (URI) for Event
-                    location</strong></label>
-        </p>
-        <p>
-            <input id="maplink-to-event-venue" class="regular-text" type="url"
-                   name="<?php echo $meta_box_id; ?>[event-map-url]"
-                   value="<?php echo esc_url( $custom_fields['event-map-url'] ); ?>"
-                   placeholder="https://goo.gl/maps/{remaining-uri}">
-        </p>
-        <span class="description">Open Google Maps and enter the address for the performance location. Select the 'Share' button. A box will display a 'Link to Share'. Select the 'Copy Link' button to copy the short URI to your clipboard. Paste the short URI into this custom field.</span>
-    </div>
+</div>
+<hr>
+<div>
+    <p>
+        <label for="maplink-to-event-venue"><strong>Link the Event address to Google Maps</strong></label>
+    </p>
+    <p>
+        <input id="maplink-to-event-venue" class="regular-text" type="url"
+               name="<?php echo $meta_box_id; ?>[event-map-url]"
+               value="<?php echo esc_url( $custom_fields['event-map-url'] ); ?>"
+               placeholder="https://goo.gl/maps/{remaining-uri}">
+    </p>
+    <span class="description">Open Google Maps and enter the address for the performance location. Select the 'Share' button. A box will display a 'Link to Share'. Select the 'Copy Link' button to copy the short URL to your clipboard. Paste the short URL into this custom field.</span>
+</div>
+<hr>
+<div>
+    <p>
+        <label for="telephone-number"><strong>Event Sponsor Telephone Number</strong></label>
+    </p>
+    <input id="telephone-number" type="tel" name="<?php echo $meta_box_id; ?>[sponsor-tel-number]"
+           value="<?php echo esc_attr( $custom_fields['sponsor-tel-number'] ); ?>" placeholder="###-###-####">
+    </p>
+    <span class="description">Enter 10-digit telephone number, area code first.</span>
+</div>
 </div>
 <hr>
 <div>
@@ -95,7 +96,7 @@ use KnowTheCode\ConfigStore;
                min="0.00">
     </p>
     </p>
-        <span class="description">Enter the amount to display for general admission. The default value is $15.00. Can be set to '0' for free events.</span>
+    <span class="description">Enter the amount to display for general admission. The default value is $15.00. Can be set to '0' for free events.</span>
     </p>
     <p>
         <label for="admission-text-field">Admission Text Field (optional)</label>

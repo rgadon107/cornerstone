@@ -10,32 +10,26 @@
  */
 
 namespace spiralWebDb\Events\Template;
+use function spiralWebDb\Events\render_event_map;
 
-ddd( 'Loaded the archive-events template' );
+remove_action( 'genesis_entry_header', 'genesis_post_info', 12 );
 
-// 1. Remove the default genesis_loop and replace with a custom events loop
-// to display all the single events.
+add_action( 'genesis_entry_header', __NAMESPACE__ . '\render_event_archive_performance_data' );
+/*
+ * Render event archive performance meta data
+ *
+ * @since 1.0.0
+ *
+ * @return void
+ */
+function render_event_archive_performance_data() {
+	$event_id = (int) get_the_ID();
+	echo sprintf( '<div %s>', genesis_attr( 'before-entry-content-meta' ) );
 
-// 2. Get all the records for the 'events' post type.
-// Question: If I don't have a custom taxonomy term to add to my db query,
-// would I use the global $wp_query object instead to get the post_id and post_title?
+	require dirname( __DIR__ ) . '/views/performance-date-time.php';
+	render_event_map( $event_id );
+}
 
-// 3. If there are no records to display, render a message that there are no records.
+remove_action( 'genesis_entry_footer', 'genesis_post_meta' );
 
-// 4. Call the container view file for archive-events.
-
-// 5. Loop through and render the single-events view file to build the archive view.
-// Question: Can I customize the loop to render less data than what's presented in the
-// single-events.php template?
-
-// Data that I want to render in each single-event within the Events archive:
-// Image of Event Venue; postmeta: 'events[event-venue-image]'
-// Performance Date (day-of-week; postmeta: 'events[event-day]',
-// Performance Date (date (MMDDYYYY); postmeta: 'events[event-date]',
-// Performance Time; postmeta: 'events[event-time]',
-// Performance Venue -- Address (Street); postmeta: 'events[venue-address]',
-// Performance Venue -- Address (City); postmeta: 'events[venue-city]',
-// Performance Venue -- Address (State); postmeta: 'events[venue-state]',
-// Admission Price; postmeta: 'events[admission]',
-
-genesis();
+require __DIR__ . '/single-events.php';
