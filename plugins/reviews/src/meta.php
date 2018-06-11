@@ -65,6 +65,6 @@ function render_the_reviewer( $review_id ) {
 
 	$org = (string) get_post_meta( $review_id, 'reviewer_org', true );
 	if ( $org ) {
-		echo 'of ' . esc_html( $org );
+		echo ' of ' . esc_html( $org );
 	}
 }
