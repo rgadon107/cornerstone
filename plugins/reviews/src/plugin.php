@@ -13,7 +13,7 @@ namespace spiralWebDb\Reviews;
 
 add_action( 'pre_get_posts', __NAMESPACE__ . '\set_reviews_archive_order' );
 /**
- * Modify the query for the reviews' archive page, i.e. to set the events order.
+ * Modify the query for the reviews' archive page, i.e. to set the reviews order.
  *
  * @since 1.0.0
  *
@@ -29,6 +29,15 @@ function set_reviews_archive_order( $query ) {
 		return;
 	}
 
-	$query->set( 'order', 'ASC' );
-	$query->set( 'orderby', 'menu_order' );
+	$query->set( 'tax_query', array(
+		array(
+			'taxonomy' => 'review_type',
+			'field'    => 'slug',
+			'terms'    => 'critic-review',
+			)
+		)
+	);
+	$query->set( 'order',  'ASC' );
+	$query->set( 'order_by',  'menu_order' );
+
 }
