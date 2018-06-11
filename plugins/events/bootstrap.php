@@ -47,6 +47,7 @@ function _get_plugin_directory() {
  */
 function autoload_files() {
 	$files = [
+		'/src/plugin.php',
 		'/src/admin/edit-form-advanced.php',
 		'/src/config-loader.php',
 		'/src/meta.php',
