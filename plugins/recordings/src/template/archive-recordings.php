@@ -12,10 +12,8 @@
 namespace spiralWebDb\Recordings\Template;
 
 require __DIR__ . '/single-recordings.php';
-//ddd( 'Yup, you called me!' );
-function unregister_genesis_content() {
-	remove_action( 'genesis_entry_content', __NAMESPACE__ . '\reveal_recording_song_titles', 12 );
-}
+
+remove_action( 'genesis_entry_content', __NAMESPACE__ . '\reveal_recording_song_titles', 12 );
 
 add_filter( 'post_classes', __NAMESPACE__ . '\add_to_post_classes_for_grid_pattern' );
 /**
@@ -28,7 +26,6 @@ add_filter( 'post_classes', __NAMESPACE__ . '\add_to_post_classes_for_grid_patte
  * @return array
  */
 function add_to_post_classes_for_grid_pattern( array $classes ) {
-	ddd( 'Yup, you called me. ');
 	if ( is_admin() || is_single() ) {
 		return $classes;
 	}
