@@ -11,7 +11,7 @@
 
 namespace spiralWebDb\Recordings\Template;
 
-add_action( 'genesis_before_entry_content', __NAMESPACE__ . '\remove_genesis_entry_content_hook' );
+add_action( 'genesis_before_while', __NAMESPACE__ . '\remove_genesis_entry_content_hook' );
 /**
  *  Remove callback from genesis_entry_content hook
  *
@@ -63,7 +63,7 @@ function get_classes_for_grid_pattern( array $classes, $number_of_columns = 2 ) 
 		return $classes;
 	}
 
-	global $wp_query;
+	static $recording_count = 0;
 
 	/**
 	 * The element position within the array lines up with the $number_of_columns.
@@ -84,10 +84,12 @@ function get_classes_for_grid_pattern( array $classes, $number_of_columns = 2 ) 
 	if ( is_post_of_post_type() ) {
 		$classes[] = $column_classes[ $number_of_columns ];
 	}
-	
-	if ( $wp_query->$current_post % $number_of_columns == 0 ) {
+
+	if ( $recording_count % $number_of_columns == 0 ) {
 		$classes[] = 'first';
 	}
+
+	$recording_count ++;
 
 	return $classes;
 }
@@ -97,9 +99,10 @@ function get_classes_for_grid_pattern( array $classes, $number_of_columns = 2 ) 
  *
  * @since 1.0.0
  *
- * @param string            $post_type
- * @param int|WP_Post|null  $post_or_post_id  Post ID or post object. When `null`,
+ * @param string           $post_type
+ * @param int|WP_Post|null $post_or_post_id     Post ID or post object. When `null`,
  *                                              WordPress uses global $post.
+ *
  * @uses  get_post_type()   Retrieve the post type of the current post or of a given post.
  *
  * @return bool
