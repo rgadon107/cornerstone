@@ -84,11 +84,7 @@ function get_classes_for_grid_pattern( array $classes, $number_of_columns = 2 ) 
 	if ( is_post_of_post_type() ) {
 		$classes[] = $column_classes[ $number_of_columns ];
 	}
-
-	d( $wp_query->$current_post );
-	d( $number_of_columns );
-	ddd( $wp_query->$current_post % $number_of_columns == 0 );
-
+	
 	if ( $wp_query->$current_post % $number_of_columns == 0 ) {
 		$classes[] = 'first';
 	}
