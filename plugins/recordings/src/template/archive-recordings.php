@@ -23,11 +23,7 @@ function remove_genesis_entry_content_hook() {
 	remove_action( 'genesis_entry_content', __NAMESPACE__ . '\reveal_recording_song_titles', 12 );
 }
 
-require __DIR__ . '/single-recordings.php';
-
-//remove_action( 'genesis_entry_content', __NAMESPACE__ . '\reveal_recording_song_titles', 12 );
-
-add_filter( 'post_classes', __NAMESPACE__ . '\add_to_post_classes_for_grid_pattern' );
+add_filter( 'post_class', __NAMESPACE__ . '\add_to_post_classes_for_grid_pattern' );
 /**
  * Add to the post classes.
  *
@@ -38,6 +34,7 @@ add_filter( 'post_classes', __NAMESPACE__ . '\add_to_post_classes_for_grid_patte
  * @return array
  */
 function add_to_post_classes_for_grid_pattern( array $classes ) {
+
 	if ( is_admin() || is_single() ) {
 		return $classes;
 	}
@@ -56,7 +53,7 @@ function add_to_post_classes_for_grid_pattern( array $classes ) {
  * @since 1.0.0
  *
  * @param array $classes            Post classes.
- * @param int   $number_of_classes  Number of columns to set for this grid pattern.
+ * @param int   $number_of_columns  Number of columns to set for this grid pattern.
  *
  * @return array
  */
@@ -82,8 +79,15 @@ function get_classes_for_grid_pattern( array $classes, $number_of_columns = 2 ) 
 		'one-sixth',    // index 6
 	);
 
-	// Copy the column class out of the array and add it to the end of the $classes array.
-	$classes[] = $column_classes[ $number_of_columns ];
+	// Copy the column class out of the array above, and add it to the end of the $classes array.
+	// Limit the addition of column classes to 'recordings' post types only.
+	if ( is_post_of_post_type() ) {
+		$classes[] = $column_classes[ $number_of_columns ];
+	}
+
+	d( $wp_query->$current_post );
+	d( $number_of_columns );
+	ddd( $wp_query->$current_post % $number_of_columns == 0 );
 
 	if ( $wp_query->$current_post % $number_of_columns == 0 ) {
 		$classes[] = 'first';
@@ -91,3 +95,21 @@ function get_classes_for_grid_pattern( array $classes, $number_of_columns = 2 ) 
 
 	return $classes;
 }
+
+/**
+ * Checks if the current (or specified) post is of the specified post type.
+ *
+ * @since 1.0.0
+ *
+ * @param string            $post_type
+ * @param int|WP_Post|null  $post_or_post_id  Post ID or post object. When `null`,
+ *                                              WordPress uses global $post.
+ * @uses  get_post_type()   Retrieve the post type of the current post or of a given post.
+ *
+ * @return bool
+ */
+function is_post_of_post_type( $post_type = 'recordings', $post_or_post_id = null ) {
+	return get_post_type( $post_or_post_id ) == $post_type;
+}
+
+require __DIR__ . '/single-recordings.php';
