@@ -66,6 +66,7 @@ function _get_plugin_url() {
  */
 function autoload_files() {
 	$files = [
+		'/src/plugin.php',
 		'/src/admin/edit-form-advanced.php',
 		'/src/config-loader.php',
 		'/src/shortcode/reviews.php',

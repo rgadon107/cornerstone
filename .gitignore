@@ -1,8 +1,14 @@
 # Directories
 /mu-plugins/central-hub/node_modules/
+/mu-plugins/wp-migrate-db-pro-compatibility.php
 /plugins/backupbuddy
+/plugins/better-delete-revision
 /plugins/genesis-visual-hook-guide
+/plugins/members
+/plugins/ninja-forms
 /plugins/query-monitor
+/plugins/wp-migrate-db-pro
+/plugins/wp-migrate-db-pro-media-files/
 /themes/genesis
 /themes/genesis-sample/assets/
 /themes/ktc-child-theme

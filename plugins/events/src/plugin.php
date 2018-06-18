@@ -29,6 +29,7 @@ function set_events_archive_order( $query ) {
 		return;
 	}
 
+	$query->set( 'posts_per_archive_page', 20 );
 	$query->set( 'order', 'ASC' );
 	$query->set( 'orderby', 'menu_order' );
 }

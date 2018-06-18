@@ -66,6 +66,7 @@ function _get_plugin_url() {
  */
 function autoload_files() {
 	$files = [
+		'/src/meta.php',
 		'/src/config-loader.php',
 		'/src/shortcode/recordings.php',
 	];
