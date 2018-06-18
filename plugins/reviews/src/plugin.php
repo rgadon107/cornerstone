@@ -39,5 +39,4 @@ function set_reviews_archive_order( $query ) {
 	);
 	$query->set( 'order',  'ASC' );
 	$query->set( 'order_by',  'menu_order' );
-
 }
