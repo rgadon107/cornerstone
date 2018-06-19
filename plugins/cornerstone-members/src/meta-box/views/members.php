@@ -21,16 +21,6 @@ use KnowTheCode\ConfigStore;
 </div>
 <hr>
 <p>
-    <label for="member_image"><strong><?php echo 'Image File'; ?></strong></label>
-    <input class="large-text" type="url"
-           placeholder="e.g. https://cornerstonechorale.org/wp-content/uploads/yyyy/mm/{name-of-file}.jpg"
-           name="<?php echo $meta_box_id; ?>[image]" value="<?php echo esc_url( $custom_fields['image'] ); ?>">
-<div>
-    <span class="description"><?php echo 'Enter the URL of the image file (e.g. file from site Media Library, or Gravatar.)'; ?></span>
-</div>
-</p>
-<hr>
-<p>
     <label for="residence"><strong><?php echo 'Residence'; ?></strong></label>
 </p>
 <p>
