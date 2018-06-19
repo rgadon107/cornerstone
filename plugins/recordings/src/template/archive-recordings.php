@@ -11,9 +11,52 @@
 
 namespace spiralWebDb\Recordings\Template;
 
+add_action( 'genesis_before_entry', __NAMESPACE__ . '\remove_archive_post_thumbnail' );
+/**
+ * Remove the post thumbnail from the archive page before we register it.
+ *
+ * @since 1.0.0
+ *
+ * @return void
+ */
+function remove_archive_post_thumbnail() {
+	remove_action( 'genesis_entry_header', __NAMESPACE__ . '\render_post_thumbnail_before_title', 6 );
+}
+
+add_action( 'genesis_entry_header', __NAMESPACE__ . '\display_post_thumbnail_before_title', 9 );
+/**
+ *  Render the recording thumbnail image before the recording title.
+ *
+ * @since 1.0.0
+ *
+ * @return void
+ */
+function display_post_thumbnail_before_title() {
+	$recording_id = (int) get_the_ID();
+
+	echo get_the_post_thumbnail( $recording_id, 'large', [
+		'class'    => 'recording-thumbnail',
+		'itemprop' => 'thumbnail',
+		'itemscope' > 'itemscope',
+		'itemtype' => 'http://schema.org/MusicRecording',
+	] );
+}
+
+add_action( 'genesis_before_entry', __NAMESPACE__ . '\remove_added_attributes_to_entry_title' );
+/**
+ * Remove added class attributes to entry-title
+ *
+ * @since 1.0.0
+ *
+ * @return void
+ */
+function remove_added_attributes_to_entry_title() {
+	remove_filter( 'genesis_attr_entry-title', __NAMESPACE__ . '\genesis_attributes_entry_title' );
+}
+
 add_action( 'genesis_before_while', __NAMESPACE__ . '\remove_genesis_entry_content_hook' );
 /**
- *  Remove callback from genesis_entry_content hook
+ *  Remove show/hide feature that displays song titles.
  *
  * @since 1.0.0
  *
@@ -46,7 +89,7 @@ function add_to_post_classes_for_grid_pattern( array $classes ) {
 		$classes[] = 'first';
 	}
 
-	$recording_count++;
+	$recording_count ++;
 
 	return $classes;
 }
