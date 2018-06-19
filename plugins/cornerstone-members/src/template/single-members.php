@@ -90,6 +90,6 @@ function render_member_meta( $member_id )   {
 	require dirname( __DIR__ ) . '/views/number-of-tours.php';
 }
 
-// Add a 'read-more' link to the content. 
+// Add a 'read-more' link to the content.
 
 genesis();
