@@ -11,18 +11,85 @@
 
 namespace spiralWebDb\Members\Template;
 
-d( 'Loading the single-members template' );
+use function spiralWebDb\Members\render_cornerstone_member_image;
 
-//Render the featured image for each Cornerstone Member
+add_action( 'genesis_entry_header', __NAMESPACE__ . '\render_post_thumbnail_before_title', 6 );
+/**
+ * Render the Cornerstone member thumbnail image before the recording title.
+ *
+ * @since 1.0.0
+ *
+ * @return void
+ */
+function render_post_thumbnail_before_title() {
+	$member_id = (int) get_the_ID();
 
-//Render each member's role
+	render_cornerstone_member_image( $member_id );
+}
 
-//Render each member's name (post_title)
-//If that's the case, do we really need the name in the post_meta?
-//No, we don't b/c we can order 'members' posts by menu order.
+remove_action( 'genesis_entry_header', 'genesis_post_info', 12 );
 
-//Render each member's bio (the_content)
+add_filter( 'genesis_attr_entry-title', __NAMESPACE__ . '\render_member_role', 8 );
+/**
+ *  Description
+ *
+ * @since 1.0.0
+ *
+ * @return void
+ */
+function render_member_role( $member_id ) {
+	$member_id = get_the_ID();
 
-//Render the number of tours this member has participated in (include the current tour)
+	require dirname( __DIR__ ) . '/views/member-role.php';
+}
+
+add_filter( 'genesis_attr_entry-title', __NAMESPACE__ . '\genesis_attributes_entry_title' );
+/**
+ * Add attributes for entry title element.
+ *
+ * @since 1.0.0
+ *
+ * @param array $attributes Existing attributes for the entry title element.
+ *
+ * @return array Amended attributes for the entry title element.
+ */
+function genesis_attributes_entry_title( $attributes ) {
+	$attributes['class'] .= ' two-thirds';
+
+	return $attributes;
+}
+
+add_filter( 'genesis_attr_entry-content', __NAMESPACE__ . '\genesis_attributes_entry_content' );
+/**
+ * Add attributes for entry content element.
+ *
+ * @since 1.0.0
+ *
+ * @param array $attributes Existing attributes for entry content element.
+ *
+ * @return array Amended attributes for entry content element.
+ */
+function genesis_attributes_entry_content( $attributes ) {
+	$attributes['class'] .= ' two-thirds';
+
+	return $attributes;
+}
+
+add_action( 'genesis_entry_content', __NAMESPACE__ . '\render_member_meta', 15 );
+/**
+ * Render the Cornerstone member meta information.
+ *
+ * @since 1.0.0
+ *
+ * @return void
+ */
+function render_member_meta( $member_id )   {
+	$member_id = get_the_ID();
+
+	require dirname( __DIR__ ) . '/views/member-residence.php';
+	require dirname( __DIR__ ) . '/views/number-of-tours.php';
+}
+
+// Add a 'read-more' link to the content. 
 
 genesis();
