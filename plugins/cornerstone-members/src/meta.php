@@ -69,7 +69,7 @@ function render_the_member_residence( $member_id ) {
 		return;
 	}
 
-	echo 'Currently resides in: ' . '<em>' . esc_html( $city ) . ', ' . esc_html( $state ) . '</em>';
+	echo '<strong>' . 'Currently resides in:  ' . '</strong>' . '<em>' . esc_html( $city ) . ', ' . esc_html( $state ) . '</em>';
 }
 
 function render_number_of_cornerstone_tours( $member_id ) {
@@ -79,5 +79,5 @@ function render_number_of_cornerstone_tours( $member_id ) {
 		return;
 	}
 
-	echo 'Number of Cornerstone tours: ' . '<em>' . esc_html( $tour_number ) . '</em>';
+	echo '<strong>' . 'Number of Cornerstone tours:   ' .  '</strong>' . esc_html( $tour_number );
 }
