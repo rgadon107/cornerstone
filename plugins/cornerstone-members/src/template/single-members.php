@@ -54,7 +54,7 @@ add_filter( 'genesis_attr_entry-title', __NAMESPACE__ . '\genesis_attributes_ent
  * @return array Amended attributes for the entry title element.
  */
 function genesis_attributes_entry_title( $attributes ) {
-	$attributes['class'] .= ' two-thirds';
+	$attributes[ 'class' ] = 'entry-title two-thirds';
 
 	return $attributes;
 }
@@ -70,7 +70,7 @@ add_filter( 'genesis_attr_entry-content', __NAMESPACE__ . '\genesis_attributes_e
  * @return array Amended attributes for entry content element.
  */
 function genesis_attributes_entry_content( $attributes ) {
-	$attributes['class'] .= ' two-thirds';
+	$attributes['class'] = 'entry-content two-thirds';
 
 	return $attributes;
 }
@@ -83,13 +83,11 @@ add_action( 'genesis_entry_content', __NAMESPACE__ . '\render_member_meta', 15 )
  *
  * @return void
  */
-function render_member_meta( $member_id )   {
+function render_member_meta( $member_id ) {
 	$member_id = get_the_ID();
 
 	require dirname( __DIR__ ) . '/views/member-residence.php';
 	require dirname( __DIR__ ) . '/views/number-of-tours.php';
 }
-
-// Add a 'read-more' link to the content.
 
 genesis();
