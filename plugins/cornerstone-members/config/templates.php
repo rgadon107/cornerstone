@@ -11,6 +11,7 @@
  */
 
 namespace spiralWebDb\Members\Template;
+
 use function spiralWebDb\Members\_get_plugin_directory;
 
 return array(
