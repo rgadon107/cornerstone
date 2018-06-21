@@ -13,7 +13,7 @@ namespace spiralWebDb\Members;
 
 add_action( 'pre_get_posts', __NAMESPACE__ . '\set_members_taxonomy_archive_order' );
 /**
- * Modify the query for the members' taxonomy archive page, i.e. to set the events order.
+ * Modify the query for the members' taxonomy archive page, i.e. to set the members order.
  *
  * @since 1.0.0
  *
