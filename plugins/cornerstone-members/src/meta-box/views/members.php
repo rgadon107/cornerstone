@@ -5,28 +5,20 @@ use KnowTheCode\ConfigStore;
 ?>
 <div>
     <p>
-        <span class="description"><?php echo 'This information is used to organize and feature tour members on the web site by their primary role and name. '; ?></span>
+        <span class="description"><?php echo 'Additional information about each tour member.'; ?></span>
     </p>
 </div>
-<div>
-    <label for="member_name"><strong><?php echo 'Name'; ?></strong></label>
-    <p>
-        <input class="regular-text" type="text" placeholder="First name" name="<?php echo $meta_box_id; ?>[first_name]"
-               value="<?php esc_attr( $custom_fields['first_name'] ); ?>">
-        <!--        <span class="description" >--><?php //echo 'First'; ?><!--</span>-->
-        <input class="regular-text" type="text" placeholder="Last name" name="<?php echo $meta_box_id; ?>[last_name]"
-               value="<?php esc_attr( $custom_fields['last_name'] ); ?>">
-
-    </p>
-</div>
-<hr>
 <p>
-    <label for="member_image"><strong><?php echo 'Image File'; ?></strong></label>
-    <input class="large-text" type="url"
-           placeholder="e.g. https://cornerstonechorale.org/wp-content/uploads/yyyy/mm/{name-of-file}.jpg"
-           name="<?php echo $meta_box_id; ?>[image]" value="<?php echo esc_url( $custom_fields['image'] ); ?>">
+    <label for="role"><strong><?php echo 'Member Role: '; ?></strong></label>
+    <select type="text" name="<?php echo $meta_box_id; ?>[role]"
+            value="<?php echo esc_attr( $custom_fields['role'] ); ?>">
+        <option>--Select a Role--</option>
+		<?php foreach ( ConfigStore\getConfig( $config['roles'] ) as $roles => $role_name ) : ?>
+            <option value="<?php echo esc_attr( $roles ); ?>"<?php selected( $custom_fields['role'], $roles ); ?>><?php echo esc_html( $role_name ); ?></option>
+		<?php endforeach; ?>
+    </select>
 <div>
-    <span class="description"><?php echo 'Enter the URL of the image file (e.g. file from site Media Library, or Gravatar.)'; ?></span>
+    <span class="description"><?php echo 'Select the member\'s primary role from the drop-down list of options.'; ?></span>
 </div>
 </p>
 <hr>
@@ -49,22 +41,8 @@ use KnowTheCode\ConfigStore;
 </p>
 <hr>
 <p>
-    <label for="role"><strong><?php echo 'Member Role: '; ?></strong></label>
-    <select type="text" name="<?php echo $meta_box_id; ?>[role]"
-            value="<?php echo esc_attr( $custom_fields['role'] ); ?>">
-        <option>--Select a Role--</option>
-		<?php foreach ( ConfigStore\getConfig( $config['roles'] ) as $roles => $role_name ) : ?>
-            <option value="<?php echo esc_attr( $roles ); ?>"<?php selected( $custom_fields['role'], $roles ); ?>><?php echo esc_html( $role_name ); ?></option>
-		<?php endforeach; ?>
-    </select>
-<div>
-    <span class="description"><?php echo 'Select the member\'s primary role from the drop-down list of options.'; ?></span>
-</div>
-</p>
-<hr>
-<p>
     <label for="tour_number"><strong><?php echo 'Number of Tours: '; ?></strong></label>
     <input type="number" min="1" max="40" name="<?php echo $meta_box_id; ?>[tour_number]"
            value="<?php echo abs( $custom_fields['tour_number'] ); ?>">
-<div><span class="description"><?php echo 'Number of Cornerstone tours (including current tour).'; ?></span></div>
+<div><span class="description"><?php echo 'Number of Cornerstone tours the member has participated in (including current tour).'; ?></span></div>
 </p>

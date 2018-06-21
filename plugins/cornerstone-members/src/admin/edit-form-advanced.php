@@ -46,6 +46,6 @@ function add_description_beneath_post_title() {
 
 		echo sprintf( '<span class="description">%s</span>',
 			'Enter the tour member’s name in the field above. 
-			Enter their biography in the editor box below. ' );
+			Enter their biography in the editor box below.' );
 	}
 }

@@ -43,48 +43,6 @@ return array(
 		 ***********************************************************/
 		'custom_fields' => array(
 			// specify this field's meta key.  It's used in the database.
-			'first_name'      => array(
-				// True - means it's a single
-				// False - means it's an array
-				'is_single'    => true,
-				// Specify the custom field's default value.
-				'default'      => '',
-				// What is the state that signals to delete this meta key
-				// from the database.
-				'delete_state' => '',
-				// callable sanitizer function such as
-				// sanitize_text_field, sanitize_email, strip_tags, intval, etc.
-				'sanitize'     => 'sanitize_text_field',
-			),
-			// specify this field's meta key.  It's used in the database.
-			'last_name'       => array(
-				// True - means it's a single
-				// False - means it's an array
-				'is_single'    => true,
-				// Specify the custom field's default value.
-				'default'      => '',
-				// What is the state that signals to delete this meta key
-				// from the database.
-				'delete_state' => '',
-				// callable sanitizer function such as
-				// sanitize_text_field, sanitize_email, strip_tags, intval, etc.
-				'sanitize'     => 'sanitize_text_field',
-			),
-			// specify this field's meta key.  It's used in the database.
-			'image'           => array(
-				// True - means it's a single
-				// False - means it's an array
-				'is_single'    => true,
-				// Specify the custom field's default value.
-				'default'      => '',
-				// What is the state that signals to delete this meta key
-				// from the database.
-				'delete_state' => '',
-				// callable sanitizer function such as
-				// sanitize_text_field, sanitize_email, strip_tags, intval, etc.
-				'sanitize'     => 'esc_url',
-			),
-			// specify this field's meta key.  It's used in the database.
 			'residence_city'  => array(
 				// True - means it's a single
 				// False - means it's an array

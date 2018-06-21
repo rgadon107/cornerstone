@@ -45,7 +45,7 @@ return array(
 			'comments',
 			'trackbacks',
 			'custom-fields',
-			'thumbnail',
+//			'thumbnail', // also known as the 'featured image'.
 			'author',
 			'post-formats',
 			'genesis-seo',

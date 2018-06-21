@@ -11,6 +11,4 @@
 
 namespace spiralWebDb\Members\Template;
 
-ddd( 'Loading the archive-members template' );
-
-genesis();
+require dirname( __DIR__ ) . '/template/single-members.php';

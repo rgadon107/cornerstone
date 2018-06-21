@@ -28,7 +28,7 @@ function render_recording_image( $recording_id ) {
 	}
 
 	echo get_the_post_thumbnail( $recording_id, 'large', [
-		'class'    => 'recording-thumbnail',
+		'class'    => 'recording-thumbnail first one-third',
 		'itemprop' => 'thumbnail',
 		'itemscope' > 'itemscope',
 		'itemtype' => 'http://schema.org/MusicRecording',

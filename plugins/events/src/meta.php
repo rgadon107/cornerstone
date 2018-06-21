@@ -98,7 +98,6 @@ function render_performance_address( $event_id ) {
 function render_event_map( $event_id ) {
 	$event_map_url = (string) get_post_meta( $event_id, 'event-map-url', true );
 
-		
 	require __DIR__ . '/views/event-map.php';
 }
 
