@@ -61,6 +61,24 @@ function render_performance_date_and_time( $event_id ) {
 	}
 }
 
+/**
+ *  Render the performance community (City, State)
+ *
+ * @since 1.0.0
+ *
+ * @return void
+ */
+function render_the_performance_community( $event_id ) {
+	$event_city  = (string) get_post_meta( $event_id, 'venue-city', true );
+	$event_state = (string) get_post_meta( $event_id, 'venue-state', true );
+
+	if ( empty( $event_city ) && empty( $event_state ) ) {
+		return;
+	}
+
+	echo '<strong>' . 'Performing in: ' . '</strong>' . '<em>' . esc_html( $event_city ) . ', ' . esc_html( $event_state ) . '</em>';
+}
+
 /*
  * Render the Event performance address.
  *
@@ -119,8 +137,8 @@ function render_admission_information( $event_id ) {
 	}
 
 	echo 'General Admission: $' . esc_html( $admission );
-		
-	if ( $admission_text_field )  {
+
+	if ( $admission_text_field ) {
 		echo '</br>' . esc_html( $admission_text_field );
 	}
 }
