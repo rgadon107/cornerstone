@@ -15,6 +15,16 @@ use function spiralWebDb\Events\render_event_venue_image;
 use function spiralWebDb\Events\render_event_map;
 use function spiralWebDb\FAQ\Asset\enqueue_script_ondemand;
 
+add_action( 'genesis_entry_header', __NAMESPACE__ . '\render_event_location_before_event_title', 5 );
+/**
+ * Render the event location (City, State) before the event title
+ */
+function render_event_location_before_event_title( $event_id ) {
+
+	$event_id = get_the_ID();
+	require dirname( __DIR__ ) . '/views/event-community.php';
+}
+
 add_action( 'genesis_entry_header', __NAMESPACE__ . '\add_content_wrap_markup_open', 3 );
 /*
  * Add content wrap around Event entry_header.
