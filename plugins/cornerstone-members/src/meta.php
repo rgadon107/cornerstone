@@ -46,7 +46,7 @@ function render_cornerstone_member_image( $member_id ) {
 		return;
 	}
 
-	echo get_the_post_thumbnail( $member_id, 'thumbnail', [
+	echo get_the_post_thumbnail( $member_id, 'large', [
 		'class'    => 'member-thumbnail first one-third',
 		'itemprop' => 'member',
 		'itemscope' > 'itemscope',
