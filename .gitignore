@@ -10,8 +10,9 @@
 /plugins/query-monitor
 /plugins/wp-migrate-db-pro
 /plugins/wp-migrate-db-pro-media-files/
+/themes/developers/node_modules/
 /themes/genesis
-/themes/genesis-sample/assets/
+/themes/genesis-sample
 /themes/ktc-child-theme
 /themes/twentyseventeen/*
 /upgrade
