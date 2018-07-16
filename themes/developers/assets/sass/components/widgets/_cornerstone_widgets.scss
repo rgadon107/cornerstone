@@ -1,0 +1,21 @@
+//
+// Cornerstone Widget Stylings
+//================================
+
+.welcome {
+  padding: 5%;
+  background-color: lightyellow;
+  opacity: 0.8;
+  & h3.widget-title {
+    font-size: 28px;
+    font-size: 2.8rem;
+    text-align: center;
+  }
+}
+
+.reviews_1  {
+  background-color: hotpink;
+}
+.site-inner.reviews_1  {
+  max-width: auto;
+}
