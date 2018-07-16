@@ -13,6 +13,7 @@
 /plugins/wp-migrate-db-pro-media-files
 /plugins/wp-phone_number
 /themes/developers/node_modules/
+/themes/developers/style*
 /themes/images/Cornerstone_Chorale_2018_Tour.jpg
 /themes/genesis
 /themes/genesis-sample-master
