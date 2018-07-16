@@ -1,6 +1,7 @@
 # Directories
 /mu-plugins/central-hub/node_modules/
 /mu-plugins/wp-migrate-db-pro-compatibility.php
+/plugins/_wp-phone_number
 /plugins/amp
 /plugins/backupbuddy
 /plugins/better-delete-revision
@@ -9,7 +10,8 @@
 /plugins/ninja-forms
 /plugins/query-monitor
 /plugins/wp-migrate-db-pro
-/plugins/wp-migrate-db-pro-media-files/
+/plugins/wp-migrate-db-pro-media-files
+/plugins/wp-phone_number
 /themes/developers/node_modules/
 /themes/images/Cornerstone_Chorale_2018_Tour.jpg
 /themes/genesis
