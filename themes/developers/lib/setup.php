@@ -8,6 +8,7 @@
  * @link        https://knowthecode.io
  * @license     GNU General Public License 2.0+
  */
+
 namespace KnowTheCode\Developers;
 
 add_action( 'genesis_setup', __NAMESPACE__ . '\setup_child_theme', 15 );
@@ -72,7 +73,7 @@ function adds_theme_supports() {
 		),
 		'custom-background'               => null,
 		'genesis-after-entry-widget-area' => null,
-		'genesis-footer-widgets'          => 3,
+//		'genesis-footer-widgets'          => 3,
 		'genesis-menus'                   => array(
 			'primary'   => __( 'After Header Menu', CHILD_TEXT_DOMAIN ),
 			'secondary' => __( 'Footer Menu', CHILD_TEXT_DOMAIN )
@@ -100,7 +101,7 @@ function adds_new_image_sizes() {
 		),
 	);
 
-	foreach( $config as $name => $args ) {
+	foreach ( $config as $name => $args ) {
 		$crop = array_key_exists( 'crop', $args ) ? $args['crop'] : false;
 
 		add_image_size( $name, $args['width'], $args['height'], $crop );
