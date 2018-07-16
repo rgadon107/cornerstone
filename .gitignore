@@ -1,7 +1,7 @@
 # Directories
 /mu-plugins/central-hub/node_modules/
 /mu-plugins/wp-migrate-db-pro-compatibility.php
-/plugins/_wp-phone_number
+/plugins/_wp-phone_number/
 /plugins/amp
 /plugins/backupbuddy
 /plugins/better-delete-revision
