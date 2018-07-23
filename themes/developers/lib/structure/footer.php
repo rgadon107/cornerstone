@@ -2,14 +2,14 @@
 /**
  * Footer HTML markup structure
  *
- * @package     KnowTheCode\Developers
+ * @package     spiralWebDB\Developers
  * @since       1.0.0
- * @author      hellofromTonya
+ * @author      Robert A. Gadon
  * @link        https://knowthecode.io
  * @license     GNU General Public License 2.0+
  */
 
-namespace KnowTheCode\Developers;
+namespace spiralWebDB\Developers;
 
 add_action( 'genesis_before_footer', __NAMESPACE__ . '\unregister_footer_callbacks' );
 /**

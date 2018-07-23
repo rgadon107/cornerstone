@@ -2,13 +2,13 @@
 /**
  * Adds the CSS from the Customizer options.
  *
- * @package     KnowTheCode\Developers
+ * @package     spiralWebDB\Developers
  * @since       1.0.0
- * @author      hellofromTonya
+ * @author      Robert A. Gadon
  * @link        https://knowthecode.io
  * @license     GNU General Public License 2.0+
  */
-namespace KnowTheCode\Developers\Customizer;
+namespace spiralWebDB\Developers\Customizer;
 
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\build_inline_css_from_customizer_settings' );
 /**

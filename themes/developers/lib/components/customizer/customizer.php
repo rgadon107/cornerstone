@@ -2,13 +2,13 @@
 /**
  * Customizer handler.
  *
- * @package     KnowTheCode\Developers
+ * @package     spiralWebDB\Developers
  * @since       1.0.0
- * @author      hellofromTonya
+ * @author      Robert A. Gadon
  * @link        https://knowthecode.io
  * @license     GNU General Public License 2.0+
  */
-namespace KnowTheCode\Developers\Customizer;
+namespace spiralWebDB\Developers\Customizer;
 
 use WP_Customize_Color_Control;
 

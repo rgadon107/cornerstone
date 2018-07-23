@@ -2,13 +2,13 @@
 /**
  * Comments structure handling.
  *
- * @package     KnowTheCode\Developers
+ * @package     spiralWebDB\Developers
  * @since       1.0.0
- * @author      hellofromTonya
+ * @author      Robert A. Gadon
  * @link        https://knowthecode.io
  * @license     GNU General Public License 2.0+
  */
-namespace KnowTheCode\Developers;
+namespace spiralWebDB\Developers;
 
 /**
  * Unregister comments callbacks.

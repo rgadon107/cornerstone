@@ -2,14 +2,14 @@
 /**
  * Setup your child theme
  *
- * @package     KnowTheCode\Developers
+ * @package     spiralWebDB\Developers
  * @since       1.0.3
- * @author      hellofromTonya
+ * @author      Robert A. Gadon
  * @link        https://knowthecode.io
  * @license     GNU General Public License 2.0+
  */
 
-namespace KnowTheCode\Developers;
+namespace spiralWebDB\Developers;
 
 add_action( 'genesis_setup', __NAMESPACE__ . '\setup_child_theme', 15 );
 /**
