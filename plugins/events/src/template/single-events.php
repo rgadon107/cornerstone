@@ -18,6 +18,10 @@ use function spiralWebDb\FAQ\Asset\enqueue_script_ondemand;
 add_action( 'genesis_entry_header', __NAMESPACE__ . '\render_event_location_before_event_title', 5 );
 /**
  * Render the event location (City, State) before the event title
+ *
+ * @since 1.0.0
+ *
+ * @return void
  */
 function render_event_location_before_event_title( $event_id ) {
 
@@ -27,18 +31,22 @@ function render_event_location_before_event_title( $event_id ) {
 
 add_action( 'genesis_entry_header', __NAMESPACE__ . '\add_content_wrap_markup_open', 3 );
 /*
- * Add content wrap around Event entry_header.
+ * Add content wrap around Event entry_header & render post thumbnail.
  *
  * @since 1.0.0
  *
- * return void
+ * return attachment $image Render post thumbnail
  */
 function add_content_wrap_markup_open() {
 	$event_id = (int) get_the_ID();
 
 	printf( '<div %s>', genesis_attr( 'before-entry-header-wrap' ) );
 
-	render_event_venue_image( $event_id );
+	$image = ! is_post_type_archive( 'events' ) ?
+		render_event_venue_image( $event_id ) :
+		'';
+
+	return $image;
 }
 
 add_filter( 'genesis_attr_entry', __NAMESPACE__ . '\modify_entry_content_attributes', 99 );
@@ -53,7 +61,7 @@ add_filter( 'genesis_attr_entry', __NAMESPACE__ . '\modify_entry_content_attribu
  */
 function modify_entry_content_attributes( $attributes ) {
 	$attributes['class']    .= ' event-' . (int) get_the_ID();
-	$attributes['itemtype'] = 'https://schema.org/MusicEvent';
+	$attributes['itemtype']  = 'https://schema.org/MusicEvent';
 
 	return $attributes;
 }
@@ -100,10 +108,39 @@ function render_event_meta_before_content() {
 	require dirname( __DIR__ ) . '/views/performance-date-time.php';
 	render_event_map( $event_id );
 	require dirname( __DIR__ ) . '/views/event-admission.php';
+
 }
 
-// Ensure that no content in the editor is accidentally rendered on the front-end.
-remove_all_filters( 'genesis_entry_content' );
+// Uncomment the function below to turn off the content editor.
+//remove_all_filters( 'genesis_entry_content' );
+
+add_filter( 'genesis_attr_entry-content', __NAMESPACE__ . '\add_class_attributes_to_entry_content' );
+/*
+ * Add class attributes to Events entry-content
+ *
+ * @since 1.0.0
+ *
+ * @return array $attributes Contextual attributes
+ */
+function add_class_attributes_to_entry_content( $attributes ) {
+	$attributes['class'] .= ' two-thirds';
+
+	return $attributes;
+}
+
+add_filter( 'genesis_attr_entry-footer', __NAMESPACE__ . '\add_class_attributes_to_entry_footer' );
+/*
+ * Add class attributes to Events entry-footer
+ *
+ * @since 1.0.0
+ *
+ * @return array $attributes Contextual attributes
+ */
+function add_class_attributes_to_entry_footer( $attributes ) {
+	$attributes['class'] .= ' two-thirds';
+
+	return $attributes;
+}
 
 add_filter( 'genesis_post_meta', __NAMESPACE__ . '\modify_entry_meta_after_content', 999 );
 /*
@@ -121,7 +158,7 @@ function modify_entry_meta_after_content() {
 
 	enqueue_script_ondemand();
 
-	require dirname( __DIR__ ) . '/views/event-footer.php';
+	require dirname( __DIR__ ) . '/views/event-sponsor.php';
 }
 
 genesis();
