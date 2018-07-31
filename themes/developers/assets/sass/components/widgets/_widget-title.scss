@@ -8,6 +8,12 @@
 }
 
 .widget-title {
-  @include rem( font-size, $widget-title--font-size );
+  @include rem( font-size, $widget-title__Welcome--font-size );
   margin-bottom: 20px;
+  text-align: center;
+  font-style: italic;
+  font-weight: bold;
+  @include media( $breakpoint__screen-size--small ) {
+    font-weight: 400;
+  }
 }

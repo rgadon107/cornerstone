@@ -3,10 +3,13 @@
 //==============================
 
 .site-header {
-  background-color: $site-header--background-color;
+  .nav-primary {
+    background-color: $site-header--background-color;
+  }
 
   > .wrap {
-    padding: 20px 0;
+    //padding: 20px 0;
+    max-width: none;
   }
 
   @media only screen and (max-width: 1023px) {

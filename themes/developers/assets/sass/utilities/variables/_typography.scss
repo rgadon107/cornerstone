@@ -1,5 +1,6 @@
 // Common Fonts
 $font-family--source-sans-pro: 'Source Sans Pro', sans-serif;
+$font-family--lato: 'Lato', sans-serif;
 
 // Base Typography
 $html--font-size: 62.5%;
@@ -29,8 +30,8 @@ $button--font-size: 16px;
 //
 // Navigation
 //===========
-$nav--font-size: 16px;
-$submenu--font-size: 14px;
+$nav--font-size: 24px;
+$submenu--font-size: 18px;
 $primary-nav--font-size: 14px;
 $archive-pagination--font-size: 16px;
 
@@ -44,7 +45,7 @@ $site-description--font-size: 16px;
 //
 // Footer
 //==================
-$site-footer--font-size: 16px;
+$site-footer--font-size: 20px;
 $footer-widgets--font-size: 18px;
 
 //
@@ -64,13 +65,15 @@ $comments--font-size: 16px;
 //
 // Widgets
 //===================
-$widget-title--font-size: 18px;
+$widget-title__Welcome--font-size: 48px;
+$widget-title__Reviews--font-size: 48px;
 $featured-content__entry-title--font-size: 20px;
 
 //
 // Plugins
 //===================
 $enews--font-size: 16px;
+$events__Archive_Title--font-size: 48px;
 
 //
 // General Components
@@ -81,3 +84,4 @@ $author-box__Title--font-size: 20px;
 $after-entry--font-size: 18px;
 $archive-description--font-size: 18px;
 $archive-title--font-size: 20px;
+$dashicons-format-quote--font-size: 26px

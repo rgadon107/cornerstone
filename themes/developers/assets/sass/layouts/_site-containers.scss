@@ -20,7 +20,7 @@
 
 .site-inner {
   clear: both;
-  padding-top: 40px;
+  padding: 40px 0;
   word-wrap: break-word;
 
    @include media( $breakpoint__screen-size--small ) {
