@@ -19,24 +19,14 @@ return array(
 	),
 	'register_widget_areas' => array(
 		array(
-			'id'          => 'welcome_widget',
-			'name'        => 'Welcome Widget',
-			'description' => 'This is the front page welcome area below the site navigation.',
+			'id'          => 'welcome_front_page',
+			'name'        => 'Front Page Welcome',
+			'description' => 'This is the front-page Welcome widget area (located below the logo).',
 		),
 		array(
-			'id'          => 'reviews_bar_1',
-			'name'        => 'Reviews Widget 1',
-			'description' => 'This is the first reviews section on the front page.',
-		),
-		array(
-			'id'          => 'events',
-			'name'        => 'Events',
-			'description' => 'This is the front page events section to display scheduled events.',
-		),
-		array(
-			'id'          => 'reviews_bar_2',
-			'name'        => 'Reviews Widget 2',
-			'description' => 'This is the second reviews section on the front page.',
+			'id'          => 'reviews_front_page',
+			'name'        => 'Front Page Reviews',
+			'description' => 'This is the front-page Reviews widget area.',
 		),
 	)
 );
