@@ -25,7 +25,7 @@ function unregister_footer_callbacks() {
 
 add_action( 'genesis_footer', __NAMESPACE__ . '\do_footer_cornerstone_content' );
 /**
- * Customize the site footer with client info
+ * Customize the site footer to render client info.
  *
  * @since 1.0.0
  *
@@ -33,13 +33,8 @@ add_action( 'genesis_footer', __NAMESPACE__ . '\do_footer_cornerstone_content' )
  */
 function do_footer_cornerstone_content() {
 
-	$site_url  = esc_url( site_url() );
-	$title     = esc_html( get_bloginfo( 'name' ) );
-	$address_1 = '<strong>' . 'P.O. Box 249, ' . '</strong>';
-	$address_2 = '<strong>' . 'Florissant, MO 63032' . '</strong>';
-	$telephone = '<strong>' . 'Telephone: 1-314-838-4383' . '</strong>';
+	$site_url   = esc_url( site_url() );
+	$site_title = esc_html( get_bloginfo( 'name' ) );
 
-	echo wpautop( sprintf( '<h4>' . '<a href="' . $site_url . '">' . $title . '</a></h4 >' ) );
-	echo wpautop( sprintf( $address_1 . ' &#8194' . $address_2 ) );
-	echo wpautop( sprintf( $telephone ) );
+	require dirname( __DIR__ ) . '/views/site-footer.php';
 }
