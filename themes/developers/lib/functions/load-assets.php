@@ -8,6 +8,7 @@
  * @link        https://knowthecode.io
  * @license     GNU General Public License 2.0+
  */
+
 namespace spiralWebDB\Developers;
 
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\enqueue_assets' );
@@ -21,6 +22,7 @@ add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\enqueue_assets' );
 function enqueue_assets() {
 
 	wp_enqueue_style( CHILD_TEXT_DOMAIN . '-fonts', '//fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700', array(), CHILD_THEME_VERSION );
+	wp_enqueue_style( CHILD_TEXT_DOMAIN . '-fonts', '//fonts.googleapis.com/css?family=Lato:300,400,400i,700,700i', array(), CHILD_THEME_VERSION );
 	wp_enqueue_style( 'font-awesome-free', '//use.fontawesome.com/releases/v5.1.0/css/all.css' );
 	wp_enqueue_style( 'dashicons' );
 
