@@ -15,7 +15,11 @@ use function spiralWebDB\Events\load_archive_template;
 
 add_action( 'genesis_before_content_sidebar_wrap', __NAMESPACE__ . '\add_widget_areas' );
 /**
+ * Add widget areas on front-page
  *
+ * @since 1.0.0
+ *
+ * @return void
  */
 function add_widget_areas() {
 
@@ -33,6 +37,7 @@ function add_widget_areas() {
 		'before' => '<div class="reviews"><div class="wrap">',
 		'after'  => '</div></div>',
 	) );
+
 }
 
 remove_action( 'genesis_loop', 'genesis_do_loop' );
