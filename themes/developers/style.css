@@ -1840,11 +1840,11 @@ p.entry-meta {
   }
 }
 
-.reviews {
+.reviews--front-page {
   background-color: rgba(255, 255, 224, 0.85);
 }
 
-.reviews::before {
+.reviews--front-page::before {
   content: "What Audiences Are Saying...";
   display: block;
   text-align: center;
@@ -1856,13 +1856,13 @@ p.entry-meta {
 }
 
 @media screen and (max-width: 860px) {
-  .reviews::before {
+  .reviews--front-page::before {
     font-weight: normal;
     line-height: 1.2;
   }
 }
 
-.reviews .textwidget {
+.reviews--front-page .textwidget {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-pack: distribute;
@@ -1870,12 +1870,12 @@ p.entry-meta {
 }
 
 @media screen and (max-width: 860px) {
-  .reviews .textwidget {
+  .reviews--front-page .textwidget {
     display: inline-block;
   }
 }
 
-.reviews .textwidget .pull_quote {
+.reviews--front-page .textwidget .pull_quote {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-pack: justify;
@@ -1885,12 +1885,12 @@ p.entry-meta {
   margin: 0 4%;
 }
 
-.reviews .dashicons-format-quote {
+.reviews--front-page .dashicons-format-quote {
   margin-right: 15px;
   font-size: 26px;
 }
 
-.reviews .review-content {
+.reviews--front-page .review-content {
   font-weight: bold;
   font-style: italic;
 }
