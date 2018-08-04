@@ -34,7 +34,7 @@ function add_widget_areas() {
 
 
 	genesis_widget_area( 'reviews_front_page', array(
-		'before' => '<div class="reviews"><div class="wrap">',
+		'before' => '<div class="reviews--front-page"><div class="wrap">',
 		'after'  => '</div></div>',
 	) );
 
