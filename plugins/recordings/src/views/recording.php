@@ -16,6 +16,6 @@ namespace spiralWebDb\Recordings;
             <span itemprop="name">View song titles</span>
     </div>
     <div class="revealer--hidden" itemprop="description" style="display: none;">
-        <p><?php echo wpautop( esc_html( $content ) ); ?></p>
+        <?php echo wpautop( esc_html( the_content() ) ); ?>
     </div>
 </div>

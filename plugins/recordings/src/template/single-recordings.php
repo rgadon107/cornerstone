@@ -73,10 +73,10 @@ add_action( 'genesis_entry_content', __NAMESPACE__ . '\reveal_recording_song_tit
  * @return void
  */
 function reveal_recording_song_titles() {
+
 	$recording_id = (int) get_the_ID();
 	$show_icon    = esc_attr( 'dashicons dashicons-arrow-down-alt2' );
 	$hide_icon    = esc_attr( 'dashicons dashicons-arrow-up-alt2' );
-	$content      = get_the_content();
 
 	enqueue_script_ondemand();
 
