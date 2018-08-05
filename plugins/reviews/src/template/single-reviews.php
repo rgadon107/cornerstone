@@ -29,7 +29,7 @@ function change_content_class_attribute( array $attributes ) {
 	return $attributes;
 }
 
-add_action( 'genesis_before_entry_content', __NAMESPACE__ . '\add_opening_div', 999999 );
+add_action( 'genesis_before_entry_content', __NAMESPACE__ . '\add_review_markup_open', 999999 );
 /**
  * Change the markup attributes for the review.
  *
@@ -37,8 +37,9 @@ add_action( 'genesis_before_entry_content', __NAMESPACE__ . '\add_opening_div', 
  *
  * @return string
  */
-function add_opening_div() {
-	printf( '<div class="review review-%s" itemprop="text">', (int) get_the_ID() );
+
+function add_review_markup_open() {
+	printf( '<span class="dashicons dashicons-format-quote"></span><div class="review review-%s" itemprop="text">', (int) get_the_ID() );
 }
 
 add_action( 'genesis_after_entry_content', __NAMESPACE__ . '\add_review_extra_information', 0 );
@@ -55,7 +56,7 @@ function add_review_extra_information() {
 	require dirname( __DIR__ ) . '/views/review-footer.php';
 }
 
-add_action( 'genesis_after_entry_content', __NAMESPACE__ . '\add_closing_blockquote', 1 );
+add_action( 'genesis_after_entry_content', __NAMESPACE__ . '\add_review_markup_close', 1 );
 /**
  * Change the markup attributes for the review.
  *
@@ -63,7 +64,7 @@ add_action( 'genesis_after_entry_content', __NAMESPACE__ . '\add_closing_blockqu
  *
  * @return string
  */
-function add_closing_div() {
+function add_review_markup_close() {
 	echo '</div>';
 }
 
