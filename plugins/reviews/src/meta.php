@@ -23,7 +23,7 @@ namespace spiralWebDb\Reviews;
 function render_the_venue( $review_id ) {
 	$venue = (string) get_post_meta( $review_id, 'event_venue', true );
 	if ( $venue ) {
-		echo '<strong>' . 'Venue: ' . '</strong>' . esc_html( $venue );
+		echo '<strong><em>' . 'Venue:  ' . '</strong></em>' . esc_html( $venue );
 	}
 
 	$city  = (string) get_post_meta( $review_id, 'review_location_city', true );
@@ -61,10 +61,10 @@ function render_the_reviewer( $review_id ) {
 		return;
 	}
 
-	echo '<strong>' . 'Review by: ' . '</strong>' . esc_html( $name );
+	echo '<strong><em>' . 'Review by:  ' . '</strong></em>' . esc_html( $name );
 
 	$org = (string) get_post_meta( $review_id, 'reviewer_org', true );
 	if ( $org ) {
-		echo ' of ' . esc_html( $org );
+		echo ' of ' . '<em>' . esc_html( $org ) . '</em>';
 	}
 }
