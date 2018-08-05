@@ -3,6 +3,7 @@
 .reviews.entry {
   display: flex;
   flex-flow: row nowrap;
+  justify-content: flex-start;
 }
 
 .dashicons-format-quote {
