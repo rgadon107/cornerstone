@@ -13,7 +13,7 @@ namespace spiralWebDb\Recordings;
               data-show-icon="<?php echo $show_icon; ?>"
               data-hide-icon="<?php echo $hide_icon; ?>"></span>
             <span class="screen-reader-text">Click to reveal the recording content.</span>
-            <span itemprop="name">View song titles</span>
+            <span itemprop="name"><strong>View song titles</strong></span>
     </div>
     <div class="revealer--hidden" itemprop="description" style="display: none;">
         <?php echo wpautop( esc_html( the_content() ) ); ?>
