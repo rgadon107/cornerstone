@@ -21,6 +21,13 @@
     margin-bottom: 20px;
   }
 
+  .entry-title a {
+    &:focus,
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
   .entry-content.two-thirds,
   .entry-footer.two-thirds {
     float: right;

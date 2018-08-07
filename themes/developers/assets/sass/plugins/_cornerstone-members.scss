@@ -1,0 +1,12 @@
+/* ## Cornerstone Members add-on plugin
+---------------------------------------------------*/
+.members  {
+
+  .entry-title a {
+      &:focus,
+      &:hover {
+      text-decoration: underline;
+    }
+  }
+
+}
