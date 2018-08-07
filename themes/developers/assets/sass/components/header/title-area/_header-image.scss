@@ -12,6 +12,7 @@
   .site-title > a {
     background-position: center !important;
     background-size: contain !important;
+    background-repeat: no-repeat;
     float: left;
     min-height: $site-title--min-height;
     width: 100%;

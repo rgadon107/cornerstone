@@ -7,10 +7,32 @@
   font-weight: 700;
   line-height: 1.2;
 
+  > a {
+    background-image: url(/wp-content/themes/developers/images/test-logo-with-outline.png);
+    background-position: center !important;
+    background-size: contain !important;
+    background-repeat: no-repeat;
+  }
+
   a,
   a:hover,
   a:focus {
+    display: block;
     color: $site-title--link-color;
     text-decoration: none;
+    text-indent: -9999px;
+    min-height: $title-area--height;
+    width: 100%;
+    float: left;
   }
+
+  //a {
+  //  min-height: $site-title--min-height;
+  //  width: 100%;
+  //  background-image: url(/wp-content/themes/developers/images/cornerstone-chorale-logo.png);
+  //  background-position: center !important;
+  //  background-size: contain !important;
+  //  backgrount-repeat: no-repeat;
+  //  float: left;
+  //}
 }
