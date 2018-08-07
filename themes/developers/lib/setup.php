@@ -48,6 +48,7 @@ function unregister_genesis_callbacks() {
  */
 function adds_theme_supports() {
 	$config = array(
+		'amp'                             => true, // Google Accelerated Mobile Pages
 		'html5'                           => array(
 			'caption',
 			'comment-form',
