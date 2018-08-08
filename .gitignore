@@ -11,6 +11,8 @@
 /plugins/members
 /plugins/ninja-forms
 /plugins/query-monitor
+/plugins/sg-cachepress
+/plugins/wordfence
 /plugins/wordpress-seo
 /plugins/wp-mail-smtp
 /plugins/wp-migrate-db-pro
