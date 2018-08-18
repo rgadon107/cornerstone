@@ -44,7 +44,11 @@ remove_action( 'genesis_loop', 'genesis_do_loop' );
 
 add_action( 'genesis_loop', __NAMESPACE__ . '\do_custom_loop' );
 /*
+ * Use the Genesis FW to modify the loop on the main query.
  *
+ * @since 1.0.0
+ *
+ * @return void
  */
 function do_custom_loop() {
 	genesis_custom_loop( [
