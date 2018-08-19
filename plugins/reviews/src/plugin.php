@@ -30,13 +30,13 @@ function set_reviews_archive_order( $query ) {
 	}
 
 	$query->set( 'tax_query', array(
-		array(
-			'taxonomy' => 'review_type',
-			'field'    => 'slug',
-			'terms'    => 'critic-review',
+			array(
+				'taxonomy' => 'review_type',
+				'field'    => 'slug',
+				'terms'    => 'critic-review',
 			)
 		)
 	);
-	$query->set( 'order',  'ASC' );
-	$query->set( 'order_by',  'menu_order' );
+	$query->set( 'order', 'ASC' );
+	$query->set( 'order_by', 'menu_order' );
 }

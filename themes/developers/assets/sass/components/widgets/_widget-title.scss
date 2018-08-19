@@ -1,0 +1,19 @@
+//
+// Widget Title Stylings
+//================================
+
+.sidebar .widget-title a {
+  color: $widget-title--link-color;
+  text-decoration: none;
+}
+
+.widget-title {
+  @include rem( font-size, $widget-title__Welcome--font-size );
+  margin-bottom: 20px;
+  text-align: center;
+  font-style: italic;
+  font-weight: bold;
+  @include media( $breakpoint__screen-size--small ) {
+    font-weight: 400;
+  }
+}

@@ -1,0 +1,62 @@
+//
+// Front Page Widget Stylings
+//================================
+
+.welcome {
+  padding: 4%;
+  background-color: $widget--background-color;
+  margin-bottom: 40px;
+
+  .textwidget {
+    columns: 2;
+    margin: 0 2%;
+    & p {
+      padding: 0 2%;
+    }
+    @include media( $breakpoint__screen-size--small ) {
+      columns: 1;
+    }
+  }
+}
+
+.reviews--front-page  {
+  background-color: $widget--background-color;
+
+  &::before  {
+    content: "What Audiences Are Saying...";
+    display: block;
+    text-align: center;
+    @include rem( font-size, $widget-title__Reviews--font-size );
+    font-style: italic;
+    font-weight: bold;
+    padding: 20px 0px 30px;
+    @include media( $breakpoint__screen-size--small ) {
+      font-weight: normal;
+      line-height: 1.2;
+    }
+  }
+
+  .textwidget {
+    display: flex;
+    justify-content: space-around;
+    @include media( $breakpoint__screen-size--small ) {
+      display: inline-block;
+    }
+    .pull_quote {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin: 0 4%;
+    }
+  }
+
+  .dashicons-format-quote {
+    margin-right: 15px;
+    font-size: $dashicons-format-quote--font-size;
+  }
+
+  .review-content {
+    font-weight: bold;
+    font-style: italic;
+  }
+}

@@ -8,6 +8,7 @@ namespace spiralWebDb\Reviews;
 ?>
 
 <footer>
+</br>
 	<p><?php render_the_venue( $review_id ); ?></p>
 	<p><?php render_the_reviewer( $review_id ); ?></p>
 </footer>
