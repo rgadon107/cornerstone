@@ -31,22 +31,33 @@ function render_event_location_before_event_title( $event_id ) {
 
 add_action( 'genesis_entry_header', __NAMESPACE__ . '\add_content_wrap_markup_open', 3 );
 /*
- * Add content wrap around Event entry_header & render post thumbnail.
+ * Add content wrap around Event entry_header & render post thumbnail on single.
  *
  * @since 1.0.0
  *
- * return attachment $image Render post thumbnail
+ * return void
  */
 function add_content_wrap_markup_open() {
 	$event_id = (int) get_the_ID();
 
 	printf( '<div %s>', genesis_attr( 'before-entry-header-wrap' ) );
 
-	$image = ! is_post_type_archive( 'events' ) ?
-		render_event_venue_image( $event_id ) :
-		'';
+	echo add_venue_image_to_single_event();
+}
 
-	return $image;
+/*
+ * Add an event venue image to the single-event template.
+ *
+ * @since 1.0.0
+ *
+ * @return void
+ */
+function add_venue_image_to_single_event()    {
+	if ( is_post_type_archive( 'events' ) ) {
+		return '';
+	}
+
+	return render_event_venue_image( $event_id );
 }
 
 add_filter( 'genesis_attr_entry', __NAMESPACE__ . '\modify_entry_content_attributes', 99 );

@@ -1,0 +1,12 @@
+/* ## Recordings add-on plugin
+---------------------------------------------------*/
+.recordings {
+
+  .entry-title a {
+    &:focus,
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+}

@@ -33,6 +33,7 @@
     @include media( $breakpoint__screen-size--small ) {
       font-weight: normal;
       line-height: 1.2;
+      padding: 20px 20px 30px;
     }
   }
 

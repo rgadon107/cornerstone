@@ -1,17 +1,23 @@
 # Directories
+/ewww
 /mu-plugins/central-hub/node_modules/
 /mu-plugins/wp-migrate-db-pro-compatibility.php
 /plugins/_wp-phone-number/
-/plugins/amp
 /plugins/backupbuddy
 /plugins/better-delete-revision
 /plugins/classic-editor
+/plugins/ewww-image-optimizer
+/plugins/genesis-simple-share
 /plugins/genesis-visual-hook-guide
 /plugins/jetpack
 /plugins/members
 /plugins/ninja-forms
 /plugins/query-monitor
+/plugins/sg-cachepress
+/plugins/update-control
+/plugins/wordfence
 /plugins/wordpress-seo
+/plugins/wp-mail-smtp
 /plugins/wp-migrate-db-pro
 /plugins/wp-migrate-db-pro-media-files
 /plugins/wp-phone_number

@@ -48,6 +48,7 @@ function unregister_genesis_callbacks() {
  */
 function adds_theme_supports() {
 	$config = array(
+//		'amp'                             => true, // Google Accelerated Mobile Pages
 		'html5'                           => array(
 			'caption',
 			'comment-form',
@@ -64,13 +65,7 @@ function adds_theme_supports() {
 			'skip-links'
 		),
 		'genesis-responsive-viewport'     => null,
-		'custom-header'                   => array(
-			'width'           => 600,
-			'height'          => 160,
-			'header-selector' => '.site-title a',
-			'header-text'     => false,
-			'flex-height'     => true,
-		),
+		'custom-header'                   => null,
 		'custom-background'               => null,
 		'genesis-after-entry-widget-area' => null,
 //		'genesis-footer-widgets'          => 3,
