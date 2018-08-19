@@ -13,8 +13,19 @@
   vertical-align: middle;
 }
 
+.dashicons-before:before {
+  width: 25px;
+  height: 25px;
+  font-size: 25px;
+}
+
 .dashicons-plus,
 .dashicons-minus {
   line-height: 1.4;
   margin-right: 5px;
+}
+
+.dashicons-menu:after {
+  content: "Menu";
+  font-size: $nav-mobile--font-size;
 }
