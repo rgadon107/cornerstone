@@ -30,6 +30,7 @@
 /themes/twentyseventeen/*
 /upgrade
 /uploads
+/wpflogs/*
 
 # Files
 db.php
