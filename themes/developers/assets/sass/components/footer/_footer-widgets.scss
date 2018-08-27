@@ -3,7 +3,7 @@
 
 .footer-widgets {
   background-color: $footer-widgets--background-color;
-  @include rem( font-size, $footer-widgets--font-size );
+  @include rem(font-size, $footer-widgets--font-size);
   clear: both;
   padding: 60px 0;
 }
@@ -43,6 +43,14 @@
   float: right;
 }
 
-.site-footer--widget-area .textwidget {
-  line-height: 1.6;
+.site-footer--widget-area {
+  .widgettitle.widget-title {
+    font-size: $widget-title__Site-Footer--font-size;
+  }
+
+  .textwidget {
+    line-height: 1.6;
+    @include rem( font-size, $widget-content__Site-Footer-font-size );
+    margin: 0 5% 0;
+  }
 }
