@@ -122,25 +122,21 @@ function render_event_map( $event_id ) {
 /*
  * Render the Event admission information
  *
- * @since 1.4.0
+ * @since 1.5.0
  *
  * @param int $event_id The event ID.
  *
  * @return void
  */
 function render_admission_information( $event_id ) {
-	$admission            = (string) get_post_meta( $event_id, 'regular-admission', true );
 	$admission_text_field = (string) get_post_meta( $event_id, 'admission-text-field', true );
 
-	if ( empty( $admission ) && empty( $admission_text_field ) ) {
+	if ( empty( $admission_text_field ) ) {
 		return;
 	}
 
-	echo 'General Admission: $' . esc_html( $admission );
+	echo '<strong>Admission: </strong>' . esc_html( $admission_text_field );
 
-	if ( $admission_text_field ) {
-		echo '</br>' . esc_html( $admission_text_field );
-	}
 }
 
 /*
