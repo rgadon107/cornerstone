@@ -32,6 +32,11 @@ return array(
 			'id'          => 'donate_call_to_action',
 			'name'        => 'Donate -- Footer Widget',
 			'description' => 'This is donation appeal in the site footer.',
+		),
+		array(
+			'id'            => 'archive_recordings_widget_area',
+			'name'          => 'Recordings Archive Page Widget',
+			'description'   => 'Add widgets to the Recordings archive page before the site footer.'
 		)
 	)
 );

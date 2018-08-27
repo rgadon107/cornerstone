@@ -94,4 +94,19 @@ function add_to_post_classes_for_grid_pattern( array $classes ) {
 	return $classes;
 }
 
+add_action( 'genesis_before_footer', __NAMESPACE__ . '\render_archive_recordings_widget_area' );
+/*
+ *  Render archive-recordings widget area.
+ *
+ *  @since 1.0.0
+ *
+ *  @return void
+ */
+function render_archive_recordings_widget_area() {
+	genesis_widget_area( 'archive_recordings_widget_area', array(
+		'before' => '<div class="archive-recordings--widget-area"><div class="wrap">',
+		'after'  => '</div></div>',
+	) );
+}
+
 require __DIR__ . '/single-recordings.php';
