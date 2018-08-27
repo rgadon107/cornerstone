@@ -126,20 +126,6 @@ return array(
 				'sanitize'     => 'strip_tags',
 			),
 			// specify this field's meta key.  It's used in the database.
-			'regular-admission'  => array(
-				// True - means it's a single
-				// False - means it's an array
-				'is_single'    => true,
-				// Specify the custom field's default value.
-				'default'      => '15.00',
-				// What is the state that signals to delete this meta key
-				// from the database.
-				'delete_state' => '',
-				// callable sanitizer function such as
-				// sanitize_text_field, sanitize_email, strip_tags, intval, etc.
-				'sanitize'     => 'floatval',
-			),
-			// specify this field's meta key.  It's used in the database.
 			'admission-text-field'  => array(
 				// True - means it's a single
 				// False - means it's an array

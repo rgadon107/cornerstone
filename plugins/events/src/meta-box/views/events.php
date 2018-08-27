@@ -81,34 +81,26 @@ use KnowTheCode\ConfigStore;
     </p>
     <span class="description">Enter 10-digit telephone number, area code first.</span>
 </div>
-</div>
 <hr>
 <div>
     <p>
         <label for="admission"><strong>Admission</strong></label>
     </p>
     <p>
-        <label for="regular-admission">Adult General Admission (USD): </label>
+    <span class="description">Enter the amount to display for admission to a performance.</span>
     </p>
     <p>
-        <input id="regular-admission" type="number" name="<?php echo $meta_box_id; ?>[regular-admission]"
-               value="<?php echo esc_attr( $custom_fields['regular-admission'] ); ?>" placeholder="20.00" step="0.50"
-               min="0.00">
-    </p>
-    </p>
-    <span class="description">Enter the amount to display for general admission. The default value is $15.00. Can be set to '0' for free events.</span>
-    </p>
-    <p>
-        <label for="admission-text-field">Admission Text Field (optional)</label>
+        <label for="admission-text-field">Admission Text Field</label>
     </p>
     <p>
         <input id="admission-text-field" class="large-text" type="text"
                name="<?php echo $meta_box_id; ?>[admission-text-field]"
                value="<?php echo esc_attr( $custom_fields['admission-text-field'] ); ?>">
     </p>
-    <span class="description">Add any comments about the event admission here. Examples include:</br></br> (1) whether tickets are available for advanced purchase or only at the door;<br> (2) special admission rates that apply for youth, teens, or college students;</br>
+    <p>
+    <span class="description">Add any comments about the event admission here. Examples may include:</br></br> (1) whether tickets are available for advanced purchase or only at the door;<br> (2) special admission rates that apply for youth, teens, or college students;</br>
         (3) whether event proceeds will benefit a specific charity; or</br>(4) free admission offered by a sponsoring organization.</span>
-
+    </p>
 </div>
 <hr>
 <div>

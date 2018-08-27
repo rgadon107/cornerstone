@@ -17,7 +17,7 @@ return array(
 		'sidebar',
 		'header-right',
 	),
-	'register_widget_areas' => array(
+	'register_widget_areas'   => array(
 		array(
 			'id'          => 'welcome_front_page',
 			'name'        => 'Front Page Welcome',
@@ -28,5 +28,15 @@ return array(
 			'name'        => 'Front Page Reviews',
 			'description' => 'This is the front-page Reviews widget area.',
 		),
+		array(
+			'id'          => 'donate_call_to_action',
+			'name'        => 'Donate -- Footer Widget',
+			'description' => 'This is donation appeal in the site footer.',
+		),
+		array(
+			'id'            => 'archive_recordings_widget_area',
+			'name'          => 'Recordings Archive Page Widget',
+			'description'   => 'Add widgets to the Recordings archive page before the site footer.'
+		)
 	)
 );

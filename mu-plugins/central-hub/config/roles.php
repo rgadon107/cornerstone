@@ -7,6 +7,7 @@ return array(
 		'Tenor'                      => 'Tenor (vocalist)',
 		'Bass'                       => 'Bass (vocalist)',
 		'Trumpet'                    => 'Trumpet (instrumentalist)',
+		'Tenor Trombone'             => 'Tenor Trombone (instrumentalist)',
 		'Bass Trombone'              => 'Bass Trombone (instrumentalist)',
 		'French Horn'                => 'French Horn (instrumentalist)',
 		'Percussion'                 => 'Percussion (instrumentalist)',

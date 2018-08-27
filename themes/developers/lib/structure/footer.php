@@ -23,6 +23,21 @@ function unregister_footer_callbacks() {
 	remove_action( 'genesis_footer', 'genesis_do_footer' );
 }
 
+add_action( 'genesis_footer', __NAMESPACE__ . '\add_site_footer_widget_area' );
+/*
+ *  Add a site footer widget area
+ *
+ *  @since 1.0.0
+ *
+ *  @return void
+ */
+function add_site_footer_widget_area()  {
+	genesis_widget_area( 'donate_call_to_action', array(
+		'before' => '<div class="site-footer--widget-area"><div class="wrap">',
+		'after'  => '</div></div>',
+	) );
+}
+
 add_action( 'genesis_footer', __NAMESPACE__ . '\do_footer_cornerstone_content' );
 /**
  * Customize the site footer to render client info.

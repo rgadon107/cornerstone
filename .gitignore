@@ -2,7 +2,6 @@
 /ewww
 /mu-plugins/central-hub/node_modules/
 /mu-plugins/wp-migrate-db-pro-compatibility.php
-/plugins/_wp-phone-number/
 /plugins/backupbuddy
 /plugins/better-delete-revision
 /plugins/classic-editor
@@ -20,7 +19,7 @@
 /plugins/wp-mail-smtp
 /plugins/wp-migrate-db-pro
 /plugins/wp-migrate-db-pro-media-files
-/plugins/wp-phone_number
+/plugins/wp-phone-number
 /themes/developers/node_modules/
 /themes/developers/images
 /themes/developers/style.css
