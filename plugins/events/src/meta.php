@@ -135,7 +135,7 @@ function render_admission_information( $event_id ) {
 		return;
 	}
 
-	echo '<strong>Admission: </strong>' . esc_html( $admission_text_field );
+	echo esc_html( $admission_text_field );
 
 }
 
