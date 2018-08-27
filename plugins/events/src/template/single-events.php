@@ -42,17 +42,18 @@ function add_content_wrap_markup_open() {
 
 	printf( '<div %s>', genesis_attr( 'before-entry-header-wrap' ) );
 
-	echo add_venue_image_to_single_event();
+	echo add_venue_image_to_single_event( $event_id );
 }
 
 /*
  * Add an event venue image to the single-event template.
  *
  * @since 1.0.0
+ * @param int $event_id The event ID.
  *
  * @return void
  */
-function add_venue_image_to_single_event()    {
+function add_venue_image_to_single_event( int $event_id )    {
 	if ( is_post_type_archive( 'events' ) ) {
 		return '';
 	}
