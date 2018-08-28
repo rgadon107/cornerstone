@@ -33,6 +33,10 @@
     float: right;
   }
 
+  .event.event-date {
+    @include rem( font-size, $events__Archive_Date_Time--font-size );
+  }
+
   .revealer--visible {
     display: flex;
   }
