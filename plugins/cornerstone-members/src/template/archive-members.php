@@ -50,7 +50,7 @@ add_action( 'genesis_entry_content', __NAMESPACE__ . '\render_members_content' )
  */
 function render_members_content() {
 	$number_of_characters = 200;
-	the_content_limit( $number_of_characters, genesis_a11y_more_link( __( '[Read more...]', 'genesis' ) ) );
+	the_content_limit( $number_of_characters, genesis_a11y_more_link( '[Continue reading...]' );
 }
 
 require dirname( __DIR__ ) . '/template/single-members.php';
