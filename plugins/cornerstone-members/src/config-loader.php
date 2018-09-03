@@ -12,6 +12,7 @@
 namespace spiralWebDb\Members;
 
 use spiralWebDb\Metadata;
+use function spiralWebDb\Module\Custom\Shortcode\register_shortcode;
 
 add_filter( 'add_custom_post_type_runtime_config', __NAMESPACE__ . '\register_members_custom_configs', 9 );
 add_filter( 'add_custom_taxonomy_runtime_config', __NAMESPACE__ . '\register_members_custom_configs', 9 );
@@ -80,3 +81,5 @@ function register_the_template_files( array $templates ) {
 
 	return array_merge_recursive( $templates, $config );
 }
+
+register_shortcode( _get_plugin_directory() . '/config/shortcode.php' );
