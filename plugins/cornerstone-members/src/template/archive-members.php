@@ -28,11 +28,7 @@ function add_to_post_classes_for_grid_pattern( array $classes ) {
 		return $classes;
 	}
 
-	$classes[] = 'one-half';
-
-	if ( $members_count % 2 === 0 ) {
-		$classes[] = 'first';
-	}
+	$classes[] = get_members_post_classes( $members_count );
 
 	$members_count++;
 
