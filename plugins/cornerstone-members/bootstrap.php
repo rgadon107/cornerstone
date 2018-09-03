@@ -53,6 +53,7 @@ function autoload_files() {
 		'/src/config-loader.php',
 		'/src/admin/edit-form-advanced.php',
 		'/src/template/helpers.php',
+		'/src/shortcode/members.php',
 	];
 
 	foreach ( $files as $filename ) {
