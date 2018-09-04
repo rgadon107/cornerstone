@@ -52,6 +52,8 @@ function autoload_files() {
 		'/src/meta.php',
 		'/src/config-loader.php',
 		'/src/admin/edit-form-advanced.php',
+		'/src/template/helpers.php',
+		'/src/shortcode/members.php',
 	];
 
 	foreach ( $files as $filename ) {

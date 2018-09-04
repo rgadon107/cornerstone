@@ -28,11 +28,7 @@ function add_to_post_classes_for_grid_pattern( array $classes ) {
 		return $classes;
 	}
 
-	$classes[] = 'one-half';
-
-	if ( $members_count % 2 === 0 ) {
-		$classes[] = 'first';
-	}
+	$classes[] = get_members_post_classes( $members_count );
 
 	$members_count++;
 
@@ -41,16 +37,5 @@ function add_to_post_classes_for_grid_pattern( array $classes ) {
 
 remove_action( 'genesis_entry_content', 'genesis_do_post_content' );
 add_action( 'genesis_entry_content', __NAMESPACE__ . '\render_members_content' );
-/**
- * Renders the member's bio with a character limiter applied.
- *
- * @since 1.0.0
- *
- * @return void
- */
-function render_members_content() {
-	$number_of_characters = 200;
-	the_content_limit( $number_of_characters, genesis_a11y_more_link( '[Continue reading...]' );
-}
 
 require dirname( __DIR__ ) . '/template/single-members.php';
