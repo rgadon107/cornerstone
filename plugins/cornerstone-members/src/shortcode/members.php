@@ -1,6 +1,6 @@
 <?php
 /**
- * Members shortcode processing.
+ * Members' shortcode processing.
  *
  * @package    spiralWebDb\Members\Shortcode
  * @since      1.0.0
@@ -14,15 +14,14 @@ namespace spiralWebDb\Members\Shortcode;
 use function spiralWebDb\Members\Template\get_members_post_classes;
 
 /**
- * Process the Members [members] shortcode.
+ * Process the [members] shortcode.
  *
  * @since 1.0.0
  *
  * @param array $config     Array of runtime configuration parameters
  * @param array $attributes Attributes for this shortcode instance.
  *
- *
- * @return string
+ * @return string $html Empty output buffer
  */
 function process_members_shortcode( array $config, array $attributes ) {
 	$doing_single = ! empty( $attributes['member_id'] );
