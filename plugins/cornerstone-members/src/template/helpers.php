@@ -65,7 +65,7 @@ function render_post_thumbnail_before_title( $member_id = 0 ) {
 }
 
 /**
- *  Description
+ * Render the member's role in the post entry-header
  *
  * @since 1.0.0
  *
