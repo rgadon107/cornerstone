@@ -67,7 +67,7 @@ return array(
 		 *==================================================*/
 		'defaults'                    => array(
 			'member_id'               => 0,
-			'number_of_members'       => 10,
+			'number_of_members'       => 10, // Number of members to display per page.
 			'show_none_found_message' => '1',
 			'none_found'              => 'Sorry, no member profiles were found.',
 			'none_found_single'       => 'Sorry, there is no profile available for that member.',
