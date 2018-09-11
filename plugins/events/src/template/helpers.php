@@ -11,16 +11,56 @@
 
 namespace spiralWebDb\Events\Template;
 
-// Call functions from plugin meta.php file if needed.
-// use function spiralWebDb\Events\{name_of_function};
+use function spiralWebDb\Events\render_the_performance_community;
+use function spiralWebDb\Events\render_performance_date_and_time;
 
-// If we're displaying the events in a grid, call
-// function get_members_post_classes. See'/cornerstone-members/src/template/helpers.php'
-// for guidance.
+// See '/cornerstone-members/src/template/helpers.php' on how to render grid classes.
 
-// Call function from meta.php file to render the post_thumbnail_before_title
+/**
+ * Render the event performance community (City, State)
+ *
+ * @since 1.0.0
+ *
+ * @return void
+ */
+function render_the_performance_community( $event_id = 0 ) {
+	if ( ! $event_id ) {
+		$event_id = get_the_ID( $event_id );
+	}
 
-// Call function from meta.php file to render the performance city & state.
+	require dirname( __DIR__ ) . '/views/event-community.php';
+}
 
-// Call functions from meta.php file to render the entry post-meta and entry footer.
+/**
+ * Render the event post title.
+ *
+ * @since 1.0.0
+ *
+ * @param int $event_id Optional. Event ID.
+ *
+ * @return void
+ */
+function render_event_title( $event_id = 0 ) {
+	if ( ! $event_id ) {
+		$event_id = (int) get_the_ID();
+	}
 
+	require dirname( __DIR__ ) . '/views/event-title.php';
+}
+
+/**
+ * Render the event performance date and time.
+ *
+ * @since 1.4.0
+ *
+ * @param int $event_id The event ID.
+ *
+ * @return void
+ */
+function render_performance_date_and_time( $event_id ) {
+	if ( ! $event_id ) {
+		$event_id = (int) get_the_ID();
+	}
+
+	require dirname( __DIR__ ) .'/views/performance-date-time.php';
+}
