@@ -11,10 +11,20 @@
 
 namespace spiralWebDb\Events\Shortcode;
 
-use function spiralWebDb\Events\{name_of_function};
+use function spiralWebDb\Events\render_the_performance_community;
+use function spiralWebDb\Events\render_event_title;
+use function spiralWebDb\Events\render_performance_date_and_time;
 
 ?>
 
-<!--Begin HTML-->
-<!--See '/cornerstone-members/src/shortcode/views/members.php' for guidance-->
-<!--In the markup, add the variable $article_classes to the class="" attribute.-->
+<article class="<?php echo esc_attr( $article_classes ); ?>" itemscope itemtype="https://schema.org/MusicEvent">
+    <header class="entry-header two-thirds">
+		<?php
+		render_the_performance_community( $event_id );
+		render_event_title( $event_id );
+		?>
+        <div class="before-entry-content-meta">
+        <?php render_performance_date_and_time( $event_id ); ?>
+        </div>
+    </header>
+</article>
