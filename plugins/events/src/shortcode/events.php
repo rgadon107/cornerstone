@@ -76,16 +76,3 @@ function get_events_query( array $args, array $attributes ) {
 
 	return new \WP_Query( $args );
 }
-
-// DONE Add the events_shorcode_processing function
-// DONE Function should call the view file from '/src/shortcode/views'
-// TODO Build out the [events] shortcode view file.
-/* Note: I had to temporarily reactivate the front-page.php template file in the
- * Developers child theme and call the function 'genesis_custom_loop()'. That
- * renders the archive-events template on the front page. Look at the markup of
- * the archive-event & single-event templates to decide how to build the shortcode
- * view file.
- */
-
-// TODO In the shortcode config file, check & update the key-value pair for $attributes['view'] as needed.
-// TODO Add a helpers file to the plugin rel path: '/src/template/helpers.php'.
