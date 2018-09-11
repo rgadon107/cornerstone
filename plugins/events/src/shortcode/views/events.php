@@ -11,9 +11,9 @@
 
 namespace spiralWebDb\Events\Shortcode;
 
-use function spiralWebDb\Events\render_the_performance_community;
-use function spiralWebDb\Events\render_event_title;
-use function spiralWebDb\Events\render_performance_date_and_time;
+use function spiralWebDb\Events\Template\render_the_performance_community;
+use function spiralWebDb\Events\Template\render_event_title;
+use function spiralWebDb\Events\Template\render_performance_date_and_time;
 
 ?>
 
