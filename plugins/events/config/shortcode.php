@@ -53,7 +53,7 @@ return array(
 		 * Path(s) to the view file(s).
 		 *
 		 *==================================================*/
-		'view'                        => get_plugin_directory() . '/src/shortcode/views/events.php',
+		'view'                        => _get_plugin_directory() . '/src/shortcode/views/events.php',
 
 		/**=================================================
 		 *
