@@ -11,9 +11,6 @@
 
 namespace spiralWebDb\Events\Template;
 
-use function spiralWebDb\Events\render_the_performance_community;
-use function spiralWebDb\Events\render_performance_date_and_time;
-
 // See '/cornerstone-members/src/template/helpers.php' on how to render grid classes.
 
 /**
