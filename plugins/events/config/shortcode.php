@@ -53,7 +53,11 @@ return array(
 		 * Path(s) to the view file(s).
 		 *
 		 *==================================================*/
-		'view'                      => _get_plugin_directory() . '/src/shortcode/views/events.php',
+		'view'                        => array(
+			'location'  => _get_plugin_directory() . '/src/views/event-community.php',
+			'sponsor'   => _get_plugin_directory() . '/src/views/event-title.php',
+			'date_time' => _get_plugin_directory() . '/src/views/performance-date-time.php',
+		),
 
 		/**=================================================
 		 *
@@ -62,12 +66,12 @@ return array(
 		 *
 		 *==================================================*/
 		'defaults'                    => array(
-			'event_id'                => 0,
-			'number_of_events'        => -1, // Events archive.
-			'show_none_found_message' => '1',
-			'none_found'              => 'Sorry, no performance events were found.',
-			'none_found_single'       => 'Sorry, there is no information available for that event.',
-		),
+	'event_id'                => 0,
+	'number_of_events'        => -1, // Events archive.
+	'show_none_found_message' => '1',
+	'none_found'              => 'Sorry, no performance events were found.',
+	'none_found_single'       => 'Sorry, there is no information available for that event.',
+),
 		/**=================================================
 		 *
 		 *  Arguments to pass to the custom $query object in
@@ -75,8 +79,8 @@ return array(
 		 *
 		 *==================================================*/
 		'query_args'                  => array(
-			'post_type'     => 'events',
-			'no_found_rows' => true,
-		),
+	'post_type'     => 'events',
+	'no_found_rows' => true,
+),
 	),
 );
