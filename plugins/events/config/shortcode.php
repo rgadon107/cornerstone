@@ -53,7 +53,7 @@ return array(
 		 * Path(s) to the view file(s).
 		 *
 		 *==================================================*/
-		'view'                        => _get_plugin_directory() . '/src/shortcode/views/events.php',
+		'view'                      => _get_plugin_directory() . '/src/shortcode/views/events.php',
 
 		/**=================================================
 		 *
@@ -63,7 +63,7 @@ return array(
 		 *==================================================*/
 		'defaults'                    => array(
 			'event_id'                => 0,
-			'number_of_events'        => - 1, // Events archive.
+			'number_of_events'        => -1, // Events archive.
 			'show_none_found_message' => '1',
 			'none_found'              => 'Sorry, no performance events were found.',
 			'none_found_single'       => 'Sorry, there is no information available for that event.',
@@ -74,7 +74,7 @@ return array(
 		 *  the shortcode processing function.
 		 *
 		 *==================================================*/
-		'query_args'        => array(
+		'query_args'                  => array(
 			'post_type'     => 'events',
 			'no_found_rows' => true,
 		),
