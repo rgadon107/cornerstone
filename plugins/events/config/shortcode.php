@@ -66,12 +66,12 @@ return array(
 		 *
 		 *==================================================*/
 		'defaults'                    => array(
-	'event_id'                => 0,
-	'number_of_events'        => -1, // Events archive.
-	'show_none_found_message' => '1',
-	'none_found'              => 'Sorry, no performance events were found.',
-	'none_found_single'       => 'Sorry, there is no information available for that event.',
-),
+			'event_id'                => 0,
+			'number_of_events'        => -1, // Events archive.
+			'show_none_found_message' => '1',
+			'none_found'              => 'Sorry, no performance events were found.',
+			'none_found_single'       => 'Sorry, there is no information available for that event.',
+		),
 		/**=================================================
 		 *
 		 *  Arguments to pass to the custom $query object in
@@ -79,8 +79,8 @@ return array(
 		 *
 		 *==================================================*/
 		'query_args'                  => array(
-	'post_type'     => 'events',
-	'no_found_rows' => true,
-),
+			'post_type'     => 'events',
+			'no_found_rows' => true,
+		),
 	),
 );
