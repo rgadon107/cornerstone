@@ -29,8 +29,12 @@ use function spiralWebDb\Members\Template\render_member_title;
     </header>
     <div class="entry-content two-thirds" itemprop="text">
 		<?php
+		if ( is_front_page() ) {
+			the_content();
+        } else {
+			render_members_content();
+		}
 
-		render_members_content();
 		render_member_meta( $member_id );
 		?>
     </div>
