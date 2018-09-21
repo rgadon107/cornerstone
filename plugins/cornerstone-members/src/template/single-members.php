@@ -15,7 +15,15 @@ add_action( 'genesis_entry_header', __NAMESPACE__ . '\render_post_thumbnail_befo
 
 remove_action( 'genesis_entry_header', 'genesis_post_info', 12 );
 
-add_filter( 'genesis_attr_entry-title', __NAMESPACE__ . '\render_member_role', 8 );
+add_action( 'genesis_entry_header', __NAMESPACE__ . '\render_the_member_role', 8 );
+/**
+ *
+ */
+function render_the_member_role( $member_id ) {
+	$member_id = get_the_ID();
+
+	require dirname( __DIR__ ) . '/views/member-role.php';
+}
 
 add_filter( 'genesis_attr_entry-title', __NAMESPACE__ . '\genesis_attributes_entry_title' );
 /**

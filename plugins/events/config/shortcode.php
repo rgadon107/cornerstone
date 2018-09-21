@@ -1,17 +1,17 @@
 <?php
 /**
- * Members shortcode runtime configuration parameters.
+ * Events shortcode runtime configuration parameters.
  *
- * @package    spiralWebDb\Members\Shortcode
+ * @package    spiralWebDb\Events\Shortcode
  * @since      1.0.0
  * @author     Robert A. Gadon
  * @link       http://spiralwebdb.com
  * @license    GPL-2.0+
  */
 
-namespace spiralWebDb\Members\Shortcode;
+namespace spiralWebDb\Events\Shortcode;
 
-use function spiralWebDb\Members\_get_plugin_directory;
+use function spiralWebDb\Events\_get_plugin_directory;
 
 return array(
 
@@ -21,14 +21,14 @@ return array(
 	 * This ID is used for storing and getting the configuration
 	 * in/out of the Config Store.
 	 ***********************************************************/
-	'shortcode.members' => array(
+	'shortcode.events' => array(
 
 		/**=================================================
 		 *
-		 * Shortcode name [members]
+		 * Shortcode name [events]
 		 *
 		 *==================================================*/
-		'shortcode_name'              => 'members',
+		'shortcode_name'              => 'events',
 
 		/**=================================================
 		 *
@@ -46,17 +46,17 @@ return array(
 		 * processing.
 		 *
 		 *==================================================*/
-		'processing_function'         => __NAMESPACE__ . '\process_members_shortcode',
+		'processing_function'         => __NAMESPACE__ . '\process_events_shortcode',
 
 		/**=================================================
 		 *
-		 * Paths to the view files.
+		 * Path(s) to the view file(s).
 		 *
 		 *==================================================*/
 		'view'                        => array(
-			'residence' => _get_plugin_directory() . '/src/views/member-residence.php',
-			'role'      => _get_plugin_directory() . '/src/views/member-role.php',
-			'tours'     => _get_plugin_directory() . '/src/views/member-of-tours.php',
+			'location'  => _get_plugin_directory() . '/src/views/event-community.php',
+			'sponsor'   => _get_plugin_directory() . '/src/views/event-title.php',
+			'date_time' => _get_plugin_directory() . '/src/views/performance-date-time.php',
 		),
 
 		/**=================================================
@@ -66,15 +66,20 @@ return array(
 		 *
 		 *==================================================*/
 		'defaults'                    => array(
-			'member_id'               => 0,
-			'number_of_members'       => 10, // Number of members to display per page.
+			'event_id'                => 0,
+			'number_of_events'        => -1, // Events archive.
 			'show_none_found_message' => '1',
-			'none_found'              => 'Sorry, no member profiles were found.',
-			'none_found_single'       => 'Sorry, there is no profile available for that member.',
+			'none_found'              => 'Sorry, no performance events were found.',
+			'none_found_single'       => 'Sorry, there is no information available for that event.',
 		),
-
-		'query_args' => array(
-			'post_type'     => 'members',
+		/**=================================================
+		 *
+		 *  Arguments to pass to the custom $query object in
+		 *  the shortcode processing function.
+		 *
+		 *==================================================*/
+		'query_args'                  => array(
+			'post_type'     => 'events',
 			'no_found_rows' => true,
 		),
 	),

@@ -18,9 +18,9 @@ use function spiralWebDb\Members\render_cornerstone_member_image;
  *
  * @since 1.0.0
  *
- * @param int $members_count This member's spot in the grid.
- * @param int $member_id Optional. Member's ID.
- * @param array $classes Optional. Starting classes to add new classes to.
+ * @param int   $members_count This member's spot in the grid.
+ * @param int   $member_id     Optional. Member's ID.
+ * @param array $classes       Optional. Starting classes to add new classes to.
  *
  * @return string
  */
@@ -65,7 +65,7 @@ function render_post_thumbnail_before_title( $member_id = 0 ) {
 }
 
 /**
- *  Description
+ * Render the member's role in the post entry-header
  *
  * @since 1.0.0
  *
@@ -79,6 +79,23 @@ function render_member_role( $member_id = 0 ) {
 	}
 
 	require dirname( __DIR__ ) . '/views/member-role.php';
+}
+
+/**
+ * Render the Cornerstone member post title.
+ *
+ * @since 1.0.0
+ *
+ * @param int $member_id Optional. Member's ID.
+ *
+ * @return void
+ */
+function render_member_title( $member_id = 0 ) {
+	if ( ! $member_id ) {
+		$member_id = (int) get_the_ID();
+	}
+
+	require dirname( __DIR__ ) . '/views/member-title.php';
 }
 
 /**

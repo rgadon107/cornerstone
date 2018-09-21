@@ -1,20 +1,18 @@
 <?php
 /**
- * Members' shortcode processing.
+ * Events' shortcode processing.
  *
- * @package    spiralWebDb\Members\Shortcode
+ * @package    spiralWebDb\Events\Shortcode
  * @since      1.0.0
  * @author     Robert A. Gadon
  * @link       http://spiralwebdb.com
  * @license    GPL-2.0+
  */
 
-namespace spiralWebDb\Members\Shortcode;
-
-use function spiralWebDb\Members\Template\get_members_post_classes;
+namespace spiralWebDb\Events\Shortcode;
 
 /**
- * Process the [members] shortcode.
+ * Process the [events] shortcode.
  *
  * @since 1.0.0
  *
@@ -23,9 +21,9 @@ use function spiralWebDb\Members\Template\get_members_post_classes;
  *
  * @return string $html Empty output buffer
  */
-function process_members_shortcode( array $config, array $attributes ) {
-	$doing_single = ! empty( $attributes['member_id'] );
-	$query        = get_members_query( $config['query_args'], $attributes );
+function process_events_shortcode( array $config, array $attributes ) {
+	$doing_single = ! empty( $attributes['event_id'] );
+	$query        = get_events_query( $config['query_args'], $attributes );
 
 	// None found. Return the appropriate message.
 	if ( ! $query->have_posts() ) {
@@ -36,21 +34,19 @@ function process_members_shortcode( array $config, array $attributes ) {
 		return sprintf( '<p>%s</p>', esc_html( $message ) );
 	}
 
-	$members_count = 0;
+	$events_count = 0;
 
 	// Call the view file, capture it into the output buffer, and then return it.
 	ob_start();
 
 	while ( $query->have_posts() ) {
 		$query->the_post();
-		$member_id       = (int) get_the_ID();
-		$article_classes = $doing_single
-			? "post-{$member_id} type-member"
-			: get_members_post_classes( $members_count, $member_id, array( 'grid-list' ) );
+		$event_id       = (int) get_the_ID();
+		$article_classes = "post-{$event_id} type-event";
 
-		require __DIR__ . '/views/members.php';
+		require __DIR__ . '/views/events.php';
 
-		$members_count++;
+		$events_count++;
 	}
 
 	$html = ob_get_clean();
@@ -62,7 +58,7 @@ function process_members_shortcode( array $config, array $attributes ) {
 }
 
 /**
- * Get the member's query based on the given attributes and configuration.
+ * Get the event's query based on the given attributes and configuration.
  *
  * @since 1.0.0
  *
@@ -71,11 +67,11 @@ function process_members_shortcode( array $config, array $attributes ) {
  *
  * @return \WP_Query
  */
-function get_members_query( array $args, array $attributes ) {
-	if ( ! empty( $attributes['member_id'] ) ) {
-		$args['p'] = (int) $attributes['member_id'];
+function get_events_query( array $args, array $attributes ) {
+	if ( ! empty( $attributes['event_id'] ) ) {
+		$args['p'] = (int) $attributes['event_id'];
 	} else {
-		$args['posts_per_page'] = (int) $attributes['number_of_members'];
+		$args['posts_per_page'] = (int) $attributes['number_of_events'];
 	}
 
 	return new \WP_Query( $args );
