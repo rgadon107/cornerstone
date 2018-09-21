@@ -53,7 +53,7 @@ function add_content_wrap_markup_open() {
  *
  * @return void
  */
-function add_venue_image_to_single_event( int $event_id )    {
+function add_venue_image_to_single_event( $event_id )    {
 	if ( is_post_type_archive( 'events' ) ) {
 		return '';
 	}
