@@ -19,10 +19,9 @@
 }
 
 .welcome-content {
-  padding: 4%;
-  margin-bottom: 40px;
+  display: inline-block;
+  margin: 0 2% 4%;
   columns: 2;
-  margin: 0 2%;
   padding: 0 2%;
 
   @include media( $breakpoint__screen-size--small ) {
@@ -55,4 +54,8 @@
 
 .events-content .entry-header.two-thirds {
   margin-bottom: 20px;
+}
+
+.event-title a:hover {
+  text-decoration: underline;
 }
