@@ -42,20 +42,21 @@ add_action( 'manage_members_posts_custom_column', __NAMESPACE__ . '\render_custo
  */
 function render_custom_column_content( $column_name ) {
 
-	if ( ! is_admin() && ! post_type_exists( 'members' )  ) {
+	if ( ! is_admin() && ! post_type_exists( 'members' ) ) {
 		return;
 	}
 
 	$post = get_the_post();
 
-	$member_id = $post->ID;
+	$member_id  = sanitize_field( $post->ID );
+	$menu_order = sanitize_field( $post->menu_order );
 
 	if ( 'member_id' == $column_name ) {
 		echo get_the_member_ID( $member_id );
 	}
 
 	if ( 'menu_order' == $column_name ) {
-		echo apply_filters( 'menu_order', $post->menu_order );
+		echo apply_filters( 'menu_order', $menu_order );
 	}
 }
 
