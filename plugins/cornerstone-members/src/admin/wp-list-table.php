@@ -42,7 +42,7 @@ add_action( 'manage_members_posts_custom_column', __NAMESPACE__ . '\render_custo
  */
 function render_custom_column_content( $column_name ) {
 
-	if ( ! is_admin() ) {
+	if ( ! is_admin() && ! post_type_exists( 'members' )  ) {
 		return;
 	}
 
