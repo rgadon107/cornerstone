@@ -19,16 +19,6 @@ return array(
 	),
 	'register_widget_areas'   => array(
 		array(
-			'id'          => 'welcome_front_page',
-			'name'        => 'Front Page Welcome',
-			'description' => 'This is the front-page Welcome widget area (located below the logo).',
-		),
-		array(
-			'id'          => 'reviews_front_page',
-			'name'        => 'Front Page Reviews',
-			'description' => 'This is the front-page Reviews widget area.',
-		),
-		array(
 			'id'          => 'donate_call_to_action',
 			'name'        => 'Donate -- Footer Widget',
 			'description' => 'This is donation appeal in the site footer.',

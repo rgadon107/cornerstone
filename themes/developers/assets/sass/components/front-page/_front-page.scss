@@ -1,0 +1,67 @@
+//
+// Front Page Stylings
+//================================
+
+.welcome-title,
+.reviews-title,
+.members-title,
+.events-title {
+  background-color: $widget--background-color;
+  @include rem( font-size, $widget-title__Welcome--font-size );
+  padding: 25px 0px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-style: italic;
+  font-weight: bold;
+  @include media( $breakpoint__screen-size--small ) {
+    font-weight: 400;
+  }
+}
+
+.welcome-content {
+  display: inline-block;
+  margin: 0 2% 2%;
+  columns: 2;
+  padding: 0 2%;
+
+  @include media( $breakpoint__screen-size--small ) {
+    columns: 1;
+  }
+}
+
+.reviews-content {
+  display: flex;
+  justify-content: space-around;
+  @include media($breakpoint__screen-size--small) {
+    display: inline-block;
+  }
+
+  .pull_quote {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 0 4%;
+  }
+
+  .dashicons-format-quote {
+    margin-right: 15px;
+    font-size: $dashicons-format-quote--font-size;
+  }
+
+  .review-content {
+    font-weight: bold;
+    font-style: italic;
+  }
+}
+
+.members-content .entry-content.two-thirds {
+  margin-bottom: 30px;
+}
+
+.events-content .entry-header.two-thirds {
+  margin-bottom: 20px;
+}
+
+.event-title a:hover {
+  text-decoration: underline;
+}
