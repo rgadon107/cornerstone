@@ -15,7 +15,7 @@
 
 namespace spiralWebDb\Members;
 
-add_filter( 'manage_members_posts_columns', __NAMESPACE__ . '\set_custom_columns' );
+add_filter( 'manage_members_posts_columns', __NAMESPACE__ . '\_set_custom_columns' );
 /**
  * Add custom columns to Members Admin.
  *
@@ -25,7 +25,7 @@ add_filter( 'manage_members_posts_columns', __NAMESPACE__ . '\set_custom_columns
  *
  * @return array $columns
  */
-function set_custom_columns( array $columns ) {
+function _set_custom_columns( $columns = array() ) {
 	return array(
 		'cb'         => '<input type="checkbox"/>',
 		'title'      => 'Member',
@@ -34,24 +34,28 @@ function set_custom_columns( array $columns ) {
 	);
 }
 
-add_action( 'manage_members_posts_custom_column', __NAMESPACE__ . '\render_custom_column_content' );
+add_action( 'manage_members_posts_custom_column', __NAMESPACE__ . '\_render_custom_column_content' );
 /**
  *  Display the content for each custom column.
  *
  * @param string $column_name The name of the column to display.
+ * @param int    $post_id     The current post ID.
+ * @param array  $config      Optional. Array of custom columns.
  */
-function render_custom_column_content( $column_name, $columns = array() ) {
+function _render_custom_column_content( $column_name, $post_id, $config = array() ) {
 
 	if ( ! is_admin() && ! is_post_type_archive( 'members' ) ) {
 		return;
 	}
 
-	$config = set_custom_columns( $columns );
+	if ( get_post_type( $post_id ) == 'members' ) {
+		$post = get_post();
+	}
 
-	$post = get_the_post();
+	$config = _set_custom_columns( $columns );
 
-	$member_id  = sanitize_field( $post->ID );
-	$menu_order = sanitize_field( $post->menu_order );
+	$member_id  = sanitize_post( $post->ID );
+	$menu_order = sanitize_post( $post->menu_order );
 
 	if ( $config['member_id'] == $column_name ) {
 		echo apply_filters( 'ID', $member_id );
@@ -62,7 +66,7 @@ function render_custom_column_content( $column_name, $columns = array() ) {
 	}
 }
 
-add_filter( 'manage_edit-members_sortable_columns', __NAMESPACE__ . '\set_sortable_columns' );
+add_filter( 'manage_edit-members_sortable_columns', __NAMESPACE__ . '\_set_sortable_columns' );
 /**
  * Set sortable columns on Members Admin page.
  *
@@ -71,7 +75,7 @@ add_filter( 'manage_edit-members_sortable_columns', __NAMESPACE__ . '\set_sortab
  * @param string $column_name The name of the column to display.
  * @param int    $member_id   The current post ID.
  */
-function set_sortable_columns( array $column_name ) {
+function _set_sortable_columns( array $column_name ) {
 	return array(
 		'title'      => 'Member',
 		'member_id'  => 'Member ID',
