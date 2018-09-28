@@ -57,13 +57,13 @@ function _render_custom_column_content( $column_name, $post_id, $config = array(
 	$member_id  = sanitize_post( $post->ID );
 	$menu_order = sanitize_post( $post->menu_order );
 
-	if ( $config['member_id'] == $column_name ) {
-		echo apply_filters( 'ID', $member_id );
+	foreach ( $config as $custom_columns => $column_name ) {
+
+		echo $config['member_id']  = $member_id;
+		echo $config['menu_order'] = $menu_order;
 	}
 
-	if ( $config['menu_order'] == $column_name ) {
-		echo apply_filters( 'menu_order', $menu_order );
-	}
+	return $column_name;
 }
 
 add_filter( 'manage_edit-members_sortable_columns', __NAMESPACE__ . '\_set_sortable_columns' );
