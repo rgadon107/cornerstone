@@ -30,7 +30,7 @@ function set_members_taxonomy_archive_order( $query ) {
 	}
 
 	$query->set( 'post__not_in', array( 609 ) );
-	$query->set( 'posts_per_archive_page', 25 );
+	$query->set( 'posts_per_archive_page', 30 );
 	$query->set( 'order', 'ASC' );
 	$query->set( 'orderby', 'menu_order' );
 }
