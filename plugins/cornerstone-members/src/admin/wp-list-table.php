@@ -21,7 +21,7 @@ add_filter( 'manage_members_posts_columns', __NAMESPACE__ . '\set_custom_columns
  *
  * @since 1.0.0
  *
- * @return array $columns
+ * @return array Array of columns.
  */
 function set_custom_columns() {
 	return array(
@@ -39,15 +39,15 @@ add_action( 'manage_members_posts_custom_column', __NAMESPACE__ . '\_render_cust
  * @since 1.0.0
  *
  * @param string $column_name The name of the column to display.
- * @param int    $post_id     The current post ID.
+ * @param int    $member_id   The current member (post) ID.
  */
-function _render_custom_column_content( $column_name, $post_id ) {
+function _render_custom_column_content( $column_name, $member_id ) {
 	switch ( $column_name ) {
 		case 'member_id':
-			echo (int) $post_id;
+			echo (int) $member_id;
 			break;
 		case 'menu_order':
-			echo (int) get_post_field( 'menu_order', $post_id );
+			echo (int) get_post_field( 'menu_order', $member_id );
 			break;
 	}
 }
