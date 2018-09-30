@@ -15,18 +15,18 @@
 
 namespace spiralWebDb\Members;
 
-add_filter( 'manage_members_posts_columns', __NAMESPACE__ . '\_set_custom_columns' );
+add_filter( 'manage_members_posts_columns', __NAMESPACE__ . '\set_custom_columns' );
 /**
  * Add custom columns to Members Admin.
  *
  * @since 1.0.0
  *
- * @param array $columns An array of column names.
+ * @param array $posts_columns An array of column names.
  *
  * @return array $columns
  */
-function _set_custom_columns( $columns = array() ) {
-	return array(
+function set_custom_columns( $posts_columns = array() ) {
+	return $posts_columns = array(
 		'cb'         => '<input type="checkbox"/>',
 		'title'      => 'Member',
 		'member_id'  => 'Member ID',
@@ -52,7 +52,7 @@ function _render_custom_column_content( $column_name, $post_id, $config = array(
 		$post = get_post();
 	}
 
-	$config = _set_custom_columns( $columns );
+	$config = set_custom_columns( $posts_columns );
 
 	$member_id  = sanitize_post( $post->ID );
 	$menu_order = sanitize_post( $post->menu_order );
