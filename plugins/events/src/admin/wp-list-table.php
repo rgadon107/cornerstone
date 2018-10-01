@@ -58,3 +58,19 @@ function _render_custom_column_content( $column_name, $event_id ) {
 			break;
 	}
 }
+
+add_filter( 'manage_edit-events_sortable_columns', __NAMESPACE__ . '\_set_sortable_columns' );
+/**
+ * Set sortable columns on Events Admin page.
+ *
+ * @since 1.0.0
+ *
+ * @return array New sortable columns.
+ */
+function _set_sortable_columns() {
+	return array(
+		'event_id'         => 'Event ID',
+		'performance_date' => 'Performance Date',
+		'menu_order'       => 'Order Number',
+	);
+}
