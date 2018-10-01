@@ -1,0 +1,17 @@
+/* ## Cornerstone Members add-on plugin
+---------------------------------------------------*/
+.members {
+
+  .entry-title a {
+    &:focus,
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.member-role.two-thirds {
+    @media only screen and (max-width: 1023px) {
+      margin-top: 20px;
+  }
+}

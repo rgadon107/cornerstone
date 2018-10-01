@@ -1,0 +1,29 @@
+//
+// Site Title
+//========================
+
+.site-title {
+  @include rem( font-size, $site-title--font-size );
+  font-weight: 700;
+  line-height: 1.2;
+
+  > a {
+    background-image: url(/wp-content/themes/developers/images/cornerstone-chorale-logo-bruce-vantine-image.png);
+    background-position: center !important;
+    background-size: contain !important;
+    background-repeat: no-repeat;
+  }
+
+  a,
+  a:hover,
+  a:focus {
+    display: block;
+    color: $site-title--link-color;
+    text-decoration: none;
+    text-indent: -9999px;
+    min-height: $title-area--height;
+    width: 100%;
+    float: left;
+  }
+
+}

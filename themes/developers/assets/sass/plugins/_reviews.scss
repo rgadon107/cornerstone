@@ -1,0 +1,17 @@
+/* ## Reviews add-on plugin
+---------------------------------------------------*/
+.reviews.entry {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+}
+
+.dashicons-format-quote {
+  margin: 0 15px 0;
+  font-size: $dashicons-format-quote--font-size;
+  @include rem( font-size, $dashicons-format-quote--font-size );
+}
+
+.review-content {
+  font-style: italic;
+}
