@@ -28,6 +28,7 @@
 /upgrade
 /uploads
 /wpflogs/*
+/wpflogs/.*
 
 # Files
 db.php
