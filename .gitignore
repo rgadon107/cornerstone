@@ -27,8 +27,8 @@
 /themes/twentyseventeen
 /upgrade
 /uploads
-/wpflogs/*
-/wpflogs/.*
+/wflogs/*
+/wflogs/.*
 
 # Files
 db.php
