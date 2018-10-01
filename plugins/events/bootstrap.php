@@ -49,6 +49,7 @@ function autoload_files() {
 	$files = [
 		'/src/plugin.php',
 		'/src/admin/edit-form-advanced.php',
+		'/src/admin/wp-list-table.php',
 		'/src/config-loader.php',
 		'/src/meta.php',
 		'/src/shortcode/events.php',
