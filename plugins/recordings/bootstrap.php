@@ -69,6 +69,7 @@ function autoload_files() {
 		'/src/meta.php',
 		'/src/config-loader.php',
 		'/src/shortcode/recordings.php',
+		'/src/admin/wp-list-table.php'
 	];
 
 	foreach ( $files as $filename ) {
