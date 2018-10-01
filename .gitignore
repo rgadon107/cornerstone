@@ -1,0 +1,34 @@
+# Directories
+/ewww
+/mu-plugins/central-hub/node_modules/
+/mu-plugins/UpDevTools
+/mu-plugins/wp-migrate-db-pro-compatibility.php
+/plugins/backupbuddy
+/plugins/better-delete-revision
+/plugins/classic-editor
+/plugins/ewww-image-optimizer
+/plugins/favicon-by-realfavicongenerator
+/plugins/genesis-simple-share
+/plugins/genesis-visual-hook-guide
+/plugins/jetpack
+/plugins/members
+/plugins/members-role-hierarchy
+/plugins/ninja-forms
+/plugins/query-monitor
+/plugins/sg-cachepress
+/plugins/simple-page-ordering
+/plugins/update-control
+/plugins/wordfence
+/plugins/wordpress-seo
+/plugins/wp-migrate-db-pro
+/plugins/wp-migrate-db-pro-media-files
+/themes/developers/node_modules/
+/themes/genesis
+/themes/twentyseventeen
+/upgrade
+/uploads
+/wpflogs/*
+
+# Files
+db.php
+index.php
