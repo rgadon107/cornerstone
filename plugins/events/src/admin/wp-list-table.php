@@ -40,7 +40,7 @@ add_action( 'manage_events_posts_custom_column', __NAMESPACE__ . '\_render_custo
  * @since 1.0.0
  *
  * @param string $column_name The name of the column to display.
- * @param int    $event_id    The current member (post) ID.
+ * @param int    $event_id    The current event (post) ID.
  */
 function _render_custom_column_content( $column_name, $event_id ) {
 	switch ( $column_name ) {
