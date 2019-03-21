@@ -1,0 +1,11 @@
+.DS_Store
+Thumbs.db
+.svn
+/phpunit.xml
+/phpcs.xml
+node_modules/
+logs/
+assets/components/
+publish/
+docs/
+vendor/
