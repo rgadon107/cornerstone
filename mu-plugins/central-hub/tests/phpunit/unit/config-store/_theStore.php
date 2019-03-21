@@ -14,6 +14,12 @@ namespace spiralWebDb\centralHub\Tests\Unit\ConfigStore;
 use function KnowTheCode\ConfigStore\_the_store;
 use spiralWebDb\centralHub\Tests\Unit\Test_Case;
 
+/**
+ * Class Tests_TheStore
+ *
+ * @package spiralWebDb\centralHub\Tests\Unit\ConfigStore
+ * @group   config-store
+ */
 class Tests_TheStore extends Test_Case {
 
 	/**
