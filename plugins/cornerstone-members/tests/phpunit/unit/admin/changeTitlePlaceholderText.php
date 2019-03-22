@@ -36,12 +36,21 @@ class Tests_ChangeTitlePlaceholderText extends Test_Case {
 	/**
 	 * Test change_title_placeholder_text() should return the given text when the post type is not 'members'.
 	 */
-	public function test_should_return_given_text_when_not_members_post_type() {
+	public function test_should_return_given_text_when_post_type_not_members() {
 		// Set up the mocks.
 		Functions\expect( 'get_post_type' )->once()->andReturn( 'post' );
 		Functions\expect( 'esc_html' )->never();
 
 		$text = 'original text';
 		$this->assertSame( $text, change_title_placeholder_text( $text ) );
+	}
+
+	/**
+	 * Test change_title_placeholder_text() should return text when the post type is 'members'.
+	 */
+	public function test_should_return_text_when_post_type_is_members() {
+		Functions\expect( 'get_post_type' )->once()->andReturn( 'members' );
+
+		$this->assertSame( 'Enter member first and last name.', change_title_placeholder_text( 'original text' ) );
 	}
 }
