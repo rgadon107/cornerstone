@@ -1,15 +1,15 @@
 <?php
 /**
- * Tests for change_title_placeholder_text().
+ * Tests for maybe_enqueue_script().
  *
- * @package     spiralWebDb\FAQ\Tests\Unit
+ * @package     spiralWebDb\FAQ\Tests\Unit\Asset
  * @since       1.0.0
  * @author      Robert Gadon <rgadon107>
  * @link        https://github.com/rgadon107/cornerstone
  * @license     GNU-2.0+
  */
 
-namespace spiralWebDb\FAQ\Tests\Unit;
+namespace spiralWebDb\FAQ\Tests\Unit\Asset;
 
 use Brain\Monkey\Functions;
 use spiralWebDb\Cornerstone\Tests\Unit\Test_Case;
@@ -18,9 +18,9 @@ use function spiralWebDb\FAQ\Asset\maybe_enqueue_script;
 /**
  * Class Tests_ChangeTitlePlaceholderText
  *
- * @package spiralWebDb\FAQ\Tests\Unit
- * @group   events
- * @group   admin
+ * @package spiralWebDb\FAQ\Tests\Unit\Asset
+ * @group   faq
+ * @group   asset
  */
 class Tests_MaybeEnqueueScript extends Test_Case {
 

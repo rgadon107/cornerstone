@@ -17,7 +17,8 @@ use spiralWebDb\Cornerstone\Tests\Integration\Test_Case;
  * Class Tests_ChangeTitlePlaceholderText
  *
  * @package spiralWebDb\Members\Tests\Integration\ConfigStore
- * @group   config-store
+ * @group   members
+ * @group   admin
  */
 class Tests_ChangeTitlePlaceholderText extends Test_Case {
 

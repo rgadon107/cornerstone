@@ -18,7 +18,7 @@ use function spiralWebDb\Recordings\set_custom_columns;
  * Class Tests_SetCustomColumns
  *
  * @package spiralWebDb\Recordings\Tests\Unit
- * @group   events
+ * @group   recordings
  * @group   admin
  */
 class Tests_SetCustomColumns extends Test_Case {

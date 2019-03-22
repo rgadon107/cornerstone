@@ -19,7 +19,7 @@ use function spiralWebDb\Reviews\change_title_placeholder_text;
  * Class Tests_ChangeTitlePlaceholderText
  *
  * @package spiralWebDb\Reviews\Tests\Unit
- * @group   events
+ * @group   reviews
  * @group   admin
  */
 class Tests_ChangeTitlePlaceholderText extends Test_Case {

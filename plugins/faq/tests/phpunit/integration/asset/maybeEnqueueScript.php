@@ -1,9 +1,9 @@
 <?php
 /**
- * Tests for change_title_placeholder_text().
+ * Tests for maybe_enqueue_script().
  *
  * @package     spiralWebDb\FAQ\Tests\Integration\Asset
- * @since       1.3.0
+ * @since       1.0.0
  * @author      Robert Gadon <rgadon107>
  * @link        https://github.com/rgadon107/cornerstone
  * @license     GNU-2.0+
@@ -15,13 +15,13 @@ use spiralWebDb\Cornerstone\Tests\Integration\Test_Case;
 use function spiralWebDb\FAQ\Asset\maybe_enqueue_script;
 
 /**
- * Class Tests_ChangeTitlePlaceholderText
+ * Class Tests_MaybeEnqueueScript
  *
- * @package spiralWebDb\FAQ\Tests\Integration\ConfigStore
- * @group   events
- * @group   admin
+ * @package spiralWebDb\FAQ\Tests\Integration\Asset
+ * @group   faq
+ * @group   asset
  */
-class Tests_ChangeTitlePlaceholderText extends Test_Case {
+class Tests_MaybeEnqueueScript extends Test_Case {
 
 	/**
 	 * Test maybe_enqueue_script() should return when the shortcode did not fire.
