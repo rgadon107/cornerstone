@@ -19,3 +19,4 @@ require_once __DIR__ . '/class-test-case.php';
 
 // Now load each of the Unit Test bootstrap files.
 require_once CORNERSTONE_ROOT_DIR . '/mu-plugins/central-hub/tests/phpunit/unit/bootstrap.php';
+require_once CORNERSTONE_ROOT_DIR . '/plugins/cornerstone-members/tests/phpunit/unit/bootstrap.php';

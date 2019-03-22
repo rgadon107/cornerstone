@@ -8,6 +8,8 @@ $baseDir = dirname(dirname($vendorDir));
 return array(
     'spiralWebDb\\centralHub\\Tests\\Unit\\' => array($baseDir . '/mu-plugins/central-hub/tests/phpunit/unit'),
     'spiralWebDb\\centralHub\\Tests\\Integration\\' => array($baseDir . '/mu-plugins/central-hub/tests/phpunit/integration'),
+    'spiralWebDb\\Members\\Tests\\Unit\\' => array($baseDir . '/plugins/cornerstone-members/tests/phpunit/unit'),
+    'spiralWebDb\\Members\\Tests\\Integration\\' => array($baseDir . '/plugins/cornerstone-members/tests/phpunit/integration'),
     'phpDocumentor\\Reflection\\' => array($vendorDir . '/phpdocumentor/reflection-common/src', $vendorDir . '/phpdocumentor/reflection-docblock/src', $vendorDir . '/phpdocumentor/type-resolver/src'),
     'Webmozart\\Assert\\' => array($vendorDir . '/webmozart/assert/src'),
     'Symfony\\Polyfill\\Ctype\\' => array($vendorDir . '/symfony/polyfill-ctype'),

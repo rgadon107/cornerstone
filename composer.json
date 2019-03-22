@@ -25,7 +25,9 @@
 	"autoload-dev": {
 		"psr-4": {
 			"spiralWebDb\\centralHub\\Tests\\Unit\\": "mu-plugins/central-hub/tests/phpunit/unit",
-			"spiralWebDb\\centralHub\\Tests\\Integration\\": "mu-plugins/central-hub/tests/phpunit/integration"
+			"spiralWebDb\\centralHub\\Tests\\Integration\\": "mu-plugins/central-hub/tests/phpunit/integration",
+			"spiralWebDb\\Members\\Tests\\Unit\\": "plugins/cornerstone-members/tests/phpunit/unit",
+			"spiralWebDb\\Members\\Tests\\Integration\\": "plugins/cornerstone-members/tests/phpunit/integration"
 		}
 	},
 	"minimum-stability": "dev",
