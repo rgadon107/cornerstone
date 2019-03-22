@@ -17,6 +17,8 @@ class ComposerStaticInitf1a387622c5c5e07c1a6020d18a651ac
         array (
             'spiralWebDb\\centralHub\\Tests\\Unit\\' => 34,
             'spiralWebDb\\centralHub\\Tests\\Integration\\' => 41,
+            'spiralWebDb\\Recordings\\Tests\\Unit\\' => 34,
+            'spiralWebDb\\Recordings\\Tests\\Integration\\' => 41,
             'spiralWebDb\\Members\\Tests\\Unit\\' => 31,
             'spiralWebDb\\Members\\Tests\\Integration\\' => 38,
             'spiralWebDb\\FAQ\\Tests\\Unit\\' => 27,
@@ -61,6 +63,14 @@ class ComposerStaticInitf1a387622c5c5e07c1a6020d18a651ac
         'spiralWebDb\\centralHub\\Tests\\Integration\\' => 
         array (
             0 => __DIR__ . '/../../..' . '/mu-plugins/central-hub/tests/phpunit/integration',
+        ),
+        'spiralWebDb\\Recordings\\Tests\\Unit\\' => 
+        array (
+            0 => __DIR__ . '/../../..' . '/plugins/recordings/tests/phpunit/unit',
+        ),
+        'spiralWebDb\\Recordings\\Tests\\Integration\\' => 
+        array (
+            0 => __DIR__ . '/../../..' . '/plugins/recordings/tests/phpunit/integration',
         ),
         'spiralWebDb\\Members\\Tests\\Unit\\' => 
         array (
