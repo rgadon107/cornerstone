@@ -10,6 +10,8 @@ return array(
     'spiralWebDb\\centralHub\\Tests\\Integration\\' => array($baseDir . '/mu-plugins/central-hub/tests/phpunit/integration'),
     'spiralWebDb\\Members\\Tests\\Unit\\' => array($baseDir . '/plugins/cornerstone-members/tests/phpunit/unit'),
     'spiralWebDb\\Members\\Tests\\Integration\\' => array($baseDir . '/plugins/cornerstone-members/tests/phpunit/integration'),
+    'spiralWebDb\\FAQ\\Tests\\Unit\\' => array($baseDir . '/plugins/faq/tests/phpunit/unit'),
+    'spiralWebDb\\FAQ\\Tests\\Integration\\' => array($baseDir . '/plugins/faq/tests/phpunit/integration'),
     'spiralWebDb\\Events\\Tests\\Unit\\' => array($baseDir . '/plugins/events/tests/phpunit/unit'),
     'spiralWebDb\\Events\\Tests\\Integration\\' => array($baseDir . '/plugins/events/tests/phpunit/integration'),
     'phpDocumentor\\Reflection\\' => array($vendorDir . '/phpdocumentor/reflection-common/src', $vendorDir . '/phpdocumentor/reflection-docblock/src', $vendorDir . '/phpdocumentor/type-resolver/src'),

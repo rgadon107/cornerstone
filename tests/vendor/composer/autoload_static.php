@@ -19,6 +19,8 @@ class ComposerStaticInitf1a387622c5c5e07c1a6020d18a651ac
             'spiralWebDb\\centralHub\\Tests\\Integration\\' => 41,
             'spiralWebDb\\Members\\Tests\\Unit\\' => 31,
             'spiralWebDb\\Members\\Tests\\Integration\\' => 38,
+            'spiralWebDb\\FAQ\\Tests\\Unit\\' => 27,
+            'spiralWebDb\\FAQ\\Tests\\Integration\\' => 34,
             'spiralWebDb\\Events\\Tests\\Unit\\' => 30,
             'spiralWebDb\\Events\\Tests\\Integration\\' => 37,
         ),
@@ -67,6 +69,14 @@ class ComposerStaticInitf1a387622c5c5e07c1a6020d18a651ac
         'spiralWebDb\\Members\\Tests\\Integration\\' => 
         array (
             0 => __DIR__ . '/../../..' . '/plugins/cornerstone-members/tests/phpunit/integration',
+        ),
+        'spiralWebDb\\FAQ\\Tests\\Unit\\' => 
+        array (
+            0 => __DIR__ . '/../../..' . '/plugins/faq/tests/phpunit/unit',
+        ),
+        'spiralWebDb\\FAQ\\Tests\\Integration\\' => 
+        array (
+            0 => __DIR__ . '/../../..' . '/plugins/faq/tests/phpunit/integration',
         ),
         'spiralWebDb\\Events\\Tests\\Unit\\' => 
         array (

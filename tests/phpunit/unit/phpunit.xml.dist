@@ -17,7 +17,7 @@
 			<directory suffix=".php">../../../mu-plugins/central-hub/tests/phpunit/unit/</directory>
 			<directory suffix=".php">../../../plugins/cornerstone-members/tests/phpunit/unit/</directory>
 			<directory suffix=".php">../../../plugins/events/tests/phpunit/unit/</directory>
-			<!--<directory suffix=".php">../../../plugins/faq/tests/phpunit/unit/</directory>-->
+			<directory suffix=".php">../../../plugins/faq/tests/phpunit/unit/</directory>
 			<!--<directory suffix=".php">../../../plugins/recordings/tests/phpunit/unit/</directory>-->
 			<!--<directory suffix=".php">../../../plugins/reviews/tests/phpunit/unit/</directory>-->
 			<exclude>./*/*/fixtures/</exclude>
