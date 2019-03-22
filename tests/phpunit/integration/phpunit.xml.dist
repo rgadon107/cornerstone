@@ -16,7 +16,7 @@
 		<testsuite name="integration">
 			<directory suffix=".php">../../../mu-plugins/central-hub/tests/phpunit/integration/</directory>
 			<directory suffix=".php">../../../plugins/cornerstone-members/tests/phpunit/integration/</directory>
-			<!--<directory suffix=".php">../../../plugins/events/tests/phpunit/integration/</directory>-->
+			<directory suffix=".php">../../../plugins/events/tests/phpunit/integration/</directory>
 			<!--<directory suffix=".php">../../../plugins/faq/tests/phpunit/integration/</directory>-->
 			<!--<directory suffix=".php">../../../plugins/recordings/tests/phpunit/integration/</directory>-->
 			<!--<directory suffix=".php">../../../plugins/reviews/tests/phpunit/integration/</directory>-->

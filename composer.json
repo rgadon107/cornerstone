@@ -27,7 +27,9 @@
 			"spiralWebDb\\centralHub\\Tests\\Unit\\": "mu-plugins/central-hub/tests/phpunit/unit",
 			"spiralWebDb\\centralHub\\Tests\\Integration\\": "mu-plugins/central-hub/tests/phpunit/integration",
 			"spiralWebDb\\Members\\Tests\\Unit\\": "plugins/cornerstone-members/tests/phpunit/unit",
-			"spiralWebDb\\Members\\Tests\\Integration\\": "plugins/cornerstone-members/tests/phpunit/integration"
+			"spiralWebDb\\Members\\Tests\\Integration\\": "plugins/cornerstone-members/tests/phpunit/integration",
+			"spiralWebDb\\Events\\Tests\\Unit\\": "plugins/events/tests/phpunit/unit",
+			"spiralWebDb\\Events\\Tests\\Integration\\": "plugins/events/tests/phpunit/integration"
 		}
 	},
 	"minimum-stability": "dev",
