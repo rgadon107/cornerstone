@@ -19,7 +19,7 @@
 			<directory suffix=".php">../../../plugins/events/tests/phpunit/integration/</directory>
 			<directory suffix=".php">../../../plugins/faq/tests/phpunit/integration/</directory>
 			<directory suffix=".php">../../../plugins/recordings/tests/phpunit/integration/</directory>
-			<!--<directory suffix=".php">../../../plugins/reviews/tests/phpunit/integration/</directory>-->
+			<directory suffix=".php">../../../plugins/reviews/tests/phpunit/integration/</directory>
 			<exclude>./*/*/fixtures/</exclude>
 		</testsuite>
 	</testsuites>

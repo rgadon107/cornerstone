@@ -23,3 +23,4 @@ require_once CORNERSTONE_ROOT_DIR . '/plugins/cornerstone-members/tests/phpunit/
 require_once CORNERSTONE_ROOT_DIR . '/plugins/events/tests/phpunit/unit/bootstrap.php';
 require_once CORNERSTONE_ROOT_DIR . '/plugins/faq/tests/phpunit/unit/bootstrap.php';
 require_once CORNERSTONE_ROOT_DIR . '/plugins/recordings/tests/phpunit/unit/bootstrap.php';
+require_once CORNERSTONE_ROOT_DIR . '/plugins/reviews/tests/phpunit/unit/bootstrap.php';

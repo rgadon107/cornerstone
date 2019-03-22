@@ -99,6 +99,7 @@ function bootstrap_all_integration_suites() {
 	require_once CORNERSTONE_ROOT_DIR . '/plugins/events/tests/phpunit/integration/bootstrap.php';
 	require_once CORNERSTONE_ROOT_DIR . '/plugins/faq/tests/phpunit/integration/bootstrap.php';
 	require_once CORNERSTONE_ROOT_DIR . '/plugins/recordings/tests/phpunit/integration/bootstrap.php';
+	require_once CORNERSTONE_ROOT_DIR . '/plugins/reviews/tests/phpunit/integration/bootstrap.php';
 }
 
 boostrap_integration_suite( get_wp_tests_dir() );

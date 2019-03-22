@@ -8,6 +8,8 @@ $baseDir = dirname(dirname($vendorDir));
 return array(
     'spiralWebDb\\centralHub\\Tests\\Unit\\' => array($baseDir . '/mu-plugins/central-hub/tests/phpunit/unit'),
     'spiralWebDb\\centralHub\\Tests\\Integration\\' => array($baseDir . '/mu-plugins/central-hub/tests/phpunit/integration'),
+    'spiralWebDb\\Reviews\\Tests\\Unit\\' => array($baseDir . '/plugins/reviews/tests/phpunit/unit'),
+    'spiralWebDb\\Reviews\\Tests\\Integration\\' => array($baseDir . '/plugins/reviews/tests/phpunit/integration'),
     'spiralWebDb\\Recordings\\Tests\\Unit\\' => array($baseDir . '/plugins/recordings/tests/phpunit/unit'),
     'spiralWebDb\\Recordings\\Tests\\Integration\\' => array($baseDir . '/plugins/recordings/tests/phpunit/integration'),
     'spiralWebDb\\Members\\Tests\\Unit\\' => array($baseDir . '/plugins/cornerstone-members/tests/phpunit/unit'),
