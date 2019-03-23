@@ -11,12 +11,11 @@
 
 namespace spiralWebDb\Members\Tests\Integration;
 
-define( 'MEMBERS_ROOT_DIR', dirname( dirname( dirname( __DIR__ ) ) ) );
-
 tests_add_filter(
 	'muplugins_loaded',
 	function() {
 		// Launch the Members' plugin.
-		require_once MEMBERS_ROOT_DIR . '/bootstrap.php';
-	}
+		require_once dirname( dirname( dirname( __DIR__ ) ) ) . '/bootstrap.php';
+	},
+	11
 );

@@ -11,12 +11,11 @@
 
 namespace spiralWebDb\Recordings\Tests\Integration;
 
-define( 'RECORDINGS_ROOT_DIR', dirname( dirname( dirname( __DIR__ ) ) ) );
-
 tests_add_filter(
 	'muplugins_loaded',
 	function() {
 		// Launch the Recordings' plugin.
-		require_once RECORDINGS_ROOT_DIR . '/bootstrap.php';
-	}
+		require_once dirname( dirname( dirname( __DIR__ ) ) ) . '/bootstrap.php';
+	},
+	11
 );

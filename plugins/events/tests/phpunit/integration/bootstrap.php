@@ -11,12 +11,11 @@
 
 namespace spiralWebDb\Events\Tests\Integration;
 
-define( 'EVENTS_ROOT_DIR', dirname( dirname( dirname( __DIR__ ) ) ) );
-
 tests_add_filter(
 	'muplugins_loaded',
 	function() {
 		// Launch the Events' plugin.
-		require_once EVENTS_ROOT_DIR . '/bootstrap.php';
-	}
+		require_once dirname( dirname( dirname( __DIR__ ) ) ) . '/bootstrap.php';
+	},
+	11
 );
