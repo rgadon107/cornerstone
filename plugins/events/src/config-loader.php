@@ -15,7 +15,6 @@ use spiralWebDb\Metadata;
 use function spiralWebDb\Module\Custom\Shortcode\register_shortcode;
 
 add_filter( 'add_custom_post_type_runtime_config', __NAMESPACE__ . '\register_events_custom_configs', 7 );
-add_filter( 'add_custom_taxonomy_runtime_config', __NAMESPACE__ . '\register_events_custom_configs', 7 );
 /**
  *  Loading in the post type and taxonomy runtime configurations with
  *  the Custom module.
@@ -33,7 +32,7 @@ function register_events_custom_configs( array $configurations ) {
 		? 'post-type'
 		: 'taxonomy';
 
-	$runtime_config = (array) require_once _get_plugin_directory() . '/config/' . $filename . '.php';
+	$runtime_config = (array) require _get_plugin_directory() . '/config/' . $filename . '.php';
 
 	if ( ! $runtime_config ) {
 		return $configurations;
