@@ -1,5 +1,8 @@
 # Directories
 /ewww
+
+/tests/vendor/
+
 /mu-plugins/central-hub/node_modules/
 /mu-plugins/UpDevTools
 /mu-plugins/wp-migrate-db-pro-compatibility.php

@@ -1,0 +1,60 @@
+{
+	"name": "spiralwebDb/cornerstone",
+	"type": "wordpress-plugin",
+	"description": "Cornerstone's central hub and shared code repository.",
+	"homepage": "https://github.com/rgadon107/cornerstone/",
+	"license": "GPL-2.0-or-later",
+	"require": {
+		"php": "^5.6 || ^7",
+		"composer/installers": "^1"
+	},
+	"require-dev": {
+		"php": "^5.6 || ^7",
+		"brain/monkey": "^2",
+		"dealerdirect/phpcodesniffer-composer-installer": "^0.4.3",
+		"phpcompatibility/phpcompatibility-wp": "^2",
+		"phpunit/phpunit": "^5",
+		"roave/security-advisories": "dev-master",
+		"squizlabs/php_codesniffer": "^3.3",
+		"wp-coding-standards/wpcs": "^1"
+	},
+	"config": {
+		"sort-order": true,
+		"vendor-dir": "tests/vendor"
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"spiralWebDb\\centralHub\\Tests\\Unit\\": "mu-plugins/central-hub/tests/phpunit/unit",
+			"spiralWebDb\\centralHub\\Tests\\Integration\\": "mu-plugins/central-hub/tests/phpunit/integration",
+			"spiralWebDb\\Members\\Tests\\Unit\\": "plugins/cornerstone-members/tests/phpunit/unit",
+			"spiralWebDb\\Members\\Tests\\Integration\\": "plugins/cornerstone-members/tests/phpunit/integration",
+			"spiralWebDb\\Events\\Tests\\Unit\\": "plugins/events/tests/phpunit/unit",
+			"spiralWebDb\\Events\\Tests\\Integration\\": "plugins/events/tests/phpunit/integration",
+			"spiralWebDb\\FAQ\\Tests\\Unit\\": "plugins/faq/tests/phpunit/unit",
+			"spiralWebDb\\FAQ\\Tests\\Integration\\": "plugins/faq/tests/phpunit/integration",
+			"spiralWebDb\\Recordings\\Tests\\Unit\\": "plugins/recordings/tests/phpunit/unit",
+			"spiralWebDb\\Recordings\\Tests\\Integration\\": "plugins/recordings/tests/phpunit/integration",
+			"spiralWebDb\\Reviews\\Tests\\Unit\\": "plugins/reviews/tests/phpunit/unit",
+			"spiralWebDb\\Reviews\\Tests\\Integration\\": "plugins/reviews/tests/phpunit/integration"
+		}
+	},
+	"minimum-stability": "dev",
+	"prefer-stable": true,
+	"scripts": {
+		"install-codestandards": [
+			"Dealerdirect\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\Plugin::run"
+		],
+		"phpcs-src": "\"tests/vendor/bin/phpcs\" --ignore=*/tests/*",
+		"phpcs-tests": "\"tests/vendor/bin/phpcs\" --runtime-set testVersion 5.6 tests/phpunit/",
+		"run-phpcs": [
+			"@phpcs-src",
+			"@phpcs-tests"
+		],
+		"run-unit-tests": "\"tests/vendor/bin/phpunit\" --testsuite unit --configuration tests/phpunit/unit/phpunit.xml.dist --color=always",
+		"run-integration-tests": "\"tests/vendor/bin/phpunit\" --testsuite integration --configuration tests/phpunit/integration/phpunit.xml.dist --color=always",
+		"run-tests": [
+			"@run-unit-tests",
+			"@run-integration-tests"
+		]
+	}
+}
