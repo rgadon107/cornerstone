@@ -36,7 +36,7 @@ class Tests_RegisterCustomConfigs extends Test_Case {
 	}
 
 	/**
-	 * Test register_custom_configs() should return array containing events post type config.
+	 * Test register_custom_configs() should return array containing recordings post type config.
 	 */
 	public function test_should_return_array_containing_members_post_type_config() {
 		Functions\expect( 'current_filter' )->once()->andReturn( 'add_custom_post_type_runtime_config' );
