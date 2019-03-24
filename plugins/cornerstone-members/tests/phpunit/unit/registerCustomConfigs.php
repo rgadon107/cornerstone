@@ -1,6 +1,6 @@
 <?php
 /**
- * Tests for register_members_custom_configs().
+ * Tests for register_custom_configs().
  *
  * @package     spiralWebDb\Members\Tests\Unit
  * @since       1.0.0
@@ -13,16 +13,16 @@ namespace spiralWebDb\Members\Tests\Unit;
 
 use Brain\Monkey\Functions;
 use spiralWebDb\Cornerstone\Tests\Unit\Test_Case;
-use function spiralWebDb\Members\register_members_custom_configs;
+use function spiralWebDb\Members\register_custom_configs;
 
 /**
- * Class Tests_RegisterMembersCustomConfigs
+ * Class Tests_RegisterCustomConfigs
  *
  * @package spiralWebDb\Members\Tests\Unit
  * @group   members
  * @group   configs
  */
-class Tests_RegisterMembersCustomConfigs extends Test_Case {
+class Tests_RegisterCustomConfigs extends Test_Case {
 
 	/**
 	 * Prepares the test environment before each test.
@@ -36,12 +36,12 @@ class Tests_RegisterMembersCustomConfigs extends Test_Case {
 	}
 
 	/**
-	 * Test register_members_custom_configs() should return array containing events post type config.
+	 * Test register_custom_configs() should return array containing members post type config.
 	 */
 	public function test_should_return_array_containing_members_post_type_config() {
 		Functions\expect( 'current_filter' )->once()->andReturn( 'add_custom_post_type_runtime_config' );
 
-		$actual   = register_members_custom_configs( [ 'foo' => [] ] );
+		$actual   = register_custom_configs( [ 'foo' => [] ] );
 		$expected = [
 			'foo'     => [],
 			'members' => require MEMBERS_ROOT_DIR . '/config/post-type.php',
@@ -52,12 +52,12 @@ class Tests_RegisterMembersCustomConfigs extends Test_Case {
 	}
 
 	/**
-	 * Test register_members_custom_configs() should return array containing members taxonomy config.
+	 * Test register_custom_configs() should return array containing members taxonomy config.
 	 */
 	public function test_should_return_array_containing_members_taxonomy_config() {
 		Functions\expect( 'current_filter' )->once()->andReturn( 'add_custom_taxonomy_runtime_config' );
 
-		$actual   = register_members_custom_configs( [ 'foo' => [] ] );
+		$actual   = register_custom_configs( [ 'foo' => [] ] );
 		$expected = [
 			'foo'  => [],
 			'role' => require MEMBERS_ROOT_DIR . '/config/taxonomy.php',
