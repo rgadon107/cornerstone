@@ -1,6 +1,6 @@
 <?php
 /**
- * Tests for register_events_custom_configs().
+ * Tests for register_custom_configs().
  *
  * @package     spiralWebDb\Events\Tests\Unit
  * @since       1.0.0
@@ -13,16 +13,16 @@ namespace spiralWebDb\Events\Tests\Unit;
 
 use Brain\Monkey\Functions;
 use spiralWebDb\Cornerstone\Tests\Unit\Test_Case;
-use function spiralWebDb\Events\register_events_custom_configs;
+use function spiralWebDb\Events\register_custom_configs;
 
 /**
- * Class Tests_RegisterEventsCustomConfigs
+ * Class Tests_RegisterCustomConfigs
  *
  * @package spiralWebDb\Events\Tests\Unit
  * @group   events
  * @group   configs
  */
-class Tests_RegisterEventsCustomConfigs extends Test_Case {
+class Tests_RegisterCustomConfigs extends Test_Case {
 
 	/**
 	 * Prepares the test environment before each test.
@@ -36,13 +36,13 @@ class Tests_RegisterEventsCustomConfigs extends Test_Case {
 	}
 
 	/**
-	 * Test register_events_custom_configs() should return array containing events post type config.
+	 * Test register_custom_configs() should return array containing events post type config.
 	 */
 	public function test_should_return_array_containing_events_post_type_config() {
 		$expected = [
 			'foo' => [],
 			'events' => require EVENTS_ROOT_DIR . '/config/post-type.php',
 		];
-		$this->assertSame( $expected, register_events_custom_configs( [ 'foo' => [] ] ) );
+		$this->assertSame( $expected, register_custom_configs( [ 'foo' => [] ] ) );
 	}
 }

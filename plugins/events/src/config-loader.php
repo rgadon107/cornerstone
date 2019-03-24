@@ -14,7 +14,7 @@ namespace spiralWebDb\Events;
 use spiralWebDb\Metadata;
 use function spiralWebDb\Module\Custom\Shortcode\register_shortcode;
 
-add_filter( 'add_custom_post_type_runtime_config', __NAMESPACE__ . '\register_events_custom_configs', 7 );
+add_filter( 'add_custom_post_type_runtime_config', __NAMESPACE__ . '\register_custom_configs', 7 );
 /**
  *  Loading in the post type and taxonomy runtime configurations with the Custom module.
  *
@@ -24,7 +24,7 @@ add_filter( 'add_custom_post_type_runtime_config', __NAMESPACE__ . '\register_ev
  *
  * @return array Returns configurations with events post type configuration.
  */
-function register_events_custom_configs( array $configurations ) {
+function register_custom_configs( array $configurations ) {
 	$runtime_config = (array) require _get_plugin_directory() . '/config/post-type.php';
 
 	$configurations[ $runtime_config['post_type'] ] = $runtime_config;
