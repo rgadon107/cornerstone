@@ -17,14 +17,13 @@ use function spiralWebDb\Module\Custom\Shortcode\register_shortcode;
 
 add_filter( 'add_custom_post_type_runtime_config', __NAMESPACE__ . '\register_custom_configs', 8 );
 /**
- *  Loading in the post type and taxonomy runtime configurations with
- *  the Custom module.
+ * Loading in the post type runtime configurations with the Custom module.
  *
  * @since 1.0.0
  *
  * @param array $configurations Array of all of the configurations.
  *
- * @return array
+ * @return array Returns configurations with post type configuration.
  */
 function register_custom_configs( array $configurations ) {
 	$config = (array) require _get_plugin_directory() . '/config/post-type.php';
