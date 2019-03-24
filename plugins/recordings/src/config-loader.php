@@ -27,23 +27,9 @@ add_filter( 'add_custom_post_type_runtime_config', __NAMESPACE__ . '\register_cu
  * @return array
  */
 function register_custom_configs( array $configurations ) {
-	$doing_post_type = current_filter() == 'add_custom_post_type_runtime_config';
+	$config = (array) require _get_plugin_directory() . '/config/post-type.php';
 
-	$filename = $doing_post_type
-		? 'post-type'
-		: 'taxonomy';
-
-	$runtime_config = (array) require _get_plugin_directory() . '/config/' . $filename . '.php';
-
-	if ( ! $runtime_config ) {
-		return $configurations;
-	}
-
-	$key = $doing_post_type
-		? $runtime_config['post_type']
-		: $runtime_config['taxonomy'];
-
-	$configurations[ $key ] = $runtime_config;
+	$configurations[ $config['post_type'] ] = $config;
 
 	return $configurations;
 }

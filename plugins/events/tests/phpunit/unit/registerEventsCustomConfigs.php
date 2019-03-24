@@ -39,8 +39,6 @@ class Tests_RegisterEventsCustomConfigs extends Test_Case {
 	 * Test register_events_custom_configs() should return array containing events post type config.
 	 */
 	public function test_should_return_array_containing_events_post_type_config() {
-		Functions\expect( 'current_filter' )->once()->andReturn( 'add_custom_post_type_runtime_config' );
-
 		$expected = [
 			'foo' => [],
 			'events' => require EVENTS_ROOT_DIR . '/config/post-type.php',
