@@ -43,7 +43,7 @@ class Tests_RegisterCustomConfigs extends Test_Case {
 
 		$actual   = register_custom_configs( [ 'foo' => [] ] );
 		$expected = [
-			'foo'     => [],
+			'foo' => [],
 			'faq' => require FAQ_ROOT_DIR . '/config/post-type.php',
 		];
 		$this->assertSame( $expected, $actual );
@@ -59,7 +59,7 @@ class Tests_RegisterCustomConfigs extends Test_Case {
 
 		$actual   = register_custom_configs( [ 'foo' => [] ] );
 		$expected = [
-			'foo'  => [],
+			'foo'   => [],
 			'topic' => require FAQ_ROOT_DIR . '/config/taxonomy.php',
 		];
 		$this->assertSame( $expected, $actual );

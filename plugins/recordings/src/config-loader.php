@@ -16,7 +16,6 @@ use spiralWebDb\Metadata as Metadata;
 use function spiralWebDb\Module\Custom\Shortcode\register_shortcode;
 
 add_filter( 'add_custom_post_type_runtime_config', __NAMESPACE__ . '\register_custom_configs', 8 );
-add_filter( 'add_custom_taxonomy_runtime_config', __NAMESPACE__ . '\register_custom_configs', 8 );
 /**
  *  Loading in the post type and taxonomy runtime configurations with
  *  the Custom module.
