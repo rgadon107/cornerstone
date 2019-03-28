@@ -14,8 +14,8 @@ namespace spiralWebDb\Members;
 use spiralWebDb\Metadata;
 use function spiralWebDb\Module\Custom\Shortcode\register_shortcode;
 
-add_filter( 'add_custom_post_type_runtime_config', __NAMESPACE__ . '\register_members_custom_configs', 9 );
-add_filter( 'add_custom_taxonomy_runtime_config', __NAMESPACE__ . '\register_members_custom_configs', 9 );
+add_filter( 'add_custom_post_type_runtime_config', __NAMESPACE__ . '\register_custom_configs', 9 );
+add_filter( 'add_custom_taxonomy_runtime_config', __NAMESPACE__ . '\register_custom_configs', 9 );
 /**
  *  Loading in the post type and taxonomy runtime configurations with
  *  the Custom module.
@@ -26,7 +26,7 @@ add_filter( 'add_custom_taxonomy_runtime_config', __NAMESPACE__ . '\register_mem
  *
  * @return array $configurations
  */
-function register_members_custom_configs( array $configurations ) {
+function register_custom_configs( array $configurations ) {
 	$doing_post_type = current_filter() == 'add_custom_post_type_runtime_config';
 
 	$filename = $doing_post_type

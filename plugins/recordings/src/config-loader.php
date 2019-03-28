@@ -15,36 +15,20 @@ use spiralWebDb\Metadata as Metadata;
 
 use function spiralWebDb\Module\Custom\Shortcode\register_shortcode;
 
-add_filter( 'add_custom_post_type_runtime_config', __NAMESPACE__ . '\register_reviews_custom_configs', 8 );
-add_filter( 'add_custom_taxonomy_runtime_config', __NAMESPACE__ . '\register_reviews_custom_configs', 8 );
+add_filter( 'add_custom_post_type_runtime_config', __NAMESPACE__ . '\register_custom_configs', 8 );
 /**
- *  Loading in the post type and taxonomy runtime configurations with
- *  the Custom module.
+ * Loading in the post type runtime configurations with the Custom module.
  *
  * @since 1.0.0
  *
  * @param array $configurations Array of all of the configurations.
  *
- * @return array
+ * @return array Returns configurations with post type configuration.
  */
-function register_reviews_custom_configs( array $configurations ) {
-	$doing_post_type = current_filter() == 'add_custom_post_type_runtime_config';
+function register_custom_configs( array $configurations ) {
+	$config = (array) require _get_plugin_directory() . '/config/post-type.php';
 
-	$filename = $doing_post_type
-		? 'post-type'
-		: 'taxonomy';
-
-	$runtime_config = (array) require _get_plugin_directory() . '/config/' . $filename . '.php';
-
-	if ( ! $runtime_config ) {
-		return $configurations;
-	}
-
-	$key = $doing_post_type
-		? $runtime_config['post_type']
-		: $runtime_config['taxonomy'];
-
-	$configurations[ $key ] = $runtime_config;
+	$configurations[ $config['post_type'] ] = $config;
 
 	return $configurations;
 }
