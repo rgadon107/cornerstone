@@ -76,8 +76,8 @@ class Tests_TheStore extends Test_Case {
 	 */
 	public function test_store_key_is_not_in_config_store() {
 
-		$store_key = '';
-        $config_store = [];
+		$store_key      = '';
+        $config_store   = [];
 
 		$this->assertArrayNotHasKey( $store_key, $config_store );
 	}
