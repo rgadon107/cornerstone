@@ -50,7 +50,6 @@ class Tests_TheStore extends Test_Case {
 	 * Test _the_store() should return true when a configuration is stored.
 	 */
 	public function test_should_return_true_when_a_config_is_stored() {
-
 		$store_key       = 'custom-meta-box';
 		$config_to_store = [ $store_key ];
 
