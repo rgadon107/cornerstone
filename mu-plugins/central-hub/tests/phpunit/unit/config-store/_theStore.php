@@ -61,7 +61,7 @@ class Tests_TheStore extends Test_Case {
 	/*
 	 * Test _the_store() should return the stored configuration when given a valid store key.
 	 */
-	public function test_should_return_config_store_array_key() {
+	public function test_should_return_stored_config_when_given_valid_store_key() {
 		$store_key                   = 'custom-meta-box';
 		$config_to_store             = [ $store_key ];
 		$config_store[ $store_key ]  = $config_to_store;
