@@ -32,14 +32,51 @@ class Tests_TheStore extends Test_Case {
 	}
 
 	/**
-	 * Test _the_store() should return an empty array when no storey key is passed in and there are no configurations stored.
+	 * Test _the_store() should return an empty array when no store key is passed in and there are no configurations stored.
 	 */
 	public function test_should_return_empty_array_when_no_key_or_configs() {
 		$expected = [];
+
 		$this->assertSame( $expected, _the_store() );
 		$this->assertSame( $expected, _the_store( null ) );
 		$this->assertSame( $expected, _the_store( false ) );
 		$this->assertSame( $expected, _the_store( '' ) );
+		$this->assertSame( $expected, _the_store( 0 ) );
+		$this->assertSame( $expected, _the_store( 0.0 ));
+		$this->assertSame( $expected, _the_store( '0'));
+	}
+
+	/*
+	 * Test _the_store() should return true when a configuration is stored.
+	 */
+	public function test_should_return_true_when_a_config_is_stored() {
+		$config     = [
+			'aaa' => 'bbb',
+			'ccc' => 'ddd'
+		];
+
+		$this->assertTrue( _the_store( __METHOD__, $config ) );
+	}
+
+	/*
+	 * Test _the_store() should return the stored configuration when given a valid store key.
+	 */
+	public function test_should_return_stored_config_when_given_valid_store_key() {
+		$store_key                   = 'custom-meta-box';
+		$config_to_store             = [ $store_key ];
+		$config_store[ $store_key ]  = $config_to_store;
+
+		$this->assertSame( _the_store( 'custom-meta-box' ), $config_store[ 'custom-meta-box' ] );
+		$this->assertArrayHasKey( 'custom-meta-box', $config_store );
+	}
+
+	/**
+	 * Test _the_store() should throw an error when the store key does not exist in the store.
+	 */
+	public function test_should_throw_error_when_store_key_does_not_exist() {
+		$this->expectException( \Exception::class );
+		$this->expectExceptionMessage( 'Configuration for [invalid_store_key] does not exist in the ConfigStore' );
+		_the_store( 'invalid_store_key' );
 	}
 
 }

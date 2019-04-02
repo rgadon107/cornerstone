@@ -108,7 +108,7 @@ class Admin_Bar {
 			#wpadminbar > #wp-toolbar span.ab-label,
 			#wpadminbar > #wp-toolbar span.noticon,
 			.adminbar--environment-notice {
-				color: #fff;
+				color: #ffff00; // original: #fff
 			}
 		
 			@media only screen and ( min-width: 800px ) {
