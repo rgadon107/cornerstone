@@ -62,7 +62,6 @@ class Tests_TheStore extends Test_Case {
 	 * Test that stored configuration has array key $store_key.
 	 */
 	public function test_should_return_config_store_array_key() {
-
 		$store_key                   = 'custom-meta-box';
 		$config_to_store             = [ $store_key ];
 		$config_store[ $store_key ]  = $config_to_store;
