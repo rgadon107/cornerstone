@@ -4,7 +4,6 @@
 /tests/vendor/
 
 /mu-plugins/central-hub/node_modules/
-/mu-plugins/debug-toolkit
 /mu-plugins/wp-migrate-db-pro-compatibility.php
 /plugins/backupbuddy
 /plugins/better-delete-revision
