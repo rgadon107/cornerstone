@@ -70,16 +70,13 @@ class Tests_TheStore extends Test_Case {
 		$this->assertArrayHasKey( 'custom-meta-box', $config_store );
 	}
 
-	/*
-	 * Test should assert $store_key is not in $config_store array. If key does
-	 *   not exist in the array, a class \Exception with message will be thrown.
+	/**
+	 * Test _the_store() should throw an error when the store key does not exist in the store.
 	 */
-	public function test_store_key_is_not_in_config_store() {
-
-		$store_key      = '';
-        $config_store   = [];
-
-		$this->assertArrayNotHasKey( $store_key, $config_store );
+	public function test_should_throw_error_when_store_key_does_not_exist() {
+		$this->expectException( \Exception::class );
+		$this->expectExceptionMessage( 'Configuration for [invalid_store_key] does not exist in the ConfigStore' );
+		_the_store( 'invalid_store_key' );
 	}
 
 }
