@@ -32,7 +32,8 @@ class Tests_TheStore extends Test_Case {
 	}
 
 	/**
-	 * Test _the_store() should return an empty array when no store key is passed in and there are no configurations stored.
+	 * Test _the_store() should return an empty array when no store key is passed in and there are no configurations
+	 * stored.
 	 */
 	public function test_should_return_empty_array_when_no_key_or_configs() {
 		$expected = [];
@@ -42,36 +43,20 @@ class Tests_TheStore extends Test_Case {
 		$this->assertSame( $expected, _the_store( false ) );
 		$this->assertSame( $expected, _the_store( '' ) );
 		$this->assertSame( $expected, _the_store( 0 ) );
-		$this->assertSame( $expected, _the_store( 0.0 ));
-		$this->assertSame( $expected, _the_store( '0'));
+		$this->assertSame( $expected, _the_store( 0.0 ) );
+		$this->assertSame( $expected, _the_store( '0' ) );
 	}
 
 	/*
 	 * Test _the_store() should return true when a configuration is stored.
 	 */
 	public function test_should_return_true_when_a_config_is_stored() {
-		$config     = [
+		$config = [
 			'aaa' => 'bbb',
-			'ccc' => 'ddd'
+			'ccc' => 'ddd',
 		];
 
-		$this->assertTrue( _the_store( __METHOD__, $config ) );
-	}
-
-	/*
-	 * Test _the_store() should return the stored configuration when given a valid store key.
-	 */
-	public function test_should_return_stored_config_when_given_valid_store_key() {
-		$config     = [
-			'aaa' => 'bbb',
-			'ccc' => 'ddd'
-		];
-
-		// Store the config first.
-		_the_store( __METHOD__, $config );
-
-		// Test that the config is returned.
-		$this->assertSame( $config, _the_store( __METHOD__ ) );
+		$this->assertTrue( _the_store( 'foo', $config ) );
 	}
 
 	/**
@@ -83,4 +68,40 @@ class Tests_TheStore extends Test_Case {
 		_the_store( 'invalid_store_key' );
 	}
 
+	/**
+	 * Test _the_store() should remove the config when the store key exists.
+	 */
+	public function test_should_remove_config_when_store_key_exists() {
+		$config = [
+			'aaa' => 'bbb',
+			'ccc' => 'ddd',
+		];
+
+		// Make sure the config exists in the store.
+		$this->assertSame( $config, _the_store( 'foo' ) );
+
+		// Remove it. Check true is returned.
+		$this->assertTrue( _the_store( 'foo', null, true ) );
+
+		// Check that 'foo' no longer exists in the store.
+		$this->expectException( \Exception::class );
+		$this->expectExceptionMessage( 'Configuration for [foo] does not exist in the ConfigStore' );
+		_the_store( 'foo' );
+	}
+
+	/*
+	 * Test _the_store() should return the stored configuration when given a valid store key.
+	 */
+	public function test_should_return_stored_config_when_given_valid_store_key() {
+		$config = [
+			'aaa' => 'bbb',
+			'ccc' => 'ddd',
+		];
+
+		// Store the config first.
+		_the_store( __METHOD__, $config );
+
+		// Test that the config is returned.
+		$this->assertSame( $config, _the_store( __METHOD__ ) );
+	}
 }

@@ -12,32 +12,33 @@
 namespace KnowTheCode\ConfigStore;
 
 /**
- * Description.
+ * Get, save, or remove a configuration from the store.
  *
  * @since 1.0.0
  *
- * @param string $store_key
- * @param array  $config_to_store
+ * @param string    $store_key       Optional. Storage key to locate the configuration in the store.
+ * @param array     $config_to_store Optional. Configuration parameters to save in the store.
+ * @param bool|null $remove          Optional. Set to true to remove the config from the store.
  *
  * @return void
  * @throws \Exception
  */
-function _the_store( $store_key = '', $config_to_store = array() ) {
+function _the_store( $store_key = '', $config_to_store = array(), $remove = null ) {
 	static $config_store = array();
 
-	// Get the store.
+	// Bail out if no store key is given.
 	if ( ! $store_key ) {
 		return $config_store;
 	}
 
-	// Store
+	// Store the given configuration.
 	if ( $config_to_store ) {
 		$config_store[ $store_key ] = $config_to_store;
 
 		return true;
 	}
 
-	// Get
+	// If the key does not exist in the store, throw an error.
 	if ( ! array_key_exists( $store_key, $config_store ) ) {
 		throw new \Exception(
 			sprintf(
@@ -45,6 +46,13 @@ function _the_store( $store_key = '', $config_to_store = array() ) {
 				esc_html( $store_key )
 			)
 		);
+	}
+
+	// If remove requested, remove the configuration.
+	if ( true === $remove ) {
+		unset( $config_store[ $store_key ] );
+
+		return true;
 	}
 
 	return $config_store[ $store_key ];
