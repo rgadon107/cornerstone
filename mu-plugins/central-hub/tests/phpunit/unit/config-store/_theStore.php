@@ -103,5 +103,8 @@ class Tests_TheStore extends Test_Case {
 
 		// Test that the config is returned.
 		$this->assertSame( $config, _the_store( __METHOD__ ) );
+
+		// Clean up.
+		_the_store( __METHOD__, null, true );
 	}
 }
