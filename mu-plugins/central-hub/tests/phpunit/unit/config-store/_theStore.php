@@ -62,12 +62,16 @@ class Tests_TheStore extends Test_Case {
 	 * Test _the_store() should return the stored configuration when given a valid store key.
 	 */
 	public function test_should_return_stored_config_when_given_valid_store_key() {
-		$store_key                   = 'custom-meta-box';
-		$config_to_store             = [ $store_key ];
-		$config_store[ $store_key ]  = $config_to_store;
+		$config     = [
+			'aaa' => 'bbb',
+			'ccc' => 'ddd'
+		];
 
-		$this->assertSame( _the_store( 'custom-meta-box' ), $config_store[ 'custom-meta-box' ] );
-		$this->assertArrayHasKey( 'custom-meta-box', $config_store );
+		// Store the config first.
+		_the_store( __METHOD__, $config );
+
+		// Test that the config is returned.
+		$this->assertSame( $config, _the_store( __METHOD__ ) );
 	}
 
 	/**
