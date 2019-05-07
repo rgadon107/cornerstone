@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
     "content-hash": "fe035903f72b1ecb468dee14834b1f52",
@@ -1288,12 +1288,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "018ec51b676a4d1efc971950d1d9619570b71676"
+                "reference": "0698207bf8a9bed212fdde2d8c7cdc77085660c4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/018ec51b676a4d1efc971950d1d9619570b71676",
-                "reference": "018ec51b676a4d1efc971950d1d9619570b71676",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/0698207bf8a9bed212fdde2d8c7cdc77085660c4",
+                "reference": "0698207bf8a9bed212fdde2d8c7cdc77085660c4",
                 "shasum": ""
             },
             "conflict": {
@@ -1450,6 +1450,7 @@
                 "zendframework/zend-captcha": ">=2,<2.4.9|>=2.5,<2.5.2",
                 "zendframework/zend-crypt": ">=2,<2.4.9|>=2.5,<2.5.2",
                 "zendframework/zend-db": ">=2,<2.0.99|>=2.1,<2.1.99|>=2.2,<2.2.10|>=2.3,<2.3.5",
+                "zendframework/zend-developer-tools": ">=1.2.2,<1.2.3",
                 "zendframework/zend-diactoros": ">=1,<1.8.4",
                 "zendframework/zend-feed": ">=1,<2.10.3",
                 "zendframework/zend-form": ">=2,<2.2.7|>=2.3,<2.3.1",
@@ -1484,7 +1485,7 @@
                 }
             ],
             "description": "Prevents installation of composer packages with known security vulnerabilities: no API, simply require it",
-            "time": "2019-03-22T05:18:50+00:00"
+            "time": "2019-03-28T22:30:08+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
@@ -2095,7 +2096,7 @@
                 },
                 {
                     "name": "Gert de Pagter",
-                    "email": "BackEndTea@gmail.com"
+                    "email": "backendtea@gmail.com"
                 }
             ],
             "description": "Symfony polyfill for ctype functions",
@@ -2110,16 +2111,16 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v4.2.4",
+            "version": "v4.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "761fa560a937fd7686e5274ff89dcfa87a5047df"
+                "reference": "6712daf03ee25b53abb14e7e8e0ede1a770efdb1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/761fa560a937fd7686e5274ff89dcfa87a5047df",
-                "reference": "761fa560a937fd7686e5274ff89dcfa87a5047df",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/6712daf03ee25b53abb14e7e8e0ede1a770efdb1",
+                "reference": "6712daf03ee25b53abb14e7e8e0ede1a770efdb1",
                 "shasum": ""
             },
             "require": {
@@ -2165,7 +2166,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2019-02-23T15:17:42+00:00"
+            "time": "2019-03-30T15:58:42+00:00"
         },
         {
             "name": "webmozart/assert",
