@@ -32,9 +32,21 @@ class Tests_LoadConfigFromFilesystem extends Test_Case {
 	}
 
 	/**
-	 *  Test _load_config_from_filesystem() should return an array when a configuration array is given.
+	 *  Test should return false when $path_to_file is empty string.
 	 */
-	public function test_should_return_array_when_config_array_is_given() {
+	public function test_should_return_false_when_path_to_file_is_empty_string() {
+		$expected = false;
+
+		$this->assertFalse( _load_config_from_filesystem( '') );
+		$this->assertSame( $expected, _load_config_from_filesystem( '' ) );
+	}
+
+	/**
+	 *  Test should return array key and current array when a configuration array is given.
+	 */
+	public function test_should_return_array_key_and_current_array_from_config() {
+		$expected = 'foo';
+
 		$config = [
 			'foo' => [
 				'aaa' => 'bbb',
@@ -42,6 +54,8 @@ class Tests_LoadConfigFromFilesystem extends Test_Case {
 			]
 		];
 
-		$this->assertArrayNotHasKey( 'foo', $config[ 'foo' ]   );
+		$this->assertArrayHasKey( 'foo', $config );
+		$this->assertSame( $expected, key( $config ) );
+		$this->assertSame( $config['foo'], current( $config ) );
 	}
 }
