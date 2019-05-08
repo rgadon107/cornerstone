@@ -35,7 +35,6 @@ class Tests_LoadConfigFromFilesystem extends Test_Case {
 	 *  Test _load_config_from_filesystem() should return an array when a configuration array is given.
 	 */
 	public function test_should_return_array_when_config_array_is_given() {
-
 		$config = [
 			'foo' => [
 				'aaa' => 'bbb',
@@ -43,6 +42,6 @@ class Tests_LoadConfigFromFilesystem extends Test_Case {
 			]
 		];
 
-		$this->assertIsArray( _load_config_from_filesystem( __METHOD__ ) );
+		$this->assertArrayNotHasKey( 'foo', $config[ 'foo' ]   );
 	}
 }
