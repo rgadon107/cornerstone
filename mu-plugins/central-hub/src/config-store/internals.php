@@ -69,6 +69,11 @@ function _the_store( $store_key = '', $config_to_store = array(), $remove = null
  * @return array
  */
 function _load_config_from_filesystem( $path_to_file ) {
+
+	if ( ! $path_to_file ) {
+		return false;
+	}
+
 	$config = (array) require $path_to_file;
 
 	return array(
