@@ -9,7 +9,7 @@
  * @license     GNU-2.0+
  */
 
-namespace spiralWebDb\centralHub\Tests\ConfigStore;
+namespace spiralWebDb\centralHub\Tests\Unit\ConfigStore;
 
 use function KnowTheCode\ConfigStore\_the_store;
 use spiralWebDb\Cornerstone\Tests\Unit\Test_Case;
