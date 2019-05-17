@@ -38,7 +38,7 @@ class Tests_getConfig extends Test_Case {
 	 */
 	public function test_that_the_store_returns_true_when_given_a_store_key_and_config() {
 		$config_to_store = (array) require CENTRAL_HUB_ROOT_DIR . '/tests/phpunit/fixtures/test-cpt-config.php';
-		$actual = _the_store( 'key', $config_to_store );
+		$actual          = _the_store( 'key', $config_to_store );
 
 		$this->assertTrue( $actual );
 		$this->assertSame( true, $actual );
