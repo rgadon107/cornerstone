@@ -36,10 +36,13 @@ class Tests_LoadConfigFromFilesystem extends Test_Case {
 	 */
 	public function test_should_return_array_when_path_to_file_is_given() {
 		$path_to_file = CENTRAL_HUB_ROOT_DIR . '/tests/phpunit/fixtures/test-cpt-config.php';
-		$config       = _load_config_from_filesystem( $path_to_file );
+		$expected     = [
+			'aaa' => 'bbb',
+			'ccc' => 'ddd'
+		];
+		$actual       = _load_config_from_filesystem( $path_to_file );
 
-		$this->assertArrayHasKey( 0, $config );
-		$this->assertSame( 0, key( $config ) );
-		$this->assertSame( 'foo', current( $config ) );
+		$this->assertSame( 'foo', $actual[0] );
+		$this->assertSame( $expected, $actual[1] );
 	}
 }
