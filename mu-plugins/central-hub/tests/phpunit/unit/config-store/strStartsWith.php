@@ -1,6 +1,6 @@
 <?php
 /**
- *  Tests for _string_starts_with
+ *  Tests for str_starts_with
  *
  * @package    spiralWebDb\centralHub\Tests\Unit\ConfigStore
  * @since      1.3.0
