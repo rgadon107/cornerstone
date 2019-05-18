@@ -38,7 +38,7 @@ class Tests_getConfig extends Test_Case {
 	 */
 	public function test_that_the_store_returns_true_when_given_a_store_key_and_config() {
 		$config_to_store = (array) require CENTRAL_HUB_ROOT_DIR . '/tests/phpunit/fixtures/test-cpt-config.php';
-		$actual          = _the_store( __METHOD__ , $config_to_store );
+		$actual          = _the_store( __METHOD__, $config_to_store );
 
 		$this->assertTrue( $actual );
 		$this->assertSame( true, $actual );
@@ -52,7 +52,7 @@ class Tests_getConfig extends Test_Case {
 	 */
 	public function test_that_store_config_is_empty() {
 		$expected = [];
-		$actual = getConfig( '' );
+		$actual   = getConfig( '' );
 
 		$this->assertSame( $expected, $actual );
 	}
@@ -60,7 +60,7 @@ class Tests_getConfig extends Test_Case {
 	public function test_should_throw_error_when_store_key_does_not_exist_in_store() {
 		$this->expectException( \Exception::class );
 		$this->expectExceptionMessage( 'Configuration for [foo] does not exist in the ConfigStore' );
-		getConfig('foo');
+		getConfig( 'foo' );
 	}
 }
 
