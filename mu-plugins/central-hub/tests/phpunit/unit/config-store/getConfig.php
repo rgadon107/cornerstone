@@ -57,6 +57,9 @@ class Tests_getConfig extends Test_Case {
 		$this->assertSame( $expected, $actual );
 	}
 
+	/*
+	 *  Test that error message is thrown when store key does not exist in configuration.
+	 */
 	public function test_should_throw_error_when_store_key_does_not_exist_in_store() {
 		$this->expectException( \Exception::class );
 		$this->expectExceptionMessage( 'Configuration for [foo] does not exist in the ConfigStore' );
