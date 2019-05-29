@@ -32,17 +32,70 @@ class Tests_MergeWithDefaults extends Test_Case {
 	}
 
 	/**
-	 *  Test should merge configuration array with array of default parameters
-	 *
+	 * Test should return empty when empty arrays are given.
 	 */
-	public function test_should_merge_config_array_with_defaults() {
-		$config = (array) require CENTRAL_HUB_ROOT_DIR . '/tests/phpunit/fixtures/test-cpt-config.php';
-		$defaults = [];
-		$actual = _merge_with_defaults( (array) $config, (array) $defaults );
+	public function test_should_return_empty_when_empty_arrays_given() {
+		$this->assertEmpty( _merge_with_defaults( [], [] ) );
+	}
 
-		$this->assertEmpty( $defaults );
-		$this->assertArrayHasKey( 'foo', $actual );
-		$this->assertSame( $config, $actual );
+	/**
+	 * Test should return config when defaults are empty.
+	 */
+	public function test_should_return_config_when_defaults_are_empty() {
+		$config = [
+			'foo' => [
+				'post_type'       => 'post',
+				'number_of_posts' => 5
+			]
+		];
+
+		$this->assertSame( $config, _merge_with_defaults( $config, [] ) );
+	}
+
+	/**
+	 * Test should return defaults when config is empty.
+	 */
+	public function test_should_return_defaults_when_config_is_empty() {
+		$defaults = [
+			'foo' => [
+				'post_type'       => 'post',
+				'number_of_posts' => 5
+			]
+		];
+
+		$this->assertSame( $defaults, _merge_with_defaults( [], $defaults ) );
+	}
+
+	/**
+	 *  Test should merge configuration with default array parameters
+	 */
+	public function test_should_merge_config_with_default_array_parameters() {
+		$config = [
+			'foo' => [
+				'post_type'       => 'cornerstone-members',
+				'number_of_posts' => 5
+			]
+		];
+
+		$defaults = [
+			'foo' => [
+				'post_type'       => 'post',
+				'number_of_posts' => - 1,
+				'post_status'     => 'published'
+			]
+		];
+
+		$actual = _merge_with_defaults( $config, $defaults );
+
+		$expected = [
+			'foo' => [
+				'post_type'       => 'cornerstone-members',
+				'number_of_posts' => 5,
+				'post_status'     => 'published'
+			]
+		];
+
+		$this->assertSame( $expected, $actual );
 	}
 }
 
