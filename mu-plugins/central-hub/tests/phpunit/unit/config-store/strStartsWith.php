@@ -1,6 +1,6 @@
 <?php
 /**
- *  Tests for str_starts_with
+ *  Tests for str_starts_with()
  *
  * @package    spiralWebDb\centralHub\Tests\Unit\ConfigStore
  * @since      1.3.0
@@ -32,15 +32,42 @@ class Tests_StringStartsWith extends Test_Case {
 	}
 
 	/*
-	 *  Test that a string starts with a character or substring.
+	 *  Test should return true when substring starts with and matches haystack.
 	 */
-	public function test_that_string_starts_with_a_character_or_substring() {
-		$needle   = 'Hello';
-		$haystack = 'Hello_world!';
-		$actual   = str_starts_with( $haystack, $needle, $encoding = 'UTF-8' );
+	public function test_should_return_true_when_substring_starts_with() {
+		$this->assertTrue( str_starts_with( 'Hello World!', 'Hello' ) );
+		$this->assertTrue( str_starts_with( 'Hello World!', 'H' ) );
+		$this->assertTrue( str_starts_with( 'Cornerstone', 'Corner' ) );
+	}
 
-		$this->assertTrue( $actual );
-		$this->assertSame( true, $actual );
+	/**
+	 * Test should return false when substring does not start with & match haystack.
+	 */
+	public function test_should_return_false_when_substring_does_not_start() {
+		$this->assertFalse( str_starts_with( 'Hello World', 'World' ) );
+		$this->assertFalse( str_starts_with( 'Hello World', 'hey!' ) );
+		$this->assertFalse( str_starts_with( 'Cornerstone', 'cor' ) );
+		$this->assertFalse( str_starts_with( 'Cornerstone', 'stone' ) );
+	}
+
+	/**
+	 * Test should return true when substring is empty string.
+	 */
+	public function test_should_return_true_when_substring_is_empty() {
+		$this->assertTrue( str_starts_with( 'Cornerstone', '' ) );
+	}
+
+	/**
+	 * Test should return false or empty when substring is falsey.
+	 */
+	public function test_should_return_false_or_empty_when_substring_is_falsey() {
+		$this->assertFalse( str_starts_with( 'Hello World!', null ) );
+		$this->assertFalse( str_starts_with( 'Hello', 0 ) );
+		$this->assertFalse( str_starts_with( 'know the code', '0' ) );
+
+		$this->assertEmpty( str_starts_with( 'Hello World!', null ) );
+		$this->assertEmpty( str_starts_with( 'Hello', 0 ) );
+		$this->assertEmpty( str_starts_with( 'know the code', '0' ) );
 	}
 }
 
