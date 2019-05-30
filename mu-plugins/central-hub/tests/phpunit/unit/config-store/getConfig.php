@@ -21,7 +21,7 @@ use spiralWebDb\Cornerstone\Tests\Unit\Test_Case;
  * @package spiralWebDb\centralHub\Tests\Unit\ConfigStore
  * @group   config-store
  */
-class Tests_getConfig extends Test_Case {
+class Tests_GetConfig extends Test_Case {
 
 	/**
 	 * Prepares the test environment before each test.
