@@ -107,5 +107,12 @@ function _merge_with_defaults( array $config, array $defaults ) {
 function str_starts_with( $haystack, $needle, $encoding = 'UTF-8' ) {
 	$needle_length = mb_strlen( $needle, $encoding );
 
+	// Using string lengths, check if given a haystack and needle to compare.
+	if ( $needle_length == 0 || mb_strlen( $haystack, $encoding ) == 0 ) {
+		throw new InvalidArgumentException(
+			sprintf( 'The haystack and needle cannot be empty. Given: haystack [%s] and needle of [%s].', $haystack, $needle )
+		);
+	}
+
 	return ( mb_substr( $haystack, 0, $needle_length, $encoding ) === $needle );
 }
