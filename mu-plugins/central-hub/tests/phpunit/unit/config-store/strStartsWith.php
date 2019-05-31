@@ -51,23 +51,25 @@ class Tests_StringStartsWith extends Test_Case {
 	}
 
 	/**
-	 * Test should return true when substring is empty string.
+	 * Test should throw exception when string length empty.
 	 */
-	public function test_should_return_true_when_substring_is_empty() {
-		$this->assertTrue( str_starts_with( 'Cornerstone', '' ) );
+	public function test_should_throw_exception_when_string_is_empty() {
+		$this->expectException( \InvalidArgumentException::class );
+		$this->expectExceptionMessage(
+			'The haystack and needle cannot be empty. Given: haystack [Cornerstone] and needle of [].'
+		);
+
+		str_starts_with( 'Cornerstone', '' );
 	}
 
 	/**
 	 * Test should return false or empty when substring is falsey.
 	 */
-	public function test_should_return_false_or_empty_when_substring_is_falsey() {
-		$this->assertFalse( str_starts_with( 'Hello World!', null ) );
-		$this->assertFalse( str_starts_with( 'Hello', 0 ) );
-		$this->assertFalse( str_starts_with( 'know the code', '0' ) );
-
-		$this->assertEmpty( str_starts_with( 'Hello World!', null ) );
-		$this->assertEmpty( str_starts_with( 'Hello', 0 ) );
-		$this->assertEmpty( str_starts_with( 'know the code', '0' ) );
-	}
+//	public function test_should_return_false_when_substring_is_falsey() {
+//		$this->assertFalse( str_starts_with( 'World!', null ) );
+//		$this->assertFalse( str_starts_with( 'World!', '' ) );
+//		$this->assertFalse( str_starts_with( 'Hello', 0 ) );
+//		$this->assertFalse( str_starts_with( 'know the code', '0' ) );
+//	}
 }
 
