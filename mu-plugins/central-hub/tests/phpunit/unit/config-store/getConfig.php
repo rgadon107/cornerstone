@@ -49,33 +49,31 @@ class Tests_GetConfig extends Test_Case {
 	}
 
 	/**
-	 * Test should throw Exception when configuration does not exist in store.
+	 * Test should throw Exception when store key is not found in configuration.
 	 */
-	public function test_should_throw_exception_when_config_does_not_exist() {
+	public function test_should_throw_exception_when_key_not_found_in_config() {
 		$this->expectException( \Exception::class );
 		$this->expectExceptionMessage( 'Configuration for [foo] does not exist in the ConfigStore' );
 
 		getConfig( 'foo' );
+
+		$this->expectException( \Exception::class );
+		$this->expectExceptionMessage( 'Configuration for [this_key_does_not_exist] does not exist in the ConfigStore' );
+
+		getConfig( 'this_key_does_not_exist' );
+
+		$this->expectException( \Exception::class );
+		$this->expectExceptionMessage( 'Configuration for [__METHOD__] does not exist in the ConfigStore' );
+
+		getConfig( __METHOD__ );
 	}
 
 	/**
 	 * Test should return empty array when store key does not exist.
 	 */
 	public function test_should_return_empty_array_when_key_does_not_exist() {
-		$config = (array) require CENTRAL_HUB_ROOT_DIR . '/tests/phpunit/fixtures/test-cpt-config.php';
-		_the_store( '', $config );
-
 		$this->assertSame( [], getConfig( '' ) );
 
-		// Clean up _the_store.
-		_the_store( '', null, true );
-	}
-
-	/**
-	 * Test should return an empty array when store key and config are not stored.
-	 */
-	public function test_should_return_empty_array_when_key_and_config_not_stored() {
-		$this->assertSame( [], getConfig( '' ) );
 	}
 }
 
