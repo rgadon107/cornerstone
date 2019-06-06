@@ -116,3 +116,4 @@ function str_starts_with( $haystack, $needle, $encoding = 'UTF-8' ) {
 
 	return ( mb_substr( $haystack, 0, $needle_length, $encoding ) === $needle );
 }
+
