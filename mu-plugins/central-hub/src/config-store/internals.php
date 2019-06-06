@@ -109,7 +109,7 @@ function str_starts_with( $haystack, $needle, $encoding = 'UTF-8' ) {
 
 	// Using string lengths, check if given a haystack and needle to compare.
 	if ( $needle_length == 0 || mb_strlen( $haystack, $encoding ) == 0 ) {
-		throw new InvalidArgumentException(
+		throw new \InvalidArgumentException(
 			sprintf( 'The haystack and needle cannot be empty. Given: haystack [%s] and needle of [%s].', $haystack, $needle )
 		);
 	}
