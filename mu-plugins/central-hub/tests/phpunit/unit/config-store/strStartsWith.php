@@ -54,23 +54,23 @@ class Tests_StringStartsWith extends Test_Case {
 	 * Test should throw exception when string length ($haystack or $needle) is empty.
 	 */
 	public function test_should_throw_exception_when_string_is_empty() {
-		$this->expectException( \Error::class );
-		$this->expectErrorMessage(
-			'The haystack and needle cannot be empty. Given: haystack [Cornerstone] and needle of [\'\'].'
+		$this->expectException( \InvalidArgumentException::class );
+		$this->expectExceptionMessage(
+			'The haystack and needle cannot be empty. Given: haystack [Cornerstone] and needle of [].'
 		);
 
 		str_starts_with( 'Cornerstone', '' );
 
-		$this->expectException( \Error::class );
-		$this->expectErrorMessage(
-			'The haystack and needle cannot be empty. Given: haystack [\'\'] and needle of [WordPress].'
+		$this->expectException( \InvalidArgumentException::class );
+		$this->expectExceptionMessage(
+			'The haystack and needle cannot be empty. Given: haystack [] and needle of [WordPress].'
 		);
 
 		str_starts_with( '', 'WordPress' );
 
-		$this->expectException( \Error::class );
-		$this->expectErrorMessage(
-			'The haystack and needle cannot be empty. Given: haystack [\'\'] and needle of [\'\'].'
+		$this->expectException( \InvalidArgumentException::class );
+		$this->expectExceptionMessage(
+			'The haystack and needle cannot be empty. Given: haystack [] and needle of [].'
 		);
 
 		str_starts_with( '', '' );
