@@ -73,7 +73,6 @@ class Tests_GetConfig extends Test_Case {
 	 */
 	public function test_should_return_empty_array_when_key_does_not_exist() {
 		$this->assertSame( [], getConfig( '' ) );
-
 	}
 }
 
