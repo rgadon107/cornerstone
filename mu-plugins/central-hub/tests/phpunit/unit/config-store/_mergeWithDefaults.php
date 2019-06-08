@@ -1,6 +1,6 @@
 <?php
 /**
- *  Tests for _merge_with_defaults
+ *  Tests for _merge_with_defaults()
  *
  * @package    spiralWebDb\centralHub\Tests\Unit\ConfigStore
  * @since      1.3.0
@@ -32,14 +32,14 @@ class Tests_MergeWithDefaults extends Test_Case {
 	}
 
 	/**
-	 * Test should return empty when empty arrays are given.
+	 * Test _merge_with_defaults() should return an empty array when empty arrays are given.
 	 */
 	public function test_should_return_empty_when_empty_arrays_given() {
 		$this->assertEmpty( _merge_with_defaults( [], [] ) );
 	}
 
 	/**
-	 * Test should return config when defaults are empty.
+	 * Test _merge_with_defaults() should return the given config when defaults are empty.
 	 */
 	public function test_should_return_config_when_defaults_are_empty() {
 		$config = [
@@ -53,7 +53,7 @@ class Tests_MergeWithDefaults extends Test_Case {
 	}
 
 	/**
-	 * Test should return defaults when config is empty.
+	 * Test _merge_with_defaults() should return the defaults when config is empty.
 	 */
 	public function test_should_return_defaults_when_config_is_empty() {
 		$defaults = [
@@ -67,7 +67,7 @@ class Tests_MergeWithDefaults extends Test_Case {
 	}
 
 	/**
-	 *  Test should merge configuration with default array parameters
+	 *  Test _merge_with_defaults() should return the merged config parameters and default parameters
 	 */
 	public function test_should_merge_config_with_default_array_parameters() {
 		$config = [

@@ -32,7 +32,7 @@ class Tests_StringStartsWith extends Test_Case {
 	}
 
 	/*
-	 *  Test should return true when substring starts with and matches haystack.
+	 *  Test str_starts_with() should return true when substring starts with and matches haystack.
 	 */
 	public function test_should_return_true_when_substring_starts_with() {
 		$this->assertTrue( str_starts_with( 'Hello World!', 'Hello' ) );
@@ -41,7 +41,7 @@ class Tests_StringStartsWith extends Test_Case {
 	}
 
 	/**
-	 * Test should return false when substring does not start with & match haystack.
+	 * Test str_starts_with() should return false when substring does not start with & match haystack.
 	 */
 	public function test_should_return_false_when_substring_does_not_start() {
 		$this->assertFalse( str_starts_with( 'Hello World', 'World' ) );
@@ -51,28 +51,25 @@ class Tests_StringStartsWith extends Test_Case {
 	}
 
 	/**
-	 * Test should throw exception when string length ($haystack or $needle) is empty.
+	 * Test str_starts_with() should throw exception when string length ($haystack or $needle) is empty.
 	 */
 	public function test_should_throw_exception_when_string_is_empty() {
 		$this->expectException( \InvalidArgumentException::class );
 		$this->expectExceptionMessage(
 			'The haystack and needle cannot be empty. Given: haystack [Cornerstone] and needle of [].'
 		);
-
 		str_starts_with( 'Cornerstone', '' );
 
 		$this->expectException( \InvalidArgumentException::class );
 		$this->expectExceptionMessage(
 			'The haystack and needle cannot be empty. Given: haystack [] and needle of [WordPress].'
 		);
-
 		str_starts_with( '', 'WordPress' );
 
 		$this->expectException( \InvalidArgumentException::class );
 		$this->expectExceptionMessage(
 			'The haystack and needle cannot be empty. Given: haystack [] and needle of [].'
 		);
-
 		str_starts_with( '', '' );
 	}
 }
