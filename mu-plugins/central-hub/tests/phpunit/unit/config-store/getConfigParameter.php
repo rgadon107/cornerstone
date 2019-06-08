@@ -73,4 +73,22 @@ class Tests_GetConfigParameter extends Test_Case {
 		$this->assertSame( 'WordPress rocks!', getConfigParameter( __METHOD__, 'bbb' ) );
 		$this->assertSame( 37, getConfigParameter( __METHOD__, 'ccc' ) );
 	}
+
+	/**
+	 * Test getConfigParameter() should thrown an error when the parameter key does not exist in the stored configuration.
+	 */
+	public function test_should_thrown_error_when_parameter_key_does_not_exist() {
+		// Store the configuration to set up this test.
+		$config = [
+			'bbb' => 'WordPress rocks!',
+		];
+		Monkey\Functions\expect( '\KnowTheCode\ConfigStore\getConfig' )
+			->once()
+			->with( __METHOD__ )
+			->andReturn( $config );
+
+		$this->expectException( \Exception::class );
+		$this->expectExceptionMessage( sprintf('The configuration parameter [key_does_not_exist] within [%s] does not exist in this configuration', __METHOD__ ) );
+		getConfigParameter( __METHOD__, 'key_does_not_exist' );
+	}
 }
