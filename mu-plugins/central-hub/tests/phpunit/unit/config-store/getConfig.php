@@ -57,10 +57,7 @@ class Tests_GetConfig extends Test_Case {
 	 * Test getConfig() should return an empty array when the store key does not exist.
 	 */
 	public function test_should_return_empty_array_when_key_does_not_exist() {
-		Monkey\Functions\expect( '\KnowTheCode\ConfigStore\_the_store' )
-			->once()
-			->with( '' )
-			->andReturn( [] );
+		Monkey\Functions\expect( '\KnowTheCode\ConfigStore\_the_store' )->never();
 
 		$this->assertSame( [], getConfig( '' ) );
 	}

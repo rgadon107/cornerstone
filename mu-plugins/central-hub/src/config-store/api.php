@@ -22,6 +22,11 @@ namespace KnowTheCode\ConfigStore;
  * @throws \Exception
  */
 function getConfig( $store_key ) {
+	// If no store key is given, return an empty array.
+	if ( empty( $store_key ) ) {
+		return [];
+	}
+
 	return _the_store( $store_key );
 }
 
