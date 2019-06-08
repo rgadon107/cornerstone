@@ -28,6 +28,7 @@ class Tests_GetConfigParameter extends Test_Case {
 	 * Test getConfigParameter() should return the expected value when a valid store and parameter keys are given.
 	 */
 	public function test_should_return_value_when_valid_store_and_parameter_keys_given() {
+		// Store the configuration to set up this test.
 		$config = [
 			'aaa' => [
 				'ddd' => 'Know the Code',
@@ -36,9 +37,7 @@ class Tests_GetConfigParameter extends Test_Case {
 			'bbb' => 'WordPress rocks!',
 			'ccc' => 37,
 		];
-
-		// Store the configuration to set up this test.
-		_the_store( __METHOD__, static::$config );
+		_the_store( __METHOD__, $config );
 
 		$this->assertSame(
 			[
@@ -48,5 +47,26 @@ class Tests_GetConfigParameter extends Test_Case {
 			getConfigParameter( __METHOD__, 'aaa' ) );
 		$this->assertSame( 'WordPress rocks!', getConfigParameter( __METHOD__, 'bbb' ) );
 		$this->assertSame( 37, getConfigParameter( __METHOD__, 'ccc' ) );
+
+		// Clean up.
+		_the_store( __METHOD__, null, true );
+	}
+
+	/**
+	 * Test getConfigParameter() should thrown an error when the parameter key does not exist in the stored configuration.
+	 */
+	public function test_should_thrown_error_when_parameter_key_does_not_exist() {
+		// Store the configuration to set up this test.
+		$config = [
+			'bbb' => 'WordPress rocks!',
+		];
+		_the_store( __METHOD__, $config );
+
+		$this->expectException( \Exception::class );
+		$this->expectExceptionMessage( sprintf('The configuration parameter [key_does_not_exist] within [%s] does not exist in this configuration', __METHOD__ ) );
+		getConfigParameter( __METHOD__, 'key_does_not_exist' );
+
+		// Clean up.
+		_the_store( __METHOD__, null, true );
 	}
 }

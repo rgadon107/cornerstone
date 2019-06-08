@@ -33,8 +33,8 @@ class Tests_GetConfigParameter extends Test_Case {
 	}
 
 	/**
-	 * Test getConfigParameter() should return the expected value when a valid store and parameter keys are given.
-	 */
+ * Test getConfigParameter() should return the expected value when a valid store and parameter keys are given.
+ */
 	public function test_should_return_value_when_valid_store_and_parameter_keys_given() {
 		$config = [
 			'aaa' => [
