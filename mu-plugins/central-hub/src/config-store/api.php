@@ -47,7 +47,7 @@ function getConfigParameter( $store_key, $parameter_key ) {
 	if ( ! array_key_exists( $parameter_key, $config ) ) {
 		throw new \Exception(
 			sprintf(
-				__( 'The configuration parameter [%s] within [%s] does not exist in this configuration', 'config-store' ),
+				'The configuration parameter [%s] within [%s] does not exist in this configuration',
 				esc_html( $parameter_key ),
 				esc_html( $store_key )
 			)
