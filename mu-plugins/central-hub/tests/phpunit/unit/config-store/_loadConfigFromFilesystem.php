@@ -32,7 +32,7 @@ class Tests_LoadConfigFromFilesystem extends Test_Case {
 	}
 
 	/**
-	 *  Test should return array when $path_to_file is given.
+	 *  Test _load_config_from_filesystem() should return the configuration array when $path_to_file is given.
 	 */
 	public function test_should_return_array_when_path_to_file_is_given() {
 		$path_to_file = CENTRAL_HUB_ROOT_DIR . '/tests/phpunit/fixtures/test-cpt-config.php';

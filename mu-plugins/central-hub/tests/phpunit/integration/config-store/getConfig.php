@@ -33,14 +33,15 @@ class Tests_GetConfig extends Test_Case {
 				'ccc' => 'ddd'
 			]
 		];
-		_the_store( 'foo', $config );
-		$expected = getConfig( 'foo' );
+		// Store the configuration before we start the test.
+		_the_store( __METHOD__, $config );
 
-		$this->assertArrayHasKey( 'foo', $expected );
-		$this->assertSame( $expected, $config );
+		$actual = getConfig( __METHOD__ );
+		$this->assertArrayHasKey( 'foo', $actual );
+		$this->assertSame( $actual, $config );
 
 		// Clean up _the_store.
-		_the_store( 'foo', null, true );
+		_the_store( __METHOD__, null, true );
 	}
 
 	/**
@@ -49,15 +50,14 @@ class Tests_GetConfig extends Test_Case {
 	public function test_should_throw_exception_when_key_not_found_in_config() {
 		$this->expectException( \Exception::class );
 		$this->expectExceptionMessage( 'Configuration for [foo] does not exist in the ConfigStore' );
-
 		getConfig( 'foo' );
+
 		$this->expectException( \Exception::class );
 		$this->expectExceptionMessage( 'Configuration for [this_key_does_not_exist] does not exist in the ConfigStore' );
-
 		getConfig( 'this_key_does_not_exist' );
+
 		$this->expectException( \Exception::class );
 		$this->expectExceptionMessage( 'Configuration for [__METHOD__] does not exist in the ConfigStore' );
-
 		getConfig( __METHOD__ );
 	}
 

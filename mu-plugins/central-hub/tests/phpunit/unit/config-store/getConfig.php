@@ -36,7 +36,7 @@ class Tests_GetConfig extends Test_Case {
 	 * Test getConfig() should return the requested configuration when a valid store key is given.
 	 */
 	public function test_should_return_configuration_when_store_key_is_given() {
-		$config = [
+		$expected = [
 			'foo' => [
 				'aaa' => 'bbb',
 				'ccc' => 'ddd',
@@ -46,11 +46,11 @@ class Tests_GetConfig extends Test_Case {
 		Monkey\Functions\expect( '\KnowTheCode\ConfigStore\_the_store' )
 			->once()
 			->with( __METHOD__ )
-			->andReturn( $config );
+			->andReturn( $expected );
 
-		$expected = getConfig( __METHOD__ );
-		$this->assertArrayHasKey( 'foo', $expected );
-		$this->assertSame( $expected, $config );
+		$actual = getConfig( __METHOD__ );
+		$this->assertArrayHasKey( 'foo', $actual );
+		$this->assertSame( $actual, $expected );
 	}
 
 	/**
