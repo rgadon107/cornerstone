@@ -33,7 +33,7 @@ class Tests_GetConfig extends Test_Case {
 	}
 
 	/**
-	 * Test should return configuration from _the_store() when store key is given.
+	 * Test getConfig() should return the requested configuration when a valid store key is given.
 	 */
 	public function test_should_return_configuration_when_store_key_is_given() {
 		$config = [
@@ -54,7 +54,7 @@ class Tests_GetConfig extends Test_Case {
 	}
 
 	/**
-	 * Test should return empty array when store key does not exist.
+	 * Test getConfig() should return an empty array when the store key does not exist.
 	 */
 	public function test_should_return_empty_array_when_key_does_not_exist() {
 		Monkey\Functions\expect( '\KnowTheCode\ConfigStore\_the_store' )
