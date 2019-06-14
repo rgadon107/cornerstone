@@ -59,22 +59,34 @@ function _the_store( $store_key = '', $config_to_store = array(), $remove = null
 }
 
 /**
- * Load a configuration from the filesystem, returning its
- * storage key and configuration parameters.
+ * Load a configuration from the filesystem, returning its storage key and configuration parameters.
  *
  * @since 1.0.0
  *
  * @param string $path_to_file Absolute path to the config file.
  *
- * @return array
+ * @return array returns an array with storage key => config parameters.
+ * @throws \Exception
  */
 function _load_config_from_filesystem( $path_to_file ) {
-	$config = (array) require $path_to_file;
+	$config    = (array) require $path_to_file;
 
-	return array(
-		key( $config ),
-		current( $config ),
-	);
+	$store_key = key( $config );
+	if ( empty( $store_key ) ) {
+		throw new \Exception(
+			sprintf( 'No store key exists in the %s configuration file.', esc_attr( $path_to_file ) )
+		);
+	}
+
+	$config_params = current( $config );
+	if ( empty( $config_params ) ) {
+		throw new \Exception(
+			sprintf( 'No configuration parameters exist for store key [%s] in the %s configuration file.',
+				esc_attr( $store_key ), esc_attr( $path_to_file ) )
+		);
+	}
+
+	return [ $store_key, $config_params ];
 }
 
 /**
