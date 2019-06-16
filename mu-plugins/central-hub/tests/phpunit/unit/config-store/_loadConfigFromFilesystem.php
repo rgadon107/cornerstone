@@ -52,14 +52,13 @@ class Tests_LoadConfigFromFilesystem extends Test_Case {
 	 *  and parameters exist.
 	 */
 	public function test_should_throw_exception_when_no_store_key() {
+		$path_to_file = CENTRAL_HUB_ROOT_DIR . '/tests/phpunit/fixtures/config-with-params-only.php';
 		$this->expectException( \Exception::class );
 		$this->expectExceptionMessage(
-			sprintf( 'No store key exists in the [path_to_file] configuration file.', 'path_to_file' )
+			sprintf( 'No store key exists in the %s configuration file.', $path_to_file )
 		);
-		$path_to_file = CENTRAL_HUB_ROOT_DIR . '/tests/phpunit/fixtures/config-with-params-only.php';
 		_load_config_from_filesystem( $path_to_file );
 	}
-
 
 	/**
 	 * Test _load_config_from_filesystem() should throw an Exception when configuration store key exists and

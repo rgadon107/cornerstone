@@ -12,8 +12,10 @@
 
 namespace spiralWebDb\centralHub\Tests\Fixtures;
 
-return  [
+return [
+	[
 		'aaa' => 'bbb',
-		'ccc' => 'ddd'
+		'ccc' => 'ddd',
+	],
 ];
 
