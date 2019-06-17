@@ -69,15 +69,17 @@ class Tests_LoadConfigFromFilesystem extends Test_Case {
 	}
 
 	/**
-	 * Test _load_config_from_filesystem() should throw an Exception when configuration store key exists and
-	 *  parameters are empty.
+	 * Test _load_config_from_filesystem() should throw an Exception when the configuration parameters are empty.
 	 */
-	public function test_should_throw_exception_when_config_store_key_exists_and_no_parameters() {
+	public function test_should_throw_exception_when_config_params_empty() {
 		$path_to_file = CENTRAL_HUB_ROOT_DIR . '/tests/phpunit/fixtures/config-with-store-key-only.php';
 		$this->expectException( \Exception::class );
 		$this->expectExceptionMessage(
-			sprintf( 'No configuration parameters exist for store key [%s] in the %s configuration file.',
-				'foo', $path_to_file ) );
+			sprintf(
+				'No configuration parameters exist for store key [foo] in the %s configuration file.',
+				$path_to_file
+			)
+		);
 		_load_config_from_filesystem( $path_to_file );
 	}
 }
