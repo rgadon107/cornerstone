@@ -11,6 +11,7 @@
 
 namespace spiralWebDb\centralHub\Tests\Unit\ConfigStore;
 
+use Brain\Monkey;
 use function KnowTheCode\ConfigStore\loadConfigFromFilesystem;
 use spiralWebDb\Cornerstone\Tests\Unit\Test_Case;
 
@@ -33,7 +34,7 @@ class Tests_LoadConfigFromFilesystem extends Test_Case {
 
 	/**
 	 * Test loadConfigFromFilesystem() should merge defaults with config
-	 *   and return store key.
+	 *   and return a store key.
 	 */
 	public function test_should_merge_defaults_and_return_store_key() {
 		$path_to_file = CENTRAL_HUB_ROOT_DIR . '/tests/phpunit/fixtures/test-cpt-config.php';
@@ -48,8 +49,27 @@ class Tests_LoadConfigFromFilesystem extends Test_Case {
 	}
 
 	/**
-	 * Test for edge case #2.
+	 * Test loadConfigFromFilesystem() should store a config and return the store key.
 	 */
+	public function test_should_store_a_config_and_return_store_key() {
+		$path_to_file = CENTRAL_HUB_ROOT_DIR . '/tests/phpunit/fixtures/test-cpt-config.php';
+		$defaults     = [];
+
+		$this->assertSame( 'foo', loadConfigFromFilesystem( $path_to_file, $defaults ) );
+	}
+
+	/**
+	 * Test loadConfigFromFilesystem() should return a fatal error when
+	 *  $path_to_file is invalid path.
+	 */
+	public function test_should_return_error_when_argument_is_invalid_path() {
+		Monkey\Functions\expect( '\KnowTheCode\ConfigStore\_load_config_from_filesystem' )
+			->once()
+			->with( 'path/to/file.php' )
+			->andThrow( 'Error' );
+		$this->expectException( \Error::class );
+		loadConfigFromFilesystem( 'path/to/file.php' );
+	}
 
 
 }
