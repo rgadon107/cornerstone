@@ -35,8 +35,7 @@ class Tests_LoadConfigFromFilesystem extends Test_Case {
 	}
 
 	/**
-	 * Test loadConfigFromFilesystem() should merge defaults with config
-	 *   and return a store key.
+	 * Test loadConfigFromFilesystem() should merge defaults with config and return a store key.
 	 */
 	public function test_should_merge_defaults_and_return_store_key() {
 		$path_to_file  = CENTRAL_HUB_ROOT_DIR . '/tests/phpunit/fixtures/test-cpt-config.php';
@@ -115,4 +114,3 @@ class Tests_LoadConfigFromFilesystem extends Test_Case {
 		$this->assertSame( 'foo', loadConfigFromFilesystem( $path_to_file ) );
 	}
 }
-
