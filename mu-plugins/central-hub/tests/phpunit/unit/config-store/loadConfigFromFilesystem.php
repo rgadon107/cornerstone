@@ -72,15 +72,26 @@ class Tests_LoadConfigFromFilesystem extends Test_Case {
 	}
 
 	/**
-	 * Test loadConfigFromFilesystem() should overwrite stored configuration and
-	 *   return store key from file configuration.
+	 * Test loadConfigFromFilesystem() should overwrite stored configuration and return store key from
+	 * file configuration.
 	 */
 	public function test_should_overwrite_store_and_return_store_key_from_file_config() {
-		Monkey\Functions\when( '\KnowTheCode\ConfigStore\_the_store' )
-			->justReturn( 'baz' );
 		$path_to_file = CENTRAL_HUB_ROOT_DIR . '/tests/phpunit/fixtures/test-cpt-config.php';
-		loadConfigFromFilesystem( $path_to_file );
+		$config = [
+			'aaa' => 'bbb',
+			'ccc' => 'ddd'
+		];
+		Monkey\Functions\expect( '\KnowTheCode\ConfigStore\_load_config_from_filesystem' )
+			->twice()
+			->with( $path_to_file )
+			->andReturn( [ 'foo', $config ] );
+		Monkey\Functions\expect( '\KnowTheCode\ConfigStore\_merge_with_defaults' )->never();
+		Monkey\Functions\expect( '\KnowTheCode\ConfigStore\_the_store' )
+			->twice()
+			->with( 'foo', $config )
+			->andReturn( true );
 
+		$this->assertSame( 'foo', loadConfigFromFilesystem( $path_to_file ) );
 		$this->assertSame( 'foo', loadConfigFromFilesystem( $path_to_file ) );
 	}
 }
