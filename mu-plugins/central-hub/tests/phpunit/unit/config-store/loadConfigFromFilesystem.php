@@ -39,13 +39,32 @@ class Tests_LoadConfigFromFilesystem extends Test_Case {
 	 *   and return a store key.
 	 */
 	public function test_should_merge_defaults_and_return_store_key() {
-		$path_to_file = CENTRAL_HUB_ROOT_DIR . '/tests/phpunit/fixtures/test-cpt-config.php';
-		$defaults     = [
-			'foo' => [
-				'aaa' => 37,
-				'eee' => 'Coding is fun!'
-			]
+		$path_to_file  = CENTRAL_HUB_ROOT_DIR . '/tests/phpunit/fixtures/test-cpt-config.php';
+		$defaults      = [
+			'aaa' => 37,
+			'eee' => 'Coding is fun!',
 		];
+		$config        = [
+			'aaa' => 'bbb',
+			'ccc' => 'ddd',
+		];
+		$merged_config = [
+			'aaa' => 37,
+			'ccc' => 'ddd',
+			'eee' => 'Coding is fun!',
+		];
+		Monkey\Functions\expect( '\KnowTheCode\ConfigStore\_load_config_from_filesystem' )
+			->once()
+			->with( $path_to_file )
+			->andReturn( [ 'foo', $config ] );
+		Monkey\Functions\expect( '\KnowTheCode\ConfigStore\_merge_with_defaults' )
+			->once()
+			->with( $config, $defaults )
+			->andReturn( $merged_config );
+		Monkey\Functions\expect( '\KnowTheCode\ConfigStore\_the_store' )
+			->once()
+			->with( 'foo', $merged_config )
+			->andReturn( true );
 
 		$this->assertSame( 'foo', loadConfigFromFilesystem( $path_to_file, $defaults ) );
 	}
@@ -55,9 +74,9 @@ class Tests_LoadConfigFromFilesystem extends Test_Case {
 	 */
 	public function test_should_store_a_config_and_return_store_key() {
 		$path_to_file = CENTRAL_HUB_ROOT_DIR . '/tests/phpunit/fixtures/test-cpt-config.php';
-		$config = [
+		$config       = [
 			'aaa' => 'bbb',
-			'ccc' => 'ddd'
+			'ccc' => 'ddd',
 		];
 		Monkey\Functions\expect( '\KnowTheCode\ConfigStore\_load_config_from_filesystem' )
 			->once()
@@ -78,9 +97,9 @@ class Tests_LoadConfigFromFilesystem extends Test_Case {
 	 */
 	public function test_should_overwrite_store_and_return_store_key_from_file_config() {
 		$path_to_file = CENTRAL_HUB_ROOT_DIR . '/tests/phpunit/fixtures/test-cpt-config.php';
-		$config = [
+		$config       = [
 			'aaa' => 'bbb',
-			'ccc' => 'ddd'
+			'ccc' => 'ddd',
 		];
 		Monkey\Functions\expect( '\KnowTheCode\ConfigStore\_load_config_from_filesystem' )
 			->twice()
