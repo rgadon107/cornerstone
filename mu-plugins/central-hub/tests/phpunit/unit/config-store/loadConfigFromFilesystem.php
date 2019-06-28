@@ -55,9 +55,21 @@ class Tests_LoadConfigFromFilesystem extends Test_Case {
 	 */
 	public function test_should_store_a_config_and_return_store_key() {
 		$path_to_file = CENTRAL_HUB_ROOT_DIR . '/tests/phpunit/fixtures/test-cpt-config.php';
-		$defaults     = [];
+		$config = [
+			'aaa' => 'bbb',
+			'ccc' => 'ddd'
+		];
+		Monkey\Functions\expect( '\KnowTheCode\ConfigStore\_load_config_from_filesystem' )
+			->once()
+			->with( $path_to_file )
+			->andReturn( [ 'foo', $config ] );
+		Monkey\Functions\expect( '\KnowTheCode\ConfigStore\_merge_with_defaults' )->never();
+		Monkey\Functions\expect( '\KnowTheCode\ConfigStore\_the_store' )
+			->once()
+			->with( 'foo', $config )
+			->andReturn( true );
 
-		$this->assertSame( 'foo', loadConfigFromFilesystem( $path_to_file, $defaults ) );
+		$this->assertSame( 'foo', loadConfigFromFilesystem( $path_to_file ) );
 	}
 
 	/**
