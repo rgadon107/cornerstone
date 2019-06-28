@@ -77,11 +77,11 @@ class Tests_LoadConfigFromFilesystem extends Test_Case {
 	 */
 	public function test_should_overwrite_store_and_return_store_key_from_file_config() {
 		Monkey\Functions\when( '\KnowTheCode\ConfigStore\_the_store' )
-			->justReturn( 'baz');
+			->justReturn( 'baz' );
 		$path_to_file = CENTRAL_HUB_ROOT_DIR . '/tests/phpunit/fixtures/test-cpt-config.php';
 		loadConfigFromFilesystem( $path_to_file );
 
 		$this->assertSame( 'foo', loadConfigFromFilesystem( $path_to_file ) );
 	}
-
 }
+
