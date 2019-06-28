@@ -76,10 +76,8 @@ class Tests_LoadConfigFromFilesystem extends Test_Case {
 	 *   return store key from file configuration.
 	 */
 	public function test_should_overwrite_store_and_return_store_key_from_file_config() {
-		Monkey\Functions\expect( '\KnowTheCode\ConfigStore\_the_store' )
-			->once()
-			->with( 'baz', 'config_to_store' )
-			->andReturn( 'baz');
+		Monkey\Functions\when( '\KnowTheCode\ConfigStore\_the_store' )
+			->justReturn( 'baz');
 		$path_to_file = CENTRAL_HUB_ROOT_DIR . '/tests/phpunit/fixtures/test-cpt-config.php';
 		loadConfigFromFilesystem( $path_to_file );
 
