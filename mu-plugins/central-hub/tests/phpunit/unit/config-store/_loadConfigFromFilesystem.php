@@ -16,12 +16,12 @@ use function KnowTheCode\ConfigStore\_load_config_from_filesystem;
 use spiralWebDb\Cornerstone\Tests\Unit\Test_Case;
 
 /**
- * Class Tests_LoadConfigFromFilesystem
+ * Class Tests__LoadConfigFromFilesystem
  *
  * @package spiralWebDb\centralHub\Tests\Unit\ConfigStore
  * @group   config-store
  */
-class Tests_LoadConfigFromFilesystem extends Test_Case {
+class Tests__LoadConfigFromFilesystem extends Test_Case {
 
 	/**
 	 * Prepares the test environment before each test.
