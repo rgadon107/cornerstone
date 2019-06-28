@@ -14,8 +14,6 @@ namespace spiralWebDb\centralHub\Tests\Unit\ConfigStore;
 use Brain\Monkey;
 use function KnowTheCode\ConfigStore\loadConfigFromFilesystem;
 use spiralWebDb\Cornerstone\Tests\Unit\Test_Case;
-use PHPUnit\Framework\Error\Notice;
-
 
 /**
  * Class Tests_LoadConfigFromFilesystem
