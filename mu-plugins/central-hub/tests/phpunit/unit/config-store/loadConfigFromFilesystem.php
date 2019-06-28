@@ -46,7 +46,7 @@ class Tests_LoadConfigFromFilesystem extends Test_Case {
 			'ccc' => 'ddd',
 		];
 		$merged_config = [
-			'aaa' => 37,
+			'aaa' => 'bbb',
 			'ccc' => 'ddd',
 			'eee' => 'Coding is fun!',
 		];
