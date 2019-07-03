@@ -55,9 +55,9 @@ class Tests_LoadConfig extends Test_Case {
 		];
 		Monkey\Functions\expect( 'KnowTheCode\ConfigStore\_the_store' )
 			->once()
-			->with( '__METHOD__', $config )
+			->with( __METHOD__, $config )
 			->andReturn( true );
-		$this->assertTrue( loadConfig( '__METHOD__', $config ) );
+		$this->assertTrue( loadConfig( __METHOD__, $config ) );
 	}
 
 	/**
