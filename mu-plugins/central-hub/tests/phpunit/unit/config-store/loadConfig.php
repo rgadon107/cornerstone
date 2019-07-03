@@ -38,10 +38,8 @@ class Tests_LoadConfig extends Test_Case {
 	 */
 	public function test_should_store_config_in_the_store_given_valid_key_and_config() {
 		$config = [
-			'foo' => [
-				'aaa' => 'bbb',
-				'ccc' => 'ddd',
-			]
+			'aaa' => 'bbb',
+			'ccc' => 'ddd',
 		];
 		Monkey\Functions\expect( 'KnowTheCode\ConfigStore\_the_store' )
 			->once()
@@ -49,5 +47,16 @@ class Tests_LoadConfig extends Test_Case {
 			->andReturn( true );
 
 		$this->assertTrue( loadConfig( 'foo', $config ) );
+
+		$config = [
+			'aaa' => 37,
+			'ccc' => 'Coding is fun!',
+			'eee' => 'WordPress rocks!',
+		];
+		Monkey\Functions\expect( 'KnowTheCode\ConfigStore\_the_store' )
+			->once()
+			->with( '__METHOD__', $config )
+			->andReturn( true );
+		$this->assertTrue( loadConfig( '__METHOD__', $config ) );
 	}
 }
