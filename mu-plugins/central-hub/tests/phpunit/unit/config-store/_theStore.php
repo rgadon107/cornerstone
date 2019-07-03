@@ -107,4 +107,25 @@ class Tests_TheStore extends Test_Case {
 		// Clean up.
 		_the_store( __METHOD__, null, true );
 	}
+
+	/**
+	 *  Test _the_store() should overwrite a stored config using the same key.
+	 */
+	public function test_should_overwrite_a_stored_config_using_same_key() {
+		$config = [
+			'aaa' => 'bbb',
+			'ccc' => 'ddd'
+		];
+
+		$this->assertTrue( _the_store( 'foo', $config ) );
+
+		$new_config = [
+			'aaa' => 37,
+			'ccc' => 'Coding is fun!',
+			'eee' => 'WordPress rocks!',
+		];
+
+		$this->assertTrue( _the_store( 'foo', $new_config ) );
+	}
 }
+
