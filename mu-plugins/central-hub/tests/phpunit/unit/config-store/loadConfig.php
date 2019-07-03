@@ -59,4 +59,28 @@ class Tests_LoadConfig extends Test_Case {
 			->andReturn( true );
 		$this->assertTrue( loadConfig( '__METHOD__', $config ) );
 	}
+
+	/**
+	 * Test loadConfig() should throw an Exception error given empty store_key and valid config.
+	 */
+	public function test_should_throw_exception_when_store_key_is_empty() {
+		$store_key = '';
+		$config = [
+			[
+				'aaa' => 'bbb',
+				'ccc' => 'ddd',
+			]
+		];
+		Monkey\Functions\expect( 'KnowTheCode\ConfigStore\_the_store' )
+			->once()
+			->with( '', $config )
+			->andThrow( 'Exception' );
+		$this->expectException( \Exception::class );
+		$this->expectExceptionMessage(
+			sprintf(
+				'Configuration for [\'\'] does not exist in the ConfigStore', '' )
+		);
+		loadConfig( '', $config);
+	}
 }
+
