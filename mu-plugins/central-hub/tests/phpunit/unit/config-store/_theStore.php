@@ -12,6 +12,7 @@
 namespace spiralWebDb\centralHub\Tests\Unit\ConfigStore;
 
 use function KnowTheCode\ConfigStore\_the_store;
+use function KnowTheCode\ConfigStore\getConfig;
 use spiralWebDb\Cornerstone\Tests\Unit\Test_Case;
 
 /**
@@ -29,6 +30,7 @@ class Tests_TheStore extends Test_Case {
 		parent::setUp();
 
 		require_once CENTRAL_HUB_ROOT_DIR . '/src/config-store/internals.php';
+		require_once CENTRAL_HUB_ROOT_DIR . '/src/config-store/api.php';
 	}
 
 	/**
@@ -118,6 +120,7 @@ class Tests_TheStore extends Test_Case {
 		];
 
 		$this->assertTrue( _the_store( 'foo', $config ) );
+		$this->assertSame( $config, getConfig( 'foo' ) );
 
 		$new_config = [
 			'aaa' => 37,
@@ -126,6 +129,7 @@ class Tests_TheStore extends Test_Case {
 		];
 
 		$this->assertTrue( _the_store( 'foo', $new_config ) );
+		$this->assertSame( $new_config, getConfig( 'foo' ) );
 	}
 }
 
