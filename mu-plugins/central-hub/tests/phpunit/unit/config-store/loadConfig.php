@@ -16,7 +16,7 @@ use function KnowTheCode\ConfigStore\loadConfig;
 use spiralWebDb\Cornerstone\Tests\Unit\Test_Case;
 
 /**
- * Class Tests_LoadConfigFromFilesystem
+ * Class Tests_LoadConfig
  *
  * @package spiralWebDb\centralHub\Tests\Unit\ConfigStore
  * @group   config-store
@@ -30,4 +30,24 @@ class Tests_LoadConfig extends Test_Case {
 		parent::setUp();
 
 		require_once CENTRAL_HUB_ROOT_DIR . '/src/config-store/api.php';
+		require_once CENTRAL_HUB_ROOT_DIR . '/src/config-store/internals.php';
 	}
+
+	/**
+	 * Test loadConfig() should store a config given a valid store key and config.
+	 */
+	public function test_should_store_config_in_the_store_given_valid_key_and_config() {
+		$config = [
+			'foo' => [
+				'aaa' => 'bbb',
+				'ccc' => 'ddd',
+			]
+		];
+		Monkey\Functions\expect( 'KnowTheCode\ConfigStore\_the_store' )
+			->once()
+			->with( 'foo', $config )
+			->andReturn( true );
+
+		$this->assertTrue( loadConfig( 'foo', $config ) );
+	}
+}
