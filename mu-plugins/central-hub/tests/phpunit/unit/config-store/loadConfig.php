@@ -30,7 +30,6 @@ class Tests_LoadConfig extends Test_Case {
 		parent::setUp();
 
 		require_once CENTRAL_HUB_ROOT_DIR . '/src/config-store/api.php';
-		require_once CENTRAL_HUB_ROOT_DIR . '/src/config-store/internals.php';
 	}
 
 	/**
@@ -61,9 +60,9 @@ class Tests_LoadConfig extends Test_Case {
 	}
 
 	/**
-	 * Test loadConfig() should throw an Exception error given empty store_key and valid config.
+	 * Test loadConfig() should throw an Exception and message when given an empty store_key and valid config.
 	 */
-	public function test_should_throw_exception_when_store_key_is_empty() {
+	public function test_should_throw_exception_when_given_empty_key_and_valid_config() {
 		$config  = [
 			'aaa' => 'bbb',
 			'ccc' => 'ddd',
@@ -76,6 +75,21 @@ class Tests_LoadConfig extends Test_Case {
 		$this->expectException( \Exception::class );
 		$this->expectExceptionMessage( $message );
 		loadConfig( '', $config );
+	}
+
+	/**
+	 * Test loadConfig() should throw an Exception and message when given a valid store key and empty config.
+	 */
+	public function test_should_throw_exception_when_given_valid_key_and_empty_config() {
+		$config = [];
+		$message = "Configuration for [foo] does not exist in the ConfigStore";
+		Monkey\Functions\expect( 'KnowTheCode\ConfigStore\_the_store' )
+			->once()
+			->with( 'foo', $config )
+			->andThrow( new \Exception( $message ) );
+		$this->expectException( \Exception::class );
+		$this->expectExceptionMessage( $message );
+		loadConfig( 'foo', $config );
 	}
 }
 
