@@ -44,7 +44,6 @@ class Tests_LoadConfig extends Test_Case {
 			->once()
 			->with( 'foo', $config )
 			->andReturn( true );
-
 		$this->assertTrue( loadConfig( 'foo', $config ) );
 
 		$config = [
