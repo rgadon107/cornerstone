@@ -11,6 +11,7 @@
 
 namespace spiralWebDb\centralHub\Tests\Integration\ConfigStore;
 
+use function KnowTheCode\ConfigStore\loadConfig;
 use function KnowTheCode\ConfigStore\_the_store;
 use spiralWebDb\Cornerstone\Tests\Integration\Test_Case;
 
@@ -32,6 +33,43 @@ class Tests_LoadConfig extends Test_Case {
 		];
 		$this->assertTrue( loadConfig( 'foo', $config ) );
 
+		$config = [
+			'aaa' => 37,
+			'ccc' => 'Coding is fun!',
+			'eee' => 'WordPress rocks!',
+		];
+		$this->assertTrue( loadConfig( __METHOD__, $config ) );
 
+		// Clean up _the_store.
+		_the_store( __METHOD__, null, true );
+	}
+
+
+	/**
+	 * Test loadConfig() should throw an Exception and message when given an empty store_key and valid config.
+	 */
+	public function test_should_throw_exception_when_given_empty_key_and_valid_config() {
+		// Failed asserting that exception of type "Exception" is thrown.
+		$config  = [
+			'aaa' => 'bbb',
+			'ccc' => 'ddd',
+		];
+		$message = "Configuration for [''] does not exist in the ConfigStore";
+		$this->expectException( \Exception::class );
+		$this->expectExceptionMessage( $message );
+		loadConfig( '', $config );
+	}
+
+	/**
+	 * Test loadConfig() should throw an Exception and message when given a valid store key and empty config.
+	 */
+	public function test_should_throw_exception_when_given_valid_key_and_empty_config() {
+		// Failed asserting that exception of type "Exception" is thrown.
+		$config  = [];
+		$message = "Configuration for [foo] does not exist in the ConfigStore";
+		$this->expectException( \Exception::class );
+		$this->expectExceptionMessage( $message );
+		loadConfig( 'foo', $config );
 	}
 }
+
