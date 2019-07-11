@@ -56,4 +56,15 @@ class Tests_GetAllKeys extends Test_Case {
 			->andReturn( $config_store );
 		$this->assertSame( [ 'foo', 'bar', 'baz' ], getAllKeys() );
 	}
+
+	/**
+	 * Test getAllKeys() should return an empty array when store is empty.
+	 */
+	public function test_should_return_empty_array_when_store_is_empty() {
+		Monkey\Functions\expect( 'KnowTheCode\ConfigStore\_the_store' )
+			->once()
+			->withNoArgs()
+			->andReturn( [] );
+		$this->assertSame( [], getAllKeys() );
+	}
 }
