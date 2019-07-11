@@ -34,21 +34,26 @@ class Tests_GetAllKeys extends Test_Case {
 	}
 
 	/**
-	 * Test getAllKeys() should return the array keys from `_the_store()`.
+	 * Test getAllKeys() should return all store keys.
 	 */
-	public function test_should_return_the_array_keys_from_the_store() {
-		// array_keys() expects parameter 1 to be array, null given
-		$config = [
-			'aaa' => 37,
-			'ccc' => 'Coding is fun!',
-			'eee' => 'WordPress rocks!',
+	public function test_should_return_all_store_keys() {
+		$config_store = [
+			'foo' => [
+				'aaa' => 37,
+				'ccc' => 'Coding is fun!',
+				'eee' => 'WordPress rocks!',
+			],
+			'bar' => [
+				'bbb' => 'Hello World',
+			],
+			'baz' => [
+				'ddd' => 'Brain Monkey',
+			],
 		];
 		Monkey\Functions\expect( 'KnowTheCode\ConfigStore\_the_store' )
 			->once()
-			->with( 'foo', $config )
-			->andReturnValues( [ 'foo' ] );
-		$this->assertArrayHasKey( 'foo', getAllKeys() );
-		$this->assertSame( 'foo', getAllKeys() );
+			->withNoArgs()
+			->andReturn( $config_store );
+		$this->assertSame( [ 'foo', 'bar', 'baz' ], getAllKeys() );
 	}
 }
-
