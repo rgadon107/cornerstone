@@ -90,7 +90,7 @@ function loadConfigFromFilesystem( $path_to_file, array $defaults = array() ) {
  * @param mixed  $config    Runtime configuration parameter(s)
  */
 function loadConfig( $store_key, $config ) {
-	_the_store( $store_key, $config );
+	return _the_store( $store_key, $config );
 }
 
 /**
