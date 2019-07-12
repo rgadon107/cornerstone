@@ -94,15 +94,15 @@ class Tests_TheStore extends Test_Case {
 			'aaa' => 'bbb',
 			'ccc' => 'ddd',
 		];
-		_the_store( __METHOD__, $config );
+		$this->assertTrue( _the_store( 'remove_key', $config ) );
 
 		// Remove it. Check true is returned.
-		$this->assertTrue( _the_store( __METHOD__, null, true ) );
+		$this->assertTrue( _the_store( 'remove_key', null, true ) );
 
-		// Check that 'foo' no longer exists in the store.
+		// Check that 'remove_key' no longer exists in the store.
 		$this->expectException( \Exception::class );
-		$this->expectExceptionMessage( 'Configuration for [foo] does not exist in the ConfigStore' );
-		_the_store( __METHOD__ );
+		$this->expectExceptionMessage( 'Configuration for [remove_key] does not exist in the ConfigStore' );
+		_the_store( 'remove_key' );
 
 		// Empty the store from previous tests.  We waited to clean up here to ensure all functionality works.
 		$configs = _the_store();
