@@ -26,8 +26,8 @@ namespace KnowTheCode\ConfigStore;
 function _the_store( $store_key = '', $config_to_store = array(), $remove = null ) {
 	static $config_store = array();
 
-	// Bail out if no store key is given.
-	if ( ! $store_key ) {
+	// Return all stored configurations when no store key or config to store is given.
+	if ( empty( $store_key ) and empty( $config_to_store ) ) {
 		return $config_store;
 	}
 

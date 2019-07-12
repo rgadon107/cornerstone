@@ -116,7 +116,7 @@ class Tests_TheStore extends Test_Case {
 	public function test_should_overwrite_a_stored_config_using_same_key() {
 		$config = [
 			'aaa' => 'bbb',
-			'ccc' => 'ddd'
+			'ccc' => 'ddd',
 		];
 
 		$this->assertTrue( _the_store( 'foo', $config ) );
@@ -131,5 +131,33 @@ class Tests_TheStore extends Test_Case {
 		$this->assertTrue( _the_store( 'foo', $new_config ) );
 		$this->assertSame( $new_config, getConfig( 'foo' ) );
 	}
-}
 
+	/**
+	 * Test _the_store() should return all stored configs when no store key or configuration is provided.
+	 */
+	public function test_should_return_all_stored_configs_when_no_key_or_configs() {
+		// Store some configurations.
+		$configs = [
+			'foo' => [
+				'aaa' => 37,
+			],
+			'bar' => [
+				'bbb' => 'Hello World',
+			],
+			'baz' => [
+				'ccc' => 'Testing the store.',
+			],
+		];
+		foreach ( $configs as $store_key => $config ) {
+			_the_store( $store_key, $config );
+		}
+
+		// Should return the all stored configs.
+		$this->assertSame( $configs, _the_store() );
+
+		// Clean up.
+		foreach ( array_keys( $configs ) as $store_key ) {
+			_the_store( $store_key, [], true );
+		}
+	}
+}
