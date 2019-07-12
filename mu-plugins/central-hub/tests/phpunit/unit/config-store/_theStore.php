@@ -110,7 +110,7 @@ class Tests_TheStore extends Test_Case {
 			return;
 		}
 		foreach ( array_keys( $configs ) as $store_key ) {
-			_the_store( $store_key );
+			_the_store( $store_key, null, true );
 		}
 	}
 
@@ -179,5 +179,8 @@ class Tests_TheStore extends Test_Case {
 
 		$this->assertTrue( _the_store( 'foo', $new_config ) );
 		$this->assertSame( $new_config, getConfig( 'foo' ) );
+
+		// Clean up.
+		_the_store( 'foo', null, true );
 	}
 }
