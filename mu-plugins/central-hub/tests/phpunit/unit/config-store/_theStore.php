@@ -82,7 +82,7 @@ class Tests_TheStore extends Test_Case {
 			'ccc' => 'ddd',
 		];
 
-		$this->assertTrue( _the_store( 'foo', $config ) );
+		$this->assertTrue( _the_store( __METHOD__, $config ) );
 	}
 
 	/**
@@ -94,15 +94,15 @@ class Tests_TheStore extends Test_Case {
 			'aaa' => 'bbb',
 			'ccc' => 'ddd',
 		];
-		$this->assertTrue( _the_store( 'remove_key', $config ) );
+		$this->assertTrue( _the_store( __METHOD__, $config ) );
 
 		// Remove it. Check true is returned.
-		$this->assertTrue( _the_store( 'remove_key', null, true ) );
+		$this->assertTrue( _the_store( __METHOD__, null, true ) );
 
-		// Check that 'remove_key' no longer exists in the store.
+		// Check that __METHOD__ store key no longer exists in the store.
 		$this->expectException( \Exception::class );
-		$this->expectExceptionMessage( 'Configuration for [remove_key] does not exist in the ConfigStore' );
-		_the_store( 'remove_key' );
+		$this->expectExceptionMessage( sprintf( 'Configuration for [%s] does not exist in the ConfigStore', __METHOD__ ) );
+		_the_store( __METHOD__ );
 
 		// Empty the store from previous tests.  We waited to clean up here to ensure all functionality works.
 		$configs = _the_store();
@@ -168,8 +168,8 @@ class Tests_TheStore extends Test_Case {
 			'ccc' => 'ddd',
 		];
 
-		$this->assertTrue( _the_store( 'foo', $config ) );
-		$this->assertSame( $config, getConfig( 'foo' ) );
+		$this->assertTrue( _the_store( __METHOD__, $config ) );
+		$this->assertSame( $config, getConfig( __METHOD__ ) );
 
 		$new_config = [
 			'aaa' => 37,
@@ -177,10 +177,10 @@ class Tests_TheStore extends Test_Case {
 			'eee' => 'WordPress rocks!',
 		];
 
-		$this->assertTrue( _the_store( 'foo', $new_config ) );
-		$this->assertSame( $new_config, getConfig( 'foo' ) );
+		$this->assertTrue( _the_store( __METHOD__, $new_config ) );
+		$this->assertSame( $new_config, getConfig( __METHOD__ ) );
 
 		// Clean up.
-		_the_store( 'foo', null, true );
+		_the_store( __METHOD__, null, true );
 	}
 }
