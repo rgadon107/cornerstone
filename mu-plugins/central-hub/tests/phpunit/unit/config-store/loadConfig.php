@@ -66,7 +66,10 @@ class Tests_LoadConfig extends Test_Case {
 			'aaa' => 'bbb',
 			'ccc' => 'ddd',
 		];
-		$message = "Configuration for [''] does not exist in the ConfigStore";
+		$message = sprintf(
+			'Unable to store as no store key was given with the configuration to store: %s',
+			print_r( $config, true )
+		);
 		Monkey\Functions\expect( 'KnowTheCode\ConfigStore\_the_store' )
 			->once()
 			->with( '', $config )
