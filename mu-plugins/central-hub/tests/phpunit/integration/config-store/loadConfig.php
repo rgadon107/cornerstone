@@ -41,6 +41,7 @@ class Tests_LoadConfig extends Test_Case {
 		$this->assertTrue( loadConfig( __METHOD__, $config ) );
 
 		// Clean up _the_store.
+		_the_store( 'foo', null, true );
 		_the_store( __METHOD__, null, true );
 	}
 
@@ -70,4 +71,3 @@ class Tests_LoadConfig extends Test_Case {
 		loadConfig( __METHOD__, [] );
 	}
 }
-
