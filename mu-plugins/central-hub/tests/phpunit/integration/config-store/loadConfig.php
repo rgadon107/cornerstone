@@ -65,12 +65,9 @@ class Tests_LoadConfig extends Test_Case {
 	 * Test loadConfig() should throw an Exception and message when given a valid store key and empty config.
 	 */
 	public function test_should_throw_exception_when_given_valid_key_and_empty_config() {
-		// Failed asserting that exception of type "Exception" is thrown.
-		$config  = [];
-		$message = "Configuration for [foo] does not exist in the ConfigStore";
 		$this->expectException( \Exception::class );
-		$this->expectExceptionMessage( $message );
-		loadConfig( 'foo', $config );
+		$this->expectExceptionMessage( sprintf( 'Configuration for [%s] does not exist in the ConfigStore', __METHOD__ ) );
+		loadConfig( __METHOD__, [] );
 	}
 }
 
