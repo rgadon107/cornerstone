@@ -26,9 +26,18 @@ namespace KnowTheCode\ConfigStore;
 function _the_store( $store_key = '', $config_to_store = array(), $remove = null ) {
 	static $config_store = array();
 
-	// Return all stored configurations when no store key or config to store is given.
-	if ( empty( $store_key ) and empty( $config_to_store ) ) {
-		return $config_store;
+	if ( empty( $store_key ) ) {
+		// Return all stored configurations when no store key or config to store is given.
+		if ( empty( $config_to_store ) ) {
+			return $config_store;
+		}
+		
+		throw new \Exception(
+			sprintf(
+				'Unable to store as no store key was given with the configuration to store: %s',
+				print_r( $config_to_store, true )
+			)
+		);
 	}
 
 	// Store the given configuration.
@@ -69,7 +78,7 @@ function _the_store( $store_key = '', $config_to_store = array(), $remove = null
  * @throws \Exception
  */
 function _load_config_from_filesystem( $path_to_file ) {
-	$config    = (array) require $path_to_file;
+	$config = (array) require $path_to_file;
 
 	$store_key = key( $config );
 	if ( empty( $store_key ) ) {

@@ -115,6 +115,23 @@ class Tests_TheStore extends Test_Case {
 	}
 
 	/**
+	 * Test _the_store() should throw an error when no store key is given with a config to store.
+	 */
+	public function test_should_throw_error_when_no_store_key_given_with_config_to_store() {
+		$config  = [
+			'aaa' => 'bbb',
+			'ccc' => 'ddd',
+		];
+		$message = sprintf(
+			'Unable to store as no store key was given with the configuration to store: %s',
+			print_r( $config, true )
+		);
+		$this->expectException( \Exception::class );
+		$this->expectExceptionMessage( $message );
+		_the_store( '', $config );
+	}
+
+	/**
 	 * Test _the_store() should throw an error when the store key does not exist in the store.
 	 */
 	public function test_should_throw_error_when_store_key_does_not_exist() {
