@@ -25,17 +25,24 @@ use spiralWebDb\Cornerstone\Tests\Integration\Test_Case;
 class Tests_GetAllKeys extends Test_Case {
 
 	/**
-	 * Test getAllKeys() should return all store keys.
+	 * Empty the store before starting these tests.
 	 */
-	public function test_should_return_all_store_keys() {
-		// Intialize _the_store and unset all previously stored data.
+	public static function setUpBeforeClass() {
 		$configs = _the_store();
 		if ( empty( $configs ) ) {
 			return;
 		}
+
 		foreach ( array_keys( $configs ) as $store_key ) {
 			_the_store( $store_key, null, true );
 		}
+	}
+
+	/**
+	 * Test getAllKeys() should return all store keys.
+	 */
+	public function test_should_return_all_store_keys() {
+		// Initialize with known keys and configs.
 		$config_store = [
 			'foo' => [
 				'aaa' => 37,
@@ -52,11 +59,12 @@ class Tests_GetAllKeys extends Test_Case {
 		foreach ( $config_store as $store_key => $config_to_store ) {
 			loadConfig( $store_key, $config_to_store );
 		}
+
+		// Get the keys and test.
 		$this->assertSame( [ 'foo', 'bar', 'baz' ], getAllKeys() );
 
-		// Clean _the_store in preparation for the next test.
-		$configs = _the_store();
-		foreach ( $configs as $store_key => $config_to_store ) {
+		// Remove the configurations added in this test from the store.
+		foreach ( $config_store as $store_key => $config_to_store ) {
 			_the_store( $store_key, null, true );
 		}
 	}
