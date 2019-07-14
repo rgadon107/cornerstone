@@ -59,14 +59,21 @@ class Tests_GetAllKeysStartingWith extends Test_Case {
 			->withNoArgs()
 			->andReturn( array_keys( $config_store ) );
 		Monkey\Functions\expect( 'KnowTheCode\ConfigStore\str_starts_with' )
-			->times( 4 )
+			->times( 2 )
 			->with( 'getAllKeys', 'metabox.' )
-			->andReturn( true );
+			->andReturnValues( [ 'events', 'members' ] );
+		Monkey\Functions\expect( 'KnowTheCode\ConfigStore\str_starts_with' )
+			->once()
+			->with( 'getAllKeys', 'shortcode.' )
+			->andReturn( false );
+		Monkey\Functions\expect( 'KnowTheCode\ConfigStore\str_starts_with' )
+			->once()
+			->with( 'getAllKeys', 'custom_post_type.' )
+			->andReturn( false );
 		$expected = [ 'events', 'members' ];
 
 		$this->assertSame( $expected, getAllKeysStartingWith( 'metabox.' ) );
 	}
-
-
+	
 }
 
