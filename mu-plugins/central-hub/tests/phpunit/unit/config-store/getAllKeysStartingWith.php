@@ -37,7 +37,7 @@ class Tests_GetAllKeysStartingWith extends Test_Case {
 	 */
 	public function test_should_filter_and_return_all_store_keys_starting_with_given_string() {
 		Monkey\Functions\expect( 'KnowTheCode\ConfigStore\getAllKeys' )
-			->once()
+			->times( 3 )
 			->withNoArgs()
 			->andReturn( [
 				'metabox.events',
@@ -45,6 +45,7 @@ class Tests_GetAllKeysStartingWith extends Test_Case {
 				'shortcode.qa',
 				'custom_post_type.books',
 			] );
+
 		Monkey\Functions\expect( 'KnowTheCode\ConfigStore\str_starts_with' )
 			->once()
 			->with( 'metabox.events', 'metabox.' )
@@ -65,7 +66,50 @@ class Tests_GetAllKeysStartingWith extends Test_Case {
 			->with( 'custom_post_type.books', 'metabox.' )
 			->ordered()
 			->andReturn( false );
-
 		$this->assertSame( [ 'metabox.events', 'metabox.members' ], getAllKeysStartingWith( 'metabox.' ) );
+
+		Monkey\Functions\expect( 'KnowTheCode\ConfigStore\str_starts_with' )
+			->once()
+			->with( 'metabox.events', 'shortcode.' )
+			->ordered()
+			->andReturn( false )
+			->andAlsoExpectIt()
+			->once()
+			->with( 'metabox.members', 'shortcode.' )
+			->ordered()
+			->andReturn( false )
+			->andAlsoExpectIt()
+			->once()
+			->with( 'shortcode.qa', 'shortcode.' )
+			->ordered()
+			->andReturn( true )
+			->andAlsoExpectIt()
+			->once()
+			->with( 'custom_post_type.books', 'shortcode.' )
+			->ordered()
+			->andReturn( false );
+		$this->assertSame( [ 'shortcode.qa' ], getAllKeysStartingWith( 'shortcode.' ) );
+
+		Monkey\Functions\expect( 'KnowTheCode\ConfigStore\str_starts_with' )
+			->once()
+			->with( 'metabox.events', 'custom_post_type.' )
+			->ordered()
+			->andReturn( false )
+			->andAlsoExpectIt()
+			->once()
+			->with( 'metabox.members', 'custom_post_type.' )
+			->ordered()
+			->andReturn( false )
+			->andAlsoExpectIt()
+			->once()
+			->with( 'shortcode.qa', 'custom_post_type.' )
+			->ordered()
+			->andReturn( false )
+			->andAlsoExpectIt()
+			->once()
+			->with( 'custom_post_type.books', 'custom_post_type.' )
+			->ordered()
+			->andReturn( true );
+		$this->assertSame( [ 'custom_post_type.books' ], getAllKeysStartingWith( 'custom_post_type.' ) );
 	}
 }
