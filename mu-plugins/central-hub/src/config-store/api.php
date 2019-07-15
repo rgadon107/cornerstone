@@ -118,11 +118,6 @@ function getAllKeys() {
  * @return array
  */
 function getAllKeysStartingWith( $starts_with ) {
-
-//	return array_filter( getAllKeys(), function ( $key ) use ( $starts_with ) {
-//		return str_starts_with( $key, $starts_with );
-//	} );
-
 	$filtered_keys = array();
 
 	foreach ( getAllKeys() as $key ) {
