@@ -46,19 +46,26 @@ class Tests_GetAllKeysStartingWith extends Test_Case {
 				'custom_post_type.books',
 			] );
 		Monkey\Functions\expect( 'KnowTheCode\ConfigStore\str_starts_with' )
-			->times( 2 )
-			->with( 'getAllKeys', 'metabox.' )
-			->andReturnValues( [ 'events', 'members' ] )
 			->once()
-			->with( 'getAllKeys', 'shortcode.' )
-			->andReturnValues( [] )
+			->with( 'metabox.events', 'metabox.' )
+			->ordered()
+			->andReturn( true )
+			->andAlsoExpectIt()
 			->once()
-			->with( 'getAllKeys', 'custom_post_type.' )
-			->andReturnValues( [] );
+			->with( 'metabox.members', 'metabox.' )
+			->ordered()
+			->andReturn( true )
+			->andAlsoExpectIt()
+			->once()
+			->with( 'shortcode.qa', 'metabox.' )
+			->ordered()
+			->andReturn( false )
+			->andAlsoExpectIt()
+			->once()
+			->with( 'custom_post_type.books', 'metabox.' )
+			->ordered()
+			->andReturn( false );
 
-		$expected = [ 'events', 'members' ];
-
-		$this->assertSame( $expected, getAllKeysStartingWith( 'metabox.' ) );
+		$this->assertSame( [ 'metabox.events', 'metabox.members' ], getAllKeysStartingWith( 'metabox.' ) );
 	}
 }
-
