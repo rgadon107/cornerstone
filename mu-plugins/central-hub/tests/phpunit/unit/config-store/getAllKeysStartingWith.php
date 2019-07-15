@@ -33,9 +33,9 @@ class Tests_GetAllKeysStartingWith extends Test_Case {
 	}
 
 	/**
-	 * Test should filter all array keys and return keys that start with substring.
+	 * Test getAllKeysStartingWith() should filter and return all store keys that start with the given string.
 	 */
-	public function test_should_get_all_array_keys_and_filter_by_substring_that_starts_with() {
+	public function test_should_filter_and_return_all_store_keys_starting_with_given_string() {
 		Monkey\Functions\expect( 'KnowTheCode\ConfigStore\getAllKeys' )
 			->once()
 			->withNoArgs()
