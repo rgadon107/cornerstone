@@ -78,5 +78,16 @@ class Tests_GetAllKeysStartingWith extends Test_Case {
 		$this->expectExceptionMessage( $message );
 		getAllKeysStartingWith( 'taxonomy.' );
 	}
+
+	/**
+	 * Test getAllKeysStartingWith() should throw an Exception when the store is empty.
+	 */
+	public function test_should_throw_exception_when_the_store_is_empty() {
+		Tests_GetAllKeysStartingWith::setUpBeforeClass();
+		$message = sprintf( 'None of the searched keys start with the selected string: %s', '' );
+		$this->expectException( \InvalidArgumentException::class );
+		$this->expectExceptionMessage( $message );
+		getAllKeysStartingWith( '' );
+	}
 }
 
