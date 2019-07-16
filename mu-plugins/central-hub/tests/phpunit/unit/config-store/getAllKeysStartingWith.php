@@ -13,6 +13,7 @@ namespace spiralWebDb\centralHub\Tests\Unit\ConfigStore;
 
 use Brain\Monkey;
 use function KnowTheCode\ConfigStore\getAllKeysStartingWith;
+use function KnowTheCode\ConfigStore\getAllKeys;
 use spiralWebDb\Cornerstone\Tests\Unit\Test_Case;
 
 /**
@@ -153,5 +154,26 @@ class Tests_GetAllKeysStartingWith extends Test_Case {
 		$this->expectException( \InvalidArgumentException::class );
 		$this->expectExceptionMessage( $message );
 		getAllKeysStartingWith( 'taxonomy.' );
+
+		// Empty _the_store.
+		foreach ( getAllKeys() as $store_key ) {
+			_the_store( $store_key, null, true );
+		}
+	}
+
+	/**
+	 * Test getAllKeysStartingWith() should throw an Exception when the store is empty.
+	 */
+	public function test_should_throw_exception_when_the_store_is_empty() {
+		Monkey\Functions\expect( 'KnowTheCode\ConfigStore\getAllKeys' )
+			->once()
+			->withNoArgs()
+			->andReturn( [] );
+		$message = sprintf( 'None of the searched keys start with the selected string: %s',
+			print_r( $starts_with, true )
+		);
+		$this->expectException( \Exception::class );
+		$this->expectExceptionMessage( $message );
+		getAllKeysStartingWith( '' );
 	}
 }
