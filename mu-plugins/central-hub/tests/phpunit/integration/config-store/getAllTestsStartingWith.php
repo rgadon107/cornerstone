@@ -11,8 +11,10 @@
 
 namespace spiralWebDb\centralHub\Tests\Integration\ConfigStore;
 
+use function KnowTheCode\ConfigStore\_the_store;
+use function KnowTheCode\ConfigStore\loadConfig;
 use function KnowTheCode\ConfigStore\getAllKeysStartingWith;
-use spiralWebDb\Cornerstone\Tests\Unit\Test_Case;
+use spiralWebDb\Cornerstone\Tests\Integration\Test_Case;
 
 /**
  * Class Tests_GetAllKeysStartingWith
@@ -21,6 +23,51 @@ use spiralWebDb\Cornerstone\Tests\Unit\Test_Case;
  * @group   config-store
  */
 class Tests_GetAllKeysStartingWith extends Test_Case {
+
+	/**
+	 * Empty the store before starting these tests.
+	 */
+	public static function setUpBeforeClass() {
+		$store_keys = _the_store();
+		if ( empty( $store_keys ) ) {
+			return;
+		}
+
+		foreach ( array_keys( $store_keys ) as $store_key ) {
+			_the_store( $store_key, null, true );
+		}
+	}
+
+	/**
+	 * Test getAllKeysStartingWith() should filter and return all store keys that start with the given string.
+	 */
+	public function test_should_filter_and_return_all_store_keys_starting_with_given_string() {
+		$configs = [
+			'metabox.events'         => [
+				'Trinity Lutheran Church'  => 'Columbus, OH',
+				'Sanibel Episcopal Church' => 'Sanibel Island, FL',
+			],
+			'metabox.members'        => [
+				'Brandon Bird'     => 'First Trombone',
+				'Talia Marie Aull' => 'Soprano',
+			],
+			'shortcode.qa'           => [
+				'Question 1' => 'How many angels can dance on the head of a pin?',
+				'Question 2' => 'Is the moon made of green cheese?',
+			],
+			'custom_post_type.books' => [
+				'Title'  => 'The DaVinci Code',
+				'Author' => 'Dan Brown'
+			],
+		];
+		foreach ( $configs as $store_key => $config_to_store ) {
+			loadConfig( $store_key, $config_to_store );
+		}
+
+		$this->assertSame( [ 'metabox.events', 'metabox.members' ], getAllKeysStartingWith( 'metabox.' ) );
+		$this->assertSame( [ 'shortcode.qa' ], getAllKeysStartingWith( 'shortcode.' ) );
+		$this->assertSame( [ 'custom_post_type.books' ], getAllKeysStartingWith( 'custom_post_type.' ) );
+	}
 
 }
 
