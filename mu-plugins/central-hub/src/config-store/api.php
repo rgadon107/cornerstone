@@ -126,5 +126,11 @@ function getAllKeysStartingWith( $starts_with ) {
 		}
 	}
 
+	if ( empty( $filtered_keys ) ) {
+		throw new \InvalidArgumentException(
+			sprintf( 'None of the searched keys start with the selected string: %s', $starts_with )
+		);
+	}
+
 	return $filtered_keys;
 }
