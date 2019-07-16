@@ -69,5 +69,14 @@ class Tests_GetAllKeysStartingWith extends Test_Case {
 		$this->assertSame( [ 'custom_post_type.books' ], getAllKeysStartingWith( 'custom_post_type.' ) );
 	}
 
+	/**
+	 * Test getAllKeysStartingWith() should throw an Exception when filtered keys do not start with a given string.
+	 */
+	public function test_should_throw_exception_when_filtered_keys_do_not_start_with_a_given_string() {
+		$message = sprintf( 'None of the searched keys start with the selected string: %s', 'taxonomy.' );
+		$this->expectException( \InvalidArgumentException::class );
+		$this->expectExceptionMessage( $message );
+		getAllKeysStartingWith( 'taxonomy.' );
+	}
 }
 
