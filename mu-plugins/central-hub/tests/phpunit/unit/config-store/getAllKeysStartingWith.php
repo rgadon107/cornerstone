@@ -112,4 +112,46 @@ class Tests_GetAllKeysStartingWith extends Test_Case {
 			->andReturn( true );
 		$this->assertSame( [ 'custom_post_type.books' ], getAllKeysStartingWith( 'custom_post_type.' ) );
 	}
+
+	/**
+	 * Test getAllKeysStartingWith() should throw an Exception when filtered keys do not start with a given string.
+	 */
+	public function test_should_throw_exception_when_filtered_keys_do_not_start_with_a_given_string() {
+		Monkey\Functions\expect( 'KnowTheCode\ConfigStore\getAllKeys' )
+			->once()
+			->withNoArgs()
+			->andReturn( [
+				'metabox.events',
+				'metabox.members',
+				'shortcode.qa',
+				'custom_post_type.books',
+			] );
+		$message = sprintf(
+			'None of the searched keys start with the selected string: %s',
+			print_r( $starts_with, true )
+		);
+		Monkey\Functions\expect( 'KnowTheCode\ConfigStore\str_starts_with' )
+			->once()
+			->with( 'metabox.events', 'taxonomy.' )
+			->ordered()
+			->andReturn( false )
+			->andAlsoExpectIt()
+			->once()
+			->with( 'metabox.members', 'taxonomy.' )
+			->ordered()
+			->andReturn( false )
+			->andAlsoExpectIt()
+			->once()
+			->with( 'shortcode.qa', 'taxonomy.' )
+			->ordered()
+			->andReturn( false )
+			->andAlsoExpectIt()
+			->once()
+			->with( 'custom_post_type.books', 'taxonomy.' )
+			->ordered()
+			->andReturn( false );
+		$this->expectException( \InvalidArgumentException::class );
+		$this->expectExceptionMessage( $message );
+		getAllKeysStartingWith( 'taxonomy.' );
+	}
 }
