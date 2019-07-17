@@ -70,24 +70,21 @@ class Tests_GetAllKeysStartingWith extends Test_Case {
 	}
 
 	/**
-	 * Test getAllKeysStartingWith() should throw an Exception when filtered keys do not start with a given string.
+	 * Test getAllKeysStartingWith() should return an empty array when filtered keys do not start with a given string.
 	 */
-	public function test_should_throw_exception_when_filtered_keys_do_not_start_with_a_given_string() {
-		$message = sprintf( 'None of the searched keys start with the selected string: %s', 'taxonomy.' );
-		$this->expectException( \InvalidArgumentException::class );
-		$this->expectExceptionMessage( $message );
-		getAllKeysStartingWith( 'taxonomy.' );
+	public function test_should_return_empty_array_when_filtered_keys_do_not_start_with_a_given_string() {
+		$expected = [];
+		$this->assertSame( $expected, getAllKeysStartingWith( 'taxonomy.' ) );
 	}
 
 	/**
-	 * Test getAllKeysStartingWith() should throw an Exception when the store is empty.
+	 * Test getAllKeysStartingWith() should return an empty array when the store is empty.
 	 */
-	public function test_should_throw_exception_when_the_store_is_empty() {
-		Tests_GetAllKeysStartingWith::setUpBeforeClass();
-		$message = sprintf( 'None of the searched keys start with the selected string: %s', '' );
-		$this->expectException( \InvalidArgumentException::class );
-		$this->expectExceptionMessage( $message );
-		getAllKeysStartingWith( '' );
+	public function test_should_return_empty_array_when_the_store_is_empty() {
+		self::setUpBeforeClass();
+		$expected = [];
+		$this->assertSame( $expected, getAllKeysStartingWith( 'taxonomy.' ) );
+		$this->assertSame( $expected, getAllKeysStartingWith( '' ) );
 	}
 }
 
