@@ -13,7 +13,6 @@ namespace spiralWebDb\centralHub\Tests\Unit\ConfigStore;
 
 use Brain\Monkey;
 use function KnowTheCode\ConfigStore\getAllKeysStartingWith;
-use function KnowTheCode\ConfigStore\getAllKeys;
 use spiralWebDb\Cornerstone\Tests\Unit\Test_Case;
 
 /**
@@ -115,9 +114,9 @@ class Tests_GetAllKeysStartingWith extends Test_Case {
 	}
 
 	/**
-	 * Test getAllKeysStartingWith() should throw an Exception when filtered keys do not start with a given string.
+	 * Test getAllKeysStartingWith() should return an empty array when filtered keys do not start with a given string.
 	 */
-	public function test_should_throw_exception_when_filtered_keys_do_not_start_with_a_given_string() {
+	public function test_should_return_empty_array_when_filtered_keys_do_not_start_with_a_given_string() {
 		Monkey\Functions\expect( 'KnowTheCode\ConfigStore\getAllKeys' )
 			->once()
 			->withNoArgs()
@@ -127,10 +126,6 @@ class Tests_GetAllKeysStartingWith extends Test_Case {
 				'shortcode.qa',
 				'custom_post_type.books',
 			] );
-		$message = sprintf(
-			'None of the searched keys start with the selected string: %s',
-			print_r( $starts_with, true )
-		);
 		Monkey\Functions\expect( 'KnowTheCode\ConfigStore\str_starts_with' )
 			->once()
 			->with( 'metabox.events', 'taxonomy.' )
@@ -151,29 +146,20 @@ class Tests_GetAllKeysStartingWith extends Test_Case {
 			->with( 'custom_post_type.books', 'taxonomy.' )
 			->ordered()
 			->andReturn( false );
-		$this->expectException( \InvalidArgumentException::class );
-		$this->expectExceptionMessage( $message );
-		getAllKeysStartingWith( 'taxonomy.' );
 
-		// Empty _the_store.
-		foreach ( getAllKeys() as $store_key ) {
-			_the_store( $store_key, null, true );
-		}
+		$this->assertSame( [], getAllKeysStartingWith( 'taxonomy.' ) );
 	}
 
 	/**
-	 * Test getAllKeysStartingWith() should throw an Exception when the store is empty.
+	 * Test getAllKeysStartingWith() should return an empty array when the store is empty.
 	 */
-	public function test_should_throw_exception_when_the_store_is_empty() {
+	public function test_should_return_empty_array_when_the_store_is_empty() {
 		Monkey\Functions\expect( 'KnowTheCode\ConfigStore\getAllKeys' )
-			->once()
+			->times( 2 )
 			->withNoArgs()
 			->andReturn( [] );
-		$message = sprintf( 'None of the searched keys start with the selected string: %s',
-			print_r( $starts_with, true )
-		);
-		$this->expectException( \Exception::class );
-		$this->expectExceptionMessage( $message );
-		getAllKeysStartingWith( '' );
+
+		$this->assertSame( [], getAllKeysStartingWith( 'taxonomy.' ) );
+		$this->assertSame( [], getAllKeysStartingWith( '' ) );
 	}
 }
