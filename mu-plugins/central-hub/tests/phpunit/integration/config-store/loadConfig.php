@@ -40,7 +40,7 @@ class Tests_LoadConfig extends Test_Case {
 		$this->assertTrue( loadConfig( __METHOD__, $config ) );
 
 		// Clean up.
-		self::empty_the_store( [], [ 'foo', __METHOD__ ] );
+		self::empty_the_store_by_keys( [ 'foo', __METHOD__ ] );
 	}
 
 	/**

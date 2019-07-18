@@ -56,30 +56,34 @@ abstract class Test_Case extends WP_UnitTestCase {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param array $configs    Optional. Array of configs stored in the store.
-	 * @param array $store_keys Optional. Array of store keys to remove from store.
+	 * @param array $configs Optional. Array of configs stored in the store.
 	 *
 	 * @return void
 	 * @throws \Exception
 	 */
-	protected static function empty_the_store( $configs = [], $store_keys = [] ) {
+	protected static function empty_the_store( $configs = [] ) {
 		// If no store keys or configs were given, grab the all configs from the store.
-		if ( empty( $store_keys ) && empty( $configs ) ) {
+		if ( empty( $configs ) ) {
 			$configs = _the_store();
 			if ( empty( $configs ) ) {
 				return;
 			}
 		}
 
-		// Extract store keys from the given configs.
-		if ( empty( $store_keys ) ) {
-			$store_keys = array_keys( $configs );
-			if ( empty( $store_keys ) ) {
-				return;
-			}
-		}
+		self::empty_the_store_by_keys( array_keys( $configs ) );
+	}
 
-		// Remove all configs from the store.
+	/**
+	 * Empty all of the configs from the store for the given keys.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param array $store_keys Array of store keys to remove from store.
+	 *
+	 * @return void
+	 * @throws \Exception
+	 */
+	protected static function empty_the_store_by_keys( $store_keys ) {
 		foreach ( $store_keys as $store_key ) {
 			self::remove_from_store( $store_key );
 		}
