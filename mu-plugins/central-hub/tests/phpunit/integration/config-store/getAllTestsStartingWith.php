@@ -11,7 +11,6 @@
 
 namespace spiralWebDb\centralHub\Tests\Integration\ConfigStore;
 
-use function KnowTheCode\ConfigStore\_the_store;
 use function KnowTheCode\ConfigStore\loadConfig;
 use function KnowTheCode\ConfigStore\getAllKeysStartingWith;
 use spiralWebDb\Cornerstone\Tests\Integration\Test_Case;
@@ -80,38 +79,5 @@ class Tests_GetAllKeysStartingWith extends Test_Case {
 		$expected = [];
 		$this->assertSame( $expected, getAllKeysStartingWith( 'taxonomy.' ) );
 		$this->assertSame( $expected, getAllKeysStartingWith( '' ) );
-	}
-
-	/**
-	 * Empty all of the configs from the store.
-	 *
-	 * @since 1.0.0
-	 *
-	 * @param array $configs    Optional. Array of configs stored in the store.
-	 * @param array $store_keys Optional. Array of store keys to remove from store.
-	 *
-	 * @return void
-	 * @throws \Exception
-	 */
-	protected static function empty_the_store( $configs = [], $store_keys = [] ) {
-		// If no store keys or configs were given, grab the all configs from the store.
-		if ( empty( $store_keys ) && empty( $configs ) ) {
-			$configs = _the_store();
-			if ( empty( $configs ) ) {
-				return;
-			}
-		}
-
-		// Extract store keys from the given configs.
-		if ( empty( $store_keys ) ) {
-			$store_keys = array_keys( $configs );
-			if ( empty( $store_keys ) ) {
-				return;
-			}
-		}
-
-		foreach ( $store_keys as $store_key ) {
-			_the_store( $store_key, null, true );
-		}
 	}
 }

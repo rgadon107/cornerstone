@@ -28,14 +28,7 @@ class Tests_GetAllKeys extends Test_Case {
 	 * Empty the store before starting these tests.
 	 */
 	public static function setUpBeforeClass() {
-		$configs = _the_store();
-		if ( empty( $configs ) ) {
-			return;
-		}
-
-		foreach ( array_keys( $configs ) as $store_key ) {
-			_the_store( $store_key, null, true );
-		}
+		self::empty_the_store();
 	}
 
 	/**
@@ -63,10 +56,8 @@ class Tests_GetAllKeys extends Test_Case {
 		// Get the keys and test.
 		$this->assertSame( [ 'foo', 'bar', 'baz' ], getAllKeys() );
 
-		// Remove the configurations added in this test from the store.
-		foreach ( $config_store as $store_key => $config_to_store ) {
-			_the_store( $store_key, null, true );
-		}
+		// Cleanup.
+		self::empty_the_store( $config_store );
 	}
 
 	/**
@@ -77,4 +68,3 @@ class Tests_GetAllKeys extends Test_Case {
 		$this->assertSame( $expected, getAllKeys() );
 	}
 }
-
