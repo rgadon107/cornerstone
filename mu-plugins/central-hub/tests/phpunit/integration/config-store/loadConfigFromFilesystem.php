@@ -16,7 +16,6 @@ use function KnowTheCode\ConfigStore\_the_store;
 use function KnowTheCode\ConfigStore\loadConfigFromFilesystem;
 use spiralWebDb\Cornerstone\Tests\Integration\Test_Case;
 
-
 /**
  * Class Tests_LoadConfigFromFilesystem
  *
@@ -42,6 +41,9 @@ class Tests_LoadConfigFromFilesystem extends Test_Case {
 
 		$this->assertSame( 'foo', loadConfigFromFilesystem( $path_to_file, $defaults ) );
 		$this->assertEquals( $merged_config, _the_store( 'foo' ) );
+
+		// Cleanup.
+		self::remove_from_store( 'foo' );
 	}
 
 	/**
@@ -56,6 +58,9 @@ class Tests_LoadConfigFromFilesystem extends Test_Case {
 
 		$this->assertSame( 'foo', loadConfigFromFilesystem( $path_to_file ) );
 		$this->assertSame( $config, _the_store( 'foo' ) );
+
+		// Cleanup.
+		self::remove_from_store( 'foo' );
 	}
 
 	/**
@@ -92,4 +97,3 @@ class Tests_LoadConfigFromFilesystem extends Test_Case {
 		loadConfigFromFilesystem( $path_to_file );
 	}
 }
-

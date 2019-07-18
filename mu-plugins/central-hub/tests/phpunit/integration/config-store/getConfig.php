@@ -68,4 +68,3 @@ class Tests_GetConfig extends Test_Case {
 		$this->assertSame( [], getConfig( '' ) );
 	}
 }
-

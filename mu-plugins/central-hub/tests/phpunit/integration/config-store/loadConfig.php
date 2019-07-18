@@ -12,7 +12,6 @@
 namespace spiralWebDb\centralHub\Tests\Integration\ConfigStore;
 
 use function KnowTheCode\ConfigStore\loadConfig;
-use function KnowTheCode\ConfigStore\_the_store;
 use spiralWebDb\Cornerstone\Tests\Integration\Test_Case;
 
 /**
@@ -40,9 +39,8 @@ class Tests_LoadConfig extends Test_Case {
 		];
 		$this->assertTrue( loadConfig( __METHOD__, $config ) );
 
-		// Clean up _the_store.
-		_the_store( 'foo', null, true );
-		_the_store( __METHOD__, null, true );
+		// Clean up.
+		self::empty_the_store( [], [ 'foo', __METHOD__ ] );
 	}
 
 	/**

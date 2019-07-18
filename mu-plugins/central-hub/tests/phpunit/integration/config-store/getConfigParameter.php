@@ -11,7 +11,6 @@
 
 namespace spiralWebDb\centralHub\Tests\Integration\ConfigStore;
 
-use Brain\Monkey;
 use function KnowTheCode\ConfigStore\_the_store;
 use function KnowTheCode\ConfigStore\getConfigParameter;
 use spiralWebDb\Cornerstone\Tests\Integration\Test_Case;
