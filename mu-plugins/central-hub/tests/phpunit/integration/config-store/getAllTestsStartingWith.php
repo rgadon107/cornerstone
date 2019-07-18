@@ -68,7 +68,8 @@ class Tests_GetAllKeysStartingWith extends Test_Case {
 		$this->assertSame( [ 'shortcode.qa' ], getAllKeysStartingWith( 'shortcode.' ) );
 		$this->assertSame( [ 'custom_post_type.books' ], getAllKeysStartingWith( 'custom_post_type.' ) );
 
-		foreach ( $configs as $store_key => $config_to_store ) {
+		// Clean up by removing the configs (added by this test) from the store.
+		foreach ( array_keys( $configs ) as $store_key ) {
 			_the_store( $store_key, null, true );
 		}
 	}
