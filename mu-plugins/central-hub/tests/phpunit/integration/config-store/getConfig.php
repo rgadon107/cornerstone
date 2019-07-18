@@ -40,8 +40,8 @@ class Tests_GetConfig extends Test_Case {
 		$this->assertArrayHasKey( 'foo', $actual );
 		$this->assertSame( $actual, $config );
 
-		// Clean up _the_store.
-		_the_store( __METHOD__, null, true );
+		// Clean up.
+		self::remove_from_store( __METHOD__ );
 	}
 
 	/**

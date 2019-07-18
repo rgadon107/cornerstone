@@ -49,7 +49,7 @@ class Tests_GetConfigParameter extends Test_Case {
 		$this->assertSame( 37, getConfigParameter( __METHOD__, 'ccc' ) );
 
 		// Clean up.
-		_the_store( __METHOD__, null, true );
+		self::remove_from_store( __METHOD__ );
 	}
 
 	/**
@@ -67,6 +67,6 @@ class Tests_GetConfigParameter extends Test_Case {
 		getConfigParameter( __METHOD__, 'key_does_not_exist' );
 
 		// Clean up.
-		_the_store( __METHOD__, null, true );
+		self::remove_from_store( __METHOD__ );
 	}
 }

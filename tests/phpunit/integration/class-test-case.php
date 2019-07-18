@@ -81,7 +81,21 @@ abstract class Test_Case extends WP_UnitTestCase {
 
 		// Remove all configs from the store.
 		foreach ( $store_keys as $store_key ) {
-			_the_store( $store_key, null, true );
+			self::remove_from_store( $store_key );
 		}
+	}
+
+	/**
+	 * Remove the config from the store by the given store key.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param array $store_key Key for the config to remove from store.
+	 *
+	 * @return void
+	 * @throws \Exception
+	 */
+	protected static function remove_from_store( $store_key ) {
+		_the_store( $store_key, null, true );
 	}
 }
