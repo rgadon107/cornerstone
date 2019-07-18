@@ -67,6 +67,8 @@ class Tests_GetAllKeysStartingWith extends Test_Case {
 		$this->assertSame( [ 'metabox.events', 'metabox.members' ], getAllKeysStartingWith( 'metabox.' ) );
 		$this->assertSame( [ 'shortcode.qa' ], getAllKeysStartingWith( 'shortcode.' ) );
 		$this->assertSame( [ 'custom_post_type.books' ], getAllKeysStartingWith( 'custom_post_type.' ) );
+
+		self::setUpBeforeClass();
 	}
 
 	/**
@@ -81,7 +83,6 @@ class Tests_GetAllKeysStartingWith extends Test_Case {
 	 * Test getAllKeysStartingWith() should return an empty array when the store is empty.
 	 */
 	public function test_should_return_empty_array_when_the_store_is_empty() {
-		self::setUpBeforeClass();
 		$expected = [];
 		$this->assertSame( $expected, getAllKeysStartingWith( 'taxonomy.' ) );
 		$this->assertSame( $expected, getAllKeysStartingWith( '' ) );
