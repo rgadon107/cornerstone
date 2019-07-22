@@ -39,6 +39,8 @@ function register_meta_boxes() {
 			$config['priority'],
 			$config['callback_args']
 		);
+
+		return true;
 	}
 }
 
