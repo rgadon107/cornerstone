@@ -24,6 +24,13 @@ use spiralWebDb\Cornerstone\Tests\Integration\Test_Case;
 class Tests_TheStore extends Test_Case {
 
 	/**
+	 * Empty the store before starting these tests.
+	 */
+	public static function setUpBeforeClass() {
+		self::empty_the_store();
+	}
+
+	/**
 	 * Test _the_store() should throw an error when the store key does not exist in the store.
 	 */
 	public function test_should_throw_error_when_store_key_does_not_exist() {
