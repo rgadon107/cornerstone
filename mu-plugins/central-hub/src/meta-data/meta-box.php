@@ -18,9 +18,9 @@ add_action( 'admin_menu', __NAMESPACE__ . '\register_meta_boxes' );
 /**
  * Register the meta boxes.
  *
- * @since 1.0.0
+ * @since 1.1.0
  *
- * @return void
+ * @return true|null  boolean  True if $store_key starts with 'metabox.'.
  */
 function register_meta_boxes() {
 	foreach ( get_meta_box_keys() as $store_key ) {
