@@ -31,16 +31,34 @@ class Tests_RegisterMetaBoxes extends Test_Case {
 		parent::setUp();
 
 		require_once CENTRAL_HUB_ROOT_DIR . '/src/meta-data/meta-box.php';
-
 	}
 
 	/*
-	 * Test that the 'admin_menu' add_action() event actually fires.
+	 * Test that register_meta_boxes() should register to admin_menu hook when event fires.
 	 */
-	public function test_that_admin_menu_add_action_event_fires() {
-
-		register_meta_boxes();
-
+	public function test_that_function_registers_when_admin_menu_event_fires() {
 		$this->assertTrue( has_action( 'admin_menu', 'spiralWebDB\Metadata\register_meta_boxes' ) );
 	}
+
+	/*
+	 * Test register_meta_boxes() will add a meta box for each store key that starts with 'metabox.'.
+	 */
+	function test_function_will_add_a_meta_box_for_each_store_key_that_starts_with_metabox() {
+		Monkey\Functions\expect( 'spiralWebDB\Metadata\get_meta_box_keys' )
+			->once()
+			->withNoArgs()
+			->andReturn( [ 'meta_box.events' ] );
+		Monkey\Functions\expect( 'KnowTheCode\ConfigStore\getConfigParameter' )
+			->once()
+			->with( 'meta_box.events', 'add_meta_box' );
+		Monkey\Functions\when( 'spiralWebDB\Metadata\add_meta_box' )
+			->justReturn( 'events' );
+		Monkey\Functions\expect( 'spiralWebDB\Metadata\get_meta_box_id' )
+			->once()
+			->with( 'meta_box.events' )
+			->andReturn( 'events' );
+
+		$this->assertTrue( register_meta_boxes() );
+	}
 }
+
