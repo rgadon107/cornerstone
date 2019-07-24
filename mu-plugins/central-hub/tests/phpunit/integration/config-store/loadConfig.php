@@ -23,13 +23,6 @@ use spiralWebDb\Cornerstone\Tests\Integration\Test_Case;
 class Tests_LoadConfig extends Test_Case {
 
 	/**
-	 * Empty the store before starting these tests.
-	 */
-	public static function setUpBeforeClass() {
-		self::empty_the_store();
-	}
-
-	/**
 	 * Test loadConfig() should store a config given a valid store key and config.
 	 */
 	public function test_should_store_config_in_the_store_given_valid_key_and_config() {

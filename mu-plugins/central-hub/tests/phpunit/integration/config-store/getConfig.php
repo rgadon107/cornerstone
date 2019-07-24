@@ -24,13 +24,6 @@ use spiralWebDb\Cornerstone\Tests\Integration\Test_Case;
 class Tests_GetConfig extends Test_Case {
 
 	/**
-	 * Empty the store before starting these tests.
-	 */
-	public static function setUpBeforeClass() {
-		self::empty_the_store();
-	}
-
-	/**
 	 * Test getConfig() should return the requested configuration when a valid store key is given.
 	 */
 	public function test_should_return_configuration_when_store_key_is_given() {
