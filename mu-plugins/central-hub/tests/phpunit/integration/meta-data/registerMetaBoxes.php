@@ -50,6 +50,11 @@ class Tests_RegisterMetaBoxes extends Test_Case {
 			loadConfig( $store_key, $config_to_store );
 		}
 
+		Monkey\Functions\expect( 'spiralWebDB\Metadata\get_meta_box_id' )
+			->once()
+			->with( 'metabox.events' )
+			->andReturn( 'events' );
+
 		$this->assertTrue( register_meta_boxes() );
 
 		self::empty_the_store_by_keys( [ 'metabox.events' ] );
