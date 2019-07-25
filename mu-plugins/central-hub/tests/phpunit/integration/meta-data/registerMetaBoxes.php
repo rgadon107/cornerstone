@@ -38,6 +38,7 @@ class Tests_RegisterMetaBoxes extends Test_Case {
 		$configs = [
 			'metabox.events' => [
 				'add_meta_box' => [
+					'id'            => 'events',
 					'title'         => 'Event Info',
 					'screen'        => 'events',
 					'context'       => 'advanced',
@@ -54,6 +55,8 @@ class Tests_RegisterMetaBoxes extends Test_Case {
 			->once()
 			->with( 'metabox.events' )
 			->andReturn( 'events' );
+		Monkey\Functions\expect( 'spiralWebDB\Metadata\render_meta_box' )
+			->never();
 
 		$this->assertTrue( register_meta_boxes() );
 
