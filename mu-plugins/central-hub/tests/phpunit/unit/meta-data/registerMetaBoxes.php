@@ -15,7 +15,6 @@ use Brain\Monkey;
 use function spiralWebDB\Metadata\register_meta_boxes;
 use spiralWebDb\Cornerstone\Tests\Unit\Test_Case;
 
-
 /**
  * Class Tests_RegisterMetaBoxes
  *
@@ -73,4 +72,3 @@ class Tests_RegisterMetaBoxes extends Test_Case {
 		$this->assertNull( register_meta_boxes() );
 	}
 }
-
