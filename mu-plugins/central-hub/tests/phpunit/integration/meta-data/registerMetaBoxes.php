@@ -31,36 +31,51 @@ class Tests_RegisterMetaBoxes extends Test_Case {
 		self::empty_the_store();
 	}
 
+	public function setUp() {
+		parent::setUp();
+
+		global $wp_meta_boxes;
+		if ( is_null( $wp_meta_boxes ) ) {
+			$wp_meta_boxes = [];
+		}
+	}
+
 	/*
-    * Test register_meta_boxes() will add a meta box for each store key that starts with 'metabox.'.
+    * Test register_meta_boxes() should register the configured meta box with WordPress.
     */
-	function test_function_will_add_a_meta_box_for_each_store_key_that_starts_with_metabox() {
+	function test_should_register_configured_meta_box_with_wordpress() {
 		$configs = [
-			'metabox.events' => [
+			'meta_box.events' => [
 				'add_meta_box' => [
 					'id'            => 'events',
 					'title'         => 'Event Info',
 					'screen'        => 'events',
 					'context'       => 'advanced',
 					'priority'      => 'default',
-					'callback_args' => null
-				]
-			]
+					'callback_args' => null,
+				],
+			],
 		];
 		foreach ( $configs as $store_key => $config_to_store ) {
 			loadConfig( $store_key, $config_to_store );
 		}
 
-		Monkey\Functions\expect( 'spiralWebDB\Metadata\get_meta_box_id' )
-			->once()
-			->with( 'metabox.events' )
-			->andReturn( 'events' );
-		Monkey\Functions\expect( 'spiralWebDB\Metadata\render_meta_box' )
-			->never();
+		global $wp_meta_boxes;
 
+		// Test state prior to registering the meta box.
+		$this->assertArrayNotHasKey( 'events', $wp_meta_boxes );
+
+		// Test the meta box is registered.
 		$this->assertTrue( register_meta_boxes() );
+		$this->assertArrayHasKey( 'events', $wp_meta_boxes['events']['advanced']['default'] );
+		$meta_box = $wp_meta_boxes['events']['advanced']['default']['events'];
+		$this->assertSame( $configs['meta_box.events']['add_meta_box']['id'], $meta_box['id'] );
+		$this->assertSame( $configs['meta_box.events']['add_meta_box']['title'], $meta_box['title'] );
+		$this->assertSame( 'spiralWebDB\Metadata\render_meta_box', $meta_box['callback'] );
+		$this->assertNull( $meta_box['args'] );
 
-		self::empty_the_store_by_keys( [ 'metabox.events' ] );
+		// Clean up.
+		self::remove_from_store( 'meta_box.events' );
 	}
 
 	/*
@@ -69,14 +84,14 @@ class Tests_RegisterMetaBoxes extends Test_Case {
 	public function test_function_should_return_null_when_no_store_key_starts_with_metabox() {
 		$configs = [
 			'taxonomy.roles'         => [
-				'Soprano' => 'Soprano (vocalist)'
+				'Soprano' => 'Soprano (vocalist)',
 			],
 			'shortcode.qa'           => [
-				'Question 1' => 'How many angels can dance on the head of a pin?'
+				'Question 1' => 'How many angels can dance on the head of a pin?',
 			],
 			'custom_post_type.books' => [
 				'Title' => 'To Kill a Mockingbird',
-			]
+			],
 		];
 		foreach ( $configs as $store_key => $config_to_store ) {
 			loadConfig( $store_key, $config_to_store );
