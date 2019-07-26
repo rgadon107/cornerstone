@@ -25,6 +25,13 @@ use spiralWebDb\Cornerstone\Tests\Integration\Test_Case;
 class Tests_LoadConfigFromFilesystem extends Test_Case {
 
 	/**
+	 * Empty the store before starting these tests.
+	 */
+	public static function setUpBeforeClass() {
+		self::empty_the_store();
+	}
+
+	/**
 	 * Test loadConfigFromFilesystem() should merge defaults with config and return a store key.
 	 */
 	public function test_should_merge_defaults_and_return_store_key() {
