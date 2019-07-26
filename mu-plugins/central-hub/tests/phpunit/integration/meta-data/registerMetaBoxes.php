@@ -82,9 +82,9 @@ class Tests_RegisterMetaBoxes extends Test_Case {
 	}
 
 	/**
-	 * Test register_meta_boxes() returns null when no store key starts with 'metabox.'.
+	 * Test register_meta_boxes() should return null when no store key starts with 'meta_box.'.
 	 */
-	public function test_function_should_return_null_when_no_store_key_starts_with_metabox() {
+	public function test_should_return_null_when_no_store_key_starts_with_meta_box() {
 		$configs = [
 			'taxonomy.roles'         => [
 				'Soprano' => 'Soprano (vocalist)',
