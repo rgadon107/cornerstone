@@ -31,6 +31,9 @@ class Tests_RegisterMetaBoxes extends Test_Case {
 		self::empty_the_store();
 	}
 
+	/**
+	 * Set up each test.
+	 */
 	public function setUp() {
 		parent::setUp();
 
@@ -40,9 +43,9 @@ class Tests_RegisterMetaBoxes extends Test_Case {
 		}
 	}
 
-	/*
-    * Test register_meta_boxes() should register the configured meta box with WordPress.
-    */
+	/**
+	 * Test register_meta_boxes() should register the configured meta box with WordPress.
+	 */
 	function test_should_register_configured_meta_box_with_wordpress() {
 		$configs = [
 			'meta_box.events' => [
@@ -78,9 +81,9 @@ class Tests_RegisterMetaBoxes extends Test_Case {
 		self::remove_from_store( 'meta_box.events' );
 	}
 
-	/*
-    * Test register_meta_boxes() returns null when no store key starts with 'metabox.'.
-    */
+	/**
+	 * Test register_meta_boxes() returns null when no store key starts with 'metabox.'.
+	 */
 	public function test_function_should_return_null_when_no_store_key_starts_with_metabox() {
 		$configs = [
 			'taxonomy.roles'         => [
