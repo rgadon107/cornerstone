@@ -11,7 +11,6 @@
 
 namespace spiralWebDb\centralHub\Tests\Integration\Metadata;
 
-use Brain\Monkey;
 use function spiralWebDB\Metadata\register_meta_boxes;
 use function KnowTheCode\ConfigStore\loadConfig;
 use spiralWebDb\Cornerstone\Tests\Integration\Test_Case;
