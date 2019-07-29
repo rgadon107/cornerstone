@@ -12,8 +12,6 @@
 namespace spiralWebDb\centralHub\Tests\Unit\ConfigStore;
 
 use function KnowTheCode\ConfigStore\_the_store;
-use function KnowTheCode\ConfigStore\getConfig;
-use function KnowTheCode\ConfigStore\loadConfig;
 use spiralWebDb\Cornerstone\Tests\Unit\Test_Case;
 
 /**
@@ -31,9 +29,6 @@ class Tests_TheStore extends Test_Case {
 		parent::setUp();
 
 		require_once CENTRAL_HUB_ROOT_DIR . '/src/config-store/internals.php';
-		require_once CENTRAL_HUB_ROOT_DIR . '/src/config-store/api.php';
-
-		self::empty_the_store();
 	}
 
 	/**
@@ -69,13 +64,15 @@ class Tests_TheStore extends Test_Case {
 			],
 		];
 		foreach ( $configs as $store_key => $config ) {
-			loadConfig( $store_key, $config );
+			_the_store( $store_key, $config );
 		}
 
 		// Should return the all stored configs.
 		$this->assertSame( $configs, _the_store() );
 
-		self::empty_the_store_by_keys( [ 'foo', 'bar', 'baz' ] );
+		_the_store( 'foo', null, true );
+		_the_store( 'bar', null, true );
+		_the_store( 'baz', null, true );
 	}
 
 	/*
@@ -89,7 +86,8 @@ class Tests_TheStore extends Test_Case {
 
 		$this->assertTrue( _the_store( __METHOD__, $config ) );
 
-		self::empty_the_store_by_keys( [ __METHOD__ ] );
+		// Clean up _the_store() prior to the next test.
+		_the_store( __METHOD__, null, true );
 	}
 
 	/**
@@ -110,9 +108,6 @@ class Tests_TheStore extends Test_Case {
 		$this->expectException( \Exception::class );
 		$this->expectExceptionMessage( sprintf( 'Configuration for [%s] does not exist in the ConfigStore', __METHOD__ ) );
 		_the_store( __METHOD__ );
-
-		// Empty the store from previous tests.  We waited to clean up here to ensure all functionality works.
-		self::empty_the_store_by_keys( [ __METHOD__ ] );
 	}
 
 	/**
@@ -156,8 +151,8 @@ class Tests_TheStore extends Test_Case {
 		// Test that the config is returned.
 		$this->assertSame( $config, _the_store( __METHOD__ ) );
 
-		// Clean up.
-		self::empty_the_store_by_keys( [ __METHOD__] );
+		// Clean up _the_store() prior to the next test.
+		_the_store( __METHOD__, null, true );
 	}
 
 	/**
@@ -170,7 +165,7 @@ class Tests_TheStore extends Test_Case {
 		];
 
 		$this->assertTrue( _the_store( __METHOD__, $config ) );
-		$this->assertSame( $config, getConfig( __METHOD__ ) );
+		$this->assertSame( $config, _the_store( __METHOD__ ) );
 
 		$new_config = [
 			'aaa' => 37,
@@ -179,65 +174,10 @@ class Tests_TheStore extends Test_Case {
 		];
 
 		$this->assertTrue( _the_store( __METHOD__, $new_config ) );
-		$this->assertSame( $new_config, getConfig( __METHOD__ ) );
+		$this->assertSame( $new_config, _the_store( __METHOD__ ) );
 
-		// Clean up.
-		self::empty_the_store_by_keys( [ __METHOD__] );
-	}
-
-	/******************************************************************************
-	 * Helper functions to clean and reset `_the_store` before and after each test.
-	 ******************************************************************************/
-
-	/**
-	 * Empty all of the configs from the store.
-	 *
-	 * @param array $configs Optional. Array of configs stored in the store.
-	 *
-	 * @return void
-	 * @throws \Exception
-	 * @since 1.0.0
-	 *
-	 */
-	protected static function empty_the_store( $configs = [] ) {
-		// If no store keys or configs were given, grab the all configs from the store.
-		if ( empty( $configs ) ) {
-			$configs = _the_store();
-			if ( empty( $configs ) ) {
-				return;
-			}
-		}
-
-		self::empty_the_store_by_keys( array_keys( $configs ) );
-	}
-
-	/**
-	 * Empty all of the configs from the store for the given keys.
-	 *
-	 * @param array $store_keys Array of store keys to remove from store.
-	 *
-	 * @return void
-	 * @throws \Exception
-	 * @since 1.0.0
-	 *
-	 */
-	protected static function empty_the_store_by_keys( $store_keys ) {
-		foreach ( $store_keys as $store_key ) {
-			self::remove_from_store( $store_key );
-		}
-	}
-
-	/**
-	 * Remove the config from the store by the given store key.
-	 *
-	 * @param array $store_key Key for the config to remove from store.
-	 *
-	 * @return void
-	 * @throws \Exception
-	 * @since 1.0.0
-	 *
-	 */
-	protected static function remove_from_store( $store_key ) {
-		_the_store( $store_key, null, true );
+		// Clean up _the_store().
+		_the_store( __METHOD__, null, true );
 	}
 }
+
