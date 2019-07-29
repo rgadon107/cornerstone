@@ -12,7 +12,6 @@
 namespace spiralWebDb\centralHub\Tests\Unit\ConfigStore;
 
 use function KnowTheCode\ConfigStore\_the_store;
-use function KnowTheCode\ConfigStore\getConfig;
 use spiralWebDb\Cornerstone\Tests\Unit\Test_Case;
 
 /**
@@ -30,7 +29,6 @@ class Tests_TheStore extends Test_Case {
 		parent::setUp();
 
 		require_once CENTRAL_HUB_ROOT_DIR . '/src/config-store/internals.php';
-		require_once CENTRAL_HUB_ROOT_DIR . '/src/config-store/api.php';
 	}
 
 	/**
@@ -50,30 +48,6 @@ class Tests_TheStore extends Test_Case {
 	}
 
 	/**
-	 * Test _the_store() should return all stored configs when no store key or configuration is provided.
-	 */
-	public function test_should_return_all_stored_configs_when_no_key_or_configs() {
-		// Store some configurations.
-		$configs = [
-			'foo' => [
-				'aaa' => 37,
-			],
-			'bar' => [
-				'bbb' => 'Hello World',
-			],
-			'baz' => [
-				'ccc' => 'Testing the store.',
-			],
-		];
-		foreach ( $configs as $store_key => $config ) {
-			_the_store( $store_key, $config );
-		}
-
-		// Should return the all stored configs.
-		$this->assertSame( $configs, _the_store() );
-	}
-
-	/*
 	 * Test _the_store() should return true when a configuration is stored.
 	 */
 	public function test_should_return_true_when_a_config_is_stored() {
@@ -103,13 +77,33 @@ class Tests_TheStore extends Test_Case {
 		$this->expectException( \Exception::class );
 		$this->expectExceptionMessage( sprintf( 'Configuration for [%s] does not exist in the ConfigStore', __METHOD__ ) );
 		_the_store( __METHOD__ );
+	}
 
-		// Empty the store from previous tests.  We waited to clean up here to ensure all functionality works.
-		$configs = _the_store();
-		if ( empty( $configs ) ) {
-			return;
+	/**
+	 * Test _the_store() should return all stored configs when no store key or configuration is provided.
+	 */
+	public function test_should_return_all_stored_configs_when_no_key_or_configs() {
+		// Store some configurations.
+		$configs = [
+			'foo' => [
+				'aaa' => 37,
+			],
+			'bar' => [
+				'bbb' => 'Hello World',
+			],
+			'baz' => [
+				'ccc' => 'Testing the store.',
+			],
+		];
+		foreach ( $configs as $store_key => $config ) {
+			_the_store( $store_key, $config );
 		}
-		foreach ( array_keys( $configs ) as $store_key ) {
+
+		// Should return the all stored configs.
+		$this->assertArraySubset( $configs, _the_store() );
+
+		// Empty the store.
+		foreach ( _the_store() as $store_key => $config ) {
 			_the_store( $store_key, null, true );
 		}
 	}
@@ -155,7 +149,7 @@ class Tests_TheStore extends Test_Case {
 		// Test that the config is returned.
 		$this->assertSame( $config, _the_store( __METHOD__ ) );
 
-		// Clean up.
+		// Clean up _the_store() prior to the next test.
 		_the_store( __METHOD__, null, true );
 	}
 
@@ -169,7 +163,7 @@ class Tests_TheStore extends Test_Case {
 		];
 
 		$this->assertTrue( _the_store( __METHOD__, $config ) );
-		$this->assertSame( $config, getConfig( __METHOD__ ) );
+		$this->assertSame( $config, _the_store( __METHOD__ ) );
 
 		$new_config = [
 			'aaa' => 37,
@@ -178,9 +172,9 @@ class Tests_TheStore extends Test_Case {
 		];
 
 		$this->assertTrue( _the_store( __METHOD__, $new_config ) );
-		$this->assertSame( $new_config, getConfig( __METHOD__ ) );
+		$this->assertSame( $new_config, _the_store( __METHOD__ ) );
 
-		// Clean up.
+		// Clean up _the_store().
 		_the_store( __METHOD__, null, true );
 	}
 }
