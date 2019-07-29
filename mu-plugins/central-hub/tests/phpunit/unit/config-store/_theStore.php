@@ -48,34 +48,6 @@ class Tests_TheStore extends Test_Case {
 	}
 
 	/**
-	 * Test _the_store() should return all stored configs when no store key or configuration is provided.
-	 */
-	public function test_should_return_all_stored_configs_when_no_key_or_configs() {
-		// Store some configurations.
-		$configs = [
-			'foo' => [
-				'aaa' => 37,
-			],
-			'bar' => [
-				'bbb' => 'Hello World',
-			],
-			'baz' => [
-				'ccc' => 'Testing the store.',
-			],
-		];
-		foreach ( $configs as $store_key => $config ) {
-			_the_store( $store_key, $config );
-		}
-
-		// Should return the all stored configs.
-		$this->assertSame( $configs, _the_store() );
-
-		_the_store( 'foo', null, true );
-		_the_store( 'bar', null, true );
-		_the_store( 'baz', null, true );
-	}
-
-	/*
 	 * Test _the_store() should return true when a configuration is stored.
 	 */
 	public function test_should_return_true_when_a_config_is_stored() {
@@ -85,9 +57,6 @@ class Tests_TheStore extends Test_Case {
 		];
 
 		$this->assertTrue( _the_store( __METHOD__, $config ) );
-
-		// Clean up _the_store() prior to the next test.
-		_the_store( __METHOD__, null, true );
 	}
 
 	/**
@@ -108,6 +77,35 @@ class Tests_TheStore extends Test_Case {
 		$this->expectException( \Exception::class );
 		$this->expectExceptionMessage( sprintf( 'Configuration for [%s] does not exist in the ConfigStore', __METHOD__ ) );
 		_the_store( __METHOD__ );
+	}
+
+	/**
+	 * Test _the_store() should return all stored configs when no store key or configuration is provided.
+	 */
+	public function test_should_return_all_stored_configs_when_no_key_or_configs() {
+		// Store some configurations.
+		$configs = [
+			'foo' => [
+				'aaa' => 37,
+			],
+			'bar' => [
+				'bbb' => 'Hello World',
+			],
+			'baz' => [
+				'ccc' => 'Testing the store.',
+			],
+		];
+		foreach ( $configs as $store_key => $config ) {
+			_the_store( $store_key, $config );
+		}
+
+		// Should return the all stored configs.
+		$this->assertArraySubset( $configs, _the_store() );
+
+		// Empty the store.
+		foreach ( _the_store() as $store_key => $config ) {
+			_the_store( $store_key, null, true );
+		}
 	}
 
 	/**
@@ -180,4 +178,3 @@ class Tests_TheStore extends Test_Case {
 		_the_store( __METHOD__, null, true );
 	}
 }
-
