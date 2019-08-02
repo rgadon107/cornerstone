@@ -82,9 +82,10 @@ class Tests_RegisterMetaBoxes extends Test_Case {
 	}
 
 	/**
-	 * Test register_meta_boxes() should return null when no store key starts with 'meta_box.'.
+	 * Test register_meta_boxes() should not register meta boxes when there are no store keys that start with
+	 * 'meta_box.'.
 	 */
-	public function test_should_return_null_when_no_store_key_starts_with_meta_box() {
+	public function test_should_not_register_meta_boxes_when_no_store_keys_start_with_meta_box() {
 		$configs = [
 			'taxonomy.roles'         => [
 				'Soprano' => 'Soprano (vocalist)',
@@ -100,7 +101,13 @@ class Tests_RegisterMetaBoxes extends Test_Case {
 			loadConfig( $store_key, $config_to_store );
 		}
 
-		$this->assertNull( register_meta_boxes() );
+		global $wp_meta_boxes;
+		$pre = $wp_meta_boxes;
+
+		register_meta_boxes();
+
+		// Test that no additional meta boxes were registered.
+		$this->assertSame( $pre, $wp_meta_boxes );
 
 		self::empty_the_store_by_keys(
 			[ 'taxonomy.roles', 'shortcode.qa', 'custom_post_type.books' ]
