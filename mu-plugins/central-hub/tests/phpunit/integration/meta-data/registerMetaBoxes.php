@@ -79,6 +79,77 @@ class Tests_RegisterMetaBoxes extends Test_Case {
 
 		// Clean up.
 		self::remove_from_store( 'meta_box.events' );
+		unset( $wp_meta_boxes['events'] );
+	}
+
+	/**
+	 * Test register_meta_boxes() should register multiple configured meta boxes with WordPress.
+	 */
+	function test_should_register_multiple_configured_meta_boxes_with_wordpress() {
+		$configs = [
+			'meta_box.events'     => [
+				'add_meta_box' => [
+					'id'            => 'events',
+					'title'         => 'Event Info',
+					'screen'        => 'events',
+					'context'       => 'advanced',
+					'priority'      => 'default',
+					'callback_args' => null,
+				],
+			],
+			'meta_box.members'    => [
+				'add_meta_box' => [
+					'id'            => 'members',
+					'title'         => 'Tour Member Profile Information',
+					'screen'        => [ 'members' ],
+					'context'       => 'advanced',
+					'priority'      => 'default',
+					'callback_args' => null,
+				],
+			],
+			'meta_box.reviews'    => [
+				'add_meta_box' => [
+					'id'            => 'reviews',
+					'title'         => 'Cornerstone Reviews',
+					'screen'        => [ 'reviews' ],
+					'context'       => 'advanced',
+					'priority'      => 'default',
+					'callback_args' => null,
+				],
+			],
+		];
+		foreach ( $configs as $store_key => $config_to_store ) {
+			loadConfig( $store_key, $config_to_store );
+		}
+		$metabox_ids = [ 'events', 'members', 'reviews' ];
+
+		global $wp_meta_boxes;
+
+		// Test state prior to registering the meta box.
+		foreach ( $metabox_ids as $id ) {
+			$this->assertArrayNotHasKey( $id, $wp_meta_boxes );
+		}
+
+		register_meta_boxes();
+
+		// Check that only the expected meta boxes are registered.
+		$this->assertSame( $metabox_ids, array_keys( $wp_meta_boxes ) );
+
+		// Test the meta boxes are registered.
+		foreach ( $metabox_ids as $id ) {
+			$this->assertArrayHasKey( $id, $wp_meta_boxes[ $id ]['advanced']['default'] );
+			$meta_box = $wp_meta_boxes[ $id ]['advanced']['default'][ $id ];
+			$this->assertSame( $configs["meta_box.{$id}"]['add_meta_box']['id'], $meta_box['id'] );
+			$this->assertSame( $configs["meta_box.{$id}"]['add_meta_box']['title'], $meta_box['title'] );
+			$this->assertSame( 'spiralWebDB\Metadata\render_meta_box', $meta_box['callback'] );
+			$this->assertNull( $meta_box['args'] );
+		}
+
+		// Clean up.
+		self::empty_the_store( $configs );
+		foreach ( $metabox_ids as $id ) {
+			unset( $wp_meta_boxes[ $id ] );
+		}
 	}
 
 	/**
@@ -96,6 +167,13 @@ class Tests_RegisterMetaBoxes extends Test_Case {
 			'custom_post_type.books' => [
 				'Title' => 'To Kill a Mockingbird',
 			],
+			'metabox.notametabox' => [
+				'add_meta_box' => [
+					'id'     => 'notametabox',
+					'title'  => 'Does not start with the right meta_box. structure',
+					'screen' => [ 'notametabox' ],
+				],
+			],
 		];
 		foreach ( $configs as $store_key => $config_to_store ) {
 			loadConfig( $store_key, $config_to_store );
@@ -109,8 +187,7 @@ class Tests_RegisterMetaBoxes extends Test_Case {
 		// Test that no additional meta boxes were registered.
 		$this->assertSame( $pre, $wp_meta_boxes );
 
-		self::empty_the_store_by_keys(
-			[ 'taxonomy.roles', 'shortcode.qa', 'custom_post_type.books' ]
-		);
+		// Clean up.
+		self::empty_the_store( $configs );
 	}
 }
