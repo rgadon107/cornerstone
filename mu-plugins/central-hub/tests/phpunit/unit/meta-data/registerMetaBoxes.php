@@ -57,7 +57,7 @@ class Tests_RegisterMetaBoxes extends Test_Case {
 			->with( 'meta_box.events' )
 			->andReturn( 'events' );
 
-		$this->assertTrue( register_meta_boxes() );
+		$this->assertNull( register_meta_boxes() );
 	}
 
 	/*

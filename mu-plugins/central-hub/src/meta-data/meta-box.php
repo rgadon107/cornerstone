@@ -25,7 +25,6 @@ add_action( 'admin_menu', __NAMESPACE__ . '\register_meta_boxes' );
  */
 function register_meta_boxes() {
 	foreach ( get_meta_box_keys() as $store_key ) {
-
 		$config = configStore\getConfigParameter(
 			$store_key,
 			'add_meta_box'
@@ -40,8 +39,6 @@ function register_meta_boxes() {
 			$config['priority'],
 			$config['callback_args']
 		);
-
-		return true;
 	}
 }
 

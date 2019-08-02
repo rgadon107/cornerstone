@@ -67,8 +67,9 @@ class Tests_RegisterMetaBoxes extends Test_Case {
 		// Test state prior to registering the meta box.
 		$this->assertArrayNotHasKey( 'events', $wp_meta_boxes );
 
+		register_meta_boxes();
+
 		// Test the meta box is registered.
-		$this->assertTrue( register_meta_boxes() );
 		$this->assertArrayHasKey( 'events', $wp_meta_boxes['events']['advanced']['default'] );
 		$meta_box = $wp_meta_boxes['events']['advanced']['default']['events'];
 		$this->assertSame( $configs['meta_box.events']['add_meta_box']['id'], $meta_box['id'] );
