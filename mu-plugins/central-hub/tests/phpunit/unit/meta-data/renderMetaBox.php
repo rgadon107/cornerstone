@@ -49,22 +49,25 @@ class Tests_RenderMetaBox extends Test_Case {
 					'venue_city',
 					'venue_state',
 				],
-				// Q: Specify a path to a fixture file that mocks the view?
-				'view'          => '',
+				'view'          => CENTRAL_HUB_ROOT_DIR . '/tests/phpunit/fixtures/meta-box-events-view.php',
 			]
 		];
 		foreach ( $config_store as $store_key => $custom_fields_meta_key ) {
 			loadConfig( $store_key, $custom_fields_meta_key );
 		}
 		$config = getConfig( 'meta_box.events' );
-		// Call the view file ( $config[''] ) here.
+		include $config['view'];
 
+		$postID = Monkey\Functions\expect( 'spiralWebDB\Metadata\get_post' )
+			->once()
+			->with( 47, $output = OBJECT )
+			->andReturn( 47 );
 		Monkey\Functions\expect( 'spiralWebDB\Metadata\wp_nonce_field' )
 			->andReturn( 'events_nonce_action', 'events_nonce_name' );
 		Monkey\Functions\expect( 'spiralWebDB\Metadata\get_custom_fields_values' )
-			->andReturn( $post, 'events', $config );
+			->andReturn( $postID, 'events', $config );
 
-		$this->assertNull( render_meta_box( $post, $meta_box_args ) );
+		$this->assertNull( render_meta_box( $postID, $meta_box_args ) );
 	}
 }
 
