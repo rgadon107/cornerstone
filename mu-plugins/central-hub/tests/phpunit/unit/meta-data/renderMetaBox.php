@@ -42,7 +42,7 @@ class Tests_RenderMetaBox extends Test_Case {
 		$post->shouldReceive( 'get_instance' )
 		     ->once()
 		     ->with( 47 )
-		     ->andReturn( 'post' );
+		     ->andReturn( 'WP_Post' );
 		$meta_box_args       = [];
 		$meta_box_args['id'] = 'events';
 		$config_store        = [
