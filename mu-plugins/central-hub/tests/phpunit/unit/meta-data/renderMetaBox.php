@@ -38,8 +38,14 @@ class Tests_RenderMetaBox extends Test_Case {
 	 *	meta_box.{id}, and load the metadata view file.
 	 */
 	public function test_should_register_nonce_and_metadata_for_each_custom_field_and_load_view() {
-		$meta_box_args = [];
-		$config_store  = [
+		$post = \Mockery::mock( 'WP_Post' );
+		$post->shouldReceive( 'get_instance' )
+		     ->once()
+		     ->with( 47 )
+		     ->andReturn( 'post' );
+		$meta_box_args       = [];
+		$meta_box_args['id'] = 'events';
+		$config_store        = [
 			'meta_box.events' => [
 				'custom_fields' => [
 					'event_date',
@@ -55,19 +61,14 @@ class Tests_RenderMetaBox extends Test_Case {
 		foreach ( $config_store as $store_key => $custom_fields_meta_key ) {
 			loadConfig( $store_key, $custom_fields_meta_key );
 		}
-		$config = getConfig( 'meta_box.events' );
-		include $config['view'];
-
-		$postID = Monkey\Functions\expect( 'spiralWebDB\Metadata\get_post' )
-			->once()
-			->with( 47, $output = OBJECT )
-			->andReturn( 47 );
+		$config = getConfig( 'meta_box.' . $meta_box_args['id'] );
 		Monkey\Functions\expect( 'spiralWebDB\Metadata\wp_nonce_field' )
 			->andReturn( 'events_nonce_action', 'events_nonce_name' );
 		Monkey\Functions\expect( 'spiralWebDB\Metadata\get_custom_fields_values' )
-			->andReturn( $postID, 'events', $config );
+			->andReturn( 47, 'events', $config['custom_fields'] );
+		include $config['view'];
 
-		$this->assertNull( render_meta_box( $postID, $meta_box_args ) );
+		$this->assertNull( render_meta_box( $post, $meta_box_args ) );
 	}
 }
 
