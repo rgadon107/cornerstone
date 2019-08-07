@@ -58,8 +58,8 @@ class Tests_RenderMetaBox extends Test_Case {
 				'view'          => CENTRAL_HUB_ROOT_DIR . '/tests/phpunit/fixtures/meta-box-events-view.php',
 			]
 		];
-		foreach ( $config_store as $store_key => $custom_fields_meta_key ) {
-			loadConfig( $store_key, $custom_fields_meta_key );
+		foreach ( $config_store as $store_key => $meta_box_keys ) {
+			loadConfig( $store_key, $meta_box_keys );
 		}
 		$config = getConfig( 'meta_box.' . $meta_box_args['id'] );
 		Monkey\Functions\expect( 'spiralWebDB\Metadata\wp_nonce_field' )
