@@ -63,9 +63,9 @@ class Tests_RenderMetaBox extends Test_Case {
 		}
 		$config = getConfig( 'meta_box.' . $meta_box_args['id'] );
 		Monkey\Functions\expect( 'spiralWebDB\Metadata\wp_nonce_field' )
-			->andReturn( 'events_nonce_action', 'events_nonce_name' );
+			->andReturn( $meta_box_args['id'] . '_nonce_action', $meta_box_args['id'] . '_nonce_name' );
 		Monkey\Functions\expect( 'spiralWebDB\Metadata\get_custom_fields_values' )
-			->andReturn( 47, 'events', $config['custom_fields'] );
+			->andReturn( 47, $meta_box_args['id'], $config['custom_fields'] );
 		include $config['view'];
 
 		$this->assertNull( render_meta_box( $post, $meta_box_args ) );
