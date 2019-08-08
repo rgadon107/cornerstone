@@ -25,6 +25,11 @@ use spiralWebDb\Cornerstone\Tests\Unit\Test_Case;
  */
 class Tests_RenderMetaBox extends Test_Case {
 
+	protected $config = [
+		'custom_fields' => [ 'event_date', 'event_time', 'venue_name' ],
+		'view'          => CENTRAL_HUB_ROOT_DIR . '/tests/phpunit/fixtures/meta-box-events-view.php',
+	];
+
 	/**
 	 * Prepares the test environment before each test.
 	 */
@@ -35,19 +40,46 @@ class Tests_RenderMetaBox extends Test_Case {
 	}
 
 	/**
+	 * Test render_meta_box() should assign meta box ID to the HTML field names.
+	 */
+	public function test_should_assign_meta_box_id_to_html_field_names() {
+		// Set up the test.
+		$meta_box_args = [ 'id' => 'events' ];
+
+		// Set up the mocks.
+		$post     = \Mockery::mock( 'WP_Post' );
+		$post->ID = 23;
+		Monkey\Functions\expect( 'KnowTheCode\ConfigStore\getConfig' )
+			->once()
+			->with( 'meta_box.events' )
+			->andReturn( $this->config );
+		Monkey\Functions\expect( 'spiralWebDB\Metadata\get_custom_fields_values' )
+			->once()
+			->with( 23, 'events', $this->config )
+			->andReturn( [
+				'event-date' => '',
+				'event-time' => '',
+				'venue-name' => '',
+			] );
+
+		// Fire the rendering function and grab the HTML out of the buffer.
+		ob_start();
+		Monkey\Functions\when( 'wp_nonce_field' )->justEcho( '' );
+		render_meta_box( $post, $meta_box_args );
+		$actual_html = ob_get_clean();
+
+		// Test the HTML.
+		$this->assertContains( 'name="events[event-date]"', $actual_html );
+		$this->assertContains( 'name="events[event-time]"', $actual_html );
+		$this->assertContains( 'name="events[venue-name]"', $actual_html );
+	}
+
+	/**
 	 * Test render_meta_box() should render the meta box's HTML.
 	 */
 	public function test_should_render_meta_box_html() {
 		// Set up the test.
 		$meta_box_args              = [ 'id' => 'events' ];
-		$config                     = [
-			'custom_fields' => [
-				'event_date',
-				'event_time',
-				'venue_name',
-			],
-			'view'          => CENTRAL_HUB_ROOT_DIR . '/tests/phpunit/fixtures/meta-box-events-view.php',
-		];
 		$nonce_html                 = <<<NONCE
 <input type="hidden" id="events_nonce_name" name="events_nonce_name" value="" />
 NONCE;
@@ -91,10 +123,10 @@ VIEW;
 		Monkey\Functions\expect( 'KnowTheCode\ConfigStore\getConfig' )
 			->once()
 			->with( 'meta_box.events' )
-			->andReturn( $config );
+			->andReturn( $this->config );
 		Monkey\Functions\expect( 'spiralWebDB\Metadata\get_custom_fields_values' )
 			->once()
-			->with( 47, 'events', $config )
+			->with( 47, 'events', $this->config )
 			->andReturn( [
 				'event-date' => '2019-01-07',
 				'event-time' => '09:00:00',
