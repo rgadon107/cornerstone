@@ -45,26 +45,21 @@ class Tests_RenderMetaBox extends Test_Case {
 	public function test_should_assign_meta_box_id_to_html_field_names() {
 		// Set up the test.
 		$meta_box_args = [ 'id' => 'events' ];
+		$custom_fields = [
+			'event-date' => '',
+			'event-time' => '',
+			'venue-name' => '',
+		];
 
 		// Set up the mocks.
 		$post     = \Mockery::mock( 'WP_Post' );
 		$post->ID = 23;
-		Monkey\Functions\expect( 'KnowTheCode\ConfigStore\getConfig' )
-			->once()
-			->with( 'meta_box.events' )
-			->andReturn( $this->config );
-		Monkey\Functions\expect( 'spiralWebDB\Metadata\get_custom_fields_values' )
-			->once()
-			->with( 23, 'events', $this->config )
-			->andReturn( [
-				'event-date' => '',
-				'event-time' => '',
-				'venue-name' => '',
-			] );
+		Monkey\Functions\when( 'KnowTheCode\ConfigStore\getConfig' )->justReturn( $this->config );
+		Monkey\Functions\when( 'spiralWebDB\Metadata\get_custom_fields_values' )->justReturn( $custom_fields );
+		Monkey\Functions\when( 'wp_nonce_field' )->justReturn();
 
 		// Fire the rendering function and grab the HTML out of the buffer.
 		ob_start();
-		Monkey\Functions\when( 'wp_nonce_field' )->justEcho( '' );
 		render_meta_box( $post, $meta_box_args );
 		$actual_html = ob_get_clean();
 
@@ -80,6 +75,11 @@ class Tests_RenderMetaBox extends Test_Case {
 	public function test_should_render_wp_nonce_field() {
 		// Set up the test.
 		$meta_box_args = [ 'id' => 'testing_nonce' ];
+		$custom_fields = [
+			'event-date' => '',
+			'event-time' => '',
+			'venue-name' => '',
+		];
 		$nonce_html    = <<<NONCE
 <input type="hidden" id="events_nonce_name" name="events_nonce_name" value="" />
 NONCE;
@@ -87,12 +87,7 @@ NONCE;
 		$post     = \Mockery::mock( 'WP_Post' );
 		$post->ID = 99;
 		Monkey\Functions\when( 'KnowTheCode\ConfigStore\getConfig' )->justReturn( $this->config );
-		Monkey\Functions\when( 'spiralWebDB\Metadata\get_custom_fields_values' )
-			->justReturn( [
-				'event-date' => '',
-				'event-time' => '',
-				'venue-name' => '',
-			] );
+		Monkey\Functions\when( 'spiralWebDB\Metadata\get_custom_fields_values' )->justReturn( $custom_fields);
 
 		// Fire the rendering function and grab the HTML out of the buffer.
 		ob_start();
@@ -125,6 +120,7 @@ NONCE;
 		$post     = \Mockery::mock( 'WP_Post' );
 		$post->ID = 108;
 		Monkey\Functions\when( 'KnowTheCode\ConfigStore\getConfig' )->justReturn( $this->config );
+		Monkey\Functions\when( 'wp_nonce_field' )->justReturn();
 		Monkey\Functions\expect( 'spiralWebDB\Metadata\get_custom_fields_values' )
 			->once()
 			->with( 108, 'events', $this->config )
@@ -132,7 +128,6 @@ NONCE;
 
 		// Fire the rendering function and grab the HTML out of the buffer.
 		ob_start();
-		Monkey\Functions\when( 'wp_nonce_field' )->justEcho( '' );
 		render_meta_box( $post, $meta_box_args );
 		$actual_html = ob_get_clean();
 
