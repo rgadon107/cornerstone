@@ -34,41 +34,81 @@ class Tests_RenderMetaBox extends Test_Case {
 		require_once CENTRAL_HUB_ROOT_DIR . '/src/meta-data/meta-box.php';
 	}
 
-	/*  Test render_meta_box() should register a nonce and the metadata for each custom field given a
-	 *	meta_box.{id}, and load the metadata view file.
+	/**
+	 * Test render_meta_box() should render the meta box's HTML.
 	 */
-	public function test_should_register_nonce_and_metadata_for_each_custom_field_and_load_view() {
-		$post = \Mockery::mock( 'WP_Post' );
-		$post->shouldReceive( 'get_instance' )
-		     ->once()
-		     ->with( 47 )
-		     ->andReturn( 'WP_Post' );
-		$meta_box_args       = [];
-		$meta_box_args['id'] = 'events';
-		$config_store        = [
-			'meta_box.events' => [
-				'custom_fields' => [
-					'event_date',
-					'event_time',
-					'venue_name',
-					'venue_address',
-					'venue_city',
-					'venue_state',
-				],
-				'view'          => CENTRAL_HUB_ROOT_DIR . '/tests/phpunit/fixtures/meta-box-events-view.php',
-			]
+	public function test_should_render_meta_box_html() {
+		// Set up the test.
+		$meta_box_args              = [ 'id' => 'events' ];
+		$config                     = [
+			'custom_fields' => [
+				'event_date',
+				'event_time',
+				'venue_name',
+			],
+			'view'          => CENTRAL_HUB_ROOT_DIR . '/tests/phpunit/fixtures/meta-box-events-view.php',
 		];
-		foreach ( $config_store as $store_key => $meta_box_keys ) {
-			loadConfig( $store_key, $meta_box_keys );
-		}
-		$config = getConfig( 'meta_box.' . $meta_box_args['id'] );
-		Monkey\Functions\expect( 'spiralWebDB\Metadata\wp_nonce_field' )
-			->andReturn( $meta_box_args['id'] . '_nonce_action', $meta_box_args['id'] . '_nonce_name' );
-		Monkey\Functions\expect( 'spiralWebDB\Metadata\get_custom_fields_values' )
-			->andReturn( 47, $meta_box_args['id'], $config['custom_fields'] );
-		include $config['view'];
+		$nonce_html                 = <<<NONCE
+<input type="hidden" id="events_nonce_name" name="events_nonce_name" value="" />
+NONCE;
+		$expected_fixture_view_html = <<<VIEW
+<div class="event-date">
+	<label for="event-date"><strong>Performance Date</strong></label>
+	<p>
+		<input id="event-date" type="date" name="events[event-date]" value="2019-01-07">
+	</p>
+	<span class="description">Event date description.</span>
+</div>
+<div class="event-time">
+	<p>
+		<label for="event-time"><strong>Performance Time</strong></label>
+	</p>
+	<p>
+		<input id="event-time" type="time" name="events[event-time]" value="09:00:00">
+	</p>
+	<p>
+		<span class="description">Event time description.</span>
+	</p>
+</div>
+<hr>
+<div class="performance-venue">
+	<p>
+		<label for="performance-venue"><strong>Performance Venue</strong></label>
+	</p>
+	<label for="venue-name">Name</label>
+	<p>
+		<input id="venue-name" class="large-text" type="text" name="events[venue-name]" value="Some venue" placeholder="e.g. First Presbyterian Church of St. Louis">
+	</p>
+	<p>
+		<span class="description">Performance venue description.</span>
+	</p>
+</div>
+VIEW;
 
-		$this->assertNull( render_meta_box( $post, $meta_box_args ) );
+		// Set up the mocks.
+		$post     = \Mockery::mock( 'WP_Post' );
+		$post->ID = 47;
+		Monkey\Functions\expect( 'KnowTheCode\ConfigStore\getConfig' )
+			->once()
+			->with( 'meta_box.events' )
+			->andReturn( $config );
+		Monkey\Functions\expect( 'spiralWebDB\Metadata\get_custom_fields_values' )
+			->once()
+			->with( 47, 'events', $config )
+			->andReturn( [
+				'event-date' => '2019-01-07',
+				'event-time' => '09:00:00',
+				'venue-name' => 'Some venue',
+			] );
+
+		// Fire the rendering function and grab the HTML out of the buffer.
+		ob_start();
+		Monkey\Functions\when( 'wp_nonce_field' )->justEcho( $nonce_html );
+		render_meta_box( $post, $meta_box_args );
+		$actual_html = ob_get_clean();
+
+		// Test the HTML.
+		$this->assertContains( $nonce_html, $actual_html );
+		$this->assertContains( $expected_fixture_view_html, $actual_html );
 	}
 }
-
