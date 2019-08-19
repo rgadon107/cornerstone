@@ -25,7 +25,7 @@ class Tests_RenderMetaBox extends Test_Case {
 
 	protected $config = [
 		'custom_fields' => [ 'event_date', 'event_time', 'venue_name' ],
-		'view'          => CENTRAL_HUB_ROOT_DIR . '/tests/phpunit/fixtures/meta-box-events-view.php',
+		'view'          => CENTRAL_HUB_ROOT_DIR . '/tests/phpunit/fixtures/meta-box-events-view-accepts-metabox-value-only.php',
 	];
 
 	/**
