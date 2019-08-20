@@ -14,7 +14,6 @@ namespace spiralWebDb\centralHub\Tests\Unit\Metadata;
 use Brain\Monkey;
 use function spiralWebDB\Metadata\save_meta_boxes;
 use function KnowTheCode\ConfigStore\loadConfig;
-use function KnowTheCode\ConfigStore\getConfigParameter;
 use spiralWebDb\Cornerstone\Tests\Unit\Test_Case;
 
 /**
@@ -60,14 +59,21 @@ class Tests_SaveMetaBoxes extends Test_Case {
 			->once()
 			->withNoArgs()
 			->andReturn( [ 'meta_box.members' ] );
-		Monkey\Functions\when( 'spiralWebDB\Metadata\get_meta_box_id' )
-			->justReturn( 'members' );
+		Monkey\Functions\expect( 'spiralWebDB\Metadata\get_meta_box_id' )
+			->once()
+			->with( 'meta_box.members' )
+			->andReturn( 'members' );
 		Monkey\Functions\when( 'spiralWebDB\Metadata\is_okay_to_save_meta_box' )
 			->justReturn( 'wp_verify_nonce' );
-		$config = getConfigParameter( 'meta_box.members', 'custom_fields' );
-		Monkey\Functions\expect( 'spiralWebDB\Metadata\save_custom_fields' )
-			->once()
-			->with( $config, 'members', 19 );
+		Monkey\Functions\when( 'KnowTheCode\ConfigStore\getConfigParameter' )
+			->justReturn( [
+				'role'            => 'Soprano',
+				'residence_city'  => 'Chicago',
+				'residence_state' => 'IL',
+				'tour_number'     => '3',
+			] );
+		Monkey\Functions\when( 'spiralWebDB\Metadata\save_custom_fields' )
+			->justReturn();
 
 		$this->assertNull( save_meta_boxes( 19 ) );
 	}
