@@ -77,4 +77,17 @@ class Tests_SaveMetaBoxes extends Test_Case {
 
 		$this->assertNull( save_meta_boxes( 19 ) );
 	}
+
+	/*
+	 * Test save_meta_boxes() returns null when no store key starts with 'meta_box.'.
+	 */
+	public function test_function_should_return_null_when_no_store_key_starts_with_meta_box() {
+		Monkey\Functions\expect( 'spiralWebDB\Metadata\get_meta_box_keys' )
+			->once()
+			->withNoArgs()
+			->andReturn( [] );
+
+		$this->assertNull( save_meta_boxes( 56 ) );
+	}
 }
+
