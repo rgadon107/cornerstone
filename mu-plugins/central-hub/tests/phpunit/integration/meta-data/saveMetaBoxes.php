@@ -63,12 +63,7 @@ class Tests_SaveMetaBoxes extends Test_Case {
 		}
 		$expected             = [ 0 => 'meta_box.members' ];
 		$meta_box_key         = 'members';
-		$custom_fields_config = [
-			'role'            => 'Soprano',
-			'residence_city'  => 'Chicago',
-			'residence_state' => 'IL',
-			'tour_number'     => '3',
-		];
+		$custom_fields_config = $configs['meta_box.members']['custom_fields'];
 
 		$this->assertSame( $expected, get_meta_box_keys() );
 		$this->assertSame( $meta_box_key, get_meta_box_id( 'meta_box.members' ) );
