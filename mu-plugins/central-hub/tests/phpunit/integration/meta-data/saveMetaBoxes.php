@@ -12,6 +12,9 @@
 namespace spiralWebDb\centralHub\Tests\Integration\Metadata;
 
 use function KnowTheCode\ConfigStore\loadConfig;
+use function spiralWebDB\Metadata\get_meta_box_keys;
+use function spiralWebDB\Metadata\get_meta_box_id;
+use function KnowTheCode\ConfigStore\getConfigParameter;
 use function spiralWebDB\Metadata\save_meta_boxes;
 use spiralWebDb\Cornerstone\Tests\Integration\Test_Case;
 
@@ -58,7 +61,18 @@ class Tests_SaveMetaBoxes extends Test_Case {
 		foreach ( $configs as $store_key => $config_to_store ) {
 			loadConfig( $store_key, $config_to_store );
 		}
+		$expected             = [ 0 => 'meta_box.members' ];
+		$meta_box_key         = 'members';
+		$custom_fields_config = [
+			'role'            => 'Soprano',
+			'residence_city'  => 'Chicago',
+			'residence_state' => 'IL',
+			'tour_number'     => '3',
+		];
 
+		$this->assertSame( $expected, get_meta_box_keys() );
+		$this->assertSame( $meta_box_key, get_meta_box_id( 'meta_box.members' ) );
+		$this->assertSame( $custom_fields_config, getConfigParameter( 'meta_box.members', 'custom_fields' ) );
 		$this->assertNull( save_meta_boxes( 19 ) );
 
 		// Clean up.
@@ -82,7 +96,7 @@ class Tests_SaveMetaBoxes extends Test_Case {
 			'custom_post_type.books' => [
 				'Title' => 'To Kill a Mockingbird',
 			],
-			'metabox.notametabox' => [
+			'metabox.notametabox'    => [
 				'add_meta_box' => [
 					'id'     => 'notametabox',
 					'title'  => 'Does not start with the right meta_box. structure',
@@ -93,7 +107,9 @@ class Tests_SaveMetaBoxes extends Test_Case {
 		foreach ( $configs as $store_key => $config_to_store ) {
 			loadConfig( $store_key, $config_to_store );
 		}
+		$expected = [];
 
+		$this->assertSame( $expected, get_meta_box_keys() );
 		$this->assertNull( save_meta_boxes( 192 ) );
 
 		// Clean up.
@@ -111,7 +127,9 @@ class Tests_SaveMetaBoxes extends Test_Case {
 		foreach ( $configs as $store_key => $config_to_store ) {
 			loadConfig( $store_key, $config_to_store );
 		}
+		$expected = [];
 
+		$this->assertSame( $expected, get_meta_box_keys() );
 		$this->assertNull( save_meta_boxes( 373 ) );
 
 		// Clean up.
