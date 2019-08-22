@@ -87,18 +87,18 @@ class Tests_IsOkayToSaveMetaBox extends Test_Case {
 		foreach ( $_POST as $store_key => $config_to_store ) {
 			loadConfig( $store_key, $config_to_store );
 		}
-		define( "DOING_AUTOSAVE", true );
+		define( 'DOING_AUTOSAVE', true );
 		define( 'DOING_AJAX', true );
 		define( 'DOING_CRON', true );
-		DOING_AUTOSAVE && ! DOING_AJAX && ! DOING_CRON;
+		defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE && ! DOING_AJAX && ! DOING_CRON;
 
 		$this->assertFalse( is_okay_to_save_meta_box( 'events' ) );
 
-		! DOING_AUTOSAVE && DOING_AJAX && ! DOING_CRON;
+		defined( 'DOING_AJAX' ) && DOING_AJAX && ! DOING_AUTOSAVE  && ! DOING_CRON;
 
 		$this->assertFalse( is_okay_to_save_meta_box( 'events' ) );
 
-		! DOING_AUTOSAVE && ! DOING_AJAX && DOING_CRON;
+		defined( 'DOING_CRON' ) && DOING_CRON && ! DOING_AUTOSAVE && ! DOING_AJAX;
 
 		$this->assertFalse( is_okay_to_save_meta_box( 'events' ) );
 	}
