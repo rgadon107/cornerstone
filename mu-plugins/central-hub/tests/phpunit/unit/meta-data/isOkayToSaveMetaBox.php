@@ -90,10 +90,8 @@ class Tests_IsOkayToSaveMetaBox extends Test_Case {
 			->andAlsoExpectIt()
 			->with( 'DOING_CRON' )
 			->andReturn( false );
-		Monkey\Functions\expect( 'wp_verify_nonce' )
-			->once()
-			->with( $_POST[ 'events' . '_nonce_name' ], 'events' . '_nonce_action' )
-			->andReturn( 1 );
+		Monkey\Functions\when( 'wp_verify_nonce' )
+			->justReturn( 1 );
 
 		$this->assertEquals( 1, is_okay_to_save_meta_box( 'events' ) );
 	}
