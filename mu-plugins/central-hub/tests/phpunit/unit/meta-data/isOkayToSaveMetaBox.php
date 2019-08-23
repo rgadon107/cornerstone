@@ -12,8 +12,11 @@
 namespace spiralWebDb\centralHub\Tests\Unit\Metadata;
 
 use Brain\Monkey;
+use function Patchwork\Config\getDefaultRedefinableInternals;
 use function \define;
+use function \array_push;
 use function KnowTheCode\ConfigStore\loadConfig;
+use function KnowTheCode\ConfigStore\getConfig;
 use function spiralWebDB\Metadata\is_okay_to_save_meta_box;
 use spiralWebDb\Cornerstone\Tests\Unit\Test_Case;
 
@@ -38,10 +41,20 @@ class Tests_IsOkayToSaveMetaBox extends Test_Case {
 		}
 	}
 
+	protected function get_config_from_store( $store_key ) {
+		return getConfig( $store_key );
+	}
+
 	protected function initialize_constants() {
 		define( 'DOING_AUTOSAVE', true );
 		define( 'DOING_AJAX', true );
 		define( 'DOING_CRON', true );
+	}
+
+	protected function update_patchwork_redefinable_internals_with_php_core_functions() {
+		$core_function_stack = getDefaultRedefinableInternals();
+		$functions_to_add[] = [ 'defined', 'constant' ];
+		return array_push( $core_function_stack, $functions_to_add );
 	}
 
 	/**
@@ -58,7 +71,9 @@ class Tests_IsOkayToSaveMetaBox extends Test_Case {
 	 */
 	public function test_should_check_that_the_meta_box_key_exists_in_the_post_array() {
 		self::init_and_store_config();
+		$this->get_config_from_store( 'events' );
 		self::initialize_constants();
+		self::update_patchwork_redefinable_internals_with_php_core_functions();
 		Monkey\Functions\expect( 'defined' )
 			->times( 3 )
 			->with( 'DOING_AUTOSAVE' )
@@ -88,6 +103,7 @@ class Tests_IsOkayToSaveMetaBox extends Test_Case {
 	 */
 	public function test_function_should_return_false_if_the_meta_box_key_does_not_exist_in_the_post_array() {
 		self::init_and_store_config();
+		$this->get_config_from_store( 'events' );
 
 		$this->assertFalse( is_okay_to_save_meta_box( 'members' ) );
 	}
@@ -97,7 +113,9 @@ class Tests_IsOkayToSaveMetaBox extends Test_Case {
 	 */
 	public function test_function_should_return_false_when_doing_autosave_ajax_or_cron() {
 		self::init_and_store_config();
+		$this->get_config_from_store( 'events' );
 		self::initialize_constants();
+		self::update_patchwork_redefinable_internals_with_php_core_functions();
 		Monkey\Functions\expect( 'defined' )
 			->once()
 			->with( 'DOING_AUTOSAVE' )
