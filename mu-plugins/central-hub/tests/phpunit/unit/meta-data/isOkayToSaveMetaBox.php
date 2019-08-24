@@ -14,7 +14,7 @@ namespace spiralWebDb\centralHub\Tests\Unit\Metadata;
 use Brain\Monkey;
 use function Patchwork\Config\getDefaultRedefinableInternals;
 use function \define;
-use function \array_push;
+use function \array_merge;
 use function KnowTheCode\ConfigStore\loadConfig;
 use function KnowTheCode\ConfigStore\getConfig;
 use function spiralWebDB\Metadata\is_okay_to_save_meta_box;
@@ -53,8 +53,8 @@ class Tests_IsOkayToSaveMetaBox extends Test_Case {
 
 	protected function update_patchwork_redefinable_internals_with_php_core_functions() {
 		$core_function_stack = getDefaultRedefinableInternals();
-		$functions_to_add[] = [ 'defined', 'constant' ];
-		return array_push( $core_function_stack, $functions_to_add );
+		$functions_to_add    = [ 'defined', 'constant' ];
+		return array_merge( $core_function_stack, $functions_to_add );
 	}
 
 	/**
