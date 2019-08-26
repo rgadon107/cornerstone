@@ -105,12 +105,6 @@ class Tests_RenderMetaBox extends Test_Case {
 		// Get the stored custom fields config and view file.
 		$config = getConfig( 'meta_box.' . $meta_box_id );
 
-		/**
-		 *  Load the nonce field for the meta box custom fields using the meta box ID.
-		 *  Set $echo = false to return the `wp_referer_field` to the calling function.
-		 */
-		wp_nonce_field( $meta_box_id . '_nonce_action', $meta_box_id . '_nonce_name', $referer = true, $echo = false );
-
 		// Get the metadata
 		$custom_fields = get_custom_fields_values( $this->post->ID, $meta_box_id, $config );
 
@@ -136,12 +130,6 @@ class Tests_RenderMetaBox extends Test_Case {
 
 		// Get the stored custom fields config and view file.
 		$config = getConfig( 'meta_box.' . $meta_box_id );
-
-		/**
-		 *  Load the nonce field for the meta box custom fields using the meta box ID.
-		 *  Set $echo = false to return the hidden `wp_referer_field` to the calling function.
-		 */
-		wp_nonce_field( $meta_box_id . '_nonce_action', $meta_box_id . '_nonce_name', $referer = true, $echo = false );
 
 		// Get the metadata
 		$custom_fields = get_custom_fields_values( $this->post->ID, $meta_box_id, $config );
@@ -170,12 +158,6 @@ class Tests_RenderMetaBox extends Test_Case {
 
 		// Get the stored custom fields config and view file.
 		$config = getConfig( 'meta_box.' . $meta_box_id );
-
-		/**
-		 *  Load the nonce field for the meta box custom fields using the meta box ID.
-		 *  Set $echo = false to return the hidden `wp_referer_field` to the calling function.
-		 */
-		wp_nonce_field( $meta_box_id . '_nonce_action', $meta_box_id . '_nonce_name', $referer = true, $echo = false );
 
 		// Get the metadata
 		$custom_fields = get_custom_fields_values( $this->post->ID, $meta_box_id, $config );
@@ -207,12 +189,6 @@ class Tests_RenderMetaBox extends Test_Case {
 
 		// Get the stored custom fields config and view file.
 		$config = getConfig( 'meta_box.' . $meta_box_id );
-
-		/**
-		 *  Load the nonce field for the meta box custom fields using the meta box ID.
-		 *  Set $echo = false to return the hidden `wp_referer_field` to the calling function.
-		 */
-		wp_nonce_field( $meta_box_id . '_nonce_action', $meta_box_id . '_nonce_name', $referer = true, $echo = false );
 
 		// Get the metadata
 		$custom_fields = get_custom_fields_values( $this->post->ID, $meta_box_id, $config );
