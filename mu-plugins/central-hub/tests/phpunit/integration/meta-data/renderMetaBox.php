@@ -45,6 +45,32 @@ class Tests_RenderMetaBox extends Test_Case {
 			'event-time' => '',
 			'venue-name' => '',
 		];
+
+		// Initialize the $config_to_store
+		$config_to_store = [
+			'meta_box.events' => [
+				'custom_fields' => [
+					'event-date' => [
+						'is_single' => true,
+						'default'   => '2019-08-18',
+					],
+					'event-time' => [
+						'is_single' => true,
+						'default'   => '19:00:00',
+					],
+					'venue-name' => [
+						'is_single' => true,
+						'default'   => 'First Presbyterian Church of St. Louis',
+					],
+				],
+				'view'          => CENTRAL_HUB_ROOT_DIR . '/tests/phpunit/fixtures/meta-box-events-view.php',
+			],
+		];
+
+		// Load a config into _the_store to get the custom fields and view file.
+		foreach ( $config_to_store as $store_key => $metabox_config ) {
+			loadConfig( $store_key, $metabox_config );
+		}
 	}
 
 	/*
@@ -57,32 +83,6 @@ class Tests_RenderMetaBox extends Test_Case {
 
 		// Add the default post meta.
 		$this->add_post_meta();
-
-		// Initialize the $config_to_store
-		$config_to_store = [
-			'meta_box.events' => [
-				'custom_fields' => [
-					'event-date' => [
-						'is_single' => true,
-						'default'   => '',
-					],
-					'event-time' => [
-						'is_single' => true,
-						'default'   => '',
-					],
-					'venue-name' => [
-						'is_single' => true,
-						'default'   => '',
-					],
-				],
-				'view'          => CENTRAL_HUB_ROOT_DIR . '/tests/phpunit/fixtures/meta-box-events-view.php',
-			],
-		];
-
-		// Load a config into _the_store to get the custom fields and view file.
-		foreach ( $config_to_store as $store_key => $metabox_config ) {
-			loadConfig( $store_key, $metabox_config );
-		}
 
 		// Get the stored custom fields config and view file.
 		$config = getConfig( 'meta_box.' . $meta_box_id );
@@ -115,37 +115,11 @@ class Tests_RenderMetaBox extends Test_Case {
 	 */
 	public function test_should_render_wp_nonce_field() {
 		// Define the $meta_box_args argument to get the meta box ID.
-		$meta_box_args = [ 'id' => 'testing_nonce' ];
+		$meta_box_args = [ 'id' => 'events' ];
 		$meta_box_id   = $meta_box_args['id'];
 
 		// Add the default post meta.
 		$this->add_post_meta();
-
-		// Initialize the $config_to_store.
-		$config_to_store = [
-			'meta_box.testing_nonce' => [
-				'custom_fields' => [
-					'event-date' => [
-						'is_single' => true,
-						'default'   => '',
-					],
-					'event-time' => [
-						'is_single' => true,
-						'default'   => '',
-					],
-					'venue-name' => [
-						'is_single' => true,
-						'default'   => '',
-					],
-				],
-				'view'          => CENTRAL_HUB_ROOT_DIR . '/tests/phpunit/fixtures/meta-box-events-view.php',
-			],
-		];
-
-		// Load a config into _the_store to get the custom fields and view file.
-		foreach ( $config_to_store as $store_key => $metabox_config ) {
-			loadConfig( $store_key, $metabox_config );
-		}
 
 		// Get the stored custom fields config and view file.
 		$config = getConfig( 'meta_box.' . $meta_box_id );
@@ -159,19 +133,15 @@ class Tests_RenderMetaBox extends Test_Case {
 		// Get the metadata
 		$custom_fields = get_custom_fields_values( $this->post->ID, $meta_box_id, $config );
 
-		$nonce_html = <<<NONCE
-<input type="hidden" id="testing_nonce_nonce_name" name="testing_nonce_nonce_name" value=
-NONCE;
-
 		// Fire the rendering function and grab the HTML out of the buffer.
 		ob_start();
 		render_meta_box( $this->post, $meta_box_args );
 		$actual_html = ob_get_clean();
 
-		$this->assertContains( $nonce_html, $actual_html );
+		$this->assertContains( '<input type="hidden" id="events_nonce_name" name="events_nonce_name" value=', $actual_html );
 
 		// Clean up.
-		self::remove_from_store( 'meta_box.testing_nonce' );
+		self::remove_from_store( 'meta_box.events' );
 	}
 
 	/**
@@ -189,32 +159,6 @@ NONCE;
 			'venue-name' => 'Some really cool venue',
 		];
 		$this->add_post_meta();
-
-		// Initialize the $config_to_store
-		$config_to_store = [
-			'meta_box.events' => [
-				'custom_fields' => [
-					'event-date' => [
-						'is_single' => true,
-						'default'   => '2019-08-07',
-					],
-					'event-time' => [
-						'is_single' => true,
-						'default'   => '09:36:00',
-					],
-					'venue-name' => [
-						'is_single' => true,
-						'default'   => 'Some really cool venue',
-					],
-				],
-				'view'          => CENTRAL_HUB_ROOT_DIR . '/tests/phpunit/fixtures/meta-box-events-view.php',
-			],
-		];
-
-		// Load a config into _the_store to get the custom fields and view file.
-		foreach ( $config_to_store as $store_key => $metabox_config ) {
-			loadConfig( $store_key, $metabox_config );
-		}
 
 		// Get the stored custom fields config and view file.
 		$config = getConfig( 'meta_box.' . $meta_box_id );
@@ -257,32 +201,6 @@ NONCE;
 			'venue-name' => 'First Presbyterian Church of St. Louis',
 		];
 		$this->add_post_meta();
-
-		// Initialize the $config_to_store
-		$config_to_store = [
-			'meta_box.events' => [
-				'custom_fields' => [
-					'event-date' => [
-						'is_single' => true,
-						'default'   => '2019-08-18',
-					],
-					'event-time' => [
-						'is_single' => true,
-						'default'   => '19:00:00',
-					],
-					'venue-name' => [
-						'is_single' => true,
-						'default'   => 'First Presbyterian Church of St. Louis',
-					],
-				],
-				'view'          => CENTRAL_HUB_ROOT_DIR . '/tests/phpunit/fixtures/meta-box-events-view.php',
-			],
-		];
-
-		// Load a config into _the_store to get the custom fields and view file.
-		foreach ( $config_to_store as $store_key => $metabox_config ) {
-			loadConfig( $store_key, $metabox_config );
-		}
 
 		// Get the stored custom fields config and view file.
 		$config = getConfig( 'meta_box.' . $meta_box_id );
