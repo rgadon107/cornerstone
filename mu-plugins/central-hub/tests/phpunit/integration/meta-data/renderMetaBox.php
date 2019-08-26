@@ -42,8 +42,7 @@ class Tests_RenderMetaBox extends Test_Case {
 		$meta_box_id   = $meta_box_args['id'];
 
 		// Create and get the post object via the factory method.
-		$post     = self::factory()->post->create_and_get();
-		$post->ID = 23;
+		$post = self::factory()->post->create_and_get();
 
 		// Initialize the $config_to_store
 		$config_to_store = [
@@ -106,8 +105,7 @@ class Tests_RenderMetaBox extends Test_Case {
 		$meta_box_id   = $meta_box_args['id'];
 
 		// Create and get the post object via the factory method.
-		$post     = self::factory()->post->create_and_get();
-		$post->ID = 99;
+		$post = self::factory()->post->create_and_get();
 
 		// Initialize the $config_to_store.
 		$config_to_store = [
@@ -171,8 +169,7 @@ NONCE;
 		$meta_box_id   = $meta_box_args['id'];
 
 		// Create and get the post object via the factory method.
-		$post     = self::factory()->post->create_and_get();
-		$post->ID = 108;
+		$post = self::factory()->post->create_and_get();
 
 		// Initialize the $config_to_store
 		$config_to_store = [
@@ -191,7 +188,7 @@ NONCE;
 						'default'   => 'Some really cool venue',
 					],
 				],
-				'view'            => CENTRAL_HUB_ROOT_DIR . '/tests/phpunit/fixtures/meta-box-events-view-accepts-metabox-value-only.php',
+				'view'          => CENTRAL_HUB_ROOT_DIR . '/tests/phpunit/fixtures/meta-box-events-view-accepts-metabox-value-only.php',
 			],
 		];
 
@@ -235,8 +232,7 @@ NONCE;
 		$meta_box_id   = $meta_box_args['id'];
 
 		// Create and get the post object via the factory method.
-		$post     = self::factory()->post->create_and_get();
-		$post->ID = 241;
+		$post = self::factory()->post->create_and_get();
 
 		// Initialize the $config_to_store
 		$config_to_store = [
@@ -255,7 +251,7 @@ NONCE;
 						'default'   => 'First Presbyterian Church of St. Louis',
 					],
 				],
-				'view'            => CENTRAL_HUB_ROOT_DIR . '/tests/phpunit/fixtures/meta-box-events-view-accepts-metabox-key-value-inputs.php',
+				'view'          => CENTRAL_HUB_ROOT_DIR . '/tests/phpunit/fixtures/meta-box-events-view-accepts-metabox-key-value-inputs.php',
 			],
 		];
 
@@ -276,7 +272,7 @@ NONCE;
 		// Get the metadata
 		$custom_fields = get_custom_fields_values( $post->ID, $meta_box_id, $config );
 
-		$nonce_html = <<<NONCE
+		$nonce_html                 = <<<NONCE
 <input type="hidden" id="events_nonce_name" name="events_nonce_name" value=
 NONCE;
 		$expected_fixture_view_html = <<<VIEW
