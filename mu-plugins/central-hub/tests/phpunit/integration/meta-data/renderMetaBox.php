@@ -26,11 +26,25 @@ use spiralWebDb\Cornerstone\Tests\Integration\Test_Case;
  */
 class Tests_RenderMetaBox extends Test_Case {
 
+	protected $post;
+	protected $meta_config;
+
 	/**
 	 * Empty the store before starting these tests.
 	 */
 	public static function setUpBeforeClass() {
 		self::empty_the_store();
+	}
+
+	public function setUp() {
+		parent::setUp();
+
+		$this->post        = self::factory()->post->create_and_get();
+		$this->meta_config = [
+			'event-date' => '',
+			'event-time' => '',
+			'venue-name' => '',
+		];
 	}
 
 	/*
@@ -41,8 +55,8 @@ class Tests_RenderMetaBox extends Test_Case {
 		$meta_box_args = [ 'id' => 'events' ];
 		$meta_box_id   = $meta_box_args['id'];
 
-		// Create and get the post object via the factory method.
-		$post = self::factory()->post->create_and_get();
+		// Add the default post meta.
+		$this->add_post_meta();
 
 		// Initialize the $config_to_store
 		$config_to_store = [
@@ -61,7 +75,7 @@ class Tests_RenderMetaBox extends Test_Case {
 						'default'   => '',
 					],
 				],
-				'view'          => CENTRAL_HUB_ROOT_DIR . '/tests/phpunit/fixtures/meta-box-events-view-accepts-metabox-key-name-only.php',
+				'view'          => CENTRAL_HUB_ROOT_DIR . '/tests/phpunit/fixtures/meta-box-events-view.php',
 			],
 		];
 
@@ -80,11 +94,11 @@ class Tests_RenderMetaBox extends Test_Case {
 		wp_nonce_field( $meta_box_id . '_nonce_action', $meta_box_id . '_nonce_name', $referer = true, $echo = false );
 
 		// Get the metadata
-		$custom_fields = get_custom_fields_values( $post->ID, $meta_box_id, $config );
+		$custom_fields = get_custom_fields_values( $this->post->ID, $meta_box_id, $config );
 
 		// Start the output buffer, fire the rendering function, and grab the HTML out of the buffer.
 		ob_start();
-		render_meta_box( $post, $meta_box_args );
+		render_meta_box( $this->post, $meta_box_args );
 		$actual_html = ob_get_clean();
 
 		// Test the HTML in the rendering function to ensure that it was called.
@@ -104,8 +118,8 @@ class Tests_RenderMetaBox extends Test_Case {
 		$meta_box_args = [ 'id' => 'testing_nonce' ];
 		$meta_box_id   = $meta_box_args['id'];
 
-		// Create and get the post object via the factory method.
-		$post = self::factory()->post->create_and_get();
+		// Add the default post meta.
+		$this->add_post_meta();
 
 		// Initialize the $config_to_store.
 		$config_to_store = [
@@ -124,7 +138,7 @@ class Tests_RenderMetaBox extends Test_Case {
 						'default'   => '',
 					],
 				],
-				'view'          => CENTRAL_HUB_ROOT_DIR . '/tests/phpunit/fixtures/meta-box-events-view-accepts-metabox-key-name-only.php',
+				'view'          => CENTRAL_HUB_ROOT_DIR . '/tests/phpunit/fixtures/meta-box-events-view.php',
 			],
 		];
 
@@ -143,7 +157,7 @@ class Tests_RenderMetaBox extends Test_Case {
 		wp_nonce_field( $meta_box_id . '_nonce_action', $meta_box_id . '_nonce_name', $referer = true, $echo = false );
 
 		// Get the metadata
-		$custom_fields = get_custom_fields_values( $post->ID, $meta_box_id, $config );
+		$custom_fields = get_custom_fields_values( $this->post->ID, $meta_box_id, $config );
 
 		$nonce_html = <<<NONCE
 <input type="hidden" id="testing_nonce_nonce_name" name="testing_nonce_nonce_name" value=
@@ -151,7 +165,7 @@ NONCE;
 
 		// Fire the rendering function and grab the HTML out of the buffer.
 		ob_start();
-		render_meta_box( $post, $meta_box_args );
+		render_meta_box( $this->post, $meta_box_args );
 		$actual_html = ob_get_clean();
 
 		$this->assertContains( $nonce_html, $actual_html );
@@ -169,7 +183,12 @@ NONCE;
 		$meta_box_id   = $meta_box_args['id'];
 
 		// Create and get the post object via the factory method.
-		$post = self::factory()->post->create_and_get();
+		$this->meta_config = [
+			'event-date' => '2019-08-07',
+			'event-time' => '09:36:00',
+			'venue-name' => 'Some really cool venue',
+		];
+		$this->add_post_meta();
 
 		// Initialize the $config_to_store
 		$config_to_store = [
@@ -188,7 +207,7 @@ NONCE;
 						'default'   => 'Some really cool venue',
 					],
 				],
-				'view'          => CENTRAL_HUB_ROOT_DIR . '/tests/phpunit/fixtures/meta-box-events-view-accepts-metabox-value-only.php',
+				'view'          => CENTRAL_HUB_ROOT_DIR . '/tests/phpunit/fixtures/meta-box-events-view.php',
 			],
 		];
 
@@ -207,11 +226,11 @@ NONCE;
 		wp_nonce_field( $meta_box_id . '_nonce_action', $meta_box_id . '_nonce_name', $referer = true, $echo = false );
 
 		// Get the metadata
-		$custom_fields = get_custom_fields_values( $post->ID, $meta_box_id, $config );
+		$custom_fields = get_custom_fields_values( $this->post->ID, $meta_box_id, $config );
 
 		// Fire the rendering function and grab the HTML out of the buffer.
 		ob_start();
-		render_meta_box( $post, $meta_box_args );
+		render_meta_box( $this->post, $meta_box_args );
 		$actual_html = ob_get_clean();
 
 		// Test the HTML.
@@ -231,8 +250,13 @@ NONCE;
 		$meta_box_args = [ 'id' => 'events' ];
 		$meta_box_id   = $meta_box_args['id'];
 
-		// Create and get the post object via the factory method.
-		$post = self::factory()->post->create_and_get();
+		// Add the default post meta.
+		$this->meta_config = [
+			'event-date' => '2019-08-26',
+			'event-time' => '18:00:00',
+			'venue-name' => 'First Presbyterian Church of St. Louis',
+		];
+		$this->add_post_meta();
 
 		// Initialize the $config_to_store
 		$config_to_store = [
@@ -251,7 +275,7 @@ NONCE;
 						'default'   => 'First Presbyterian Church of St. Louis',
 					],
 				],
-				'view'          => CENTRAL_HUB_ROOT_DIR . '/tests/phpunit/fixtures/meta-box-events-view-accepts-metabox-key-value-inputs.php',
+				'view'          => CENTRAL_HUB_ROOT_DIR . '/tests/phpunit/fixtures/meta-box-events-view.php',
 			],
 		];
 
@@ -270,7 +294,7 @@ NONCE;
 		wp_nonce_field( $meta_box_id . '_nonce_action', $meta_box_id . '_nonce_name', $referer = true, $echo = false );
 
 		// Get the metadata
-		$custom_fields = get_custom_fields_values( $post->ID, $meta_box_id, $config );
+		$custom_fields = get_custom_fields_values( $this->post->ID, $meta_box_id, $config );
 
 		$nonce_html                 = <<<NONCE
 <input type="hidden" id="events_nonce_name" name="events_nonce_name" value=
@@ -279,7 +303,7 @@ NONCE;
 <div class="event-date">
 	<label for="event-date"><strong>Performance Date</strong></label>
 	<p>
-		<input id="event-date" type="date" name="events[event-date]" value="2019-08-18">
+		<input id="event-date" type="date" name="events[event-date]" value="2019-08-26">
 	</p>
 	<span class="description">Event date description.</span>
 </div>
@@ -288,7 +312,7 @@ NONCE;
 		<label for="event-time"><strong>Performance Time</strong></label>
 	</p>
 	<p>
-		<input id="event-time" type="time" name="events[event-time]" value="19:00:00">
+		<input id="event-time" type="time" name="events[event-time]" value="18:00:00">
 	</p>
 	<p>
 		<span class="description">Event time description.</span>
@@ -311,7 +335,7 @@ VIEW;
 
 		// Fire the rendering function and grab the HTML out of the buffer.
 		ob_start();
-		render_meta_box( $post, $meta_box_args );
+		render_meta_box( $this->post, $meta_box_args );
 		$actual_html = ob_get_clean();
 
 		$this->assertContains( $nonce_html, $actual_html );
@@ -319,6 +343,12 @@ VIEW;
 
 		// Clean up.
 		self::remove_from_store( 'meta_box.events' );
+	}
+
+	private function add_post_meta() {
+		foreach ( $this->meta_config as $meta_name => $value ) {
+			add_post_meta( $this->post->ID, $meta_name, $value );
+		}
 	}
 }
 
