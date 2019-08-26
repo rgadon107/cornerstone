@@ -15,7 +15,6 @@ use function spiralWebDB\Metadata\render_meta_box;
 use function spiralWebDB\Metadata\get_custom_fields_values;
 use function KnowTheCode\ConfigStore\loadConfig;
 use function KnowTheCode\ConfigStore\getConfig;
-use function \wp_nonce_field;
 use spiralWebDb\Cornerstone\Tests\Integration\Test_Case;
 
 /**
@@ -26,7 +25,17 @@ use spiralWebDb\Cornerstone\Tests\Integration\Test_Case;
  */
 class Tests_RenderMetaBox extends Test_Case {
 
+	/**
+	 * Instance of the post for each test.
+	 *
+	 * @var WP_Post
+	 */
 	protected $post;
+
+	/**
+	 * Events' meta data configuration - to be stored in the database.
+	 * @var array
+	 */
 	protected $meta_config;
 
 	/**
@@ -36,9 +45,13 @@ class Tests_RenderMetaBox extends Test_Case {
 		self::empty_the_store();
 	}
 
+	/**
+	 * Prepares the test environment before each test.
+	 */
 	public function setUp() {
 		parent::setUp();
 
+		// Create and get the post.
 		$this->post        = self::factory()->post->create_and_get();
 		$this->meta_config = [
 			'event-date' => '',
@@ -46,7 +59,7 @@ class Tests_RenderMetaBox extends Test_Case {
 			'venue-name' => '',
 		];
 
-		// Initialize the $config_to_store
+		// Store the events config into the Config Store.
 		$config_to_store = [
 			'meta_box.events' => [
 				'custom_fields' => [
@@ -66,8 +79,6 @@ class Tests_RenderMetaBox extends Test_Case {
 				'view'          => CENTRAL_HUB_ROOT_DIR . '/tests/phpunit/fixtures/meta-box-events-view.php',
 			],
 		];
-
-		// Load a config into _the_store to get the custom fields and view file.
 		foreach ( $config_to_store as $store_key => $metabox_config ) {
 			loadConfig( $store_key, $metabox_config );
 		}
@@ -86,11 +97,9 @@ class Tests_RenderMetaBox extends Test_Case {
 	 * Test render_meta_box() should assign meta box ID to the HTML field names.
 	 */
 	public function test_should_assign_meta_box_id_to_html_field_names() {
-		// Define the $meta_box_args argument to get the meta box ID.
+		// Set up the test.
 		$meta_box_args = [ 'id' => 'events' ];
 		$meta_box_id   = $meta_box_args['id'];
-
-		// Add the default post meta.
 		$this->add_post_meta();
 
 		// Get the stored custom fields config and view file.
@@ -120,11 +129,9 @@ class Tests_RenderMetaBox extends Test_Case {
 	 * Test render_meta_box() should render WordPress nonce HTML field.
 	 */
 	public function test_should_render_wp_nonce_field() {
-		// Define the $meta_box_args argument to get the meta box ID.
+		// Set up the test.
 		$meta_box_args = [ 'id' => 'events' ];
 		$meta_box_id   = $meta_box_args['id'];
-
-		// Add the default post meta.
 		$this->add_post_meta();
 
 		// Get the stored custom fields config and view file.
@@ -151,11 +158,9 @@ class Tests_RenderMetaBox extends Test_Case {
 	 * Test render_meta_box() should render the custom field values.
 	 */
 	public function test_should_render_the_custom_field_values() {
-		// Define the $meta_box_args argument to get the meta box ID.
-		$meta_box_args = [ 'id' => 'events' ];
-		$meta_box_id   = $meta_box_args['id'];
-
-		// Create and get the post object via the factory method.
+		// Set up the test.
+		$meta_box_args     = [ 'id' => 'events' ];
+		$meta_box_id       = $meta_box_args['id'];
 		$this->meta_config = [
 			'event-date' => '2019-08-07',
 			'event-time' => '09:36:00',
@@ -190,11 +195,9 @@ class Tests_RenderMetaBox extends Test_Case {
 	 * Test render_meta_box() should render the meta box's HTML.
 	 */
 	public function test_should_render_meta_box_html() {
-		// Define the $meta_box_args argument to get the meta box ID.
-		$meta_box_args = [ 'id' => 'events' ];
-		$meta_box_id   = $meta_box_args['id'];
-
-		// Add the default post meta.
+		// Set up the test.
+		$meta_box_args     = [ 'id' => 'events' ];
+		$meta_box_id       = $meta_box_args['id'];
 		$this->meta_config = [
 			'event-date' => '2019-08-26',
 			'event-time' => '18:00:00',
@@ -260,6 +263,9 @@ VIEW;
 		$this->assertContains( $expected_fixture_view_html, $actual_html );
 	}
 
+	/**
+	 * Adds the configured meta data into database.
+	 */
 	private function add_post_meta() {
 		foreach ( $this->meta_config as $meta_name => $value ) {
 			add_post_meta( $this->post->ID, $meta_name, $value );
