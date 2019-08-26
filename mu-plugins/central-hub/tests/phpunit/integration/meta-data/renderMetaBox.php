@@ -73,6 +73,15 @@ class Tests_RenderMetaBox extends Test_Case {
 		}
 	}
 
+	/**
+	 * Cleans up the test environment after each test.
+	 */
+	public function tearDown() {
+		parent::tearDown();
+
+		self::remove_from_store( 'meta_box.events' );
+	}
+
 	/*
 	 * Test render_meta_box() should assign meta box ID to the HTML field names.
 	 */
@@ -105,9 +114,6 @@ class Tests_RenderMetaBox extends Test_Case {
 		$this->assertContains( 'name="' . $meta_box_id . '[event-date]"', $actual_html );
 		$this->assertContains( 'name="' . $meta_box_id . '[event-time]"', $actual_html );
 		$this->assertContains( 'name="' . $meta_box_id . '[venue-name]"', $actual_html );
-
-		// Clean up.
-		self::remove_from_store( 'meta_box.events' );
 	}
 
 	/**
@@ -139,9 +145,6 @@ class Tests_RenderMetaBox extends Test_Case {
 		$actual_html = ob_get_clean();
 
 		$this->assertContains( '<input type="hidden" id="events_nonce_name" name="events_nonce_name" value=', $actual_html );
-
-		// Clean up.
-		self::remove_from_store( 'meta_box.events' );
 	}
 
 	/**
@@ -181,9 +184,6 @@ class Tests_RenderMetaBox extends Test_Case {
 		$this->assertContains( 'name="events[event-date]" value="2019-08-07"', $actual_html );
 		$this->assertContains( 'name="events[event-time]" value="09:36:00"', $actual_html );
 		$this->assertContains( 'name="events[venue-name]" value="Some really cool venue"', $actual_html );
-
-		// Clean up.
-		self::remove_from_store( 'meta_box.events' );
 	}
 
 	/**
@@ -258,9 +258,6 @@ VIEW;
 
 		$this->assertContains( $nonce_html, $actual_html );
 		$this->assertContains( $expected_fixture_view_html, $actual_html );
-
-		// Clean up.
-		self::remove_from_store( 'meta_box.events' );
 	}
 
 	private function add_post_meta() {
@@ -269,4 +266,3 @@ VIEW;
 		}
 	}
 }
-
