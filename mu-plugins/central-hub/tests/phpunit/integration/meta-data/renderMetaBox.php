@@ -215,9 +215,9 @@ NONCE;
 		$actual_html = ob_get_clean();
 
 		// Test the HTML.
-		$this->assertContains( "name=\"events[event-date]\" value=\"2019-08-07\"", $actual_html );
-		$this->assertContains( "name=\"events[event-time]\" value=\"09:36:00\"", $actual_html );
-		$this->assertContains( "name=\"events[venue-name]\" value=\"Some really cool venue\"", $actual_html );
+		$this->assertContains( 'name="events[event-date]" value="2019-08-07"', $actual_html );
+		$this->assertContains( 'name="events[event-time]" value="09:36:00"', $actual_html );
+		$this->assertContains( 'name="events[venue-name]" value="Some really cool venue"', $actual_html );
 
 		// Clean up.
 		self::remove_from_store( 'meta_box.events' );
