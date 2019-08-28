@@ -99,7 +99,6 @@ class Tests_RenderMetaBox extends Test_Case {
 	public function test_should_assign_meta_box_id_to_html_field_names() {
 		// Set up the test.
 		$meta_box_args = [ 'id' => 'events' ];
-		$meta_box_id   = $meta_box_args['id'];
 
 		// Start the output buffer, fire the rendering function, and grab the HTML out of the buffer.
 		ob_start();
@@ -107,9 +106,9 @@ class Tests_RenderMetaBox extends Test_Case {
 		$actual_html = ob_get_clean();
 
 		// Test the HTML in the rendering function to ensure that it was called.
-		$this->assertContains( 'name="' . $meta_box_id . '[event-date]"', $actual_html );
-		$this->assertContains( 'name="' . $meta_box_id . '[event-time]"', $actual_html );
-		$this->assertContains( 'name="' . $meta_box_id . '[venue-name]"', $actual_html );
+		$this->assertContains( 'name="events[event-date]"', $actual_html );
+		$this->assertContains( 'name="events[event-time]"', $actual_html );
+		$this->assertContains( 'name="events[venue-name]"', $actual_html );
 	}
 
 	/**
@@ -157,7 +156,6 @@ class Tests_RenderMetaBox extends Test_Case {
 	public function test_should_render_meta_box_html() {
 		// Set up the test.
 		$meta_box_args     = [ 'id' => 'events' ];
-		$meta_box_id       = $meta_box_args['id'];
 		$this->meta_config = [
 			'event-date' => '2019-08-26',
 			'event-time' => '18:00:00',
