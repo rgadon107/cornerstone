@@ -100,7 +100,6 @@ class Tests_RenderMetaBox extends Test_Case {
 		// Set up the test.
 		$meta_box_args = [ 'id' => 'events' ];
 		$meta_box_id   = $meta_box_args['id'];
-		$this->add_post_meta();
 
 		// Get the stored custom fields config and view file.
 		$config = getConfig( 'meta_box.' . $meta_box_id );
@@ -126,7 +125,6 @@ class Tests_RenderMetaBox extends Test_Case {
 		// Set up the test.
 		$meta_box_args = [ 'id' => 'events' ];
 		$meta_box_id   = $meta_box_args['id'];
-		$this->add_post_meta();
 
 		// Get the stored custom fields config and view file.
 		$config = getConfig( 'meta_box.' . $meta_box_id );
