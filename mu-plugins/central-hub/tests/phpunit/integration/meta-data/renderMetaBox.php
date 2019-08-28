@@ -46,6 +46,15 @@ class Tests_RenderMetaBox extends Test_Case {
 	}
 
 	/**
+	 * Adds the configured meta data into database.
+	 */
+	private function add_post_meta() {
+		foreach ( $this->meta_config as $meta_name => $value ) {
+			add_post_meta( $this->post->ID, $meta_name, $value );
+		}
+	}
+
+	/**
 	 * Prepares the test environment before each test.
 	 */
 	public function setUp() {
@@ -237,14 +246,5 @@ VIEW;
 
 		$this->assertContains( $nonce_html, $actual_html );
 		$this->assertContains( $expected_fixture_view_html, $actual_html );
-	}
-
-	/**
-	 * Adds the configured meta data into database.
-	 */
-	private function add_post_meta() {
-		foreach ( $this->meta_config as $meta_name => $value ) {
-			add_post_meta( $this->post->ID, $meta_name, $value );
-		}
 	}
 }
