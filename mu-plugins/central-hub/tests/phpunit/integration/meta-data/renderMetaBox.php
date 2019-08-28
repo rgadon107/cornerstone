@@ -101,12 +101,6 @@ class Tests_RenderMetaBox extends Test_Case {
 		$meta_box_args = [ 'id' => 'events' ];
 		$meta_box_id   = $meta_box_args['id'];
 
-		// Get the stored custom fields config and view file.
-		$config = getConfig( 'meta_box.' . $meta_box_id );
-
-		// Get the metadata
-		$custom_fields = get_custom_fields_values( $this->post->ID, $meta_box_id, $config );
-
 		// Start the output buffer, fire the rendering function, and grab the HTML out of the buffer.
 		ob_start();
 		render_meta_box( $this->post, $meta_box_args );
@@ -124,13 +118,6 @@ class Tests_RenderMetaBox extends Test_Case {
 	public function test_should_render_wp_nonce_field() {
 		// Set up the test.
 		$meta_box_args = [ 'id' => 'events' ];
-		$meta_box_id   = $meta_box_args['id'];
-
-		// Get the stored custom fields config and view file.
-		$config = getConfig( 'meta_box.' . $meta_box_id );
-
-		// Get the metadata
-		$custom_fields = get_custom_fields_values( $this->post->ID, $meta_box_id, $config );
 
 		// Fire the rendering function and grab the HTML out of the buffer.
 		ob_start();
@@ -146,19 +133,12 @@ class Tests_RenderMetaBox extends Test_Case {
 	public function test_should_render_the_custom_field_values() {
 		// Set up the test.
 		$meta_box_args     = [ 'id' => 'events' ];
-		$meta_box_id       = $meta_box_args['id'];
 		$this->meta_config = [
 			'event-date' => '2019-08-07',
 			'event-time' => '09:36:00',
 			'venue-name' => 'Some really cool venue',
 		];
 		$this->add_post_meta();
-
-		// Get the stored custom fields config and view file.
-		$config = getConfig( 'meta_box.' . $meta_box_id );
-
-		// Get the metadata
-		$custom_fields = get_custom_fields_values( $this->post->ID, $meta_box_id, $config );
 
 		// Fire the rendering function and grab the HTML out of the buffer.
 		ob_start();
@@ -184,12 +164,6 @@ class Tests_RenderMetaBox extends Test_Case {
 			'venue-name' => 'First Presbyterian Church of St. Louis',
 		];
 		$this->add_post_meta();
-
-		// Get the stored custom fields config and view file.
-		$config = getConfig( 'meta_box.' . $meta_box_id );
-
-		// Get the metadata
-		$custom_fields = get_custom_fields_values( $this->post->ID, $meta_box_id, $config );
 
 		$nonce_html                 = <<<NONCE
 <input type="hidden" id="events_nonce_name" name="events_nonce_name" value=
