@@ -106,12 +106,8 @@ VIEW;
 	 */
 	public function test_should_assign_meta_box_id_to_html_field_names() {
 		// Set up the test.
-		$meta_box_args = [ 'id' => 'events' ];
-		$custom_fields = [
-			'event-date' => '',
-			'event-time' => '',
-			'venue-name' => '',
-		];
+		$this->meta_box_args;
+		$this->config['custom_fields'];
 
 		// Set up the mocks.
 		$post     = \Mockery::mock( 'WP_Post' );
