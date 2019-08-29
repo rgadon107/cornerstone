@@ -196,48 +196,14 @@ NONCE;
 	 */
 	public function test_should_render_meta_box_html() {
 		// Set up the test.
-		$meta_box_args              = [ 'id' => 'events' ];
-		$custom_fields              = [
+		$this->meta_box_args;
+		$this->config['custom_fields'] = [
 			'event-date' => '2019-08-07',
 			'event-time' => '09:00:00',
 			'venue-name' => 'Some venue',
 		];
-		$nonce_html                 = <<<NONCE
-<input type="hidden" id="events_nonce_name" name="events_nonce_name" value="" />
-NONCE;
-		$expected_fixture_view_html = <<<VIEW
-<div class="event-date">
-	<label for="event-date"><strong>Performance Date</strong></label>
-	<p>
-		<input id="event-date" type="date" name="events[event-date]" value="2019-08-07">
-	</p>
-	<span class="description">Event date description.</span>
-</div>
-<div class="event-time">
-	<p>
-		<label for="event-time"><strong>Performance Time</strong></label>
-	</p>
-	<p>
-		<input id="event-time" type="time" name="events[event-time]" value="09:00:00">
-	</p>
-	<p>
-		<span class="description">Event time description.</span>
-	</p>
-</div>
-<hr>
-<div class="performance-venue">
-	<p>
-		<label for="performance-venue"><strong>Performance Venue</strong></label>
-	</p>
-	<label for="venue-name">Name</label>
-	<p>
-		<input id="venue-name" class="large-text" type="text" name="events[venue-name]" value="Some venue" placeholder="e.g. First Presbyterian Church of St. Louis">
-	</p>
-	<p>
-		<span class="description">Performance venue description.</span>
-	</p>
-</div>
-VIEW;
+		$this->nonce_html;
+		$this->expected_fixture_view_html;
 
 		// Set up the mocks.
 		$post     = \Mockery::mock( 'WP_Post' );
@@ -249,16 +215,16 @@ VIEW;
 		Monkey\Functions\expect( 'spiralWebDB\Metadata\get_custom_fields_values' )
 			->once()
 			->with( 47, 'events', $this->config )
-			->andReturn( $custom_fields );
+			->andReturn( $this->config['custom_fields'] );
 
 		// Fire the rendering function and grab the HTML out of the buffer.
 		ob_start();
-		Monkey\Functions\when( 'wp_nonce_field' )->justEcho( $nonce_html );
-		render_meta_box( $post, $meta_box_args );
+		Monkey\Functions\when( 'wp_nonce_field' )->justEcho( $this->nonce_html );
+		render_meta_box( $post, $this->meta_box_args );
 		$actual_html = ob_get_clean();
 
 		// Test the HTML.
-		$this->assertContains( $nonce_html, $actual_html );
-		$this->assertContains( $expected_fixture_view_html, $actual_html );
+		$this->assertContains( $this->nonce_html, $actual_html );
+		$this->assertContains( $this->expected_fixture_view_html, $actual_html );
 	}
 }
