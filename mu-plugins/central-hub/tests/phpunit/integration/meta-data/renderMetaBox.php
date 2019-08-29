@@ -108,14 +108,6 @@ class Tests_RenderMetaBox extends Test_Case {
 	public function test_should_assign_meta_box_id_to_html_field_names() {
 		// Set up the test.
 		$meta_box_args = [ 'id' => 'events' ];
-		$meta_box_id   = $meta_box_args['id'];
-		$this->add_post_meta();
-
-		// Get the stored custom fields config and view file.
-		$config = getConfig( 'meta_box.' . $meta_box_id );
-
-		// Get the metadata
-		$custom_fields = get_custom_fields_values( $this->post->ID, $meta_box_id, $config );
 
 		// Start the output buffer, fire the rendering function, and grab the HTML out of the buffer.
 		ob_start();
@@ -123,9 +115,9 @@ class Tests_RenderMetaBox extends Test_Case {
 		$actual_html = ob_get_clean();
 
 		// Test the HTML in the rendering function to ensure that it was called.
-		$this->assertContains( 'name="' . $meta_box_id . '[event-date]"', $actual_html );
-		$this->assertContains( 'name="' . $meta_box_id . '[event-time]"', $actual_html );
-		$this->assertContains( 'name="' . $meta_box_id . '[venue-name]"', $actual_html );
+		$this->assertContains( 'name="events[event-date]"', $actual_html );
+		$this->assertContains( 'name="events[event-time]"', $actual_html );
+		$this->assertContains( 'name="events[venue-name]"', $actual_html );
 	}
 
 	/**
@@ -134,14 +126,6 @@ class Tests_RenderMetaBox extends Test_Case {
 	public function test_should_render_wp_nonce_field() {
 		// Set up the test.
 		$meta_box_args = [ 'id' => 'events' ];
-		$meta_box_id   = $meta_box_args['id'];
-		$this->add_post_meta();
-
-		// Get the stored custom fields config and view file.
-		$config = getConfig( 'meta_box.' . $meta_box_id );
-
-		// Get the metadata
-		$custom_fields = get_custom_fields_values( $this->post->ID, $meta_box_id, $config );
 
 		// Fire the rendering function and grab the HTML out of the buffer.
 		ob_start();
@@ -157,19 +141,12 @@ class Tests_RenderMetaBox extends Test_Case {
 	public function test_should_render_the_custom_field_values() {
 		// Set up the test.
 		$meta_box_args     = [ 'id' => 'events' ];
-		$meta_box_id       = $meta_box_args['id'];
 		$this->meta_config = [
 			'event-date' => '2019-08-07',
 			'event-time' => '09:36:00',
 			'venue-name' => 'Some really cool venue',
 		];
 		$this->add_post_meta();
-
-		// Get the stored custom fields config and view file.
-		$config = getConfig( 'meta_box.' . $meta_box_id );
-
-		// Get the metadata
-		$custom_fields = get_custom_fields_values( $this->post->ID, $meta_box_id, $config );
 
 		// Fire the rendering function and grab the HTML out of the buffer.
 		ob_start();
@@ -188,19 +165,12 @@ class Tests_RenderMetaBox extends Test_Case {
 	public function test_should_render_meta_box_html() {
 		// Set up the test.
 		$meta_box_args     = [ 'id' => 'events' ];
-		$meta_box_id       = $meta_box_args['id'];
 		$this->meta_config = [
 			'event-date' => '2019-08-26',
 			'event-time' => '18:00:00',
 			'venue-name' => 'First Presbyterian Church of St. Louis',
 		];
 		$this->add_post_meta();
-
-		// Get the stored custom fields config and view file.
-		$config = getConfig( 'meta_box.' . $meta_box_id );
-
-		// Get the metadata
-		$custom_fields = get_custom_fields_values( $this->post->ID, $meta_box_id, $config );
 
 		$nonce_html                 = <<<NONCE
 <input type="hidden" id="events_nonce_name" name="events_nonce_name" value=
