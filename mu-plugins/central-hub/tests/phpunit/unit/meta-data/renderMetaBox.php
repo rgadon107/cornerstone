@@ -118,7 +118,7 @@ VIEW;
 
 		// Fire the rendering function and grab the HTML out of the buffer.
 		ob_start();
-		render_meta_box( $post, $meta_box_args );
+		render_meta_box( $post, $this->meta_box_args );
 		$actual_html = ob_get_clean();
 
 		// Test the HTML.
