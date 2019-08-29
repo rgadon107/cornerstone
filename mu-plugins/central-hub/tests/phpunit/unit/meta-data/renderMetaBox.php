@@ -161,10 +161,10 @@ NONCE;
 	/**
 	 * Test render_meta_box() should render the custom field values.
 	 */
-	public function test_should_rendering_of_custom_field_values() {
+	public function test_should_render_the_custom_field_values() {
 		// Set up the test.
-		$meta_box_args = [ 'id' => 'events' ];
-		$custom_fields = [
+		$this->meta_box_args;
+		$this->config['custom_fields'] = [
 			'event-date' => '2019-08-07',
 			'event-time' => '09:36:00',
 			'venue-name' => 'Some really cool venue',
@@ -178,11 +178,11 @@ NONCE;
 		Monkey\Functions\expect( 'spiralWebDB\Metadata\get_custom_fields_values' )
 			->once()
 			->with( 108, 'events', $this->config )
-			->andReturn( $custom_fields );
+			->andReturn( $this->config['custom_fields'] );
 
 		// Fire the rendering function and grab the HTML out of the buffer.
 		ob_start();
-		render_meta_box( $post, $meta_box_args );
+		render_meta_box( $post, $this->meta_box_args );
 		$actual_html = ob_get_clean();
 
 		// Test the HTML.
