@@ -157,7 +157,7 @@ NONCE;
 			->andReturnUsing( function () use ( $nonce_html ) {
 				echo $nonce_html;
 			} );
-		render_meta_box( $post, $this->meta_box_args );
+		render_meta_box( $this->post(), $this->meta_box_args );
 		$actual_html = ob_get_clean();
 
 		// Test the HTML.
