@@ -175,7 +175,8 @@ NONCE;
 				'event-date' => '2019-08-07',
 				'event-time' => '09:36:00',
 				'venue-name' => 'Some really cool venue',
-			]
+			],
+			'view'          => CENTRAL_HUB_ROOT_DIR . '/tests/phpunit/fixtures/meta-box-events-view.php',
 		];
 
 		// Set up the mocks.
@@ -208,7 +209,8 @@ NONCE;
 				'event-date' => '2019-08-07',
 				'event-time' => '09:36:00',
 				'venue-name' => 'Some really cool venue',
-			]
+			],
+			'view'          => CENTRAL_HUB_ROOT_DIR . '/tests/phpunit/fixtures/meta-box-events-view.php',
 		];
 		$this->nonce_html;
 		$this->expected_fixture_view_html;
