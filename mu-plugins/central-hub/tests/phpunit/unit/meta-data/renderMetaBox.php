@@ -110,26 +110,25 @@ VIEW;
 		parent::setUp();
 
 		require_once CENTRAL_HUB_ROOT_DIR . '/src/meta-data/meta-box.php';
+
+		$this->post();
+		$this->post()->ID = 23;
+		$this->meta_box_args;
+		$this->config['custom_fields'];
 	}
 
 	/**
 	 * Test render_meta_box() should assign meta box ID to the HTML field names.
 	 */
 	public function test_should_assign_meta_box_id_to_html_field_names() {
-		// Set up the test.
-		$this->meta_box_args;
-		$this->config['custom_fields'];
-
 		// Set up the mocks.
-		$post     = \Mockery::mock( 'WP_Post' );
-		$post->ID = 23;
 		Monkey\Functions\when( 'KnowTheCode\ConfigStore\getConfig' )->justReturn( $this->config );
 		Monkey\Functions\when( 'spiralWebDB\Metadata\get_custom_fields_values' )->justReturn( $custom_fields );
 		Monkey\Functions\when( 'wp_nonce_field' )->justReturn();
 
 		// Fire the rendering function and grab the HTML out of the buffer.
 		ob_start();
-		render_meta_box( $post, $this->meta_box_args );
+		render_meta_box( $this->post(), $this->meta_box_args );
 		$actual_html = ob_get_clean();
 
 		// Test the HTML.
