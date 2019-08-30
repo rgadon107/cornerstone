@@ -177,18 +177,16 @@ NONCE;
 		];
 
 		// Set up the mocks.
-		$post     = \Mockery::mock( 'WP_Post' );
-		$post->ID = 108;
 		Monkey\Functions\when( 'KnowTheCode\ConfigStore\getConfig' )->justReturn( $this->config );
 		Monkey\Functions\when( 'wp_nonce_field' )->justReturn();
 		Monkey\Functions\expect( 'spiralWebDB\Metadata\get_custom_fields_values' )
 			->once()
-			->with( 108, 'events', $this->config )
+			->with( $this->post()->ID, 'events', $this->config )
 			->andReturn( $this->config['custom_fields'] );
 
 		// Fire the rendering function and grab the HTML out of the buffer.
 		ob_start();
-		render_meta_box( $post, $this->meta_box_args );
+		render_meta_box( $this->post(), $this->meta_box_args );
 		$actual_html = ob_get_clean();
 
 		// Test the HTML.
@@ -212,21 +210,19 @@ NONCE;
 		$this->expected_fixture_view_html;
 
 		// Set up the mocks.
-		$post     = \Mockery::mock( 'WP_Post' );
-		$post->ID = 47;
 		Monkey\Functions\expect( 'KnowTheCode\ConfigStore\getConfig' )
 			->once()
 			->with( 'meta_box.events' )
 			->andReturn( $this->config );
 		Monkey\Functions\expect( 'spiralWebDB\Metadata\get_custom_fields_values' )
 			->once()
-			->with( 47, 'events', $this->config )
+			->with( $this->post()->ID, 'events', $this->config )
 			->andReturn( $this->config['custom_fields'] );
 
 		// Fire the rendering function and grab the HTML out of the buffer.
 		ob_start();
 		Monkey\Functions\when( 'wp_nonce_field' )->justEcho( $this->nonce_html );
-		render_meta_box( $post, $this->meta_box_args );
+		render_meta_box( $this->post(), $this->meta_box_args );
 		$actual_html = ob_get_clean();
 
 		// Test the HTML.
