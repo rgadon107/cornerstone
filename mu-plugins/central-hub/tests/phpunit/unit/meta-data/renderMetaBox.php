@@ -170,10 +170,12 @@ NONCE;
 	public function test_should_render_the_custom_field_values() {
 		// Set up the test.
 		$this->meta_box_args;
-		$this->config['custom_fields'] = [
-			'event-date' => '2019-08-07',
-			'event-time' => '09:36:00',
-			'venue-name' => 'Some really cool venue',
+		$this->config = [
+			'custom_fields' => [
+				'event-date' => '2019-08-07',
+				'event-time' => '09:36:00',
+				'venue-name' => 'Some really cool venue',
+			]
 		];
 
 		// Set up the mocks.
@@ -201,10 +203,12 @@ NONCE;
 	public function test_should_render_meta_box_html() {
 		// Set up the test.
 		$this->meta_box_args;
-		$this->config['custom_fields'] = [
-			'event-date' => '2019-08-07',
-			'event-time' => '09:00:00',
-			'venue-name' => 'Some venue',
+		$this->config = [
+			'custom_fields' => [
+				'event-date' => '2019-08-07',
+				'event-time' => '09:36:00',
+				'venue-name' => 'Some really cool venue',
+			]
 		];
 		$this->nonce_html;
 		$this->expected_fixture_view_html;
