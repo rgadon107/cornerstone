@@ -69,7 +69,7 @@ NONCE;
 	 *
 	 * @var string
 	 */
-	protected $expected_fixture_view_html    = <<<VIEW
+	protected $expected_fixture_view_html = <<<VIEW
 <div class="event-date">
 	<label for="event-date"><strong>Performance Date</strong></label>
 	<p>
