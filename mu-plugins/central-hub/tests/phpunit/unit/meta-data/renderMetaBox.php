@@ -132,7 +132,7 @@ VIEW;
 	 */
 	public function test_should_render_wp_nonce_field() {
 		// Set up the test.
-		$meta_box_args = [ 'id' => 'testing_nonce' ];
+		$this->meta_box_args;
 		$this->config['custom_fields'];
 		$nonce_html = <<<NONCE
 <input type="hidden" id="events_nonce_name" name="events_nonce_name" value="" />
@@ -147,11 +147,11 @@ NONCE;
 		ob_start();
 		Monkey\Functions\expect( 'wp_nonce_field' )
 			->once()
-			->with( 'testing_nonce_nonce_action', 'testing_nonce_nonce_name' )
+			->with( 'events_nonce_action', 'events_nonce_name' )
 			->andReturnUsing( function () use ( $nonce_html ) {
 				echo $nonce_html;
 			} );
-		render_meta_box( $post, $meta_box_args );
+		render_meta_box( $post, $this->meta_box_args );
 		$actual_html = ob_get_clean();
 
 		// Test the HTML.
