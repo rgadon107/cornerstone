@@ -61,7 +61,7 @@ function render_meta_box( WP_Post $post, array $meta_box_args ) {
 
 	// Get the metadata
 	$custom_fields = get_custom_fields_values( $post->ID, $meta_box_id, $config );
-var_dump( $custom_fields );
+
 	// Load the view file
 	include $config['view'];
 
