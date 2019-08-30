@@ -112,7 +112,7 @@ VIEW;
 		require_once CENTRAL_HUB_ROOT_DIR . '/src/meta-data/meta-box.php';
 
 		$this->post();
-		$this->post()->ID = 23;
+		$this->post()->ID;
 		$this->meta_box_args;
 		$this->config;
 	}
