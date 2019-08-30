@@ -45,6 +45,17 @@ class Tests_RenderMetaBox extends Test_Case {
 	protected $meta_box_args = [ 'id' => 'events' ];
 
 	/**
+	 *  Return the instance of the WP_Post object with Mockery.
+	 *
+	 * @return \Mockery\LegacyMockInterface|\Mockery\MockInterface|WP_Post
+	 * @since 1.0.0
+	 *
+	 */
+	public function post() {
+		return \Mockery::mock( 'WP_Post' );
+	}
+
+	/**
 	 * Nonce html.
 	 *
 	 * @var string
