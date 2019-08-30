@@ -24,10 +24,9 @@
 /plugins/wordpress-seo
 /plugins/wp-migrate-db-pro
 /plugins/wp-migrate-db-pro-media-files
+/themes/Beans
 /themes/developers/node_modules/
 /themes/genesis
-/themes/twentyseventeen
-/themes/twentynineteen
 /upgrade
 /uploads
 /wflogs/*
