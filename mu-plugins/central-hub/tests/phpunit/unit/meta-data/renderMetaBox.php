@@ -142,14 +142,10 @@ VIEW;
 	 */
 	public function test_should_render_wp_nonce_field() {
 		// Set up the test.
-		$this->meta_box_args;
-		$this->config['custom_fields'];
 		$nonce_html = <<<NONCE
 <input type="hidden" id="events_nonce_name" name="events_nonce_name" value="" />
 NONCE;
 		// Set up the mocks.
-		$post     = \Mockery::mock( 'WP_Post' );
-		$post->ID = 99;
 		Monkey\Functions\when( 'KnowTheCode\ConfigStore\getConfig' )->justReturn( $this->config );
 		Monkey\Functions\when( 'spiralWebDB\Metadata\get_custom_fields_values' )->justReturn( $custom_fields );
 
