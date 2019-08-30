@@ -114,7 +114,7 @@ VIEW;
 		$this->post();
 		$this->post()->ID = 23;
 		$this->meta_box_args;
-		$this->config['custom_fields'];
+		$this->config;
 	}
 
 	/**
