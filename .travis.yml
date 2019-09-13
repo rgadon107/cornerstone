@@ -25,7 +25,7 @@ before_install:
 
 install:
   - composer install --prefer-source --no-interaction --dev
-  - composer global require "phpunit/phpunit=4.8.*|5.7.*"
+  - composer global require "phpunit/phpunit=^5"
 
 before_script:
   - export PATH="$HOME/.composer/vendor/bin:$PATH"
