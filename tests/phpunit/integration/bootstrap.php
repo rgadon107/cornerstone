@@ -16,7 +16,7 @@ use function spiralWebDb\Cornerstone\Tests\init_test_suite;
 require_once dirname( dirname( __FILE__ ) ) . '/functions.php';
 init_test_suite( 'integration' );
 
-define( 'WP_CONTENT_DIR', dirname( dirname( dirname( getcwd() ) ) ) . '/wp-content/' ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedConstantFound -- Our tests need to define this constant.
+define( 'WP_CONTENT_DIR', dirname( dirname( dirname( getcwd() ) ) ) ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedConstantFound -- Our tests need to define this constant.
 
 if ( ! defined( 'WP_PLUGIN_DIR' ) ) {
 	define( 'WP_PLUGIN_DIR', WP_CONTENT_DIR . 'plugins/' ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedConstantFound -- When this constant is not already defined, we define it here. It's a valid use case for our testing suite.
