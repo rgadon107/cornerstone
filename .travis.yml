@@ -42,9 +42,7 @@ before_script:
     fi
 
 script:
-  - composer phpcs
-  - composer test-unit
-  - composer test-integration
+  - composer run-tests
 
 notifications:
   on_success: never
