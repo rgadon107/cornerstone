@@ -13,21 +13,17 @@ namespace spiralWebDb\Cornerstone\Tests\Integration;
 
 use function spiralWebDb\Cornerstone\Tests\init_test_suite;
 
-if ( 'wp-content' !== basename( dirname( dirname( dirname( __DIR__ ) ) ) ) ) {
-	trigger_error( 'Unable to run the integration tests, because the wp-content folder does not exist.', E_USER_ERROR ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_trigger_error -- Valid use case for our testing suite.
-}
-
 require_once dirname( dirname( __FILE__ ) ) . '/functions.php';
 init_test_suite( 'integration' );
 
-define( 'WP_CONTENT_DIR', dirname( dirname( dirname( __DIR__ ) ) ) ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedConstantFound -- Our tests need to define this constant.
+$repo_root_dir = dirname( dirname( dirname( __DIR__ ) ) );
 
 if ( ! defined( 'WP_PLUGIN_DIR' ) ) {
-	define( 'WP_PLUGIN_DIR', WP_CONTENT_DIR . 'plugins/' ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedConstantFound -- When this constant is not already defined, we define it here. It's a valid use case for our testing suite.
+	define( 'WP_PLUGIN_DIR', $repo_root_dir . 'plugins/' ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedConstantFound -- When this constant is not already defined, we define it here. It's a valid use case for our testing suite.
 }
 
 if ( ! defined( 'GENESIS_THEME_DIR' ) ) {
-	define( 'GENESIS_THEME_DIR', WP_CONTENT_DIR . '/themes/genesis' );
+	define( 'GENESIS_THEME_DIR', $repo_root_dir . '/themes/genesis' );
 }
 
 /**
