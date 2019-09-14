@@ -41,6 +41,10 @@ function get_wp_tests_dir() {
 		$tests_dir = '/tmp/wordpress-tests';
 	}
 
+	if ( empty( $tests_dir ) ) {
+		$tests_dir = rtrim( sys_get_temp_dir(), '/\\' ) . '/wordpress-tests-lib';
+	}
+
 	// If the tests' includes directory does not exist, try a relative path to the Core tests directory.
 	if ( ! file_exists( $tests_dir . '/includes/' ) ) {
 		$tests_dir = '../../../../tests/phpunit';
