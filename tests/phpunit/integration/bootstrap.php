@@ -35,6 +35,7 @@ if ( ! defined( 'GENESIS_THEME_DIR' ) ) {
  */
 function get_wp_tests_dir() {
 	$tests_dir = getenv( 'WP_TESTS_DIR' );
+	var_dump( $tests_dir );
 
 	// Travis CI & Vagrant SSH tests directory.
 	if ( empty( $tests_dir ) ) {
