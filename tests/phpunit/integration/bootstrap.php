@@ -36,14 +36,10 @@ if ( ! defined( 'GENESIS_THEME_DIR' ) ) {
 function get_wp_tests_dir() {
 	$tests_dir = getenv( 'WP_TESTS_DIR' );
 
-	var_dump( $tests_dir );
-
 	// Travis CI & Vagrant SSH tests directory.
 	if ( ! $tests_dir ) {
 		$tests_dir = '/tmp/wordpress-tests-lib';
 	}
-
-	var_dump( $tests_dir );
 
 	// If the tests' includes directory does not exist, try a relative path to the Core tests directory.
 	if ( ! file_exists( $tests_dir . '/includes/' ) ) {
