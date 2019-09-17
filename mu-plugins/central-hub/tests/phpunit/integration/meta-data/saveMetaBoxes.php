@@ -45,15 +45,16 @@ class Tests_SaveMetaBoxes extends Test_Case {
 	 */
 	public function setUp() {
 		parent::setUp();
+
+		// Create and get the post object via the factory method.
+		$this->post     = self::factory()->post->create_and_get();
+		$this->post->ID = 19;
 	}
 
 	/**
 	 * Test save_meta_boxes() should check whether okay to save meta box and custom fields.
 	 */
 	public function test_function_should_check_whether_okay_to_save_meta_box_and_custom_fields() {
-		// Create and get the post object via the factory method.
-		$post     = self::factory()->post->create_and_get();
-		$post->ID = 19;
 
 		$configs = [
 			'meta_box.members' => [
@@ -85,8 +86,6 @@ class Tests_SaveMetaBoxes extends Test_Case {
 	 * Test save_meta_boxes() should return null when store key does not start with `meta_box.`.
 	 */
 	public function test_function_returns_null_when_store_key_does_not_start_with_meta_box() {
-		$post     = self::factory()->post->create_and_get();
-		$post->ID = 192;
 
 		$configs = [
 			'taxonomy.roles'         => [
@@ -122,8 +121,6 @@ class Tests_SaveMetaBoxes extends Test_Case {
 	 * Test save_meta_boxes() should return null when meta box config is empty.
 	 */
 	public function test_function_should_return_null_when_meta_box_config_is_empty() {
-		$post     = self::factory()->post->create_and_get();
-		$post->ID = 373;
 
 		$configs = [];
 		foreach ( $configs as $store_key => $config_to_store ) {
