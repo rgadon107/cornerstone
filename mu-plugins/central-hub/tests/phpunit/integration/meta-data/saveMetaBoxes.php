@@ -27,6 +27,13 @@ use spiralWebDb\Cornerstone\Tests\Integration\Test_Case;
 class Tests_SaveMetaBoxes extends Test_Case {
 
 	/**
+	 * Instance of the post for each test.
+	 *
+	 * @var WP_Post
+	 */
+	protected $post;
+
+	/**
 	 * Empty the store before starting these tests.
 	 */
 	public static function setUpBeforeClass() {
