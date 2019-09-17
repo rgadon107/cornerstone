@@ -52,6 +52,15 @@ class Tests_SaveMetaBoxes extends Test_Case {
 	}
 
 	/**
+	 * Cleans up the test environment after each test.
+	 */
+	public function tearDown() {
+		parent::tearDown();
+
+		self::empty_the_store();
+	}
+
+	/**
 	 * Test save_meta_boxes() should check whether okay to save meta box and custom fields.
 	 */
 	public function test_function_should_check_whether_okay_to_save_meta_box_and_custom_fields() {
@@ -77,9 +86,6 @@ class Tests_SaveMetaBoxes extends Test_Case {
 		$this->assertSame( $meta_box_key, get_meta_box_id( 'meta_box.members' ) );
 		$this->assertSame( $custom_fields_config, getConfigParameter( 'meta_box.members', 'custom_fields' ) );
 		$this->assertNull( save_meta_boxes( 19 ) );
-
-		// Clean up.
-		self::empty_the_store( $configs );
 	}
 
 	/**
@@ -111,10 +117,7 @@ class Tests_SaveMetaBoxes extends Test_Case {
 		$expected = [];
 
 		$this->assertSame( $expected, get_meta_box_keys() );
-		$this->assertNull( save_meta_boxes( 192 ) );
-
-		// Clean up.
-		self::empty_the_store( $configs );
+		$this->assertNull( save_meta_boxes( 19 ) );
 	}
 
 	/**
@@ -129,10 +132,6 @@ class Tests_SaveMetaBoxes extends Test_Case {
 		$expected = [];
 
 		$this->assertSame( $expected, get_meta_box_keys() );
-		$this->assertNull( save_meta_boxes( 373 ) );
-
-		// Clean up.
-		self::empty_the_store( $configs );
+		$this->assertNull( save_meta_boxes( 19 ) );
 	}
 }
-
