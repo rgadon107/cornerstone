@@ -64,7 +64,8 @@ class Tests_SaveMetaBoxes extends Test_Case {
 	* Test save_meta_boxes() should register to add_action( save_post' ) when event fires.
 	*/
 	public function test_function_should_register_to_action_hook_when_event_fires() {
-		
+
+		// `has_action()` returns the priority level of the callback registered to the event ($tag).
 		$this->assertEquals( 10, has_action( 'save_post', 'spiralWebDB\Metadata\save_meta_boxes' ) );
 		$this->assertTrue( has_action( 'save_post' ) );
 	}
