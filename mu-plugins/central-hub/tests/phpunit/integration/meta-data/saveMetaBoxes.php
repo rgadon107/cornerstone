@@ -60,6 +60,20 @@ class Tests_SaveMetaBoxes extends Test_Case {
 		self::empty_the_store();
 	}
 
+	/*
+	* Test save_meta_boxes() should register to add_action( save_post' ) when event fires.
+	*/
+	public function test_function_should_register_to_action_hook_when_event_fires() {
+
+		// The follow assert passes when the integration test runs.
+		$this->assertTrue( has_action( 'save_post' ) );
+
+		// The following assert DOES NOT PASS when the integration test runs.
+		// Returns error message: Fatal error: Default value for parameters with a class type hint
+		//    can only be NULL in /app/public/wp-content/tests/vendor/symfony/yaml/Yaml.php on line 52
+//		$this->assertTrue( has_action( 'save_post', 'spiralWebDB\Metadata\save_meta_boxes' ) );
+	}
+
 	/**
 	 * Test save_meta_boxes() should check whether okay to save meta box and custom fields.
 	 */
