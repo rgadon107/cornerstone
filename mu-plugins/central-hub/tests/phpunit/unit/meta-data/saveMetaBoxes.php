@@ -37,7 +37,13 @@ class Tests_SaveMetaBoxes extends Test_Case {
     * Test save_meta_boxes() should register to add_action( save_post' ) when event fires.
     */
 //	public function test_function_should_register_to_action_hook_when_event_fires() {
-//		$this->assertTrue( has_action( 'save_post', 'spiralWebDB\Metadata\save_meta_boxes' ) );
+//
+//		Monkey\Actions\expectAdded( 'save_post' )
+//			->once()
+//			->with( 'spiralWebDB\Metadata\save_meta_boxes' )
+//			->andReturn();
+//
+//		self::assertTrue( has_action( 'save_post', 'spiralWebDB\Metadata\save_meta_boxes' ) );
 //	}
 
 	/**
