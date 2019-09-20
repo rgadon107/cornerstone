@@ -13,7 +13,6 @@ namespace spiralWebDb\centralHub\Tests\Unit\Metadata;
 
 use Brain\Monkey;
 use function spiralWebDB\Metadata\save_meta_boxes;
-use function KnowTheCode\ConfigStore\loadConfig;
 use spiralWebDb\Cornerstone\Tests\Unit\Test_Case;
 
 /**
