@@ -86,9 +86,9 @@ class Tests_SaveMetaBoxes extends Test_Case {
 	}
 
 	/**
-	 *  Test save_meta_boxes() should not save when the nonce key is not equal to the expected value.
+	 *  Test save_meta_boxes() should not save when the expected meta box nonce key is not validated.
 	 */
-	public function test_should_not_save_when_the_nonce_key_is_not_equal_to_the_expected_value() {
+	public function test_should_not_save_when_the_expected_meta_box_nonce_key_is_not_validated() {
 		Monkey\Functions\expect( 'spiralWebDB\Metadata\get_meta_box_keys' )
 			->once()
 			->withNoArgs()
