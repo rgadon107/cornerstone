@@ -124,11 +124,15 @@ function is_okay_to_save_meta_box( $meta_box_key ) {
 	}
 
 	// Security check.
+	$nonce_name = "{$meta_box_key}_nonce_name";
+	if ( ! isset( $_POST[ $nonce_name ] ) ) {
+		return false;
+	}
+
 	return wp_verify_nonce(
-		$_POST[ $meta_box_key . '_nonce_name' ],
+		$_POST[ $nonce_name ],
 		$meta_box_key . '_nonce_action'
 	);
-
 }
 
 /**
