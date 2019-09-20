@@ -53,27 +53,6 @@ class Tests_SaveMetaBoxes extends Test_Case {
 	 * Test save_meta_boxes() should not save when config meta box key does not begin with 'meta_box.'.
 	 */
 	public function test_should_not_save_when_config_meta_box_key_does_not_begin_with_metabox() {
-		$configs = [
-			'taxonomy.roles'         => [
-				'Soprano' => 'Soprano (vocalist)',
-			],
-			'shortcode.qa'           => [
-				'Question 1' => 'How many angels can dance on the head of a pin?',
-			],
-			'custom_post_type.books' => [
-				'Title' => 'To Kill a Mockingbird',
-			],
-			'metabox.notametabox'    => [
-				'add_meta_box' => [
-					'id'     => 'notametabox',
-					'title'  => 'Does not start with the right meta_box. structure',
-					'screen' => [ 'notametabox' ],
-				],
-			],
-		];
-		foreach ( $configs as $store_key => $config_to_store ) {
-			loadConfig( $store_key, $config_to_store );
-		}
 		Monkey\Functions\expect( 'spiralWebDB\Metadata\get_meta_box_keys' )
 			->once()
 			->withNoArgs()
@@ -107,20 +86,51 @@ class Tests_SaveMetaBoxes extends Test_Case {
 	}
 
 	/**
-	 * Test save_meta_boxes() should save custom fields and returns a valid nonce.
+	 *  Test save_meta_boxes() should not save when the nonce key is not equal to the expected value.
 	 */
-	public function test_function_should_save_custom_fields_and_return_valid_nonce() {
-		$config_to_store = [
-			'meta_box.members' => [
-				'custom_fields' => [
-					'role'            => 'Soprano',
-					'residence_city'  => 'Chicago',
-					'residence_state' => 'IL',
-					'tour_number'     => '3',
-				],
-			],
-		];
-		loadConfig( 'meta_box.members', $config_to_store['meta_box.members'] );
+	public function test_should_not_save_when_the_nonce_key_is_not_equal_to_the_expected_value() {
+		Monkey\Functions\expect( 'spiralWebDB\Metadata\get_meta_box_keys' )
+			->once()
+			->withNoArgs()
+			->andReturn( [ 'meta_box.reviews' ] );
+		Monkey\Functions\expect( 'spiralWebDB\Metadata\get_meta_box_id' )
+			->once()
+			->with( 'meta_box.reviews' )
+			->andReturn( 'reviews' );
+		Monkey\Functions\expect( 'spiralWebDB\Metadata\is_okay_to_save_meta_box' )
+			->once()
+			->with( 'reviews' )
+			->andReturn( false );
+		Monkey\Functions\expect( 'KnowTheCode\ConfigStore\getConfigParameter' )->never();
+		Monkey\Functions\expect( 'spiralWebDB\Metadata\save_custom_fields' )->never();
+		save_meta_boxes( 342 );
+	}
+
+	/**
+	 * Test save_meta_boxes() should not save when the expected nonce fails.
+	 */
+	public function test_should_not_save_when_the_expected_nonce_fails() {
+		Monkey\Functions\expect( 'spiralWebDB\Metadata\get_meta_box_keys' )
+			->once()
+			->withNoArgs()
+			->andReturn( [ 'meta_box.members' ] );
+		Monkey\Functions\expect( 'spiralWebDB\Metadata\get_meta_box_id' )
+			->once()
+			->with( 'meta_box.members' )
+			->andReturn( 'members' );
+		Monkey\Functions\expect( 'spiralWebDB\Metadata\is_okay_to_save_meta_box' )
+			->once()
+			->with( 'members' )
+			->andReturn( false );
+		Monkey\Functions\expect( 'KnowTheCode\ConfigStore\getConfigParameter' )->never();
+		Monkey\Functions\expect( 'spiralWebDB\Metadata\save_custom_fields' )->never();
+		save_meta_boxes( 349 );
+	}
+
+	/**
+	 * Test save_meta_boxes() should save when one or more valid post meta values are added.
+	 */
+	public function test_should_save_when_one_or_more_valid_post_meta_values_are_added() {
 		Monkey\Functions\expect( 'spiralWebDB\Metadata\get_meta_box_keys' )
 			->once()
 			->withNoArgs()
@@ -140,8 +150,6 @@ class Tests_SaveMetaBoxes extends Test_Case {
 			] );
 		Monkey\Functions\when( 'spiralWebDB\Metadata\save_custom_fields' )
 			->justReturn();
-
-		$this->assertNull( save_meta_boxes( 19 ) );
+		save_meta_boxes( 354 );
 	}
 }
-
