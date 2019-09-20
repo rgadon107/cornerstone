@@ -95,7 +95,7 @@ class Tests_SaveMetaBoxes extends Test_Case {
 		$this->assertSame( $expected, get_meta_box_keys() );
 		$this->assertSame( $meta_box_key, get_meta_box_id( 'meta_box.members' ) );
 		$this->assertSame( $custom_fields_config, getConfigParameter( 'meta_box.members', 'custom_fields' ) );
-		$this->assertNull( save_meta_boxes( $this->post->ID ) );
+		save_meta_boxes( $this->post->ID );
 	}
 
 	/**
@@ -127,7 +127,7 @@ class Tests_SaveMetaBoxes extends Test_Case {
 		$expected = [];
 
 		$this->assertSame( $expected, get_meta_box_keys() );
-		$this->assertNull( save_meta_boxes( $this->post->ID ) );
+		save_meta_boxes( $this->post->ID );
 	}
 
 	/**
@@ -142,6 +142,6 @@ class Tests_SaveMetaBoxes extends Test_Case {
 		$expected = [];
 
 		$this->assertSame( $expected, get_meta_box_keys() );
-		$this->assertNull( save_meta_boxes( $this->post->ID ) );
+		save_meta_boxes( $this->post->ID );
 	}
 }
