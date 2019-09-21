@@ -14,8 +14,11 @@ namespace spiralWebDb\centralHub\Tests\Integration\Metadata;
 use function KnowTheCode\ConfigStore\loadConfig;
 use function spiralWebDB\Metadata\get_meta_box_keys;
 use function spiralWebDB\Metadata\get_meta_box_id;
+use function spiralWebDB\Metadata\is_okay_to_save_meta_box;
 use function KnowTheCode\ConfigStore\getConfigParameter;
+use function spiralWebDB\Metadata\save_custom_fields;
 use function spiralWebDB\Metadata\save_meta_boxes;
+use function get_post_meta;
 use spiralWebDb\Cornerstone\Tests\Integration\Test_Case;
 
 /**
@@ -80,12 +83,11 @@ class Tests_SaveMetaBoxes extends Test_Case {
 
 		$this->assertSame( $expected, get_meta_box_keys() );
 	}
-	
-	/**
-	 * Test save_meta_boxes() should check whether okay to save meta box and custom fields.
-	 */
-	public function test_function_should_check_whether_okay_to_save_meta_box_and_custom_fields() {
 
+	/**
+	 * Test save_meta_boxes() should not save when the $meta_box_key is not validated in $_POST.
+	 */
+	public function test_should_not_save_when_the_meta_box_key_is_not_validated_in_POST() {
 		$configs = [
 			'meta_box.members' => [
 				'custom_fields' => [
@@ -99,60 +101,97 @@ class Tests_SaveMetaBoxes extends Test_Case {
 		foreach ( $configs as $store_key => $config_to_store ) {
 			loadConfig( $store_key, $config_to_store );
 		}
-		$expected             = [ 0 => 'meta_box.members' ];
-		$meta_box_key         = 'members';
-		$custom_fields_config = $configs['meta_box.members']['custom_fields'];
+		$_POST        = [
+			'post_ID'            => $this->post->ID,
+			'post_status'        => 'published',
+			'members_nonce_name' => '0390a99dc5',
+		];
+		$expected     = [ 0 => 'meta_box.members' ];
+		$meta_box_key = 'members';
+		save_meta_boxes( $this->post->ID );
 
 		$this->assertSame( $expected, get_meta_box_keys() );
 		$this->assertSame( $meta_box_key, get_meta_box_id( 'meta_box.members' ) );
-		$this->assertSame( $custom_fields_config, getConfigParameter( 'meta_box.members', 'custom_fields' ) );
-		save_meta_boxes( $this->post->ID );
+		$this->assertFalse( is_okay_to_save_meta_box( $meta_box_key ) );
 	}
 
 	/**
-	 * Test save_meta_boxes() should return null when store key does not start with `meta_box.`.
+	 * Test save_meta_boxes() should not save when the $meta_box_key is not validated by wp_verify_nonce().
 	 */
-	public function test_function_returns_null_when_store_key_does_not_start_with_meta_box() {
-
+	public function test_should_not_save_when_the_meta_box_key_is_not_validated_by_wp_verify_nonce() {
 		$configs = [
-			'taxonomy.roles'         => [
-				'Soprano' => 'Soprano (vocalist)',
-			],
-			'shortcode.qa'           => [
-				'Question 1' => 'How many angels can dance on the head of a pin?',
-			],
-			'custom_post_type.books' => [
-				'Title' => 'To Kill a Mockingbird',
-			],
-			'metabox.notametabox'    => [
-				'add_meta_box' => [
-					'id'     => 'notametabox',
-					'title'  => 'Does not start with the right meta_box. structure',
-					'screen' => [ 'notametabox' ],
+			'meta_box.members' => [
+				'custom_fields' => [
+					'role'            => 'Soprano',
+					'residence_city'  => 'Chicago',
+					'residence_state' => 'IL',
+					'tour_number'     => '3',
 				],
 			],
 		];
 		foreach ( $configs as $store_key => $config_to_store ) {
 			loadConfig( $store_key, $config_to_store );
 		}
-		$expected = [];
+		$_POST        = [
+			'post_ID'     => $this->post->ID,
+			'post_status' => 'published',
+			'members'     => [
+				'role'            => 'Soprano',
+				'residence_city'  => 'Chicago',
+				'residence_state' => 'IL',
+				'tour_number'     => '3',
+			],
+		];
+		$expected     = [ 0 => 'meta_box.members' ];
+		$meta_box_key = 'members';
+		save_meta_boxes( $this->post->ID );
 
 		$this->assertSame( $expected, get_meta_box_keys() );
-		save_meta_boxes( $this->post->ID );
+		$this->assertSame( $meta_box_key, get_meta_box_id( 'meta_box.members' ) );
+		$this->assertFalse( is_okay_to_save_meta_box( $meta_box_key ) );
 	}
 
-	/**
-	 * Test save_meta_boxes() should return null when meta box config is empty.
-	 */
-	public function test_function_should_return_null_when_meta_box_config_is_empty() {
 
-		$configs = [];
+	/**
+	 * Test save_meta_boxes() should save when one or more valid post meta values are added.
+	 */
+	public function test_should_save_when_one_or_more_valid_post_meta_values_are_added() {
+		$configs = [
+			'meta_box.members' => [
+				'custom_fields' => [
+					'role'            => 'Soprano',
+					'residence_city'  => 'Chicago',
+					'residence_state' => 'IL',
+					'tour_number'     => '3',
+				],
+			],
+		];
 		foreach ( $configs as $store_key => $config_to_store ) {
 			loadConfig( $store_key, $config_to_store );
 		}
-		$expected = [];
+		$_POST                = [
+			'post_ID'              => $this->post->ID,
+			'post_status'          => 'published',
+			'members'              => [
+				'role'            => 'Soprano',
+				'residence_city'  => 'Chicago',
+				'residence_state' => 'IL',
+				'tour_number'     => '3',
+			],
+			'members_nonce_name'   => '0390a99dc5',
+			'members_nonce_action' => 1,
+		];
+		$expected             = [ 0 => 'meta_box.members' ];
+		$meta_box_key         = 'members';
+		$custom_fields_config = $configs['meta_box.members']['custom_fields'];
+		save_meta_boxes( $this->post->ID );
+//		var_dump( get_post_meta( $this->post->ID, $custom_fields_config, false ) );
+//      $this->assertSame( $custom_fields_config, get_post_meta( $this->post->ID, $custom_fields_config, false ) );
 
 		$this->assertSame( $expected, get_meta_box_keys() );
-		save_meta_boxes( $this->post->ID );
+		$this->assertSame( $meta_box_key, get_meta_box_id( 'meta_box.members' ) );
+//		$this->assertSame( 1, is_okay_to_save_meta_box( $meta_box_key ) );
+		$this->assertSame( $custom_fields_config, getConfigParameter( 'meta_box.members', 'custom_fields' ) );
+//		$this->assertNull( save_custom_fields( $custom_fields_config, $meta_box_key, $this->post->ID ) );
 	}
 }
