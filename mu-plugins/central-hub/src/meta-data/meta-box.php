@@ -131,7 +131,7 @@ function is_okay_to_save_meta_box( $meta_box_key ) {
 
 	return wp_verify_nonce(
 		$_POST[ $nonce_name ],
-		$meta_box_key . '_nonce_action'
+		"{$meta_box_key}_nonce_action"
 	);
 }
 
