@@ -71,20 +71,16 @@ class Tests_SaveMetaBoxes extends Test_Case {
 	}
 
 	/**
-	 * Test save_meta_boxes() should not save when no meta box keys are in the Config Store.
+	 * Test save_meta_boxes() should not save when no meta box keys are in the Config Store or
+	 *    config does not begin with `meta_box.`.
 	 */
 	public function test_should_not_save_when_no_meta_box_keys_are_in_store() {
-		$configs = [];
-		foreach( $configs as $store_key => $config_to_store ) {
-			loadConfig( $store_key, $config_to_store );
-		}
 		$expected = [];
 		save_meta_boxes( $this->post->ID );
 
-		$this->assertSame( $expected, get_post_meta( $this->post->ID ) );
 		$this->assertSame( $expected, get_meta_box_keys() );
 	}
-
+	
 	/**
 	 * Test save_meta_boxes() should check whether okay to save meta box and custom fields.
 	 */
