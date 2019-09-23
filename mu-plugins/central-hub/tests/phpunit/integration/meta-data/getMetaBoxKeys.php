@@ -72,3 +72,4 @@ class Tests_GetMetaBoxKeys extends Test_Case {
 		self::empty_the_store( $configs );
 	}
 }
+

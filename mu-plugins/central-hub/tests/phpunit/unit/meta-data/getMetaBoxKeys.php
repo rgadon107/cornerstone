@@ -80,3 +80,4 @@ class Tests_GetMetaBoxKeys extends Test_Case {
 		$this->assertSame( [ 'meta_box.events', 'meta_box.members' ], get_meta_box_keys() );
 	}
 }
+
