@@ -184,14 +184,7 @@ class Tests_SaveMetaBoxes extends Test_Case {
 		$expected             = [ 0 => 'meta_box.members' ];
 		$meta_box_key         = 'members';
 		$custom_fields_config = $configs['meta_box.members']['custom_fields'];
-		save_meta_boxes( $this->post->ID );
-//		var_dump( get_post_meta( $this->post->ID, $custom_fields_config, false ) );
-//      $this->assertSame( $custom_fields_config, get_post_meta( $this->post->ID, $custom_fields_config, false ) );
 
-		$this->assertSame( $expected, get_meta_box_keys() );
-		$this->assertSame( $meta_box_key, get_meta_box_id( 'meta_box.members' ) );
-//		$this->assertSame( 1, is_okay_to_save_meta_box( $meta_box_key ) );
-		$this->assertSame( $custom_fields_config, getConfigParameter( 'meta_box.members', 'custom_fields' ) );
-//		$this->assertNull( save_custom_fields( $custom_fields_config, $meta_box_key, $this->post->ID ) );
+		save_meta_boxes( $this->post->ID );
 	}
 }
