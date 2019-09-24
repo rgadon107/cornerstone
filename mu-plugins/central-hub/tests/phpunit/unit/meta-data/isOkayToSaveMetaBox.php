@@ -23,33 +23,10 @@ use spiralWebDb\Cornerstone\Tests\Unit\Test_Case;
  */
 class Tests_IsOkayToSaveMetaBox extends Test_Case {
 
-	protected function init_and_store_config() {
-		$_POST = [
-			'events' => [
-				'add_meta_box'  => [],
-				'custom_fields' => [],
-				'view'          => '',
-			],
-		];
-		foreach ( $_POST as $store_key => $config_to_store ) {
-			loadConfig( $store_key, $config_to_store );
-		}
-	}
-
-	protected function get_config_from_store( $store_key ) {
-		return getConfig( $store_key );
-	}
-
 	protected function initialize_constants() {
 		define( 'DOING_AUTOSAVE', true );
 		define( 'DOING_AJAX', true );
 		define( 'DOING_CRON', true );
-	}
-
-	protected function update_patchwork_redefinable_internals_with_php_core_functions() {
-		$core_function_stack = getDefaultRedefinableInternals();
-		$functions_to_add    = [ 'defined', 'constant' ];
-		return array_merge( $core_function_stack, $functions_to_add );
 	}
 
 	/**
