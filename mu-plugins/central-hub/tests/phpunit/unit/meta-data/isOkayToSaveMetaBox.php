@@ -12,11 +12,6 @@
 namespace spiralWebDb\centralHub\Tests\Unit\Metadata;
 
 use Brain\Monkey;
-use function Patchwork\Config\getDefaultRedefinableInternals;
-use function \define;
-use function \array_merge;
-use function KnowTheCode\ConfigStore\loadConfig;
-use function KnowTheCode\ConfigStore\getConfig;
 use function spiralWebDB\Metadata\is_okay_to_save_meta_box;
 use spiralWebDb\Cornerstone\Tests\Unit\Test_Case;
 
