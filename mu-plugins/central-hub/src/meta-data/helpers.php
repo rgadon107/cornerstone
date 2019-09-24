@@ -35,9 +35,6 @@ function get_meta_box_keys() {
  * @return string
  */
 function get_meta_box_id( $store_key ) {
-	if ( ! str_starts_with( $store_key, 'meta_box.' ) ) {
-		return $store_key;
-	}
 	return str_replace( 'meta_box.', '', $store_key );
 }
 
