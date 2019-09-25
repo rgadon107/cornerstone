@@ -47,36 +47,10 @@ class Tests_GetMetaBoxKeys extends Test_Case {
 	 * Test get_meta_box_keys() returns all array keys that start with `meta_box.`
 	 */
 	public function test_returns_all_array_keys_that_start_with_meta_box() {
-		Monkey\Functions\expect( 'KnowTheCode\ConfigStore\getAllKeys' )
+		Monkey\Functions\expect( 'KnowTheCode\ConfigStore\getAllKeysStartingWith' )
 			->once()
-			->withNoArgs()
-			->andReturn( [
-				'meta_box.events',
-				'meta_box.members',
-				'shortcode.qa',
-				'custom_post_type.books',
-			] );
-
-		Monkey\Functions\expect( 'KnowTheCode\ConfigStore\str_starts_with' )
-			->once()
-			->with( 'meta_box.events', 'meta_box.' )
-			->ordered()
-			->andReturn( true )
-			->andAlsoExpectIt()
-			->once()
-			->with( 'meta_box.members', 'meta_box.' )
-			->ordered()
-			->andReturn( true )
-			->andAlsoExpectIt()
-			->once()
-			->with( 'shortcode.qa', 'meta_box.' )
-			->ordered()
-			->andReturn( false )
-			->andAlsoExpectIt()
-			->once()
-			->with( 'custom_post_type.books', 'meta_box.' )
-			->ordered()
-			->andReturn( false );
+			->with( 'meta_box.' )
+			->andReturn( [ 'meta_box.events', 'meta_box.members' ] );
 
 		$this->assertSame( [ 'meta_box.events', 'meta_box.members' ], get_meta_box_keys() );
 	}
