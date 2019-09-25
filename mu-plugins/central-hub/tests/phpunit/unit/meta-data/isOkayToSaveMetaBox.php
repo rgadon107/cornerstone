@@ -23,12 +23,6 @@ use spiralWebDb\Cornerstone\Tests\Unit\Test_Case;
  */
 class Tests_IsOkayToSaveMetaBox extends Test_Case {
 
-	protected function initialize_constants() {
-		define( 'DOING_AUTOSAVE', true );
-		define( 'DOING_AJAX', true );
-		define( 'DOING_CRON', true );
-	}
-
 	/**
 	 * Prepare the test environment before each test.
 	 */
