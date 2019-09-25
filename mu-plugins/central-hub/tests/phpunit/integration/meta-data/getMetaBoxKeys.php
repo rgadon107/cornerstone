@@ -31,10 +31,36 @@ class Tests_GetMetaBoxKeys extends Test_Case {
 	}
 
 	/**
-	 * Test get_meta_box_keys() returns empty array when store key is empty or does not start with 'meta_box.'
+	 * Clean up the test environment after each test.
 	 */
-	public function test_returns_empty_array_when_store_key_is_empty_or_does_not_begin_with_meta_box() {
+	public function tearDown() {
+		self::empty_the_store();
+	}
+
+	/**
+	 * Test get_meta_box_keys() returns empty array when store key is empty.
+	 */
+	public function test_returns_empty_array_when_store_key_is_empty() {
 		loadConfig( '', [] );
+		get_meta_box_keys();
+
+		$this->assertSame( [], get_meta_box_keys() );
+	}
+
+	/**
+	 * Test get_meta_box_keys() returns empty array when store key does not start with `meta_box`.
+	 */
+	public function test_returns_empty_array_when_store_key_does_not_start_with_meta_box() {
+		$configs = [
+			'notametabox.members' => [
+				'add_meta_box' => [
+					'id'      => 'members',
+					'screen'  => 'members',
+					'context' => 'normal',
+				],
+			],
+		];
+		loadConfig( 'notametabox.members', $configs['notametabox.members'] );
 		get_meta_box_keys();
 
 		$this->assertSame( [], get_meta_box_keys() );
@@ -67,9 +93,5 @@ class Tests_GetMetaBoxKeys extends Test_Case {
 		}
 
 		$this->assertSame( [ 'meta_box.events', 'meta_box.members' ], get_meta_box_keys() );
-
-		// Clean up.
-		self::empty_the_store( $configs );
 	}
 }
-
