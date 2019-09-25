@@ -39,6 +39,7 @@ class Tests_GetMetaBoxKeys extends Test_Case {
 		$expected = [];
 		get_meta_box_keys();
 
+		$this->assertArrayNotHasKey( 'meta_box.', get_meta_box_keys() );
 		$this->assertSame( $expected, get_meta_box_keys() );
 	}
 
