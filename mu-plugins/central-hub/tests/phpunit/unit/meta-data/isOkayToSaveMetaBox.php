@@ -53,21 +53,10 @@ class Tests_IsOkayToSaveMetaBox extends Test_Case {
 	}
 
 	/**
-	 *  Test is_okay_to_save_meta_box() should return false when doing autosave, ajax, or cron.
+	 * Note: is_okay_to_save_meta_box() should return false when doing autosave, ajax, or cron
+	 * cannot be tested. Once constants are defined and invoked within the class, they cannot be
+	 * undefined. They will affect all subsequent tests. Therefor, this use case cannot be tested.
 	 */
-	public function test_function_should_return_false_when_doing_autosave_ajax_or_cron() {
-		self::initialize_constants() && DOING_AUTOSAVE;
-
-		$this->assertFalse( is_okay_to_save_meta_box( 'events' ) );
-
-		self::initialize_constants() && DOING_AJAX;
-
-		$this->assertFalse( is_okay_to_save_meta_box( 'members' ) );
-
-		self::initialize_constants() && DOING_CRON;
-
-		$this->assertFalse( is_okay_to_save_meta_box( 'reviews' ) );
-	}
 
 	/*
 	 * Test should return false when meta box nonce name key is not set in $_POST.
@@ -87,27 +76,22 @@ class Tests_IsOkayToSaveMetaBox extends Test_Case {
 	/*
 	 * Test is_okay_to_save_meta_box() should return true when wp_verify_nonce() returns boolean ( 1 or 2 ).
 	 */
-//	public function test_should_return_true_when_wp_verify_nonce_returns_boolean() {
-//		$_POST = [
-//			'post_ID'             => '1322',
-//			'post_status'         => 'publish',
-//			'events'              => [
-//				'event-date' => '09-24-2019',
-//				'event-time' => '17:30',
-//				'venue-name' => 'Ladue Chapel',
-//			],
-//			'events_nonce_name'   => '04c923a557',
-//			'events_nonce_action' => 1,
-//		];
-//		Monkey\Functions\expect( 'wp_verify_nonce' )
-//			->once()
-//			->with( $_POST['events_nonce_name'], 'events_nonce_action' )
-//			->andReturn( 1 );
-//
-//		// CLI message: Failed asserting that false is identical to 1.
-//		$this->assertSame( 1, is_okay_to_save_meta_box( 'events' ) );
-//
-//		// CLI message: Failed asserting that false is true.
-//		$this->assertTrue( is_okay_to_save_meta_box( 'events' ) );
-//	}
+	public function test_should_return_true_when_wp_verify_nonce_returns_boolean() {
+		$_POST = [
+			'post_ID'           => '1322',
+			'post_status'       => 'publish',
+			'events'            => [
+				'event-date' => '09-24-2019',
+				'event-time' => '17:30',
+				'venue-name' => 'Ladue Chapel',
+			],
+			'events_nonce_name' => '7784296163',
+		];
+		Monkey\Functions\expect( 'wp_verify_nonce' )
+			->once()
+			->with( $_POST['events_nonce_name'], 'events_nonce_action' )
+			->andReturn( 1 );
+
+		$this->assertSame( 1, is_okay_to_save_meta_box( 'events' ) );
+	}
 }
