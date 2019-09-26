@@ -51,13 +51,7 @@ class Tests_IsOkayToSaveMetaBox extends Test_Case {
 		$this->assertFalse( array_key_exists( $meta_box_key, $_POST ) );
 		$this->assertFalse( is_okay_to_save_meta_box( 'members' ) );
 	}
-
-	/**
-	 * Note: is_okay_to_save_meta_box() should return false when doing autosave, ajax, or cron
-	 * cannot be tested. Once constants are defined and invoked within the class, they cannot be
-	 * undefined. They will affect all subsequent tests. Therefor, this use case cannot be tested.
-	 */
-
+	
 	/*
 	 * Test should return false when meta box nonce name key is not set in $_POST.
 	 */
