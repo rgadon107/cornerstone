@@ -42,6 +42,14 @@ class Tests_RegisterMetaBoxes extends Test_Case {
 		}
 	}
 
+	/*
+ * Test register_meta_boxes() should register to add_action( 'admin_menu' ) when event fires.
+ */
+	public function test_function_should_register_to_action_hook_when_event_fires() {
+		$this->assertTrue( has_action( 'admin_menu' ) );
+		$this->assertSame( 10, has_action( 'admin_menu', 'spiralWebDB\Metadata\register_meta_boxes' ) );
+	}
+
 	/**
 	 * Test register_meta_boxes() should register the configured meta box with WordPress.
 	 */
@@ -87,7 +95,7 @@ class Tests_RegisterMetaBoxes extends Test_Case {
 	 */
 	function test_should_register_multiple_configured_meta_boxes_with_wordpress() {
 		$configs = [
-			'meta_box.events'     => [
+			'meta_box.events'  => [
 				'add_meta_box' => [
 					'id'            => 'events',
 					'title'         => 'Event Info',
@@ -97,7 +105,7 @@ class Tests_RegisterMetaBoxes extends Test_Case {
 					'callback_args' => null,
 				],
 			],
-			'meta_box.members'    => [
+			'meta_box.members' => [
 				'add_meta_box' => [
 					'id'            => 'members',
 					'title'         => 'Tour Member Profile Information',
@@ -107,7 +115,7 @@ class Tests_RegisterMetaBoxes extends Test_Case {
 					'callback_args' => null,
 				],
 			],
-			'meta_box.reviews'    => [
+			'meta_box.reviews' => [
 				'add_meta_box' => [
 					'id'            => 'reviews',
 					'title'         => 'Cornerstone Reviews',
@@ -167,7 +175,7 @@ class Tests_RegisterMetaBoxes extends Test_Case {
 			'custom_post_type.books' => [
 				'Title' => 'To Kill a Mockingbird',
 			],
-			'metabox.notametabox' => [
+			'metabox.notametabox'    => [
 				'add_meta_box' => [
 					'id'     => 'notametabox',
 					'title'  => 'Does not start with the right meta_box. structure',
