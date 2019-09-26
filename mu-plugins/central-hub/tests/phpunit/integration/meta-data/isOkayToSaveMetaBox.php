@@ -67,10 +67,9 @@ class Tests_IsOkayToSaveMetaBox extends Test_Case {
 			'post_ID'           => '1322',
 			'post_status'       => 'publish',
 			'_wp_nonce'         => '04c923a55d',
-			'events_nonce_name' => '',
 		];
 
-		$this->assertArrayNotHasKey( $_POST['events_nonce_name'], $_POST );
+		$this->assertArrayNotHasKey( 'events_nonce_name', $_POST );
 		$this->assertFalse( is_okay_to_save_meta_box( 'events' ) );
 	}
 
