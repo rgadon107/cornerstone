@@ -12,7 +12,6 @@
 namespace spiralWebDB\Metadata;
 
 use KnowTheCode\ConfigStore as configStore;
-use function KnowTheCode\ConfigStore\str_starts_with;
 
 /**
  * Get all of the meta box keys from the ConfigStore.
