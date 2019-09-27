@@ -56,15 +56,15 @@ class Tests_IsOkayToSaveMetaBox extends Test_Case {
 			'events_nonce_name' => '04c923a557',
 		];
 
-		$this->assertFalse( array_key_exists( $meta_box_key, $_POST ) );
+		$this->assertArrayNotHasKey( $meta_box_key, $_POST );
 		$this->assertFalse( is_okay_to_save_meta_box( 'members' ) );
 	}
-	
+
 	/*
 	 * Test should return false when meta box nonce name key is not set in $_POST.
 	 */
 	public function test_should_return_false_when_meta_box_nonce_name_key_is_not_set_in_POST() {
-		$_POST      = [
+		$_POST = [
 			'post_ID'     => '1322',
 			'post_status' => 'publish',
 			'_wp_nonce'   => '04c923a55d',
