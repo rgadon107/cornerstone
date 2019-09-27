@@ -12,9 +12,6 @@
 namespace spiralWebDb\centralHub\Tests\Integration\Metadata;
 
 use function spiralWebDB\Metadata\is_okay_to_save_meta_box;
-use function wp_create_nonce;
-use function wp_verify_nonce;
-use function did_action;
 use spiralWebDb\Cornerstone\Tests\Integration\Test_Case;
 
 /**
