@@ -23,18 +23,9 @@ use spiralWebDb\Cornerstone\Tests\Integration\Test_Case;
 class Tests_IsOkayToSaveMetaBox extends Test_Case {
 
 	/**
-	 * Set up the test environment before each test.
-	 */
-	public function setUp() {
-		parent::setUp();
-		$_POST = [];
-	}
-
-	/**
 	 * Clean up the test environment after each test.
 	 */
 	public function tearDown() {
-		parent::tearDown();
 		$_POST = [];
 	}
 
