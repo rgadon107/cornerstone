@@ -33,6 +33,14 @@ class Tests_IsOkayToSaveMetaBox extends Test_Case {
 	}
 
 	/**
+	 * Clean up the test environment after each test.
+	 */
+	public function tearDown() {
+		parent::tearDown();
+		$_POST = [];
+	}
+
+	/**
 	 * Test is_okay_to_save_meta_box() should check the meta box key exists in the $_POST array.
 	 */
 	public function test_should_return_false_when_meta_box_key_is_not_in_POST() {
