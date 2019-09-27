@@ -52,7 +52,7 @@ class Tests_IsOkayToSaveMetaBox extends Test_Case {
 			'events_nonce_name' => wp_create_nonce( 'events_nonce_action' ),
 		];
 
-		$this->assertFalse( array_key_exists( 'members', $_POST ) );
+		$this->assertArrayNotHasKey(  'members', $_POST );
 		$this->assertFalse( is_okay_to_save_meta_box( 'members' ) );
 	}
 
