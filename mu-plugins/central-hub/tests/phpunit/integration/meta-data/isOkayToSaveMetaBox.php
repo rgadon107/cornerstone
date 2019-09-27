@@ -84,8 +84,8 @@ class Tests_IsOkayToSaveMetaBox extends Test_Case {
 			],
 			'events_nonce_name' => wp_create_nonce( 'events_nonce_action' ),
 		];
-		wp_verify_nonce( $_POST['events_nonce_name'], 'events_nonce_action' );
-
+		
+		$this->assertSame( 1, wp_verify_nonce( $_POST['events_nonce_name'], 'events_nonce_action' ) );
 		$this->assertTrue( is_okay_to_save_meta_box( 'events' ) );
 		$this->assertEquals( 0, did_action( 'wp_verify_nonce_failed' ) );
 	}
