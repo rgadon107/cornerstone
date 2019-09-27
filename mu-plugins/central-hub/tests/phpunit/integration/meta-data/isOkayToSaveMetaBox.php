@@ -41,7 +41,7 @@ class Tests_IsOkayToSaveMetaBox extends Test_Case {
 	 * Test is_okay_to_save_meta_box() should check the meta box key exists in the $_POST array.
 	 */
 	public function test_should_return_false_when_meta_box_key_is_not_in_POST() {
-		$_POST            = [
+		$_POST = [
 			'post_ID'           => '1322',
 			'post_status'       => 'publish',
 			'events'            => [
@@ -52,7 +52,7 @@ class Tests_IsOkayToSaveMetaBox extends Test_Case {
 			'events_nonce_name' => wp_create_nonce( 'events_nonce_action' ),
 		];
 
-		$this->assertArrayNotHasKey(  'members', $_POST );
+		$this->assertArrayNotHasKey( 'members', $_POST );
 		$this->assertFalse( is_okay_to_save_meta_box( 'members' ) );
 	}
 
@@ -61,9 +61,9 @@ class Tests_IsOkayToSaveMetaBox extends Test_Case {
     */
 	public function test_should_return_false_when_meta_box_nonce_name_key_is_not_set_in_POST() {
 		$_POST = [
-			'post_ID'           => '1322',
-			'post_status'       => 'publish',
-			'_wp_nonce'         => '04c923a55d',
+			'post_ID'     => '1322',
+			'post_status' => 'publish',
+			'_wp_nonce'   => '04c923a55d',
 		];
 
 		$this->assertArrayNotHasKey( 'events_nonce_name', $_POST );
@@ -74,7 +74,7 @@ class Tests_IsOkayToSaveMetaBox extends Test_Case {
     * Test is_okay_to_save_meta_box() should return true when wp_verify_nonce() returns boolean ( 1 or 2 ).
     */
 	public function test_should_return_true_when_wp_verify_nonce_returns_boolean() {
-		$_POST            = [
+		$_POST = [
 			'post_ID'           => '1322',
 			'post_status'       => 'publish',
 			'events'            => [
@@ -86,7 +86,7 @@ class Tests_IsOkayToSaveMetaBox extends Test_Case {
 		];
 		wp_verify_nonce( $_POST['events_nonce_name'], 'events_nonce_action' );
 
-		$this->assertSame( 1, is_okay_to_save_meta_box( 'events' ) );
+		$this->assertTrue( is_okay_to_save_meta_box( 'events' ) );
 		$this->assertEquals( 0, did_action( 'wp_verify_nonce_failed' ) );
 	}
 }
