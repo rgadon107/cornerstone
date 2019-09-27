@@ -59,7 +59,6 @@ class Tests_GetMetaBoxKeys extends Test_Case {
 			],
 		];
 		loadConfig( 'notametabox.members', $configs['notametabox.members'] );
-		get_meta_box_keys();
 
 		$this->assertArrayNotHasKey( 'meta_box.', get_meta_box_keys() );
 		$this->assertSame( [], get_meta_box_keys() );
