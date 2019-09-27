@@ -36,11 +36,8 @@ class Tests_GetMetaBoxKeys extends Test_Case {
 	 * Test get_meta_box_keys() returns empty array when store key is empty or does not start with 'meta_box.'
 	 */
 	public function test_returns_empty_array_when_store_key_is_empty_or_does_not_begin_with_meta_box() {
-		$expected = [];
-		get_meta_box_keys();
-
 		$this->assertArrayNotHasKey( 'meta_box.', get_meta_box_keys() );
-		$this->assertSame( $expected, get_meta_box_keys() );
+		$this->assertSame( [], get_meta_box_keys() );
 	}
 
 	/**
