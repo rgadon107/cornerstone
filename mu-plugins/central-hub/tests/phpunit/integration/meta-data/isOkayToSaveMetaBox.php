@@ -35,6 +35,7 @@ class Tests_IsOkayToSaveMetaBox extends Test_Case {
 	 */
 	public function tearDown() {
 		parent::tearDown();
+		$_POST = [];
 	}
 
 	/**
