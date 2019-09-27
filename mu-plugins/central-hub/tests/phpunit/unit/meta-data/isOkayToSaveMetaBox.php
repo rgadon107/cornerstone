@@ -94,6 +94,6 @@ class Tests_IsOkayToSaveMetaBox extends Test_Case {
 			->with( $_POST['events_nonce_name'], 'events_nonce_action' )
 			->andReturn( 1 );
 
-		$this->assertSame( 1, is_okay_to_save_meta_box( 'events' ) );
+		$this->assertTrue( is_okay_to_save_meta_box( 'events' ) );
 	}
 }
