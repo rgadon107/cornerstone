@@ -31,7 +31,7 @@ class Tests_RegisterMetaBoxes extends Test_Case {
 
 		require_once CENTRAL_HUB_ROOT_DIR . '/src/meta-data/meta-box.php';
 	}
-
+	
 	/*
 	 * Test register_meta_boxes() will add a meta box for each store key that starts with 'metabox.'.
 	 */
