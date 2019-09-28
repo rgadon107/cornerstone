@@ -44,7 +44,6 @@ class Tests_IsOkayToSaveMetaBox extends Test_Case {
 	 * Test is_okay_to_save_meta_box() should check the meta box key exists in the $_POST array.
 	 */
 	public function test_should_return_false_when_meta_box_key_is_not_in_POST() {
-		$meta_box_key = 'members';
 		$_POST        = [
 			'post_ID'           => '1322',
 			'post_status'       => 'publish',
@@ -56,7 +55,7 @@ class Tests_IsOkayToSaveMetaBox extends Test_Case {
 			'events_nonce_name' => '04c923a557',
 		];
 
-		$this->assertArrayNotHasKey( $meta_box_key, $_POST );
+		$this->assertArrayNotHasKey( 'members', $_POST );
 		$this->assertFalse( is_okay_to_save_meta_box( 'members' ) );
 	}
 
