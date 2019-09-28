@@ -26,6 +26,7 @@ class Tests_IsOkayToSaveMetaBox extends Test_Case {
 	 * Clean up the test environment after each test.
 	 */
 	public function tearDown() {
+		parent::tearDown();
 		$_POST = [];
 	}
 
