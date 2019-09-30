@@ -52,7 +52,7 @@ class Tests_RemapCustomFieldsConfig extends Test_Case {
 			'delete_state' => [],
 			'sanitize'     => [],
 		];
-		
+
 		$this->assertSame( $remapped_config, remap_custom_fields_config( $config ) );
 	}
 
@@ -61,27 +61,23 @@ class Tests_RemapCustomFieldsConfig extends Test_Case {
 	 */
 	public function test_should_remap_config_structure_when_given_config_has_post_meta_data() {
 		$config          = [
-			'meta_box.events' => [
-				'custom_fields' => [
-					'event-date' => [
-						'is_single'    => true,
-						'default'      => '',
-						'delete_state' => '',
-						'sanitize'     => 'sanitize_text_field',
-					],
-					'event-time' => [
-						'is_single'    => true,
-						'default'      => '',
-						'delete_state' => '',
-						'sanitize'     => 'sanitize_text_field',
-					],
-					'venue-name' => [
-						'is_single'    => true,
-						'default'      => '',
-						'delete_state' => '',
-						'sanitize'     => 'sanitize_text_field',
-					],
-				],
+			'event-date' => [
+				'is_single'    => true,
+				'default'      => '',
+				'delete_state' => '',
+				'sanitize'     => 'sanitize_text_field',
+			],
+			'event-time' => [
+				'is_single'    => true,
+				'default'      => '',
+				'delete_state' => '',
+				'sanitize'     => 'sanitize_text_field',
+			],
+			'venue-name' => [
+				'is_single'    => true,
+				'default'      => '',
+				'delete_state' => '',
+				'sanitize'     => 'sanitize_text_field',
 			],
 		];
 		$remapped_config = [
@@ -106,10 +102,10 @@ class Tests_RemapCustomFieldsConfig extends Test_Case {
 				'venue-name' => 'sanitize_text_field',
 			],
 		];
-		Monkey\Functions\expect( 'spiralWebDB\Metadata\remap_custom_fields_config' )
-			->once()
-			->with( $config )
-			->andReturn( $remapped_config );
+//		Monkey\Functions\expect( 'spiralWebDB\Metadata\remap_custom_fields_config' )
+//			->once()
+//			->with( $config )
+//			->andReturn( $remapped_config );
 
 		$this->assertSame( $remapped_config, remap_custom_fields_config( $config ) );
 	}
