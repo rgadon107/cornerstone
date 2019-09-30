@@ -31,11 +31,11 @@ class Tests_SaveCustomFields extends Test_Case {
 
 		require_once CENTRAL_HUB_ROOT_DIR . '/src/meta-data/meta-box.php';
 	}
-
+	
 	/**
-	 * Test save_custom_fields() should merge config defaults into $_POST when using wp_parse_args().
+	 * Test save_custom_fields() should merge empty config defaults into $_POST when using wp_parse_args().
 	 */
-	public function test_should_merge_config_defaults_into_POST_array_when_using_wp_parse_args() {
+	public function test_should_merge_empty_config_defaults_into_POST_array_when_using_wp_parse_args() {
 
 	}
 
@@ -47,16 +47,16 @@ class Tests_SaveCustomFields extends Test_Case {
 	}
 
 	/**
-	 * Test save_custom_fields() should sanitize a post meta value when that value will be updated.
+	 * Test save_custom_fields() should sanitize a post meta key when value is not empty.
 	 */
-	public function test_should_sanitize_custom_field_value_when_the_value_will_be_updated() {
+	public function test_should_sanitize_a_post_meta_key_when_value_is_not_empty() {
 
 	}
 
 	/**
 	 * Test save_custom_fields() should update a post meta value when it does not equal the delete state value.
 	 */
-	public function test_should_update_post_meta_value_when_value_does_not_equal_delete_state() {
+	public function test_should_update_post_meta_value_when_it_does_not_equal_delete_state_value() {
 
 	}
 }
