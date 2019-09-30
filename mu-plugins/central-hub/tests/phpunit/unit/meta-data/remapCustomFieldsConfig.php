@@ -32,14 +32,6 @@ class Tests_RemapCustomFieldsConfig extends Test_Case {
 		require_once CENTRAL_HUB_ROOT_DIR . '/src/meta-data/meta-box.php';
 	}
 
-//	/**
-//	 * Clean up the test environment after each test.
-//	 */
-//	public function tearDown() {
-//		parent::tearDown();
-//		$config = [];
-//	}
-
 	/**
 	 *  Test remap_custom_fields_config() should return the default remapped config array when the given config is an
 	 *  empty array.
@@ -102,12 +94,7 @@ class Tests_RemapCustomFieldsConfig extends Test_Case {
 				'venue-name' => 'sanitize_text_field',
 			],
 		];
-//		Monkey\Functions\expect( 'spiralWebDB\Metadata\remap_custom_fields_config' )
-//			->once()
-//			->with( $config )
-//			->andReturn( $remapped_config );
 
 		$this->assertSame( $remapped_config, remap_custom_fields_config( $config ) );
 	}
 }
-
