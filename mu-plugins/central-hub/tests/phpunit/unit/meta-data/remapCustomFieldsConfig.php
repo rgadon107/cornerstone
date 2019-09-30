@@ -32,35 +32,27 @@ class Tests_RemapCustomFieldsConfig extends Test_Case {
 		require_once CENTRAL_HUB_ROOT_DIR . '/src/meta-data/meta-box.php';
 	}
 
-	/**
-	 * Clean up the test environment after each test.
-	 */
-	public function tearDown() {
-		parent::tearDown();
-		$config = [];
-	}
+//	/**
+//	 * Clean up the test environment after each test.
+//	 */
+//	public function tearDown() {
+//		parent::tearDown();
+//		$config = [];
+//	}
 
 	/**
 	 *  Test remap_custom_fields_config() should return the default remapped config array when the given config is an
 	 *  empty array.
 	 */
 	public function test_should_return_default_remapped_config_array_when_given_config_is_empty_array() {
-		$config          = [
-			'meta_box.events' => [
-				'custom_fields' => [],
-			],
-		];
+		$config          = [];
 		$remapped_config = [
 			'is_single'    => [],
 			'default'      => [],
 			'delete_state' => [],
 			'sanitize'     => [],
 		];
-		Monkey\Functions\expect( 'spiralWebDB\Metadata\remap_custom_fields_config' )
-			->once()
-			->with( $config )
-			->andReturn( $remapped_config );
-
+		
 		$this->assertSame( $remapped_config, remap_custom_fields_config( $config ) );
 	}
 
@@ -71,9 +63,24 @@ class Tests_RemapCustomFieldsConfig extends Test_Case {
 		$config          = [
 			'meta_box.events' => [
 				'custom_fields' => [
-					'event-date' => '09-24-2019',
-					'event-time' => '17:30',
-					'venue-name' => 'Ladue Chapel',
+					'event-date' => [
+						'is_single'    => true,
+						'default'      => '',
+						'delete_state' => '',
+						'sanitize'     => 'sanitize_text_field',
+					],
+					'event-time' => [
+						'is_single'    => true,
+						'default'      => '',
+						'delete_state' => '',
+						'sanitize'     => 'sanitize_text_field',
+					],
+					'venue-name' => [
+						'is_single'    => true,
+						'default'      => '',
+						'delete_state' => '',
+						'sanitize'     => 'sanitize_text_field',
+					],
 				],
 			],
 		];
