@@ -50,12 +50,18 @@ class Tests_SaveCustomFields extends Test_Case {
 		parent::tearDown();
 		$config = [];
 		$_POST  = [];
+
+		// Clean up.
+		delete_post_meta( $this->post->ID, 'event-date' );
+		delete_post_meta( $this->post->ID, 'event-time' );
+		delete_post_meta( $this->post->ID, 'venue-name' );
 	}
 
 	/**
-	 * Test save_custom_fields() should delete empty post meta keys when their value equals the config delete state.
+	 * Test save_custom_fields() should delete post meta keys passed to empty $_POST array element when value equals
+	 * config delete state.
 	 */
-	public function test_should_delete_empty_post_meta_keys_when_value_equals_config_delete_state() {
+	public function test_should_delete_post_meta_keys_passed_to_empty_POST_array_element_when_value_equals_config_delete_state() {
 		// Custom fields config.
 		$config = [
 			'event-date' => [
@@ -94,4 +100,96 @@ class Tests_SaveCustomFields extends Test_Case {
 		$this->assertSame( '', get_post_meta( $this->post->ID, 'venue-name', true ) );
 	}
 
+	/**
+	 * Test save_custom_fields() should delete actual post meta values set in $_POST when they equal the config delete
+	 * state.
+	 */
+	public function test_should_delete_actual_post_meta_values_set_in_POST_when_they_equal_the_config_delete_state() {
+		// Custom fields config.
+		$config = [
+			'event-date' => [
+				'is_single'    => true,
+				'delete_state' => '',
+				'sanitize'     => 'sanitize_text_field',
+			],
+			'event-time' => [
+				'is_single'    => true,
+				'delete_state' => '',
+				'sanitize'     => 'sanitize_text_field',
+			],
+			'venue-name' => [
+				'is_single'    => true,
+				'delete_state' => '',
+				'sanitize'     => 'sanitize_text_field',
+			],
+		];
+		// Add post meta to the database.
+		add_post_meta( $this->post->ID, 'event-date', '' );
+		add_post_meta( $this->post->ID, 'event-time', '' );
+		add_post_meta( $this->post->ID, 'venue-name', '' );
+		// $_POST contains the actual value for each custom field.
+		$_POST = [
+			'events' => [
+				'event-date' => '',
+				'event-time' => '',
+				'venue-name' => '',
+			],
+		];
+
+		save_custom_fields( $config, 'events', $this->post->ID );
+
+		// Check that post meta keys are deleted when their value equals the config delete state.
+		$this->assertSame( '', $_POST['events']['event-date'] );
+		$this->assertSame( '', $_POST['events']['event-time'] );
+		$this->assertSame( '', $_POST['events']['venue-name'] );
+		$this->assertSame( '', get_post_meta( $this->post->ID, 'event-date', true ) );
+		$this->assertSame( '', get_post_meta( $this->post->ID, 'event-time', true ) );
+		$this->assertSame( '', get_post_meta( $this->post->ID, 'venue-name', true ) );
+	}
+
+	/**
+	 * Test save_custom_fields() saves the sanitized current post meta from the custom field into the database.
+	 */
+	public function test_should_save_the_sanitized_current_post_meta_from_the_custom_field_into_the_database() {
+		// Custom fields config.
+		$config = [
+			'event-date' => [
+				'is_single'    => true,
+				'default'      => '',
+				'delete_state' => '',
+				'sanitize'     => 'sanitize_text_field',
+			],
+			'event-time' => [
+				'is_single'    => true,
+				'default'      => '',
+				'delete_state' => '',
+				'sanitize'     => 'sanitize_text_field',
+			],
+			'venue-name' => [
+				'is_single'    => true,
+				'default'      => '',
+				'delete_state' => '',
+				'sanitize'     => 'sanitize_text_field',
+			],
+		];
+		// Add post meta to the database.
+		add_post_meta( $this->post->ID, 'event-date', '' );
+		add_post_meta( $this->post->ID, 'event-time', '' );
+		add_post_meta( $this->post->ID, 'venue-name', '' );
+		// $_POST contains the actual value for each custom field.
+		$_POST = [
+			'events' => [
+				'event-date' => '09-27-2019',
+				'event-time' => '19:30:00',
+				'venue-name' => 'First Presbyterian Church of St. Louis',
+			],
+		];
+
+		save_custom_fields( $config, 'events', $this->post->ID );
+
+		$this->assertSame( '09-27-2019', get_post_meta( $this->post->ID, 'event-date', true ) );
+		$this->assertSame( '19:30:00', get_post_meta( $this->post->ID, 'event-time', true ) );
+		$this->assertSame( 'First Presbyterian Church of St. Louis', get_post_meta( $this->post->ID, 'venue-name', true ) );
+	}
 }
+
