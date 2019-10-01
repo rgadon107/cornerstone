@@ -14,6 +14,7 @@ namespace spiralWebDb\centralHub\Tests\Integration\Metadata;
 use function spiralWebDB\Metadata\save_custom_fields;
 use function add_post_meta;
 use function get_post_meta;
+use function delete_post_meta;
 use spiralWebDb\Cornerstone\Tests\Integration\Test_Case;
 
 /**
