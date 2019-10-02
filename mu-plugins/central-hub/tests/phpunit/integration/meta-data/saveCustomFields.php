@@ -88,6 +88,10 @@ class Tests_SaveCustomFields extends Test_Case {
 		$_POST = [
 			'events' => [],
 		];
+		// Before calling the function, check that post meta was added to the database.
+		$this->assertSame( '10-01-2019', get_post_meta( $this->post, 'event-date', true ) );
+		$this->assertSame( '15:00:00', get_post_meta( $this->post, 'event-time', true ) );
+		$this->assertSame( 'Bartlett United Methodist Church', get_post_meta( $this->post, 'venue-name', true ) );
 
 		save_custom_fields( $config, 'events', $this->post );
 
@@ -133,7 +137,7 @@ class Tests_SaveCustomFields extends Test_Case {
 				'venue-name' => '',
 			],
 		];
-		// Check that post meta was added to the database.
+		// Before calling the function, check that post meta was added to the database.
 		$this->assertSame( '10-27-2019', get_post_meta( $this->post, 'event-date', true ) );
 		$this->assertSame( '16:00:00', get_post_meta( $this->post, 'event-time', true ) );
 		$this->assertSame( 'Holy Trinity Lutheran Church', get_post_meta( $this->post, 'venue-name', true ) );
