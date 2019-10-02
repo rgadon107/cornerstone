@@ -88,7 +88,7 @@ class Tests_SaveMetaBoxes extends Test_Case {
 			'members'            => [],
 			'members_nonce_name' => wp_create_nonce( 'members_nonce_action' ),
 		];
-		
+
 		$this->assertNull( save_meta_boxes( $this->post ) );
 	}
 
@@ -177,7 +177,7 @@ class Tests_SaveMetaBoxes extends Test_Case {
 
 		save_meta_boxes( $this->post );
 
-		// Check that post meta keys are deleted when their value equals the config delete state.
+		// After function call, check that post meta keys are deleted from the database. 
 		$this->assertSame( [], $_POST['members'] );
 		$this->assertSame( '', get_post_meta( $this->post, 'role', true ) );
 		$this->assertSame( '', get_post_meta( $this->post, 'residence_city', true ) );
@@ -245,7 +245,7 @@ class Tests_SaveMetaBoxes extends Test_Case {
 
 		save_meta_boxes( $this->post );
 
-		// Check that post meta keys are deleted when their value equals the config delete state.
+		// After function call, check that post meta keys are deleted from the database.
 		$this->assertSame( '', $_POST['members']['role'] );
 		$this->assertSame( '', $_POST['members']['residence_city'] );
 		$this->assertSame( '', $_POST['members']['residence_state'] );
@@ -293,6 +293,7 @@ class Tests_SaveMetaBoxes extends Test_Case {
 		foreach ( $configs as $store_key => $config_to_store ) {
 			loadConfig( $store_key, $config_to_store );
 		}
+		// $_POST contains the actual value for each custom field.
 		$_POST = [
 			'post_ID'            => $this->post,
 			'post_status'        => 'publish',
