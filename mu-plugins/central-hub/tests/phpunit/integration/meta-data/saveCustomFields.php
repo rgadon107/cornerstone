@@ -174,10 +174,6 @@ class Tests_SaveCustomFields extends Test_Case {
 				'sanitize'     => 'sanitize_text_field',
 			],
 		];
-		// Add post meta to the database.
-		add_post_meta( $this->post, 'event-date', '' );
-		add_post_meta( $this->post, 'event-time', '' );
-		add_post_meta( $this->post, 'venue-name', '' );
 		// $_POST contains the actual value for each custom field.
 		$_POST = [
 			'events' => [
