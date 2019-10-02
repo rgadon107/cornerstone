@@ -39,7 +39,7 @@ class Tests_SaveCustomFields extends Test_Case {
 		parent::setUp();
 
 		// Create and get the post_id.
-		$this->post     = self::factory()->post->create();
+		$this->post = self::factory()->post->create();
 	}
 
 	/**
@@ -47,12 +47,12 @@ class Tests_SaveCustomFields extends Test_Case {
 	 */
 	public function tearDown() {
 		parent::tearDown();
-		$_POST  = [];
+		$_POST = [];
 
 		// Clean up.
-		delete_post_meta( $this->post->ID, 'event-date' );
-		delete_post_meta( $this->post->ID, 'event-time' );
-		delete_post_meta( $this->post->ID, 'venue-name' );
+		delete_post_meta( $this->post, 'event-date' );
+		delete_post_meta( $this->post, 'event-time' );
+		delete_post_meta( $this->post, 'venue-name' );
 	}
 
 	/**
@@ -82,20 +82,20 @@ class Tests_SaveCustomFields extends Test_Case {
 			],
 		];
 		// Add post meta to the database.
-		add_post_meta( $this->post->ID, 'event-date', '' );
-		add_post_meta( $this->post->ID, 'event-time', '' );
-		add_post_meta( $this->post->ID, 'venue-name', '' );
+		add_post_meta( $this->post, 'event-date', '10-01-2019' );
+		add_post_meta( $this->post, 'event-time', '15:00:00' );
+		add_post_meta( $this->post, 'venue-name', 'Bartlett United Methodist Church' );
 		$_POST = [
 			'events' => [],
 		];
 
-		save_custom_fields( $config, 'events', $this->post->ID );
+		save_custom_fields( $config, 'events', $this->post );
 
 		// Check that post meta keys are deleted when their value equals the config delete state.
 		$this->assertSame( [], $_POST['events'] );
-		$this->assertSame( '', get_post_meta( $this->post->ID, 'event-date', true ) );
-		$this->assertSame( '', get_post_meta( $this->post->ID, 'event-time', true ) );
-		$this->assertSame( '', get_post_meta( $this->post->ID, 'venue-name', true ) );
+		$this->assertSame( '', get_post_meta( $this->post, 'event-date', true ) );
+		$this->assertSame( '', get_post_meta( $this->post, 'event-time', true ) );
+		$this->assertSame( '', get_post_meta( $this->post, 'venue-name', true ) );
 	}
 
 	/**
@@ -122,9 +122,9 @@ class Tests_SaveCustomFields extends Test_Case {
 			],
 		];
 		// Add post meta to the database.
-		add_post_meta( $this->post->ID, 'event-date', '' );
-		add_post_meta( $this->post->ID, 'event-time', '' );
-		add_post_meta( $this->post->ID, 'venue-name', '' );
+		add_post_meta( $this->post, 'event-date', '10-27-2019' );
+		add_post_meta( $this->post, 'event-time', '16:00:00' );
+		add_post_meta( $this->post, 'venue-name', 'Holy Trinity Lutheran Church' );
 		// $_POST contains the actual value for each custom field.
 		$_POST = [
 			'events' => [
@@ -133,16 +133,20 @@ class Tests_SaveCustomFields extends Test_Case {
 				'venue-name' => '',
 			],
 		];
+		// Check that post meta was added to the database.
+		$this->assertSame( '10-27-2019', get_post_meta( $this->post, 'event-date', true ) );
+		$this->assertSame( '16:00:00', get_post_meta( $this->post, 'event-time', true ) );
+		$this->assertSame( 'Holy Trinity Lutheran Church', get_post_meta( $this->post, 'venue-name', true ) );
 
-		save_custom_fields( $config, 'events', $this->post->ID );
+		save_custom_fields( $config, 'events', $this->post );
 
 		// Check that post meta keys are deleted when their value equals the config delete state.
 		$this->assertSame( '', $_POST['events']['event-date'] );
 		$this->assertSame( '', $_POST['events']['event-time'] );
 		$this->assertSame( '', $_POST['events']['venue-name'] );
-		$this->assertSame( '', get_post_meta( $this->post->ID, 'event-date', true ) );
-		$this->assertSame( '', get_post_meta( $this->post->ID, 'event-time', true ) );
-		$this->assertSame( '', get_post_meta( $this->post->ID, 'venue-name', true ) );
+		$this->assertSame( '', get_post_meta( $this->post, 'event-date', true ) );
+		$this->assertSame( '', get_post_meta( $this->post, 'event-time', true ) );
+		$this->assertSame( '', get_post_meta( $this->post, 'venue-name', true ) );
 	}
 
 	/**
@@ -171,9 +175,9 @@ class Tests_SaveCustomFields extends Test_Case {
 			],
 		];
 		// Add post meta to the database.
-		add_post_meta( $this->post->ID, 'event-date', '' );
-		add_post_meta( $this->post->ID, 'event-time', '' );
-		add_post_meta( $this->post->ID, 'venue-name', '' );
+		add_post_meta( $this->post, 'event-date', '' );
+		add_post_meta( $this->post, 'event-time', '' );
+		add_post_meta( $this->post, 'venue-name', '' );
 		// $_POST contains the actual value for each custom field.
 		$_POST = [
 			'events' => [
@@ -183,11 +187,11 @@ class Tests_SaveCustomFields extends Test_Case {
 			],
 		];
 
-		save_custom_fields( $config, 'events', $this->post->ID );
+		save_custom_fields( $config, 'events', $this->post );
 
-		$this->assertSame( '09-27-2019', get_post_meta( $this->post->ID, 'event-date', true ) );
-		$this->assertSame( '19:30:00', get_post_meta( $this->post->ID, 'event-time', true ) );
-		$this->assertSame( 'First Presbyterian Church of St. Louis', get_post_meta( $this->post->ID, 'venue-name', true ) );
+		$this->assertSame( '09-27-2019', get_post_meta( $this->post, 'event-date', true ) );
+		$this->assertSame( '19:30:00', get_post_meta( $this->post, 'event-time', true ) );
+		$this->assertSame( 'First Presbyterian Church of St. Louis', get_post_meta( $this->post, 'venue-name', true ) );
 	}
 }
 
