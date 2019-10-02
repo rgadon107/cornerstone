@@ -38,9 +38,8 @@ class Tests_SaveCustomFields extends Test_Case {
 	public function setUp() {
 		parent::setUp();
 
-		// Create and get the post.
-		$this->post     = self::factory()->post->create_and_get();
-		$this->post->ID = 287;
+		// Create and get the post_id.
+		$this->post     = self::factory()->post->create();
 	}
 
 	/**
