@@ -47,7 +47,6 @@ class Tests_SaveCustomFields extends Test_Case {
 	 */
 	public function tearDown() {
 		parent::tearDown();
-		$config = [];
 		$_POST  = [];
 
 		// Clean up.
