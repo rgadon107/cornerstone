@@ -182,6 +182,10 @@ class Tests_SaveCustomFields extends Test_Case {
 				'venue-name' => 'First Presbyterian Church of St. Louis',
 			],
 		];
+		// Before calling the function, check that post meta is not in the database.
+		$this->assertSame( '', get_post_meta( $this->post, 'event-date', true ) );
+		$this->assertSame( '', get_post_meta( $this->post, 'event-time', true ) );
+		$this->assertSame( '', get_post_meta( $this->post, 'venue-name', true ) );
 
 		save_custom_fields( $config, 'events', $this->post );
 
