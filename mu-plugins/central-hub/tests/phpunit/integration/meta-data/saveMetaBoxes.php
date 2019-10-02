@@ -88,6 +88,7 @@ class Tests_SaveMetaBoxes extends Test_Case {
 			'members'            => [],
 			'members_nonce_name' => wp_create_nonce( 'members_nonce_action' ),
 		];
+		
 		$this->assertNull( save_meta_boxes( $this->post ) );
 	}
 
