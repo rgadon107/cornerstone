@@ -12,13 +12,11 @@
 namespace spiralWebDb\centralHub\Tests\Integration\Metadata;
 
 use function KnowTheCode\ConfigStore\loadConfig;
-use function spiralWebDB\Metadata\get_meta_box_keys;
-use function spiralWebDB\Metadata\get_meta_box_id;
-use function spiralWebDB\Metadata\is_okay_to_save_meta_box;
-use function KnowTheCode\ConfigStore\getConfigParameter;
-use function spiralWebDB\Metadata\save_custom_fields;
 use function spiralWebDB\Metadata\save_meta_boxes;
+use function wp_create_nonce;
+use function add_post_meta;
 use function get_post_meta;
+use function delete_post_meta;
 use spiralWebDb\Cornerstone\Tests\Integration\Test_Case;
 
 /**
