@@ -2,7 +2,7 @@
 /**
  * Tests for the function save_meta_boxes().
  *
- * @package     spiralWebDb\centralHub\Tests\Unit\Metadata
+ * @package     spiralWebDb\centralHub\Tests\Integration\Metadata
  * @since       1.3.0
  * @author      Robert Gadon <rgadon107>
  * @link        https://github.com/rgadon107/cornerstone
