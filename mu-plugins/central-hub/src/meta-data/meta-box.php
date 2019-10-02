@@ -129,7 +129,7 @@ function is_okay_to_save_meta_box( $meta_box_key ) {
 		return false;
 	}
 
-	return wp_verify_nonce(
+	return (bool) wp_verify_nonce(
 		$_POST[ $nonce_name ],
 		"{$meta_box_key}_nonce_action"
 	);

@@ -31,14 +31,7 @@ class Tests_RegisterMetaBoxes extends Test_Case {
 
 		require_once CENTRAL_HUB_ROOT_DIR . '/src/meta-data/meta-box.php';
 	}
-
-	/*
-	 * Test register_meta_boxes() should register to add_action( 'admin_menu' ) when event fires.
-	 */
-	public function test_function_should_register_to_action_hook_when_event_fires() {
-		$this->assertTrue( has_action( 'admin_menu', 'spiralWebDB\Metadata\register_meta_boxes' ) );
-	}
-
+	
 	/*
 	 * Test register_meta_boxes() will add a meta box for each store key that starts with 'metabox.'.
 	 */
