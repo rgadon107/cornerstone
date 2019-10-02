@@ -47,9 +47,8 @@ class Tests_SaveMetaBoxes extends Test_Case {
 	public function setUp() {
 		parent::setUp();
 
-		// Create and get the post object via the factory method.
-		$this->post     = self::factory()->post->create_and_get();
-		$this->post->ID = 19;
+		// Create and get the post_id via the factory method.
+		$this->post = self::factory()->post->create();
 	}
 
 	/**
