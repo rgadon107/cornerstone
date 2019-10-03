@@ -96,6 +96,7 @@ class Tests_SaveMetaBoxes extends Test_Case {
 			],
 			'members_nonce_name' => wp_create_nonce( 'members_nonce_action' ),
 		];
+
 		$this->assertSame( 'Bass/Baritone', get_post_meta( $this->post, 'role', true ) );
 		$this->assertSame( 'Houston', get_post_meta( $this->post, 'residence_city', true ) );
 		$this->assertSame( 'TX', get_post_meta( $this->post, 'residence_state', true ) );
@@ -137,6 +138,7 @@ class Tests_SaveMetaBoxes extends Test_Case {
 			],
 			'members_nonce_name' => wp_create_nonce( 'members_nonce_action' ),
 		];
+
 		// Before function call, check that database is empty of post meta for this post.
 		$this->assertSame( '', get_post_meta( $this->post, 'role', true ) );
 		$this->assertSame( '', get_post_meta( $this->post, 'residence_city', true ) );
@@ -156,6 +158,7 @@ class Tests_SaveMetaBoxes extends Test_Case {
 		add_post_meta( $this->post, 'residence_city', 'Philadelphia' );
 		add_post_meta( $this->post, 'residence_state', 'PA' );
 		add_post_meta( $this->post, 'tour_number', '2' );
+
 		// Before function call, check that post meta was added to database.
 		$this->assertSame( 'Tenor Trombone', get_post_meta( $this->post, 'role', true ) );
 		$this->assertSame( 'Philadelphia', get_post_meta( $this->post, 'residence_city', true ) );
@@ -221,6 +224,7 @@ class Tests_SaveMetaBoxes extends Test_Case {
 			'members'            => [],
 			'members_nonce_name' => wp_create_nonce( 'members_nonce_action' ),
 		];
+
 		// Before calling the function, check that post meta was added to the database.
 		$this->assertSame( 'Bass/Baritone', get_post_meta( $this->post, 'role', true ) );
 		$this->assertSame( 'Houston', get_post_meta( $this->post, 'residence_city', true ) );
@@ -289,6 +293,7 @@ class Tests_SaveMetaBoxes extends Test_Case {
 			],
 			'members_nonce_name' => wp_create_nonce( 'members_nonce_action' ),
 		];
+
 		// Before calling the function, check that post meta was added to the database.
 		$this->assertSame( 'Tenor Trombone', get_post_meta( $this->post, 'role', true ) );
 		$this->assertSame( 'Philadelphia', get_post_meta( $this->post, 'residence_city', true ) );
@@ -302,6 +307,7 @@ class Tests_SaveMetaBoxes extends Test_Case {
 		$this->assertSame( '', $_POST['members']['residence_city'] );
 		$this->assertSame( '', $_POST['members']['residence_state'] );
 		$this->assertSame( '', $_POST['members']['tour_number'] );
+
 		$this->assertSame( '', get_post_meta( $this->post, 'role', true ) );
 		$this->assertSame( '', get_post_meta( $this->post, 'residence_city', true ) );
 		$this->assertSame( '', get_post_meta( $this->post, 'residence_state', true ) );
@@ -357,6 +363,7 @@ class Tests_SaveMetaBoxes extends Test_Case {
 			],
 			'members_nonce_name' => wp_create_nonce( 'members_nonce_action' ),
 		];
+
 		// Before calling the function, check that post meta is not in the database.
 		$this->assertSame( '', get_post_meta( $this->post, 'role', true ) );
 		$this->assertSame( '', get_post_meta( $this->post, 'residence_city', true ) );
