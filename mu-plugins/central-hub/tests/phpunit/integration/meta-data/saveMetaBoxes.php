@@ -129,11 +129,46 @@ class Tests_SaveMetaBoxes extends Test_Case {
 		$_POST = [
 			'post_ID'            => $this->post,
 			'post_status'        => 'publish',
-			'members'            => [],
+			'members'            => [
+				'role'            => '',
+				'residence_city'  => '',
+				'residence_state' => '',
+				'tour_number'     => '',
+			],
 			'members_nonce_name' => wp_create_nonce( 'members_nonce_action' ),
 		];
+		// Before function call, check that database is empty of post meta for this post.
+		$this->assertSame( '', get_post_meta( $this->post, 'role', true ) );
+		$this->assertSame( '', get_post_meta( $this->post, 'residence_city', true ) );
+		$this->assertSame( '', get_post_meta( $this->post, 'residence_state', true ) );
+		$this->assertSame( '', get_post_meta( $this->post, 'tour_number', true ) );
 
 		$this->assertNull( save_meta_boxes( $this->post ) );
+
+		// After function call, check that database was not updated with custom field data from config store.
+		$this->assertSame( '', get_post_meta( $this->post, 'role', true ) );
+		$this->assertSame( '', get_post_meta( $this->post, 'residence_city', true ) );
+		$this->assertSame( '', get_post_meta( $this->post, 'residence_state', true ) );
+		$this->assertSame( '', get_post_meta( $this->post, 'tour_number', true ) );
+
+		// Add post meta to the database.
+		add_post_meta( $this->post, 'role', 'Tenor Trombone' );
+		add_post_meta( $this->post, 'residence_city', 'Philadelphia' );
+		add_post_meta( $this->post, 'residence_state', 'PA' );
+		add_post_meta( $this->post, 'tour_number', '2' );
+		// Before function call, check that post meta was added to database.
+		$this->assertSame( 'Tenor Trombone', get_post_meta( $this->post, 'role', true ) );
+		$this->assertSame( 'Philadelphia', get_post_meta( $this->post, 'residence_city', true ) );
+		$this->assertSame( 'PA', get_post_meta( $this->post, 'residence_state', true ) );
+		$this->assertSame( '2', get_post_meta( $this->post, 'tour_number', true ) );
+
+		$this->assertNull( save_meta_boxes( $this->post ) );
+
+		// Check that database was not updated with custom field data from config store.
+		$this->assertSame( 'Tenor Trombone', get_post_meta( $this->post, 'role', true ) );
+		$this->assertSame( 'Philadelphia', get_post_meta( $this->post, 'residence_city', true ) );
+		$this->assertSame( 'PA', get_post_meta( $this->post, 'residence_state', true ) );
+		$this->assertSame( '2', get_post_meta( $this->post, 'tour_number', true ) );
 	}
 
 	/**
