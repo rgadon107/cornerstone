@@ -75,17 +75,38 @@ class Tests_SaveMetaBoxes extends Test_Case {
 	}
 
 	/**
-	 * Test save_meta_boxes() should not save when no meta box keys are in the Config Store.
+	 * Test save_meta_boxes() should not save when custom fields config (config store) and
+	 *    post meta values in $_POST are empty.
 	 */
-	public function test_should_not_save_when_no_meta_box_keys_are_in_store() {
+	public function test_should_not_save_when_custom_fields_config_and_post_meta_in_POST_are_empty() {
+		// By default, $config is an empty array when the config store is empty.
+		// Add post meta to the database.
+		add_post_meta( $this->post, 'role', 'Bass/Baritone' );
+		add_post_meta( $this->post, 'residence_city', 'Houston' );
+		add_post_meta( $this->post, 'residence_state', 'TX' );
+		add_post_meta( $this->post, 'tour_number', '1' );
 		$_POST = [
 			'post_ID'            => $this->post,
 			'post_status'        => 'publish',
-			'members'            => [],
+			'members'            => [
+				'role'            => '',
+				'residence_city'  => '',
+				'residence_state' => '',
+				'tour_number'     => '',
+			],
 			'members_nonce_name' => wp_create_nonce( 'members_nonce_action' ),
 		];
+		$this->assertSame( 'Bass/Baritone', get_post_meta( $this->post, 'role', true ) );
+		$this->assertSame( 'Houston', get_post_meta( $this->post, 'residence_city', true ) );
+		$this->assertSame( 'TX', get_post_meta( $this->post, 'residence_state', true ) );
+		$this->assertSame( '1', get_post_meta( $this->post, 'tour_number', true ) );
 
-		$this->assertNull( save_meta_boxes( $this->post ) );
+		save_meta_boxes( $this->post );
+
+		$this->assertSame( 'Bass/Baritone', get_post_meta( $this->post, 'role', true ) );
+		$this->assertSame( 'Houston', get_post_meta( $this->post, 'residence_city', true ) );
+		$this->assertSame( 'TX', get_post_meta( $this->post, 'residence_state', true ) );
+		$this->assertSame( '1', get_post_meta( $this->post, 'tour_number', true ) );
 	}
 
 	/**
