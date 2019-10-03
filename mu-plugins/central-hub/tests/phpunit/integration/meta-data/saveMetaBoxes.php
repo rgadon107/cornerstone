@@ -78,10 +78,6 @@ class Tests_SaveMetaBoxes extends Test_Case {
 	 * Test save_meta_boxes() should not save when no meta box keys are in the Config Store.
 	 */
 	public function test_should_not_save_when_no_meta_box_keys_are_in_store() {
-		$configs = [];
-		foreach ( $configs as $store_key => $config_to_store ) {
-			loadConfig( $store_key, $config_to_store );
-		}
 		$_POST = [
 			'post_ID'            => $this->post,
 			'post_status'        => 'publish',
