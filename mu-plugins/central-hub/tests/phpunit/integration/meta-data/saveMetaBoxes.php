@@ -143,7 +143,7 @@ class Tests_SaveMetaBoxes extends Test_Case {
 		$this->assertSame( '', get_post_meta( $this->post, 'residence_state', true ) );
 		$this->assertSame( '', get_post_meta( $this->post, 'tour_number', true ) );
 
-		$this->assertNull( save_meta_boxes( $this->post ) );
+		save_meta_boxes( $this->post );
 
 		// After function call, check that database was not updated with custom field data from config store.
 		$this->assertSame( '', get_post_meta( $this->post, 'role', true ) );
@@ -162,7 +162,7 @@ class Tests_SaveMetaBoxes extends Test_Case {
 		$this->assertSame( 'PA', get_post_meta( $this->post, 'residence_state', true ) );
 		$this->assertSame( '2', get_post_meta( $this->post, 'tour_number', true ) );
 
-		$this->assertNull( save_meta_boxes( $this->post ) );
+		save_meta_boxes( $this->post );
 
 		// Check that database was not updated with custom field data from config store.
 		$this->assertSame( 'Tenor Trombone', get_post_meta( $this->post, 'role', true ) );
