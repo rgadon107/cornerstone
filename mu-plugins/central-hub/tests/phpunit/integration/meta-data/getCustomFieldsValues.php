@@ -11,9 +11,9 @@
 
 namespace spiralWebDb\centralHub\Tests\Integration\Metadata;
 
-use function KnowTheCode\ConfigStore\loadConfig;
 use function get_post_meta;
 use function add_post_meta;
+use function delete_post_meta;
 use function spiralWebDB\Metadata\get_custom_fields_values;
 use spiralWebDb\Cornerstone\Tests\Integration\Test_Case;
 
