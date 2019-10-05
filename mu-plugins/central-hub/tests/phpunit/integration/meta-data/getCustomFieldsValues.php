@@ -68,7 +68,8 @@ class Tests_GetCustomFieldsValues extends Test_Case {
 	}
 
 	/**
-	 * Test get_custom_fields_values() should return post meta from database when meta key exists in custom fields config.
+	 * Test get_custom_fields_values() should return post meta from database when meta key exists in custom fields
+	 * config.
 	 */
 	public function test_should_return_post_meta_from_database_when_meta_key_exists_in_custom_fields_config() {
 		$config = [
