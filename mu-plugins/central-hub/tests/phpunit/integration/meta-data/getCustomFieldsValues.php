@@ -91,18 +91,14 @@ class Tests_GetCustomFieldsValues extends Test_Case {
 		$this->assertSame( '19:30:00', get_post_meta( $this->post, 'event-time', true ) );
 		$this->assertSame( 'Carnegie Hall', get_post_meta( $this->post, 'venue-name', true ) );
 
-		$expected = [
-			'meta_box.events' => [
-				'custom_fields' => [
-					'event-date' => '10-04-2019',
-					'event-time' => '19:30:00',
-					'venue-name' => 'Carnegie Hall',
-				]
-			],
+		$expected_custom_fields = [
+			'event-date' => '10-04-2019',
+			'event-time' => '19:30:00',
+			'venue-name' => 'Carnegie Hall',
 		];
 
-		$this->assertSame( $expected['meta_box.events'], get_custom_fields_values( $this->post, 'events', $config ) );
+		$this->assertSame( $expected_custom_fields, get_custom_fields_values( $this->post, 'events', $config ) );
 	}
 
-	// Test get_custom_fields_values() should return default value from meta box config when post meta key does not exist.
-}
+		// Test get_custom_fields_values() should return default value from meta box config when post meta key does not exist.
+	}
