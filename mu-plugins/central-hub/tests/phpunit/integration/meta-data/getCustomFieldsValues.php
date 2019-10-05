@@ -50,6 +50,13 @@ class Tests_GetCustomFieldsValues extends Test_Case {
 	}
 
 	/**
+	 * Clean up the test environment after each test.
+	 */
+	public function tearDown() {
+		parent::tearDown();
+	}
+
+	/**
 	 * Test get_custom_fields_values() should return an empty array when custom fields config is empty.
 	 */
 	public function test_should_return_empty_array_when_custom_fields_config_is_empty() {
