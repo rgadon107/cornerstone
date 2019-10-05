@@ -50,9 +50,9 @@ class Tests_GetCustomFieldsValues extends Test_Case {
 	}
 
 	/**
-	 * Test get_custom_fields_values() should return an empty array when config store is empty.
+	 * Test get_custom_fields_values() should return an empty array when custom fields config is empty.
 	 */
-	public function test_should_return_empty_array_when_config_store_is_empty() {
+	public function test_should_return_empty_array_when_custom_fields_config_is_empty() {
 		$config = [
 			'custom_fields' => [],
 		];
