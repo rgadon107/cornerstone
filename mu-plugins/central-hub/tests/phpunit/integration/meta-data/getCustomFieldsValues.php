@@ -61,22 +61,26 @@ class Tests_GetCustomFieldsValues extends Test_Case {
 	}
 
 	/**
-	 * Test get_custom_fields_values() should return post meta from the database when post meta key exists.
+	 * Test get_custom_fields_values() should return post meta from database when meta key exists in custom fields config.
 	 */
-	public function test_should_return_post_meta_from_database_when_post_meta_key_exists() {
+	public function test_should_return_post_meta_from_database_when_meta_key_exists_in_custom_fields_config() {
 		$config = [
-			'meta_box.events' => [
-				'custom_fields' => [
-					'event-date' => '',
-					'event-time' => '',
-					'venue-name' => '',
-				]
+			'custom_fields' => [
+				'event-date' => [
+					'is_single' => true,
+					'default'   => '',
+				],
+				'event-time' => [
+					'is_single' => true,
+					'default'   => '',
+				],
+				'venue-name' => [
+					'is_single' => true,
+					'default'   => '',
+				],
 			],
 		];
-		foreach ( $config as $store_key => $config_to_store ) {
-			loadConfig( 'meta_box.events', $config['meta_box.events'] );
-		}
-//		var_dump( getConfig( 'meta_box.events' ) );
+
 		// Add post meta to the database so we have something to call.
 		add_post_meta( $this->post, 'event-date', '10-04-2019' );
 		add_post_meta( $this->post, 'event-time', '19:30:00' );
