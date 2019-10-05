@@ -106,7 +106,46 @@ class Tests_GetCustomFieldsValues extends Test_Case {
 		];
 
 		$this->assertSame( $expected_custom_fields, get_custom_fields_values( $this->post, 'events', $config ) );
+
+		// Clean up database.
+		delete_post_meta( $this->post, 'event-date', '10-04-2019' );
+		delete_post_meta( $this->post, 'event-time', '19:30:00' );
+		delete_post_meta( $this->post, 'venue-name', 'Carnegie Hall' );
 	}
 
-		// Test get_custom_fields_values() should return default value from meta box config when post meta key does not exist.
+	/**
+	 * Test get_custom_fields_values() should return custom fields default values when post meta is not in database.
+	 */
+	public function test_should_return_custom_fields_default_values_when_post_meta_is_not_in_database() {
+		$config = [
+			'custom_fields' => [
+				'event-date' => [
+					'is_single' => true,
+					'default'   => '',
+				],
+				'event-time' => [
+					'is_single' => true,
+					'default'   => '',
+				],
+				'venue-name' => [
+					'is_single' => true,
+					'default'   => '',
+				],
+			],
+		];
+
+		// Check that database does not contain post meta.
+		$this->assertSame( '', get_post_meta( $this->post, 'event-date', true ) );
+		$this->assertSame( '', get_post_meta( $this->post, 'event-time', true ) );
+		$this->assertSame( '', get_post_meta( $this->post, 'venue-name', true ) );
+
+		$expected_custom_fields = [
+			'event-date' => '',
+			'event-time' => '',
+			'venue-name' => '',
+		];
+
+		$this->assertSame( $expected_custom_fields, get_custom_fields_values( $this->post, 'events', $config ) );
 	}
+}
+
