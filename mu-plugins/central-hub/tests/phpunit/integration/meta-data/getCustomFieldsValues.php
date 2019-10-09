@@ -48,7 +48,7 @@ class Tests_GetCustomFieldsValues extends Test_Case {
 		// Create and get the post_id via the factory method.
 		$this->post = self::factory()->post->create();
 	}
-	
+
 	/**
 	 * Test get_custom_fields_values() should return an empty array when custom fields config is empty.
 	 */
@@ -101,9 +101,9 @@ class Tests_GetCustomFieldsValues extends Test_Case {
 		$this->assertSame( $expected_custom_fields, get_custom_fields_values( $this->post, 'events', $config ) );
 
 		// Clean up database.
-		delete_post_meta( $this->post, 'event-date', '10-04-2019' );
-		delete_post_meta( $this->post, 'event-time', '19:30:00' );
-		delete_post_meta( $this->post, 'venue-name', 'Carnegie Hall' );
+		delete_post_meta( $this->post, 'event-date' );
+		delete_post_meta( $this->post, 'event-time' );
+		delete_post_meta( $this->post, 'venue-name' );
 	}
 
 	/**
