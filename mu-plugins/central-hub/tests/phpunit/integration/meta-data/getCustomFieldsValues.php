@@ -48,14 +48,7 @@ class Tests_GetCustomFieldsValues extends Test_Case {
 		// Create and get the post_id via the factory method.
 		$this->post = self::factory()->post->create();
 	}
-
-	/**
-	 * Clean up the test environment after each test.
-	 */
-	public function tearDown() {
-		parent::tearDown();
-	}
-
+	
 	/**
 	 * Test get_custom_fields_values() should return an empty array when custom fields config is empty.
 	 */
