@@ -140,5 +140,16 @@ class Tests_GetCustomFieldsValues extends Test_Case {
 
 		$this->assertSame( $expected_custom_fields, get_custom_fields_values( $this->post, 'events', $config ) );
 	}
+
+	/**
+	 * Test get_custom_fields_values() should return true when filter tag has registered callback.
+	 */
+	public function test_should_return_true_when_filter_tag_has_registered_callback() {
+		// Register anonymous callback to filter $tag with priority of 20.
+		add_filter( 'filter_meta_box_custom_fields', __FUNCTION__, 20 );
+
+		$this->assertTrue( has_filter( 'filter_meta_box_custom_fields' ) );
+		$this->assertEquals( 20, has_filter( 'filter_meta_box_custom_fields', __FUNCTION__ ) );
+	}
 }
 
