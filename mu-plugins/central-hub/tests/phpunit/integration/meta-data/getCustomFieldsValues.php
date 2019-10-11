@@ -14,6 +14,9 @@ namespace spiralWebDb\centralHub\Tests\Integration\Metadata;
 use function get_post_meta;
 use function add_post_meta;
 use function delete_post_meta;
+use function add_filter;
+use function has_filter;
+use function remove_all_filters;
 use function spiralWebDB\Metadata\get_custom_fields_values;
 use spiralWebDb\Cornerstone\Tests\Integration\Test_Case;
 
@@ -142,14 +145,39 @@ class Tests_GetCustomFieldsValues extends Test_Case {
 	}
 
 	/**
-	 * Test get_custom_fields_values() should return true when filter tag has registered callback.
+	 * Test get_custom_fields_values() should register a callback_and return true with callback priority level.
 	 */
-	public function test_should_return_true_when_filter_tag_has_registered_callback() {
-		// Register anonymous callback to filter $tag with priority of 20.
-		add_filter( 'filter_meta_box_custom_fields', __FUNCTION__, 20 );
+	public function test_filter_registers_callback_and_returns_true_with_cb_priority_level() {
+		// Register anonymous callback to filter $tag with priority of 20 and 3 arguments.
+		add_filter( 'filter_meta_box_custom_fields', function ( $custom_fields ) {
+			$expected_callback_args = [
+				0 => [
+					'event-date' => '',
+					'event-time' => '',
+					'venue-name' => '',
+				],
+				1 => 'events',
+				2 => $this->post,
+			];
 
+			$this->assertSame( $expected_callback_args, func_get_args() );
+
+			$update_custom_fields = [
+				0 => [
+					'event-date' => '10-12-2019',
+					'event-time' => '19:30:00',
+					'venue-name' => 'Peabody Opera House',
+				]
+			];
+
+			$this->assertSame( $update_custom_fields, func_get_args() );
+		}, 20, 3 );
+
+		// Check if any callback has been registered to the filter hook
 		$this->assertTrue( has_filter( 'filter_meta_box_custom_fields' ) );
-		$this->assertEquals( 20, has_filter( 'filter_meta_box_custom_fields', __FUNCTION__ ) );
+
+		// Clean up.
+		$this->assertTrue( remove_all_filters( 'filter_meta_box_custom_fields', 20 ) );
 	}
 }
 
