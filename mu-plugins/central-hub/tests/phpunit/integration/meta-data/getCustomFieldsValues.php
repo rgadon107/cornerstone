@@ -145,42 +145,76 @@ class Tests_GetCustomFieldsValues extends Test_Case {
 	}
 
 	/**
-	 * Test get_custom_fields_values() should register a callback_and return true with callback priority level.
+	 * Test get_custom_fields_values() should register a custom callback and return true with callback priority level.
 	 */
-	public function test_filter_registers_callback_and_returns_true_with_cb_priority_level() {
-		// Register anonymous callback to filter $tag with priority of 20 and 3 arguments.
-		add_filter( 'filter_meta_box_custom_fields', __NAMESPACE__ . '\custom_callback', 20, 3 );
-
-		function custom_callback() {
-			$expected_callback_args = [
-				0 => [
-					'event-date' => '',
-					'event-time' => '',
-					'venue-name' => '',
+	public function test_filter_registers_custom_callback_and_returns_true_with_cb_priority_level() {
+		$config = [
+			'custom_fields' => [
+				'event-date' => [
+					'is_single' => true,
+					'default'   => '',
 				],
-				1 => 'events',
-				2 => $this->post,
-			];
+				'event-time' => [
+					'is_single' => true,
+					'default'   => '',
+				],
+				'venue-name' => [
+					'is_single' => true,
+					'default'   => '',
+				],
+			],
+		];
 
-			$this->assertSame( $expected_callback_args, func_get_args() );
+		// Add post meta to the database so we have something to call.
+		add_post_meta( $this->post, 'event-date', '10-12-2019' );
+		add_post_meta( $this->post, 'event-time', '19:30:00' );
+		add_post_meta( $this->post, 'venue-name', 'Carnegie Hall' );
 
-			$update_custom_fields = [
+		// Check database that post meta was added.
+		$this->assertSame( '10-12-2019', get_post_meta( $this->post, 'event-date', true ) );
+		$this->assertSame( '19:30:00', get_post_meta( $this->post, 'event-time', true ) );
+		$this->assertSame( 'Carnegie Hall', get_post_meta( $this->post, 'venue-name', true ) );
+
+		// Register custom callback to filter $tag with priority of 20 and 3 available arguments.
+		add_filter( 'filter_meta_box_custom_fields',  __NAMESPACE__ . '\filter_custom_field_values', 20, 3 );
+		/*
+		 * Filter the custom field values with a custom callback
+		 */
+		function filter_custom_field_values( $custom_fields ) {
+
+			return $custom_fields = [
 				0 => [
-					'event-date' => '10-12-2019',
-					'event-time' => '19:30:00',
-					'venue-name' => 'Peabody Opera House',
-				]
+					'event-date' => '10-19-2019',
+					'event-time' => '15:00:00',
+					'venue-name' => 'The Fabulous Fox Theater',
+				],
+				1 => 'members',
+				2 => 7,
 			];
-
-			$this->assertSame( $update_custom_fields, func_get_args() );
 		}
 
-		// Check if any callback has been registered to the filter hook
+		$updated_custom_fields = [
+			0 => [
+				'event-date' => '10-19-2019',
+				'event-time' => '15:00:00',
+				'venue-name' => 'The Fabulous Fox Theater',
+			],
+			1 => 'members',
+			2 => 7,
+		];
+
+		$this->assertSame( $updated_custom_fields, get_custom_fields_values( $this->post, 'events', $config ) );
+
+		// Check if any callback was registered to the filter hook.
 		$this->assertTrue( has_filter( 'filter_meta_box_custom_fields' ) );
-		$this->assertEquals( 20, has_filter( 'filter_meta_box_custom_fields', __NAMESPACE__ . '\custom_callback' ) );
+		$this->assertEquals( 20, has_filter( 'filter_meta_box_custom_fields',  __NAMESPACE__ . '\filter_custom_field_values' ) );
 
 		// Clean up.
-		$this->assertTrue( remove_all_filters( 'filter_meta_box_custom_fields', 20 ) );
+		remove_all_filters( 'filter_meta_box_custom_fields', 20 );
+		// Clean up database.
+		delete_post_meta( $this->post, 'event-date' );
+		delete_post_meta( $this->post, 'event-time' );
+		delete_post_meta( $this->post, 'venue-name' );
 	}
 }
 
