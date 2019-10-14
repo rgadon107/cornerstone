@@ -173,10 +173,11 @@ class Tests_GetCustomFieldsValues extends Test_Case {
 			];
 
 			$this->assertSame( $update_custom_fields, func_get_args() );
-		}, 20, 3 );
+		}
 
 		// Check if any callback has been registered to the filter hook
 		$this->assertTrue( has_filter( 'filter_meta_box_custom_fields' ) );
+		$this->assertEquals( 20, has_filter( 'filter_meta_box_custom_fields', __NAMESPACE__ . '\custom_callback' ) );
 
 		// Clean up.
 		$this->assertTrue( remove_all_filters( 'filter_meta_box_custom_fields', 20 ) );
