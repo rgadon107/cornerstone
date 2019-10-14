@@ -149,7 +149,9 @@ class Tests_GetCustomFieldsValues extends Test_Case {
 	 */
 	public function test_filter_registers_callback_and_returns_true_with_cb_priority_level() {
 		// Register anonymous callback to filter $tag with priority of 20 and 3 arguments.
-		add_filter( 'filter_meta_box_custom_fields', function ( $custom_fields ) {
+		add_filter( 'filter_meta_box_custom_fields', __NAMESPACE__ . '\custom_callback', 20, 3 );
+
+		function custom_callback() {
 			$expected_callback_args = [
 				0 => [
 					'event-date' => '',
