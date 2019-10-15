@@ -176,45 +176,53 @@ class Tests_GetCustomFieldsValues extends Test_Case {
 		$this->assertSame( 'Carnegie Hall', get_post_meta( $this->post, 'venue-name', true ) );
 
 		// Register custom callback to filter $tag with priority of 20 and 3 available arguments.
-		add_filter( 'filter_meta_box_custom_fields',  __NAMESPACE__ . '\filter_custom_field_values', 20, 3 );
-		/*
-		 * Filter the custom field values with a custom callback
-		 */
-		function filter_custom_field_values( $custom_fields ) {
-
-			return $custom_fields = [
-				0 => [
-					'event-date' => '10-19-2019',
-					'event-time' => '15:00:00',
-					'venue-name' => 'The Fabulous Fox Theater',
-				],
-				1 => 'members',
-				2 => 7,
-			];
-		}
+		add_filter( 'filter_meta_box_custom_fields', [ $this, 'filter_custom_field_values' ], 20, 3 );
+		$this->assertTrue( has_filter( 'filter_meta_box_custom_fields' ) );
+		$this->assertEquals( 20, has_filter( 'filter_meta_box_custom_fields', [ $this, 'filter_custom_field_values' ] ) );
 
 		$updated_custom_fields = [
-			0 => [
-				'event-date' => '10-19-2019',
-				'event-time' => '15:00:00',
-				'venue-name' => 'The Fabulous Fox Theater',
-			],
-			1 => 'members',
-			2 => 7,
+			'event-date' => '10-19-2019',
+			'event-time' => '15:00:00',
+			'venue-name' => 'The Fabulous Fox Theater',
 		];
-
 		$this->assertSame( $updated_custom_fields, get_custom_fields_values( $this->post, 'events', $config ) );
-
-		// Check if any callback was registered to the filter hook.
-		$this->assertTrue( has_filter( 'filter_meta_box_custom_fields' ) );
-		$this->assertEquals( 20, has_filter( 'filter_meta_box_custom_fields',  __NAMESPACE__ . '\filter_custom_field_values' ) );
 
 		// Clean up.
 		remove_all_filters( 'filter_meta_box_custom_fields', 20 );
-		// Clean up database.
 		delete_post_meta( $this->post, 'event-date' );
 		delete_post_meta( $this->post, 'event-time' );
 		delete_post_meta( $this->post, 'venue-name' );
 	}
-}
 
+	/*
+	 * Filter the custom field values with a custom callback.
+	 *
+	 * @param array  $custom_fields Array of custom fields values
+	 * @param string $meta_box_id   Meta box's key (ID) - used to identify this meta box
+	 * @param int    $post_id       Post's ID
+	 * @return array Updated custom fields values.
+	 */
+	public function filter_custom_field_values( $custom_fields, $meta_box_id, $post_id ) {
+		$args          = func_get_args();
+		$expected_args = [
+			[
+				'event-date' => '10-12-2019',
+				'event-time' => '19:30:00',
+				'venue-name' => 'Carnegie Hall',
+			],
+			'events',
+			$this->post,
+		];
+
+		// Test that the callback received the 3 arguments and the values are as expected.
+		$this->assertCount( 3, $args );
+		$this->assertSame( $expected_args, $args );
+
+		// Modify the custom field values.
+		$custom_fields['event-date'] = '10-19-2019';
+		$custom_fields['event-time'] = '15:00:00';
+		$custom_fields['venue-name'] = 'The Fabulous Fox Theater';
+
+		return $custom_fields;
+	}
+}
