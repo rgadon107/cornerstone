@@ -36,6 +36,13 @@ class Tests_GetCustomFieldsValues extends Test_Case {
 	protected $post;
 
 	/**
+	 * Array of configuration parameters.
+	 *
+	 * @var array
+	 */
+	protected $config = [];
+
+	/**
 	 * Empty the store before starting these tests.
 	 */
 	public static function setUpBeforeClass() {
@@ -49,7 +56,23 @@ class Tests_GetCustomFieldsValues extends Test_Case {
 		parent::setUp();
 
 		// Create and get the post_id via the factory method.
-		$this->post = self::factory()->post->create();
+		$this->post   = self::factory()->post->create();
+		$this->config = $config = [
+			'custom_fields' => [
+				'event-date' => [
+					'is_single' => true,
+					'default'   => '',
+				],
+				'event-time' => [
+					'is_single' => true,
+					'default'   => '',
+				],
+				'venue-name' => [
+					'is_single' => true,
+					'default'   => '',
+				],
+			],
+		];
 	}
 
 	/**
@@ -68,23 +91,6 @@ class Tests_GetCustomFieldsValues extends Test_Case {
 	 * config.
 	 */
 	public function test_should_return_post_meta_from_database_when_meta_key_exists_in_custom_fields_config() {
-		$config = [
-			'custom_fields' => [
-				'event-date' => [
-					'is_single' => true,
-					'default'   => '',
-				],
-				'event-time' => [
-					'is_single' => true,
-					'default'   => '',
-				],
-				'venue-name' => [
-					'is_single' => true,
-					'default'   => '',
-				],
-			],
-		];
-
 		// Add post meta to the database so we have something to call.
 		add_post_meta( $this->post, 'event-date', '10-04-2019' );
 		add_post_meta( $this->post, 'event-time', '19:30:00' );
@@ -101,7 +107,7 @@ class Tests_GetCustomFieldsValues extends Test_Case {
 			'venue-name' => 'Carnegie Hall',
 		];
 
-		$this->assertSame( $expected_custom_fields, get_custom_fields_values( $this->post, 'events', $config ) );
+		$this->assertSame( $expected_custom_fields, get_custom_fields_values( $this->post, 'events', $this->config ) );
 
 		// Clean up database.
 		delete_post_meta( $this->post, 'event-date' );
@@ -113,23 +119,6 @@ class Tests_GetCustomFieldsValues extends Test_Case {
 	 * Test get_custom_fields_values() should return custom fields default values when post meta is not in database.
 	 */
 	public function test_should_return_custom_fields_default_values_when_post_meta_is_not_in_database() {
-		$config = [
-			'custom_fields' => [
-				'event-date' => [
-					'is_single' => true,
-					'default'   => '',
-				],
-				'event-time' => [
-					'is_single' => true,
-					'default'   => '',
-				],
-				'venue-name' => [
-					'is_single' => true,
-					'default'   => '',
-				],
-			],
-		];
-
 		// Check that database does not contain post meta.
 		$this->assertSame( '', get_post_meta( $this->post, 'event-date', true ) );
 		$this->assertSame( '', get_post_meta( $this->post, 'event-time', true ) );
@@ -141,30 +130,13 @@ class Tests_GetCustomFieldsValues extends Test_Case {
 			'venue-name' => '',
 		];
 
-		$this->assertSame( $expected_custom_fields, get_custom_fields_values( $this->post, 'events', $config ) );
+		$this->assertSame( $expected_custom_fields, get_custom_fields_values( $this->post, 'events', $this->config ) );
 	}
 
 	/**
 	 * Test get_custom_fields_values() should return filtered custom field values.
 	 */
 	public function test_should_return_filtered_custom_field_values() {
-		$config = [
-			'custom_fields' => [
-				'event-date' => [
-					'is_single' => true,
-					'default'   => '',
-				],
-				'event-time' => [
-					'is_single' => true,
-					'default'   => '',
-				],
-				'venue-name' => [
-					'is_single' => true,
-					'default'   => '',
-				],
-			],
-		];
-
 		// Add post meta to the database so we have something to call.
 		add_post_meta( $this->post, 'event-date', '10-12-2019' );
 		add_post_meta( $this->post, 'event-time', '19:30:00' );
@@ -185,7 +157,7 @@ class Tests_GetCustomFieldsValues extends Test_Case {
 			'event-time' => '15:00:00',
 			'venue-name' => 'The Fabulous Fox Theater',
 		];
-		$this->assertSame( $updated_custom_fields, get_custom_fields_values( $this->post, 'events', $config ) );
+		$this->assertSame( $updated_custom_fields, get_custom_fields_values( $this->post, 'events', $this->config ) );
 
 		// Clean up.
 		remove_all_filters( 'filter_meta_box_custom_fields', 20 );
