@@ -145,9 +145,9 @@ class Tests_GetCustomFieldsValues extends Test_Case {
 	}
 
 	/**
-	 * Test get_custom_fields_values() should register a custom callback and return true with callback priority level.
+	 * Test get_custom_fields_values() should return filtered custom field values.
 	 */
-	public function test_filter_registers_custom_callback_and_returns_true_with_cb_priority_level() {
+	public function test_should_return_filtered_custom_field_values() {
 		$config = [
 			'custom_fields' => [
 				'event-date' => [
