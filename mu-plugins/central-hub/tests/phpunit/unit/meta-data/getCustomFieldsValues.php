@@ -87,26 +87,48 @@ class Tests_GetCustomFieldsValues extends Test_Case {
 			'venue-name' => 'Carnegie Hall',
 		];
 
-		$this->assertSame( $expected_custom_fields, get_custom_fields_values( $this->post, 'events', $config ) );
+		$this->assertSame( $expected_custom_fields, get_custom_fields_values( $this->post->ID, 'events', $config ) );
 	}
 
-//	/**
-//	 * Test get_custom_fields_values() should return custom fields default values when post meta is not in database.
-//	 */
-//	public function test_should_return_custom_fields_default_values_when_post_meta_is_not_in_database() {
-//		// Check that database does not contain post meta.
-//		$this->assertSame( '', get_post_meta( $this->post, 'event-date', true ) );
-//		$this->assertSame( '', get_post_meta( $this->post, 'event-time', true ) );
-//		$this->assertSame( '', get_post_meta( $this->post, 'venue-name', true ) );
-//
-//		$expected_custom_fields = [
-//			'event-date' => '',
-//			'event-time' => '',
-//			'venue-name' => '',
-//		];
-//
-//		$this->assertSame( $expected_custom_fields, get_custom_fields_values( $this->post, 'events', $this->config ) );
-//	}
+	/**
+	 * Test get_custom_fields_values() should return custom fields default values when post meta is not in database.
+	 */
+	public function test_should_return_custom_fields_default_values_when_post_meta_is_not_in_database() {
+		$config = [
+			'custom_fields' => [
+				'event-date' => [
+					'is_single' => true,
+					'default'   => '',
+				],
+				'event-time' => [
+					'is_single' => true,
+					'default'   => '',
+				],
+				'venue-name' => [
+					'is_single' => true,
+					'default'   => '',
+				],
+			],
+		];
+
+		Monkey\Functions\expect( 'get_post_meta' )
+			->once()
+			->andReturn( $config['custom_fields']['event-date']['default'] );
+		Monkey\Functions\expect( 'get_post_meta' )
+			->once()
+			->andReturn( $config['custom_fields']['event-time']['default'] );
+		Monkey\Functions\expect( 'get_post_meta' )
+			->once()
+			->andReturn( $config['custom_fields']['venue-name']['default'] );
+
+		$expected_custom_fields = [
+			'event-date' => '',
+			'event-time' => '',
+			'venue-name' => '',
+		];
+
+		$this->assertSame( $expected_custom_fields, get_custom_fields_values( $this->post->ID, 'events', $config ) );
+	}
 //
 //	/**
 //	 * Test get_custom_fields_values() should return filtered custom field values.
