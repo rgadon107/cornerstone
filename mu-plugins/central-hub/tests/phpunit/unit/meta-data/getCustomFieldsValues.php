@@ -70,15 +70,15 @@ class Tests_GetCustomFieldsValues extends Test_Case {
 		];
 		Monkey\Functions\expect( 'get_post_meta' )
 			->once()
-			->with( $this->post, 'event-date', $config['custom_fields']['event-date']['is_single'] )
+			->with( $this->post->ID, 'event-date', $config['custom_fields']['event-date']['is_single'] )
 			->andReturn( '10-26-2019' );
 		Monkey\Functions\expect( 'get_post_meta' )
 			->once()
-			->with( $this->post, 'event-time', $config['custom_fields']['event-time']['is_single'] )
+			->with( $this->post->ID, 'event-time', $config['custom_fields']['event-time']['is_single'] )
 			->andReturn( '19:30:00' );
 		Monkey\Functions\expect( 'get_post_meta' )
 			->once()
-			->with( $this->post, 'venue-name', $config['custom_fields']['venue-name']['is_single'] )
+			->with( $this->post->ID, 'venue-name', $config['custom_fields']['venue-name']['is_single'] )
 			->andReturn( 'Carnegie Hall' );
 
 		$expected_custom_fields = [
