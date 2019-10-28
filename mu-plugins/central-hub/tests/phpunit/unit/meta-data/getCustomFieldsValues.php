@@ -51,7 +51,7 @@ class Tests_GetCustomFieldsValues extends Test_Case {
 			'custom_fields' => [],
 		];
 
-		$this->assertSame( [], get_custom_fields_values( $this->post, 'events', $config ) );
+		$this->assertSame( [], get_custom_fields_values( $this->post->ID, 'events', $config ) );
 	}
 
 	/**
