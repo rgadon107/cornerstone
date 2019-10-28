@@ -25,6 +25,13 @@ use spiralWebDb\Cornerstone\Tests\Unit\Test_Case;
 class Tests_GetCustomFieldsValues extends Test_Case {
 
 	/**
+	 * Instance of the post object for each test.
+	 *
+	 * @var WP_Post
+	 */
+	protected $post;
+
+	/**
 	 * Prepares the test environment before each test.
 	 */
 	protected function setUp() {
