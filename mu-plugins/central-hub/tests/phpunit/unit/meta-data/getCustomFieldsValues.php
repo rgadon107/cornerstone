@@ -64,17 +64,33 @@ class Tests_GetCustomFieldsValues extends Test_Case {
 				],
 			],
 		];
+	}
+
+	/**
+	 * Test get_custom_fields_values() should return an empty array when custom fields config is empty.
+	 */
+	public function test_should_return_empty_array_when_custom_fields_config_is_empty() {
+		$this->config = [ 'custom_fields' => [] ];
+
+		$this->assertSame( [], get_custom_fields_values( $this->post->ID, 'events', $this->config ) );
+	}
+
+	/**
+	 * Test get_custom_fields_values() should return post meta from database when meta key exists in custom fields
+	 * config.
+	 */
+	public function test_should_return_post_meta_from_database_when_meta_key_exists_in_custom_fields_config() {
 		Monkey\Functions\expect( 'get_post_meta' )
 			->once()
-			->with( $this->post->ID, 'event-date', $config['custom_fields']['event-date']['is_single'] )
+			->with( $this->post->ID, 'event-date', $this->config['custom_fields']['event-date']['is_single'] )
 			->andReturn( '10-26-2019' );
 		Monkey\Functions\expect( 'get_post_meta' )
 			->once()
-			->with( $this->post->ID, 'event-time', $config['custom_fields']['event-time']['is_single'] )
+			->with( $this->post->ID, 'event-time', $this->config['custom_fields']['event-time']['is_single'] )
 			->andReturn( '19:30:00' );
 		Monkey\Functions\expect( 'get_post_meta' )
 			->once()
-			->with( $this->post->ID, 'venue-name', $config['custom_fields']['venue-name']['is_single'] )
+			->with( $this->post->ID, 'venue-name', $this->config['custom_fields']['venue-name']['is_single'] )
 			->andReturn( 'Carnegie Hall' );
 
 		$expected_custom_fields = [
