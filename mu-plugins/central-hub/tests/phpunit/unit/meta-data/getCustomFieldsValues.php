@@ -99,39 +99,22 @@ class Tests_GetCustomFieldsValues extends Test_Case {
 			'venue-name' => 'Carnegie Hall',
 		];
 
-		$this->assertSame( $expected_custom_fields, get_custom_fields_values( $this->post->ID, 'events', $config ) );
+		$this->assertSame( $expected_custom_fields, get_custom_fields_values( $this->post->ID, 'events', $this->config ) );
 	}
 
 	/**
 	 * Test get_custom_fields_values() should return custom fields default values when post meta is not in database.
 	 */
 	public function test_should_return_custom_fields_default_values_when_post_meta_is_not_in_database() {
-		$config = [
-			'custom_fields' => [
-				'event-date' => [
-					'is_single' => true,
-					'default'   => '',
-				],
-				'event-time' => [
-					'is_single' => true,
-					'default'   => '',
-				],
-				'venue-name' => [
-					'is_single' => true,
-					'default'   => '',
-				],
-			],
-		];
-
 		Monkey\Functions\expect( 'get_post_meta' )
 			->once()
-			->andReturn( $config['custom_fields']['event-date']['default'] );
+			->andReturn( $this->config['custom_fields']['event-date']['default'] );
 		Monkey\Functions\expect( 'get_post_meta' )
 			->once()
-			->andReturn( $config['custom_fields']['event-time']['default'] );
+			->andReturn( $this->config['custom_fields']['event-time']['default'] );
 		Monkey\Functions\expect( 'get_post_meta' )
 			->once()
-			->andReturn( $config['custom_fields']['venue-name']['default'] );
+			->andReturn( $this->config['custom_fields']['venue-name']['default'] );
 
 		$expected_custom_fields = [
 			'event-date' => '',
@@ -139,41 +122,24 @@ class Tests_GetCustomFieldsValues extends Test_Case {
 			'venue-name' => '',
 		];
 
-		$this->assertSame( $expected_custom_fields, get_custom_fields_values( $this->post->ID, 'events', $config ) );
+		$this->assertSame( $expected_custom_fields, get_custom_fields_values( $this->post->ID, 'events', $this->config ) );
 	}
 
 	/**
 	 * Test get_custom_fields_values() should return custom field values passed through filter.
 	 */
 	public function test_should_return_custom_field_values_passed_through_filter() {
-		$config = [
-			'custom_fields' => [
-				'event-date' => [
-					'is_single' => true,
-					'default'   => '',
-				],
-				'event-time' => [
-					'is_single' => true,
-					'default'   => '',
-				],
-				'venue-name' => [
-					'is_single' => true,
-					'default'   => '',
-				],
-			],
-		];
-
 		Monkey\Functions\expect( 'get_post_meta' )
 			->once()
-			->with( $this->post->ID, 'event-date', $config['custom_fields']['event-date']['is_single'] )
+			->with( $this->post->ID, 'event-date', $this->config['custom_fields']['event-date']['is_single'] )
 			->andReturn( '10-26-2019' );
 		Monkey\Functions\expect( 'get_post_meta' )
 			->once()
-			->with( $this->post->ID, 'event-time', $config['custom_fields']['event-time']['is_single'] )
+			->with( $this->post->ID, 'event-time', $this->config['custom_fields']['event-date']['is_single'] )
 			->andReturn( '19:30:00' );
 		Monkey\Functions\expect( 'get_post_meta' )
 			->once()
-			->with( $this->post->ID, 'venue-name', $config['custom_fields']['venue-name']['is_single'] )
+			->with( $this->post->ID, 'venue-name', $this->config['custom_fields']['event-date']['is_single'] )
 			->andReturn( 'Carnegie Hall' );
 
 		$expected_custom_fields = [
@@ -187,6 +153,6 @@ class Tests_GetCustomFieldsValues extends Test_Case {
 			->with( 'filter_meta_box_custom_fields', $expected_custom_fields, 'events', $this->post->ID )
 			->andReturn( $expected_custom_fields );
 
-		$this->assertSame( $expected_custom_fields, get_custom_fields_values( $this->post->ID, 'events', $config ) );
+		$this->assertSame( $expected_custom_fields, get_custom_fields_values( $this->post->ID, 'events', $this->config ) );
 	}
 }
