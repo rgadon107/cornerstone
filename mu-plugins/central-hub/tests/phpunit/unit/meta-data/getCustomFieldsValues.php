@@ -32,6 +32,13 @@ class Tests_GetCustomFieldsValues extends Test_Case {
 	protected $post;
 
 	/**
+	 * Configuration array property for custom fields. 
+	 *
+	 * @var array
+	 */
+	protected $config;
+
+	/**
 	 * Prepares the test environment before each test.
 	 */
 	protected function setUp() {
