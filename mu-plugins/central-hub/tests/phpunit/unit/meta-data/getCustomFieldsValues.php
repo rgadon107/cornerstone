@@ -48,25 +48,7 @@ class Tests_GetCustomFieldsValues extends Test_Case {
 
 		$this->post     = m::mock( 'WP_Post' );
 		$this->post->ID = 99;
-	}
-
-	/**
-	 * Test get_custom_fields_values() should return an empty array when custom fields config is empty.
-	 */
-	public function test_should_return_empty_array_when_custom_fields_config_is_empty() {
-		$config = [
-			'custom_fields' => [],
-		];
-
-		$this->assertSame( [], get_custom_fields_values( $this->post->ID, 'events', $config ) );
-	}
-
-	/**
-	 * Test get_custom_fields_values() should return post meta from database when meta key exists in custom fields
-	 * config.
-	 */
-	public function test_should_return_post_meta_from_database_when_meta_key_exists_in_custom_fields_config() {
-		$config = [
+		$this->config = [
 			'custom_fields' => [
 				'event-date' => [
 					'is_single' => true,
