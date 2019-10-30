@@ -33,10 +33,26 @@ class Tests_AutoloadConfigurations extends Test_Case {
 	}
 
 	/**
-	 * Test autoload_configurations() should return a store key when a config file is given.
+	 * Test autoload configurations() should load a metabox config, and initialize it's custom fields when given a
+	 * custom config.
 	 */
+	public function test_should_load_a_meta_box_config_and_initialize_the_custom_fields_when_given_a_custom_config() {
+		$config_array        = (array) require CENTRAL_HUB_ROOT_DIR . '/tests/phpunit/fixtures/meta-box-members-runtime-config.php';
+		$defaults            = (array) require CENTRAL_HUB_ROOT_DIR . '/src/meta-data/defaults/meta-box-config.php';
+		$defaults            = current( $defaults );
+		Monkey\Functions\when( 'KnowTheCode\ConfigStore\loadConfigFromFilesystem' )
+			->justReturn( 'meta_box.members' );
+		Monkey\Functions\expect( 'spiralWebDB\Metadata\init_custom_fields_configuration' )
+			->once()
+			->with( 'meta_box.members' )
+			->andReturn();
 
-	/**
-	 * Test autoload configurations() should autoload a metabox config when given a path to config file.
-	 */
+		autoload_configurations( $config_array );
+
+		$this->assertArrayHasKey( 'meta_box.members', $config_array );
+		$this->assertArrayHasKey( 'add_meta_box', $defaults );
+		$this->assertArrayHasKey( 'custom_fields', $defaults );
+		$this->assertArrayHasKey( 'view', $defaults );
+	}
 }
+
