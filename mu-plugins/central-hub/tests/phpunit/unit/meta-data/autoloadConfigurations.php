@@ -24,12 +24,22 @@ use spiralWebDb\Cornerstone\Tests\Unit\Test_Case;
 class Tests_AutoloadConfigurations extends Test_Case {
 
 	/**
+	 * Array of default config params.
+	 *
+	 * @var array
+	 */
+	private $defaults = [];
+
+	/**
 	 * Prepare the test environment before each test.
 	 */
 	protected function setUp() {
 		parent::setUp();
 
 		require_once CENTRAL_HUB_ROOT_DIR . '/src/meta-data/module.php';
+
+		$this->defaults = (array) require CENTRAL_HUB_ROOT_DIR . '/src/meta-data/defaults/meta-box-config.php';
+		$this->defaults    = current( $this->defaults );
 	}
 
 	/**
@@ -37,13 +47,11 @@ class Tests_AutoloadConfigurations extends Test_Case {
 	 */
 	public function test_should_load_config_from_filesystem_into_config_store() {
 		$config_file = CENTRAL_HUB_ROOT_DIR . '/tests/phpunit/fixtures/meta-box-members-runtime-config.php';
-		$defaults    = (array) require CENTRAL_HUB_ROOT_DIR . '/src/meta-data/defaults/meta-box-config.php';
-		$defaults    = current( $defaults );
 
 		// Assert that loadConfigFromFilesystem() runs once and receives the expected parameters.
 		Monkey\Functions\expect( 'KnowTheCode\ConfigStore\loadConfigFromFilesystem' )
 			->once()
-			->with( $config_file, $defaults )
+			->with( $config_file, $this->defaults )
 			->andReturn( 'meta_box.members' );
 		Monkey\Functions\when( 'spiralWebDB\Metadata\init_custom_fields_configuration' )->justReturn();
 
@@ -80,20 +88,18 @@ class Tests_AutoloadConfigurations extends Test_Case {
 			'some/path/to/config2.php',
 			'some/path/to/config3.php',
 		];
-		$defaults    = (array) require CENTRAL_HUB_ROOT_DIR . '/src/meta-data/defaults/meta-box-config.php';
-		$defaults    = current( $defaults );
 
 		// Assert that loadConfigFromFilesystem() runs three times and receives the expected parameters.
 		Monkey\Functions\expect( 'KnowTheCode\ConfigStore\loadConfigFromFilesystem' )
 			->once()
-			->with( $config_files[0], $defaults )
+			->with( $config_files[0], $this->defaults )
 			->andReturn( 'meta_box.members' )
 			->andAlsoExpectIt()
 			->once()
-			->with( $config_files[1], $defaults )
+			->with( $config_files[1], $this->defaults )
 			->andReturn( 'meta_box.members' )
 			->once()
-			->with( $config_files[2], $defaults )
+			->with( $config_files[2], $this->defaults )
 			->andReturn( 'meta_box.members' );
 		Monkey\Functions\when( 'spiralWebDB\Metadata\init_custom_fields_configuration' )->justReturn();
 
