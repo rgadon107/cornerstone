@@ -37,22 +37,23 @@ class Tests_AutoloadConfigurations extends Test_Case {
 	 * custom config.
 	 */
 	public function test_should_load_a_meta_box_config_and_initialize_the_custom_fields_when_given_a_custom_config() {
-		$config_array        = (array) require CENTRAL_HUB_ROOT_DIR . '/tests/phpunit/fixtures/meta-box-members-runtime-config.php';
-		$defaults            = (array) require CENTRAL_HUB_ROOT_DIR . '/src/meta-data/defaults/meta-box-config.php';
-		$defaults            = current( $defaults );
-		Monkey\Functions\when( 'KnowTheCode\ConfigStore\loadConfigFromFilesystem' )
-			->justReturn( 'meta_box.members' );
+		$config_file = CENTRAL_HUB_ROOT_DIR . '/tests/phpunit/fixtures/meta-box-members-runtime-config.php';
+		$defaults    = (array) require CENTRAL_HUB_ROOT_DIR . '/src/meta-data/defaults/meta-box-config.php';
+		$defaults    = current( $defaults );
+
+		Monkey\Functions\expect( 'KnowTheCode\ConfigStore\loadConfigFromFilesystem' )
+			->once()
+			->with( $config_file, $defaults )
+			->andReturn( 'meta_box.members' );
 		Monkey\Functions\expect( 'spiralWebDB\Metadata\init_custom_fields_configuration' )
 			->once()
 			->with( 'meta_box.members' )
 			->andReturn();
 
-		autoload_configurations( $config_array );
+		autoload_configurations( [ $config_file ] );
 
-		$this->assertArrayHasKey( 'meta_box.members', $config_array );
-		$this->assertArrayHasKey( 'add_meta_box', $defaults );
-		$this->assertArrayHasKey( 'custom_fields', $defaults );
-		$this->assertArrayHasKey( 'view', $defaults );
+		// This is a placeholder to avoid PHPUnit error. The assertions are in the "expect" functions above.
+		$this->assertTrue( true );
 	}
 }
 
