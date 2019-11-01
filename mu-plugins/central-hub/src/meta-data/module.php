@@ -21,6 +21,7 @@ use KnowTheCode\ConfigStore as configStore;
  * @param array $config_files Array of configuration models files.
  *
  * @return void
+ * @throws \Exception Throws an exception if the store key does not exist.
  */
 function autoload_configurations( array $config_files ) {
 	$defaults = (array) require __DIR__ . '/defaults/meta-box-config.php';
@@ -41,6 +42,7 @@ function autoload_configurations( array $config_files ) {
  * @param string $store_key Configuration's store key.
  *
  * @return void
+ * @throws \Exception Throws an exception if the store key does not exist.
  */
 function init_custom_fields_configuration( $store_key ) {
 	$config = configStore\getConfig( $store_key );
