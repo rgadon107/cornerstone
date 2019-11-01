@@ -41,10 +41,22 @@ class Tests_AutoloadConfigurations extends Test_Case {
 	}
 
 	/**
-	 * Test autoload configurations() should load a metabox config, and initialize it's custom fields when given a
-	 * custom config.
+	 * Test autoload configurations() should load a metabox config from the filesystem into Config Store.
 	 */
-	public function test_should_load_a_meta_box_config_and_initialize_the_custom_fields_when_given_a_custom_config() {
+	public function test_should_load_config_from_filesystem_into_config_store() {
+		autoload_configurations( [ CENTRAL_HUB_ROOT_DIR . '/tests/phpunit/fixtures/meta-box-members-runtime-config.php' ] );
+
+		$actual_config = getConfig( 'meta_box.members' );
+		$this->assertArrayHasKey( 'add_meta_box', $actual_config );
+		$this->assertArrayHasKey( 'custom_fields', $actual_config );
+		$this->assertArrayHasKey( 'view', $actual_config );
+	}
+
+	/**
+	 * Test autoload configurations() should load the initialized custom fields configuration, i.e. missing custom
+	 * field's configuration parameters are populated by the default config.
+	 */
+	public function test_should_load_initialized_the_custom_fields_config() {
 		// Run the autoload function.
 		autoload_configurations( [ CENTRAL_HUB_ROOT_DIR . '/tests/phpunit/fixtures/meta-box-members-runtime-config.php' ] );
 
