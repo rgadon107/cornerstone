@@ -39,7 +39,7 @@ class Tests_AutoloadConfigurations extends Test_Case {
 		require_once CENTRAL_HUB_ROOT_DIR . '/src/meta-data/module.php';
 
 		$this->defaults = (array) require CENTRAL_HUB_ROOT_DIR . '/src/meta-data/defaults/meta-box-config.php';
-		$this->defaults    = current( $this->defaults );
+		$this->defaults = current( $this->defaults );
 	}
 
 	/**
