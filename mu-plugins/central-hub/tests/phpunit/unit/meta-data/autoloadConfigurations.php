@@ -70,4 +70,36 @@ class Tests_AutoloadConfigurations extends Test_Case {
 		// This is a placeholder to avoid PHPUnit error. The "expect" above is the assertion in this test.
 		$this->assertTrue( true );
 	}
+
+	/**
+	 * Test autoload configurations() should load multiple config files from the filesystem into Config Store.
+	 */
+	public function test_should_load_multiple_config_files_from_filesystem_into_config_store() {
+		$config_files = [
+			'some/path/to/config1.php',
+			'some/path/to/config2.php',
+			'some/path/to/config3.php',
+		];
+		$defaults    = (array) require CENTRAL_HUB_ROOT_DIR . '/src/meta-data/defaults/meta-box-config.php';
+		$defaults    = current( $defaults );
+
+		// Assert that loadConfigFromFilesystem() runs three times and receives the expected parameters.
+		Monkey\Functions\expect( 'KnowTheCode\ConfigStore\loadConfigFromFilesystem' )
+			->once()
+			->with( $config_files[0], $defaults )
+			->andReturn( 'meta_box.members' )
+			->andAlsoExpectIt()
+			->once()
+			->with( $config_files[1], $defaults )
+			->andReturn( 'meta_box.members' )
+			->once()
+			->with( $config_files[2], $defaults )
+			->andReturn( 'meta_box.members' );
+		Monkey\Functions\when( 'spiralWebDB\Metadata\init_custom_fields_configuration' )->justReturn();
+
+		autoload_configurations( $config_files );
+
+		// This is a placeholder to avoid PHPUnit error. The "expect" above is the assertion in this test.
+		$this->assertTrue( true );
+	}
 }
