@@ -36,6 +36,9 @@ class Tests_AutoloadConfigurations extends Test_Case {
 		$this->assertArrayHasKey( 'add_meta_box', $actual_config );
 		$this->assertArrayHasKey( 'custom_fields', $actual_config );
 		$this->assertArrayHasKey( 'view', $actual_config );
+
+		// Clean up.
+		self::remove_from_store( 'meta_box.members' );
 	}
 
 	/**
@@ -92,5 +95,8 @@ class Tests_AutoloadConfigurations extends Test_Case {
 
 		// Just to make sure, check the entire config array.
 		$this->assertSame( $expected_config, $actual_config );
+
+		// Clean up.
+		self::remove_from_store( 'meta_box.members' );
 	}
 }
