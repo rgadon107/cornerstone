@@ -13,7 +13,7 @@
   text-align: center;
   font-style: italic;
   font-weight: bold;
-  @include media( $breakpoint__screen-size--small ) {
+  @media only screen and (max-width: $breakpoint__screen-size--small ) {
     font-weight: 400;
   }
 }

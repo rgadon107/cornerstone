@@ -13,7 +13,7 @@ body {
   line-height: $base--line-height;
   margin: 0;
 
-   @include media( $breakpoint__screen-size--small ) {
+   @media only screen and (max-width: $breakpoint__screen-size--small ) {
     font-size: $base--font-size--small-screen;
   }
 
@@ -21,7 +21,7 @@ body {
   > div {
     font-size: $base__div--font-size;
 
-     @include media( $breakpoint__screen-size--small ) {
+     @media only screen and (max-width: $breakpoint__screen-size--small ) {
       font-size: $base__div--font-size--small-screen;
     }
   }

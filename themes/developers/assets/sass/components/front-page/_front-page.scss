@@ -13,7 +13,7 @@
   text-align: center;
   font-style: italic;
   font-weight: bold;
-  @include media( $breakpoint__screen-size--small ) {
+  @media only screen and (max-width: $breakpoint__screen-size--small ) {
     font-weight: 400;
   }
 }
@@ -24,7 +24,7 @@
   columns: 2;
   padding: 0 2%;
 
-  @include media( $breakpoint__screen-size--small ) {
+  @media only screen and (max-width: $breakpoint__screen-size--small ) {
     columns: 1;
   }
 }
@@ -32,7 +32,7 @@
 .reviews-content {
   display: flex;
   justify-content: space-around;
-  @include media($breakpoint__screen-size--small) {
+  @media only screen and (max-width: $breakpoint__screen-size--small) {
     display: inline-block;
   }
 

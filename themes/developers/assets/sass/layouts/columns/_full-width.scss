@@ -1,5 +1,5 @@
 
- @include media( $breakpoint__screen-size--small ) {
+ @media only screen and (max-width: $breakpoint__screen-size--small ) {
   .five-sixths,
   .four-sixths,
   .one-fourth,

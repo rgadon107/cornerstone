@@ -6,14 +6,14 @@
   margin: 0 auto;
   max-width: $max-width;
 
-  @include media( $breakpoint__screen-size--larger ) {
+  @media only screen and (max-width: $breakpoint__screen-size--larger) {
     max-width: $max-width-larger-screen;
   }
-   @include media( $breakpoint__screen-size--large ) {
+  @media only screen and (max-width: $breakpoint__screen-size--large) {
     max-width: $max-width-large-screen;
   }
 
-   @include media( $breakpoint__screen-size--medium ) {
+   @media only screen and (max-width: $breakpoint__screen-size--medium ) {
     max-width: $max-width--medium-screen;
   }
 }
@@ -23,12 +23,12 @@
   padding: 40px 0;
   word-wrap: break-word;
 
-   @include media( $breakpoint__screen-size--small ) {
+   @media only screen and (max-width: $breakpoint__screen-size--small ) {
     padding: 5% 5% 0;
   }
 }
 
- @include media( $breakpoint__screen-size--small ) {
+ @media only screen and (max-width: $breakpoint__screen-size--small ) {
   .wrap {
     padding-left: 5%;
     padding-right: 5%;
