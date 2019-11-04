@@ -91,7 +91,6 @@ function reload(done) {
 export function runSass(config) {
 	return gulp.src(config.sass)
 		.pipe(sourcemaps.init())
-		// .pipe(sass().on('error', sass.logError))
 		.pipe(sass({
 			sourcemaps: true
 		}).on('error', sass.logError))
@@ -105,8 +104,6 @@ export function runSass(config) {
  * CSS via PostCSS + CSSNext (includes Autoprefixer by default).
  */
 export function runStyles(config) {
-	// const themeConfig = requireUncached('./config/theme-config.js');
-
 	return gulp.src(config.src)
 		.pipe(print())
 		.pipe(phpcs({
@@ -133,8 +130,6 @@ export function runStyles(config) {
  * JavaScript via Babel, ESlint, and uglify.
  */
 export function scripts() {
-	const themeConfig = requireUncached('./config/theme-config.js');
-
 	return gulp.src(paths.scripts.src)
 		.pipe(newer(paths.scripts.dest))
 		.pipe(eslint())
