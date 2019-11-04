@@ -8,7 +8,7 @@
 
 import gulp from 'gulp';
 import browserSync from 'browser-sync';
-import cssnano from 'gulp-cssnano';
+import cssnano from 'cssnano';
 import babel from 'gulp-babel';
 import eslint from 'gulp-eslint';
 import log from 'fancy-log';
@@ -120,10 +120,10 @@ export function runStyles(config) {
 			postcssPresetEnv({
 				stage: 3,
 				browsers: themeConfig.dev.browserslist
-			})
+			}),
+			cssnano()
 		]))
-		.pipe(gulpif(!themeConfig.dev.debug.styles, cssnano()))
-		.pipe(gulpif(!themeConfig.dev.debug.styles, rename({suffix: '.min'})))
+		.pipe(rename({suffix: '.min'}))
 		.pipe(gulp.dest(config.dest))
 		.on('end', function(){ log("Ran 'runStyles'"); });
 }
