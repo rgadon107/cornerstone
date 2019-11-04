@@ -16,14 +16,12 @@ import gulpif from 'gulp-if';
 import image from 'gulp-image';
 import newer from 'gulp-newer';
 import postcssPresetEnv from 'postcss-preset-env';
-import phpcs from 'gulp-phpcs';
 import postcss from 'gulp-postcss';
 import print from 'gulp-print';
 import requireUncached from 'require-uncached';
 const rename = require("gulp-rename");
 import sass from 'gulp-sass';
 import sourcemaps from 'gulp-sourcemaps';
-import tabify from 'gulp-tabify';
 import uglify from 'gulp-uglify';
 
 // Import theme-specific configurations.
@@ -94,7 +92,6 @@ export function runSass(config) {
 		.pipe(sass({
 			sourcemaps: true
 		}).on('error', sass.logError))
-		.pipe(tabify(2, true))
 		.pipe(sourcemaps.write())
 		.pipe(gulp.dest(config.dest))
 		.on('end', function(){ log("Ran 'runSass'"); });
@@ -106,13 +103,6 @@ export function runSass(config) {
 export function runStyles(config) {
 	return gulp.src(config.src)
 		.pipe(print())
-		.pipe(phpcs({
-			bin: 'vendor/bin/phpcs',
-			standard: 'WordPress',
-			warningSeverity: 0
-		}))
-		// Log all problems that was found
-		.pipe(phpcs.reporter('log'))
 		.pipe(postcss([
 			postcssPresetEnv({
 				stage: 3,
