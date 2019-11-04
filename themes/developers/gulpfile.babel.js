@@ -85,13 +85,11 @@ function reload(done) {
  */
 export function runSass(config) {
 	sass.compiler = require('node-sass');
-    const tabify = require('gulp-tabify');
 
 	return gulp.src(config.sass)
 		.pipe(sourcemaps.init())
 		.pipe(sass({outputStyle: 'expanded', indentType: 'tab', indentWidth: 1}).on('error', sass.logError))
 		.pipe(sourcemaps.write())
-        // .pipe(tabify())
 		.pipe(gulp.dest(config.dest))
 		.on('end', function(){ log("Ran 'runSass'"); });
 }
@@ -109,15 +107,6 @@ export function runStyles(config) {
 		.pipe(rename({suffix: '.min'}))
 		.pipe(gulp.dest(config.dest))
 		.on('end', function(){ log("Ran 'runStyles'"); });
-}
-
-export function formatStyle(config) {
-    const tabify = require('gulp-tabify');
-
-    return gulp.src(config.src)
-        .pipe(tabify())
-        // .pipe(gulp.dest(config.src))
-        .on('end', function(){ log("Ran 'formatStyle'"); });
 }
 
 export function lintStyles(config) {
@@ -184,9 +173,6 @@ exports.styles = gulp.series(
 	() => {
 		return runStyles(paths.mainStyle)
 	},
-    // () => {
-    //     return formatStyle(paths.mainStyle)
-    // },
     () => {
         return lintStyles(paths.mainStyle)
     },
