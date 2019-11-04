@@ -46,9 +46,9 @@
     "gulp-uglify": "^3.0.0",
     "gulp-wp-pot": "^2.2.0",
     "postcss-partial-import": "^4.1.0",
-    "postcss-pixels-to-rem": "^0.8.0",
     "postcss-preset-env": "^5.1.0",
-    "require-uncached": "^1.0.3"
+    "require-uncached": "^1.0.3",
+    "sass-rem": "^2.0.1"
   },
   "babel": {
     "presets": [
@@ -68,8 +68,5 @@
     "build": "gulp",
     "translate": "gulp translate"
   },
-  "gulpConfig": "./config/gulp/config.js",
-  "dependencies": {
-    "sass-rem": "^2.0.1"
-  }
+  "gulpConfig": "./config/gulp/config.js"
 }
