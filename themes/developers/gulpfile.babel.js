@@ -2,8 +2,25 @@
 'use strict';
 
 /**
- * To start theme building process, define the theme name below,
- * then run "gulp" in command line.
+ * Tasks available for use:
+ *
+ * `gulp watch` => watches for changes to styles or scripts and then runs the appropriate task(s).
+ *
+ * `gulp styles` =>
+ *      - Converts Sass to CSS
+ *      - Builds source maps
+ *      - Saves css to style.css
+ *      - Runs autoprefixer
+ *      - Runs cssnano to minify css
+ *      - Saves minified css into style.min.css
+ *      - Runs stylelint (using .stylelintrc.json configuration) on style.css and prints report in console
+ * `gulp scripts` =>
+ *
+ * `gulp jsMin` =>
+ *      - Runs the linter and prints report in console
+ *      - Runs babel
+ *      - Minifies (uglifies) the scripts
+ *      - Saves the minified script(s) in the configurable destination folder
  */
 
 import gulp from 'gulp';
@@ -39,10 +56,6 @@ const paths = {
 		src: ['assets/js/**/*.js'],
 		min: 'assets/js/*.min.js',
 		dest: './assets/js/'
-	},
-	images: {
-		src: ['assets/images/**/*.{jpg,JPG,png,svg,gif,GIF}'],
-		dest: 'assets/images/'
 	}
 };
 
