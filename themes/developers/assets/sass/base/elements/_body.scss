@@ -1,9 +1,9 @@
 
-html {
+html { /* stylelint-disable-line */
   font-size: $html--font-size; /* 10px browser default */
 }
 
-body {
+body { /* stylelint-disable-line */
   background-color: $body--background-color;
   color: $base__color;
   font-family: $base--font-family;
