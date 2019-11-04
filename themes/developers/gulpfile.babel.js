@@ -98,7 +98,7 @@ export function runSass(config) {
 }
 
 /**
- * CSS via PostCSS + CSSNext (includes Autoprefixer by default).
+ * Run PostCSS (includes Autoprefixer by default) and then optimize.
  */
 export function runStyles(config) {
 	return gulp.src(config.src)

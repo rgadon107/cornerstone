@@ -64,9 +64,5 @@
       "es6": true
     }
   },
-  "scripts": {
-    "build": "gulp",
-    "translate": "gulp translate"
-  },
   "gulpConfig": "./config/gulp/config.js"
 }
