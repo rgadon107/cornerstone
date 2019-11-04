@@ -8,14 +8,12 @@
 
 import gulp from 'gulp';
 import browserSync from 'browser-sync';
-import cssnano from 'cssnano';
 import babel from 'gulp-babel';
 import eslint from 'gulp-eslint';
 import log from 'fancy-log';
 import gulpif from 'gulp-if';
 import image from 'gulp-image';
 import newer from 'gulp-newer';
-import postcssPresetEnv from 'postcss-preset-env';
 import postcss from 'gulp-postcss';
 import print from 'gulp-print';
 import requireUncached from 'require-uncached';
@@ -104,11 +102,8 @@ export function runStyles(config) {
 	return gulp.src(config.src)
 		.pipe(print())
 		.pipe(postcss([
-			postcssPresetEnv({
-				stage: 3,
-				browsers: themeConfig.dev.browserslist
-			}),
-			cssnano()
+			require('autoprefixer')({ browsers: themeConfig.dev.browserslist }),
+			require('cssnano')
 		]))
 		.pipe(rename({suffix: '.min'}))
 		.pipe(gulp.dest(config.dest))
