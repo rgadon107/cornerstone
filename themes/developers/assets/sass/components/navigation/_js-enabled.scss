@@ -22,7 +22,7 @@
         }
       }
 
-      > .menu-item-has-children > a:after {
+      > .menu-item-has-children > a::after {
         content: none;
       }
 

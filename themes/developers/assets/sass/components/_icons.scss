@@ -13,7 +13,7 @@
   vertical-align: middle;
 }
 
-.dashicons-before:before {
+.dashicons-before::before {
   width: 25px;
   height: 25px;
   font-size: 25px;
@@ -25,7 +25,7 @@
   margin-right: 5px;
 }
 
-.dashicons-menu:after {
+.dashicons-menu::after {
   content: "Menu";
   font-size: $nav-mobile--font-size;
 }

@@ -43,13 +43,13 @@
       border-width: 0;
     }
 
-    &:before {
+    &::before {
       display: inline-block;
       text-rendering: auto;
       transform: translate(0, 0);
     }
 
-    &.activated:before {
+    &.activated::before {
       content: "\f142";
     }
   }
@@ -66,8 +66,8 @@
       border: 0;
     }
 
-    &:before,
-    &.activated:before {
+    &::before,
+    &.activated::before {
       margin-right: 10px;
       text-rendering: auto;
       transform: translate(0, 0);
