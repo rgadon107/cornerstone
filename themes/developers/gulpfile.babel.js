@@ -12,7 +12,6 @@ import babel from 'gulp-babel';
 import eslint from 'gulp-eslint';
 import log from 'fancy-log';
 import gulpif from 'gulp-if';
-import image from 'gulp-image';
 import newer from 'gulp-newer';
 import postcss from 'gulp-postcss';
 import print from 'gulp-print';
@@ -135,16 +134,6 @@ export function jsMin() {
 }
 
 /**
- * Optimize images.
- */
-export function images() {
-	return gulp.src(paths.images.src)
-		.pipe(newer(paths.images.dest))
-		.pipe(image())
-		.pipe(gulp.dest(paths.images.dest));
-}
-
-/**
  * Let's watch everything by running: `gulp watch`.
  */
 export function watch() {
@@ -160,7 +149,6 @@ export function watch() {
 	));
 	gulp.watch(paths.scripts.src, gulp.series(scripts, reload));
 	gulp.watch(paths.scripts.min, gulp.series(jsMin, reload));
-	gulp.watch(paths.images.src, gulp.series(images, reload));
 }
 
 /**
@@ -185,8 +173,3 @@ exports.scripts = gulp.series(scripts, reload);
  * Copy minified JS files without touching them by typing: `gulp jsMin`.
  */
 exports.jsMin = gulp.series(jsMin, reload);
-
-/**
- * Optimize images once by typing: `gulp images`.
- */
-exports.images = gulp.series(images, reload);
