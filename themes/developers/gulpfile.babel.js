@@ -183,6 +183,9 @@ export function watch() {
 	gulp.watch(paths.images.src, gulp.series(images, reload));
 }
 
+/**
+ * Run the style tasks once by typing: `gulp styles`.
+ */
 exports.styles = gulp.series(
 	() => {
 		return runSass(paths.mainStyle);
@@ -192,3 +195,18 @@ exports.styles = gulp.series(
 	},
 	reload
 );
+
+/**
+ * Run the script tasks once by typing: `gulp scripts`.
+ */
+exports.scripts = gulp.series(scripts, reload);
+
+/**
+ * Copy minified JS files without touching them by typing: `gulp jsMin`.
+ */
+exports.jsMin = gulp.series(jsMin, reload);
+
+/**
+ * Optimize images once by typing: `gulp images`.
+ */
+exports.images = gulp.series(images, reload);
