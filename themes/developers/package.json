@@ -35,7 +35,7 @@
     "gulp-eslint": "^4.0.2",
     "gulp-if": "^2.0.2",
     "gulp-newer": "^1.4.0",
-    "gulp-postcss": "^7.0.1",
+    "gulp-postcss": "^7.0",
     "gulp-print": "^5.0.0",
     "gulp-rename": "^1.4.0",
     "gulp-sass": "^4.0.0",
@@ -44,9 +44,12 @@
     "gulp-string-replace": "^1.0.0",
     "gulp-uglify": "^3.0.0",
     "gulp-wp-pot": "^2.2.0",
+    "node-sass": "^4.13.0",
     "postcss-partial-import": "^4.1.0",
     "require-uncached": "^1.0.3",
-    "sass-rem": "^2.0.1"
+    "sass-rem": "^2.0.1",
+    "stylelint": "^11.1.1",
+    "stylelint-config-wordpress": "^15.0.0"
   },
   "babel": {
     "presets": [
@@ -62,5 +65,9 @@
       "es6": true
     }
   },
-  "gulpConfig": "./config/gulp/config.js"
+  "gulpConfig": "./config/gulp/config.js",
+  "scripts": {
+    "stylelintSass": "stylelint './asserts/sass/**/*.scss'",
+    "stylelint": "stylelint './style.css'"
+  }
 }

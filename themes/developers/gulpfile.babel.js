@@ -84,11 +84,11 @@ function reload(done) {
  * Convert Sass into CSS.
  */
 export function runSass(config) {
+	sass.compiler = require('node-sass');
+
 	return gulp.src(config.sass)
 		.pipe(sourcemaps.init())
-		.pipe(sass({
-			sourcemaps: true
-		}).on('error', sass.logError))
+		.pipe(sass({outputStyle: 'expanded'}).on('error', sass.logError))
 		.pipe(sourcemaps.write())
 		.pipe(gulp.dest(config.dest))
 		.on('end', function(){ log("Ran 'runSass'"); });
@@ -101,6 +101,7 @@ export function runStyles(config) {
 	return gulp.src(config.src)
 		.pipe(print())
 		.pipe(postcss([
+			require('stylelint'),
 			require('autoprefixer')({ browsers: themeConfig.dev.browserslist }),
 			require('cssnano')
 		]))
