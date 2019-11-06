@@ -5,7 +5,7 @@
  * @package     spiralWebDB\Developers
  * @since       1.0.2
  * @author      Robert A. Gadon
- * @link        https://knowthecode.io
+ * @link        https://spiralwebdb.com
  * @license     GNU General Public License 2.0+
  */
 namespace spiralWebDB\Developers;
