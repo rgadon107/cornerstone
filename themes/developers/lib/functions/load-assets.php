@@ -39,12 +39,12 @@ add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\enqueue_assets' );
  */
 function enqueue_assets() {
 
-	wp_enqueue_style( CHILD_TEXT_DOMAIN . '-fonts', '//fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700', array(), CHILD_THEME_VERSION );
-	wp_enqueue_style( CHILD_TEXT_DOMAIN . '-fonts', '//fonts.googleapis.com/css?family=Lato:300,400,400i,700,700i', array(), CHILD_THEME_VERSION );
+	wp_enqueue_style( CHILD_TEXT_DOMAIN . '-fonts', '//fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700', array(), get_theme_version() );
+	wp_enqueue_style( CHILD_TEXT_DOMAIN . '-fonts', '//fonts.googleapis.com/css?family=Lato:300,400,400i,700,700i', array(), get_theme_version() );
 	wp_enqueue_style( 'font-awesome-free', '//use.fontawesome.com/releases/v5.1.0/css/all.css' );
 	wp_enqueue_style( 'dashicons' );
 
-	wp_enqueue_script( CHILD_TEXT_DOMAIN . '-responsive-menu', get_theme_url() . '/assets/js/responsive-menu.js', array( 'jquery' ), CHILD_THEME_VERSION, true );
+	wp_enqueue_script( CHILD_TEXT_DOMAIN . '-responsive-menu', get_theme_url() . '/assets/js/responsive-menu.js', array( 'jquery' ), get_theme_version(), true );
 
 	$localized_script_args = array(
 		'mainMenu' => __( 'Menu', CHILD_TEXT_DOMAIN ),
