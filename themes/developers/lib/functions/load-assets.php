@@ -11,6 +11,24 @@
 
 namespace spiralWebDB\Developers;
 
+add_filter( 'stylesheet_uri', __NAMESPACE__ . '\change_stylesheet_uri_to_min' );
+/**
+ * Change the stylesheet to the minified version.
+ *
+ * @since 2.0.0
+ *
+ * @param string $stylesheet_uri Stylesheet's URI.
+ *
+ * @return string
+ */
+function change_stylesheet_uri_to_min( $stylesheet_uri ) {
+	if ( is_in_debug() ) {
+		return $stylesheet_uri;
+	}
+
+	return get_theme_url() . '/style.min.css';
+}
+
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\enqueue_assets' );
 /**
  * Enqueue Scripts and Styles.
