@@ -3,7 +3,7 @@
  * Developer's Theme
  *
  * @package     spiralWebDB\Developers
- * @since       1.0.2
+ * @since       2.0.0
  * @author      Robert A. Gadon
  * @link        https://spiralwebdb.com
  * @license     GNU General Public License 2.0+
@@ -13,7 +13,7 @@ namespace spiralWebDB\Developers;
 /**
  * Get the absolute path to the root directory of the child theme.
  *
- * @since 1.0.0
+ * @since 2.0.0
  *
  * @return string returns the directory path.
  */
@@ -24,7 +24,7 @@ function get_theme_dir() {
 /**
  * Get the URL to the root of the child theme.
  *
- * @since 1.0.0
+ * @since 2.0.0
  *
  * @return string returns the URL to the root of the child theme.
  */
@@ -41,7 +41,7 @@ function get_theme_url() {
 /**
  * Get the theme's version.
  *
- * @since 1.0.0
+ * @since 2.0.0
  *
  * @return string returns the theme's version.
  */
@@ -64,7 +64,7 @@ function get_theme_version() {
 /**
  * Checks if in a debug/dev environment.
  *
- * @since 1.0.0
+ * @since 2.0.0
  *
  * @return bool
  */
