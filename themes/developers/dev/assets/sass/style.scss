@@ -19,6 +19,8 @@
 */
 @import '../../node_modules/sass-rem/rem';
 
+$rem-fallback: true;
+
 @import 'utilities/index';
 @import 'base/index';
 @import 'layouts/index';
