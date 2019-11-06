@@ -44,7 +44,7 @@ function enqueue_assets() {
 	wp_enqueue_style( 'font-awesome-free', '//use.fontawesome.com/releases/v5.1.0/css/all.css' );
 	wp_enqueue_style( 'dashicons' );
 
-	wp_enqueue_script( CHILD_TEXT_DOMAIN . '-responsive-menu', CHILD_URL . '/assets/js/responsive-menu.js', array( 'jquery' ), CHILD_THEME_VERSION, true );
+	wp_enqueue_script( CHILD_TEXT_DOMAIN . '-responsive-menu', get_theme_url() . '/assets/js/responsive-menu.js', array( 'jquery' ), CHILD_THEME_VERSION, true );
 
 	$localized_script_args = array(
 		'mainMenu' => __( 'Menu', CHILD_TEXT_DOMAIN ),
