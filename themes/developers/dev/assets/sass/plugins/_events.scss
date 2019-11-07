@@ -1,0 +1,62 @@
+/* ## Events add-on plugin
+---------------------------------------------------*/
+.events {
+
+  &-archive-title {
+    background-color: $yellow--light;
+    @include rem( font-size, $events__Archive_Title--font-size );
+    font-style: italic;
+    font-weight: 900;
+    @media only screen and (max-width: $breakpoint__screen-size--small ) {
+      font-weight: 400;
+      line-height: 1.2;
+    }
+    display: block;
+    text-align: center;
+    margin-top: 40px;
+    padding: 20px 30px;
+  }
+  .event-thumbnail {
+    padding-right: 10px;
+    margin-bottom: 20px;
+  }
+
+  .entry-title a {
+    &:focus,
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .entry-content.two-thirds,
+  .entry-footer.two-thirds {
+    float: right;
+  }
+
+  .event.event-date {
+    @include rem( font-size, $events__Archive_Date_Time--font-size );
+  }
+
+  .revealer--visible {
+    display: flex;
+  }
+
+  .sponsor-tel-number,
+  .sponsor-web-site,
+  .sponsor-facebook {
+    padding-right: 40px;
+  }
+
+  .sponsor-contact-items {
+    display: flex;
+    @media only screen and (max-width: $breakpoint__screen-size--small ) {
+      display: inline-block;
+    }
+  }
+}
+
+.content .entry.events {
+  margin: 10px 0;
+  padding: 30px;
+  background-color: $yellow--light;
+}

@@ -27,6 +27,7 @@
 /plugins/wp-migrate-db-pro-media-files
 /themes/Beans
 /themes/developers/node_modules/
+/themes/developers/vendor/
 /themes/genesis
 /upgrade
 /uploads
