@@ -1,5 +1,6 @@
 # Directories
 /ewww
+/bin
 
 /tests/vendor/
 
@@ -12,6 +13,7 @@
 /plugins/favicon-by-realfavicongenerator
 /plugins/genesis-simple-share
 /plugins/genesis-visual-hook-guide
+/plugins/give
 /plugins/jetpack
 /plugins/members
 /plugins/members-role-hierarchy
@@ -26,7 +28,7 @@
 /plugins/wp-migrate-db-pro
 /plugins/wp-migrate-db-pro-media-files
 /themes/Beans
-/themes/developers/node_modules/
+/themes/developers/dev/node_modules/
 /themes/developers/vendor/
 /themes/genesis
 /upgrade
