@@ -19,9 +19,9 @@ return array(
 	),
 	'register_widget_areas'   => array(
 		array(
-			'id'          => 'donate_call_to_action',
-			'name'        => 'Donate -- Footer Widget',
-			'description' => 'This is donation appeal in the site footer.',
+			'id'          => 'footer_widget_area',
+			'name'        => 'Footer Widget--Call to Action',
+			'description' => 'Add a donation appeal & contact info in the site footer.',
 		),
 		array(
 			'id'            => 'archive_recordings_widget_area',
