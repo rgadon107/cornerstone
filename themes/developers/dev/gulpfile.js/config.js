@@ -10,6 +10,7 @@ module.exports = {
 		sass: devDir + 'assets/sass/style.scss',
 		src: rootDir + 'style.css',
 		dest: rootDir,
+		watch: devDir + 'assets/sass/**/*.scss',
 		sassOptions: {
 			outputStyle: 'expanded',
 			indentType: 'tab',
