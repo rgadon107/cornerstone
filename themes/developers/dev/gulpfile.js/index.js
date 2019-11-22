@@ -15,5 +15,5 @@ module.exports.lintStyles = stylesTasks.stylelint;
  * Let's watch everything by running: `gulp watch`.
  */
 module.exports.watch = () => {
-	gulp.watch(config.styles.sass, stylesTasks.styles);
+	gulp.watch(config.styles.watch, stylesTasks.styles);
 }
