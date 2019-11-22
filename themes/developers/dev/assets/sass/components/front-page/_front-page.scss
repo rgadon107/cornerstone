@@ -5,9 +5,10 @@
 .welcome-title,
 .reviews-title,
 .members-title,
+.promotion-title,
 .events-title {
   background-color: $widget--background-color;
-  @include rem( font-size, $widget-title__Welcome--font-size );
+  @include rem( font-size, $front-page__Section-Title--font-size );
   padding: 25px 0;
   margin-bottom: 30px;
   text-align: center;

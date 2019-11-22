@@ -28,8 +28,11 @@
 /plugins/wp-migrate-db-pro
 /plugins/wp-migrate-db-pro-media-files
 /themes/Beans
+<<<<<<< HEAD
 /themes/developers/dev/node_modules/
 /themes/developers/vendor/
+=======
+>>>>>>> bb637cd9e103ec1f0bc9ef0a2a9e1552013339b5
 /themes/genesis
 /upgrade
 /uploads

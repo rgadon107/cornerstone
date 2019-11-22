@@ -1,11 +1,28 @@
+// Base Typography
+// =====================================================
+
+// Reset the default value of $rem-baseline in `/dev/node_modules/rem-sass/_rem.scss`.
+// The reset preserves the calculation of rem in the stylesheet.
+$rem-baseline: 10px;
+// Set $rem-fallback to 'true' to allow rem to pixel conversion when necessary.
+$rem-fallback: true;
+
+// Note: The default value of the variable $rem-baseline: 16px is set in '/dev/node_modules/
+//    sass-rem/_rem.scss'.  Reset the variable to 10px in the `_typography.scss` partial
+//    and the style.scss file at '/dev/assets/sass/style.scss'.
+$html--font-size: 62.5%;
+
 // Common Fonts
 $font-family--source-sans-pro: 'Source Sans Pro', sans-serif;
 $font-family--lato: 'Lato', sans-serif;
 
+<<<<<<< HEAD
 // Base Typography
 $html--font-size: 62.5%;
 $rem-baseline: 10px;
 
+=======
+>>>>>>> bb637cd9e103ec1f0bc9ef0a2a9e1552013339b5
 $base--font-family: $font-family--source-sans-pro;
 $base--font-size: 20px;
 $base--font-size--small-screen: 18px;
@@ -43,6 +60,10 @@ $archive-pagination--font-size: 16px;
 $site-title--font-size: 30px;
 $site-description--font-size: 16px;
 
+//
+// Front Page
+//==================
+$front-page__Section-Title--font-size: 48px;
 
 //
 // Footer
@@ -91,3 +112,7 @@ $after-entry--font-size: 18px;
 $archive-description--font-size: 18px;
 $archive-title--font-size: 20px;
 $dashicons-format-quote--font-size: 26px
+<<<<<<< HEAD
+=======
+
+>>>>>>> bb637cd9e103ec1f0bc9ef0a2a9e1552013339b5
