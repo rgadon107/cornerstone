@@ -1,10 +1,14 @@
+// Base Typography
+// =====================================================
+// Note: The default value of the variable $rem-baseline: 16px is set in '/dev/node_modules/
+//    sass-rem/_rem.scss'.  Reset the variable to 10px in the `_typography.scss` partial
+//    and the style.scss file at '/dev/assets/sass/style.scss'.
+$html--font-size: 62.5%;
+$rem-baseline: 10px;
+
 // Common Fonts
 $font-family--source-sans-pro: 'Source Sans Pro', sans-serif;
 $font-family--lato: 'Lato', sans-serif;
-
-// Base Typography
-$html--font-size: 62.5%;
-$rem-baseline: 10px;
 
 $base--font-family: $font-family--source-sans-pro;
 $base--font-size: 20px;
