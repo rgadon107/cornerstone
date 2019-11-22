@@ -19,12 +19,6 @@
 */
 @import '../../node_modules/sass-rem/rem';
 
-// Reset the default value of $rem-baseline in `/dev/node_modules/rem-sass/_rem.scss`.
-// The reset preserves the calculation of rem in the stylesheet.
-$rem-baseline: 10px;
-// Set $rem-fallback to 'true' to allow rem to pixel conversion when necessary.
-$rem-fallback: true;
-
 @import 'utilities/index';
 @import 'base/index';
 @import 'layouts/index';

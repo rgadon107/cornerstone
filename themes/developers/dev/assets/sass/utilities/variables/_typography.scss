@@ -1,10 +1,16 @@
 // Base Typography
 // =====================================================
+
+// Reset the default value of $rem-baseline in `/dev/node_modules/rem-sass/_rem.scss`.
+// The reset preserves the calculation of rem in the stylesheet.
+$rem-baseline: 10px;
+// Set $rem-fallback to 'true' to allow rem to pixel conversion when necessary.
+$rem-fallback: true;
+
 // Note: The default value of the variable $rem-baseline: 16px is set in '/dev/node_modules/
 //    sass-rem/_rem.scss'.  Reset the variable to 10px in the `_typography.scss` partial
 //    and the style.scss file at '/dev/assets/sass/style.scss'.
 $html--font-size: 62.5%;
-$rem-baseline: 10px;
 
 // Common Fonts
 $font-family--source-sans-pro: 'Source Sans Pro', sans-serif;
