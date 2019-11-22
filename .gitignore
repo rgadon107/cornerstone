@@ -1,6 +1,5 @@
 # Directories
 /ewww
-/bin
 
 /tests/vendor/
 
@@ -28,8 +27,6 @@
 /plugins/wp-migrate-db-pro
 /plugins/wp-migrate-db-pro-media-files
 /themes/Beans
-/themes/developers/dev/node_modules/
-/themes/developers/vendor/
 /themes/genesis
 /upgrade
 /uploads
