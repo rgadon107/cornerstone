@@ -4,6 +4,7 @@ $font-family--lato: 'Lato', sans-serif;
 
 // Base Typography
 $html--font-size: 62.5%;
+$rem-baseline: 10px;
 
 $base--font-family: $font-family--source-sans-pro;
 $base--font-size: 20px;
@@ -42,6 +43,10 @@ $archive-pagination--font-size: 16px;
 $site-title--font-size: 30px;
 $site-description--font-size: 16px;
 
+//
+// Front Page
+//==================
+$front-page__Section-Title--font-size: 48px;
 
 //
 // Footer
@@ -90,3 +95,4 @@ $after-entry--font-size: 18px;
 $archive-description--font-size: 18px;
 $archive-title--font-size: 20px;
 $dashicons-format-quote--font-size: 26px
+
