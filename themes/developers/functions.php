@@ -55,7 +55,7 @@ function get_theme_version() {
 	if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
 		$version = filemtime( __DIR__ . '/style.min.css' );
 	} else {
-		$version = ( wp_get_theme() )->get( 'Version' );
+		$version = wp_get_theme()->get( 'Version' );
 	}
 
 	return $version;
