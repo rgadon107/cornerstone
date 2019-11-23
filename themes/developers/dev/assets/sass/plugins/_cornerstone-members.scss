@@ -1,11 +1,12 @@
 /* ## Cornerstone Members add-on plugin
 ---------------------------------------------------*/
 .members {
-	.members-archive-banner {
+	&.members-archive-banner {
 		background-color: $yellow--light;
 		padding: 30px 0 30px;
 		text-align: center;
 		font-style: italic;
+		margin-bottom: 20px;
 	}
 
 	.entry-title a {
