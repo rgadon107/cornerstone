@@ -11,6 +11,8 @@
 
 namespace spiralWebDb\Members\Template;
 
+use function spiralWebDb\Members\_get_plugin_directory;
+
 add_filter( 'post_class', __NAMESPACE__ . '\add_to_post_classes_for_grid_pattern' );
 /**
  * Add to the post classes.
@@ -37,5 +39,17 @@ function add_to_post_classes_for_grid_pattern( array $classes ) {
 
 remove_action( 'genesis_entry_content', 'genesis_do_post_content' );
 add_action( 'genesis_entry_content', __NAMESPACE__ . '\render_members_content' );
+
+add_action( 'genesis_before_loop', __NAMESPACE__ . '\render_members_archive_banner' );
+/*
+ * Render banner message on the cornerstone-members plugin archive page.
+ *
+ * @since 1.0.0
+ *
+ * @return void
+ */
+function render_members_archive_banner() {
+	require _get_plugin_directory() . '/src/views/archive-members-banner.php';
+}
 
 require dirname( __DIR__ ) . '/template/single-members.php';
