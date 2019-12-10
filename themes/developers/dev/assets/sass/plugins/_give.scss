@@ -1,0 +1,97 @@
+/* ## Give plugin (see https://givewp.com/)
+---------------------------------------------------*/
+.give-form-wrap .give-form-title {
+	text-align: center;
+	padding: 20px 0 20px;
+	@include rem(font-size, $give__Donation_Form_Title_Desktop--font-size);
+	font-weight: 700;
+	font-style: italic;
+
+	@media only screen and (max-width: $breakpoint__screen-size--small) {
+		@include rem(font-size, $give__Donation_Form_Title_Mobile--font-size);
+	}
+}
+
+// Flex container for the form's featured image & caption.
+.donation-form-featured-image.attachment_1411 {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: space-around;
+	align-items: center;
+}
+
+
+// Featured image on donation form
+.featured-image .attachment_1411 {
+	order: 1;
+	flex-grow: 1;
+	margin-bottom: 20px;
+}
+
+// Image caption on donation form.
+.post-1411-caption {
+	padding: 10px 0 10px;
+	order: 2;
+	flex-grow: 1;
+	@include rem(font-size, $give__Donation_Form_Featured_Image_Caption_Desktop--font-size);
+
+	@media only screen and (max-width: $breakpoint__screen-size--small) {
+		@include rem(font-size, $give__Donation_Form_Featured_Image_Caption_Mobile--font-size);
+	}
+}
+
+.give-form-content-wrap.give_pre_form-content {
+	@include rem(font-size, $give__Donation_Form_Content_Desktop--font-size);
+
+	@media only screen and (max-width: $breakpoint__screen-size--medium) {
+		@include rem(font-size, $give__Donation_Form_Content_Mobile--font-size);
+	}
+}
+
+// Donation levels labeling styles
+.donation-levels-label-wrap {
+
+	.donation-levels-label {
+		font-weight: 700;
+		border-bottom: 1px solid $give__subheading--bottom-border-color;
+		padding: 0 0 10px;
+		margin: 10px 0 15px;
+	}
+}
+
+.give-form {
+
+	// Call out request to pay credit donation processing fees.
+	.give-fee-message-label-text {
+		font-weight: 700;
+	}
+
+	// Recurring donation callout label
+	.recurring-donation-callout {
+		font-weight: 700;
+		border-bottom: 1px solid $give__subheading--bottom-border-color;
+		padding: 0 0 10px;
+		margin: 10px 0 15px;
+	}
+
+	// Payment instructions
+	.donation-form-display-content-before-payment-options {
+		margin-bottom: 15px;
+	}
+
+	// Payment options
+	#give-payment-mode-select #give-gateway-radio-list {
+		background-color: $yellow--light;
+		padding: 20px;
+	}
+
+	// Newsletter callout label
+	h3.newsletter-callout {
+		font-weight: 700;
+		border-bottom: 1px solid $give__subheading--bottom-border-color;
+		padding: 0 0 10px;
+		margin: 10px 0 15px;
+	}
+}
+
