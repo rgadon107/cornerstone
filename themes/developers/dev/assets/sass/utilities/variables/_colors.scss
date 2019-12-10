@@ -4,12 +4,13 @@ $white: #fff;
 $black: #000;
 $blue: #4848ff;
 $red: #c3251d;
+$red--dark: #a63f2b;
+$red--moderate: #d1624d;
 $yellow: #ffffe0;
 $yellow--light: rgba(255, 255, 224, 0.85);
 $yellow-grey-tone: #f1f1ee;
 $gray--lightest: #ccc;
 $gray--lighter: #eee;
-
 $gray--light: #ddd;
 $gray--medium: #777;
 $gray: #333;
@@ -47,6 +48,9 @@ $site-title--link-color: $gray;
 // Navigation
 //============================
 $nav--link-color: $gray;
+$nav--donate-link-color: $yellow;
+$nav--donate-background-color: $red--dark;
+$nav--donate-focus-background-color: $red--moderate;
 $nav--hover-color: $blue;
 $submenu--border-color: $gray--lighter;
 $submenu--link-background-color: $yellow;
@@ -111,6 +115,7 @@ $enews__submit-button--background-color: $blue;
 $enews__submit-button--color: $white;
 $enews__submit-button__BackgroundHoverColor: $white;
 $enews__submit-button--hover-color: $blue;
+$give__subheading--bottom-border-color: $gray--light;
 
 // General Components
 $breadcrumbs--background-color: $white;
