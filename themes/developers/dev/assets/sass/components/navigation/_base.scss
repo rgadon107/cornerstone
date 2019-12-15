@@ -27,13 +27,13 @@
 		padding-bottom: 0;
 		text-align: center;
 
-		&:first-of-type > a {
+		&-1357:first-of-type > a {
 			background-color: $nav--donate-background-color;
 			color: $nav--donate-link-color;
 		}
 
-		&:first-of-type > a:hover,
-		&:first-of-type > a:focus {
+		&-1357:first-of-type > a:hover,
+		&-1357:first-of-type > a:focus {
 			text-decoration: underline;
 			background-color: $nav--donate-focus-background-color;
 		}
