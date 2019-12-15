@@ -43,10 +43,10 @@
 
 #give-form-content-1349 > blockquote:nth-child(1) {
 	background-color: rgba(255, 255, 224, 0.85);
+	padding: 20px 40px 10px;
 
 	@media only screen and ( max-width: $breakpoint__screen-size--small ) {
 		@include rem(font-size, $give__Donation_Form_Blockquote_Mobile--font-size);
-		padding: 20px 40px 10px;
 		margin: 20px auto;
 	}
 }
