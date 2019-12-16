@@ -15,15 +15,15 @@ add_action( 'give_pre_form', __NAMESPACE__ . '\render_form_featured_image_and_ca
 /*
  * Render donation form featured image and caption.
  *
- * @since 1.0.0
- * @param int $_id  Post ID of the donation form.
- *
+ * @since 1.0.1
+ * @param int $_id            Post ID of the donation form.
+ * @param int $attachment_id  Post ID of the rendered featured image.
+ * @param string|array $size  Optional. Image size. Accepts any valid image size, or an array of width
+ *                                    and height values in pixels (in that order). Default 'thumbnail'.
  * @return void
  */
-function render_form_featured_image_and_caption( $_id = 1349 ) {
-	// Get the post object for the attachment via get_post().
-	$post    = get_post( 1411 );
-	$postID  = $post->ID;
+function render_form_featured_image_and_caption( $_id = 1349, $attachment_id = 1411, $size = 'large' ) {
+	$post = get_post( $attachment_id );
 
 	require _get_plugin_dir() . '/src/views/donation-form-1349/featured-image-view.php';
 }
