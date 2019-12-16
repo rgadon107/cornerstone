@@ -24,8 +24,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit( 'Cheatin&#8217; uh?' );
 }
 
-define( 'EXTEND_GIVE_URL', plugin_dir_url( __FILE__ ) );
-
 function _get_plugin_dir() {
 	return __DIR__;
 }
