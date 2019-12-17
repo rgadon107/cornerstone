@@ -22,10 +22,10 @@ add_action( 'give_pre_form', __NAMESPACE__ . '\render_form_featured_image_and_ca
  *                                    and height values in pixels (in that order). Default 'thumbnail'.
  * @return void
  */
-function render_form_featured_image_and_caption( $_id = 1349, $attachment_id = 1411, $size = 'large' ) {
+function render_form_featured_image_and_caption( $_id, $attachment_id, $size = 'large' ) {
 	$post = get_post( $attachment_id );
 
-	require _get_plugin_dir() . '/src/views/donation-form-1349/featured-image-view.php';
+	require _get_plugin_dir() . '/src/views/donation-form/featured-image-view.php';
 }
 
 add_action( 'give_pre_form', __NAMESPACE__ . '\render_donation_levels_label', 20 );
@@ -38,9 +38,9 @@ add_action( 'give_pre_form', __NAMESPACE__ . '\render_donation_levels_label', 20
  *
  * @return void
  */
-function render_donation_levels_label( $_id = 1349 ) {
+function render_donation_levels_label( $_id ) {
 
-	require _get_plugin_dir() . '/src/views/donation-form-1349/donation-levels-label.php';
+	require _get_plugin_dir() . '/src/views/donation-form/donation-levels-label.php';
 }
 
 add_action( 'give_after_donation_levels', __NAMESPACE__ . '\callout_recurring_donation_option', 1 );
@@ -55,9 +55,9 @@ add_action( 'give_after_donation_levels', __NAMESPACE__ . '\callout_recurring_do
  *
  * @return void
  */
-function callout_recurring_donation_option( $form_id = 1349 ) {
+function callout_recurring_donation_option( $form_id ) {
 
-	require _get_plugin_dir() . '/src/views/donation-form-1349/callout-recurring-donation-option.php';
+	require _get_plugin_dir() . '/src/views/donation-form/callout-recurring-donation-option.php';
 }
 
 add_action( 'give_payment_mode_before_gateways', __NAMESPACE__ . '\render_payment_method_info_before_options' );
@@ -70,7 +70,7 @@ add_action( 'give_payment_mode_before_gateways', __NAMESPACE__ . '\render_paymen
  */
 function render_payment_method_info_before_options() {
 
-	require _get_plugin_dir() . '/src/views/donation-form-1349/payment-info.php';
+	require _get_plugin_dir() . '/src/views/donation-form/payment-info.php';
 }
 
 add_action( 'give_donation_form_before_submit', __NAMESPACE__ . '\render_newsletter_signup_callout' );
@@ -83,8 +83,7 @@ add_action( 'give_donation_form_before_submit', __NAMESPACE__ . '\render_newslet
  *
  * @return void
  */
-function render_newsletter_signup_callout( $_id = 1349 ) {
+function render_newsletter_signup_callout( $_id ) {
 
-	require _get_plugin_dir() . '/src/views/donation-form-1349/newsletter-callout.php';
+	require _get_plugin_dir() . '/src/views/donation-form/newsletter-callout.php';
 }
-
