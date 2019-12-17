@@ -22,6 +22,15 @@ namespace spiralWebDB\ExtendGiveWP;
 
 defined( 'ABSPATH' ) || exit;
 
+/**
+ * Get the absolute path to the plugin's root directory.
+ *
+ * @since 1.0.0
+ * @ignore
+ * @access private
+ *
+ * @return string Absolute path to the plugin's root directory.
+ */
 function _get_plugin_dir() {
 	return __DIR__;
 }
