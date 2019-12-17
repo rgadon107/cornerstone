@@ -16,13 +16,13 @@ add_action( 'give_pre_form', __NAMESPACE__ . '\render_form_featured_image_and_ca
  * Render donation form featured image and caption.
  *
  * @since 1.0.1
- * @param int $_id            Post ID of the donation form.
+ * @param int $form_id            Post ID of the donation form.
  * @param int $attachment_id  Post ID of the rendered featured image.
  * @param string|array $size  Optional. Image size. Accepts any valid image size, or an array of width
  *                                    and height values in pixels (in that order). Default 'thumbnail'.
  * @return void
  */
-function render_form_featured_image_and_caption( $_id, $attachment_id, $size = 'large' ) {
+function render_form_featured_image_and_caption( $form_id, $attachment_id, $size = 'large' ) {
 	$post = get_post( $attachment_id );
 
 	require _get_plugin_dir() . '/src/views/donation-form/featured-image-view.php';
@@ -34,11 +34,11 @@ add_action( 'give_pre_form', __NAMESPACE__ . '\render_donation_levels_label', 20
  *
  * @since 1.0.0
  *
- * @param int $_id  Post ID of the donation form.
+ * @param int $form_id  Post ID of the donation form.
  *
  * @return void
  */
-function render_donation_levels_label( $_id ) {
+function render_donation_levels_label( $form_id ) {
 
 	require _get_plugin_dir() . '/src/views/donation-form/donation-levels-label.php';
 }
@@ -79,11 +79,11 @@ add_action( 'give_donation_form_before_submit', __NAMESPACE__ . '\render_newslet
  *
  * @since 1.0.0
  *
- * @param $int _id  The donation form ID.
+ * @param int $form_id  The donation form ID.
  *
  * @return void
  */
-function render_newsletter_signup_callout( $_id ) {
+function render_newsletter_signup_callout( $form_id ) {
 
 	require _get_plugin_dir() . '/src/views/donation-form/newsletter-callout.php';
 }
