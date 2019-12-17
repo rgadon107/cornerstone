@@ -20,9 +20,7 @@
 
 namespace spiralWebDB\ExtendGiveWP;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit( 'Cheatin&#8217; uh?' );
-}
+defined( 'ABSPATH' ) || exit;
 
 function _get_plugin_dir() {
 	return __DIR__;
