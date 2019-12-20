@@ -11,6 +11,19 @@
 
 namespace spiralWebDB\ExtendGiveWP;
 
+add_action( 'give_pre_form', __NAMESPACE__ . '\get_give_donation_form_id', 5 );
+/*
+ * Return the form ID for the rendered Give donation form.
+ *
+ * @since 1.0.0.
+ *
+ * @param   int  $form_id    The post ID for the donation form.
+ * @return  int  $form_id    The post ID.
+ */
+function get_give_donation_form_id( $form_id ) {
+	return $form_id;
+}
+
 add_action( 'give_pre_form', __NAMESPACE__ . '\render_form_featured_image_and_caption' );
 /*
  * Render donation form featured image and caption.
