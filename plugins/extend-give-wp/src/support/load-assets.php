@@ -36,7 +36,8 @@ add_action( 'give_pre_form', __NAMESPACE__ . '\render_form_featured_image_and_ca
  * @return void
  */
 function render_form_featured_image_and_caption( $form_id, $attachment_id, $size = 'large' ) {
-	$post = get_post( $attachment_id );
+	$form_id = get_give_donation_form_id( $form_id );
+	$post    = get_post( $attachment_id );
 
 	require _get_plugin_dir() . '/src/views/donation-form/featured-image-view.php';
 }
@@ -52,6 +53,7 @@ add_action( 'give_pre_form', __NAMESPACE__ . '\render_donation_levels_label', 20
  * @return void
  */
 function render_donation_levels_label( $form_id ) {
+	$form_id = get_give_donation_form_id( $form_id );
 
 	require _get_plugin_dir() . '/src/views/donation-form/donation-levels-label.php';
 }
@@ -69,6 +71,7 @@ add_action( 'give_after_donation_levels', __NAMESPACE__ . '\callout_recurring_do
  * @return void
  */
 function callout_recurring_donation_option( $form_id ) {
+	$form_id = get_give_donation_form_id( $form_id );
 
 	require _get_plugin_dir() . '/src/views/donation-form/callout-recurring-donation-option.php';
 }
@@ -97,6 +100,7 @@ add_action( 'give_donation_form_before_submit', __NAMESPACE__ . '\render_newslet
  * @return void
  */
 function render_newsletter_signup_callout( $form_id ) {
+	$form_id = get_give_donation_form_id( $form_id );
 
 	require _get_plugin_dir() . '/src/views/donation-form/newsletter-callout.php';
 }
