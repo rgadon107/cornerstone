@@ -76,3 +76,14 @@ function render_option_settings_view() {
 
 	require _get_plugin_dir() . '/src/admin/view/option_settings.php';
 }
+
+/*
+ * Submit the option settings form.
+ *
+ * @since 1.0.0
+ *
+ * @return void
+ */
+function submit_plugin_option_settings() {
+
+}
