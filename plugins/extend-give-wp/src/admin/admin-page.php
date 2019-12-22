@@ -51,13 +51,15 @@ add_action( 'admin_menu', __NAMESPACE__ . '\add_option_settings_page' );
  * @return void
  */
 function add_option_settings_page() {
-	add_submenu_page( 'options-general.php',
+	$hookname = add_submenu_page( 'options-general.php',
 		'Extend GiveWP -- Donation Form Option Settings',
 		'Extend GiveWP',
 		'manage_options',
 		'extend-give-wp-options',
 		'spiralWebDB\ExtendGiveWP\Admin\render_option_settings_view'
 	);
+
+	add_action( 'load-' . $hookname, __NAMESPACE__ . '\submit_plugin_option_settings' );
 }
 
 /*
