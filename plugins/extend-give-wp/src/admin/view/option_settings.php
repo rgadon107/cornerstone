@@ -5,7 +5,7 @@
 ?>
 <div class="wrap">
     <h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
-    <form action="options.php" method="post">
+    <form action="<?php menu_page_url( 'extend-give-wp-options' ); ?>" method="post">
         <table class="form-table" role="presentation">
             <tbody>
             <tr>
