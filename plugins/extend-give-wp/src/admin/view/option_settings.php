@@ -10,7 +10,7 @@
             <tbody>
             <tr>
                 <th scope="row">
-                    <label for="featured_image">Featured Image</label>
+                    <label for="featured_image">Featured Image ID</label>
                 </th>
                 <td>
                     <input id="featured_image" class="regular-text" name="feature-image" type="number"
