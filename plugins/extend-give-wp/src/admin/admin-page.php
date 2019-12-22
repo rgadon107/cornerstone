@@ -27,7 +27,7 @@ add_action( 'admin_menu', __NAMESPACE__ . '\add_option_settings_page' );
  */
 function add_option_settings_page() {
 	add_submenu_page( 'options-general.php',
-		'Extend GiveWP -- Option Settings',
+		'Extend GiveWP -- Donation Form Option Settings',
 		'Extend GiveWP',
 		'manage_options',
 		'extend-give-wp-options',
