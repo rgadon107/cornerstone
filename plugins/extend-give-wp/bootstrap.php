@@ -25,14 +25,32 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Get the absolute path to the plugin's root directory.
  *
- * @since 1.0.0
+ * @since  1.0.0
+ *
+ * @return string Absolute path to the plugin's root directory.
  * @ignore
  * @access private
  *
- * @return string Absolute path to the plugin's root directory.
  */
 function _get_plugin_dir() {
 	return __DIR__;
 }
 
-require_once _get_plugin_dir() . '/src/support/load-assets.php';
+/**
+ * Autoload the plugin's files.
+ *
+ * @since 1.0.0
+ * @return void
+ */
+function autoload_files() {
+	$files = [
+		'/src/admin/admin-page.php',
+		'/src/support/load-assets.php',
+	];
+
+	foreach ( $files as $filename ) {
+		require _get_plugin_dir() . $filename;
+	}
+}
+
+autoload_files();
