@@ -30,7 +30,7 @@ function initialize_option_settings() {
 		'type'              => 'integer',
 		'group'             => 'extend_give_wp_options',
 		'description'       => 'The image ID for the donation form featured image.',
-		'sanitize_callback' => null, // A callback function that sanitizes the option's value.
+		'sanitize_callback' => null, // A custom callback that sanitizes the option's value.
 		'show_in_rest'      => false,
 	];
 
