@@ -29,19 +29,33 @@ add_action( 'admin_init', __NAMESPACE__ . '\initialize_option_settings' );
 function initialize_option_settings() {
 	$args = [
 		'type'              => 'integer',
-		'group'             => 'extend_give_wp_options',
+		'group'             => plugin_slug_name() . '_options',
 		'description'       => 'The image ID for the donation form featured image.',
-		'sanitize_callback' => null, // A custom callback that sanitizes the option's value.
+		'sanitize_callback' => 'sanitize_option',
 		'show_in_rest'      => false,
+		'default'           => 0,
 	];
 
-	register_setting( 'extend_give_wp_options', 'featured_image_id', $args );
+	register_setting( plugin_slug_name() . '_options', plugin_slug_name() . '_featured_image_id', $args );
 
-	add_settings_section();
+	add_settings_section(
+		'featured-image',
+		'Featured Image',
+		'render_settings_option_label',
+		'settings'
+	);
 
-	add_settings_field();
+	add_settings_field(
+		'featured-image-id',
+		'Featured Image ID',
+		'option_input_callback',
+		'settings',
+		'featured-image-id',
+		[
+			'label_for' => 'featured_image_id',
+		]
+	);
 }
-
 
 add_action( 'admin_menu', __NAMESPACE__ . '\add_option_settings_page' );
 /*
