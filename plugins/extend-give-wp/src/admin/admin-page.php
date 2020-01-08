@@ -16,6 +16,7 @@
 namespace spiralWebDB\ExtendGiveWP\Admin;
 
 use function spiralWebDB\ExtendGiveWP\_get_plugin_dir;
+use function spiralWebDB\ExtendGiveWP\plugin_slug_name;
 
 add_action( 'admin_init', __NAMESPACE__ . '\initialize_option_settings' );
 /*
