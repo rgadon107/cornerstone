@@ -92,7 +92,7 @@ function initialize_option_settings() {
 		'Featured Image ID',
 		__NAMESPACE__ . '\render_featured_image_id_field',
 		'extend-give-wp-options',
-		'featured-image-id',
+		'featured-image',
 		[
 			'label_for' => 'featured_image_id',
 			'class'     => 'featured-image-id',
