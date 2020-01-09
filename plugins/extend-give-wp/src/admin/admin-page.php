@@ -1,6 +1,6 @@
 <?php
 /**
- *  The Extend GiveWP option settings page.
+ *  The Extend GiveWP plugin option settings page.
  *
  * @package    spiralWebDB\ExtendGiveWP\Admin
  *
@@ -18,9 +18,44 @@ namespace spiralWebDB\ExtendGiveWP\Admin;
 use function spiralWebDB\ExtendGiveWP\_get_plugin_dir;
 use function spiralWebDB\ExtendGiveWP\plugin_slug_name;
 
+add_action( 'admin_menu', __NAMESPACE__ . '\add_option_settings_page' );
+/*
+ * Add an option settings page to the plugin admin.
+ *
+ * @since 1.0.0
+ *
+ * @return void
+ */
+function add_option_settings_page() {
+	return add_submenu_page(
+		'options-general.php',
+		'Extend GiveWP -- Donation Form Option Settings',
+		'Extend GiveWP',
+		'manage_options',
+		'extend-give-wp-options',
+		__NAMESPACE__ . '\render_option_page_template'
+	);
+}
+
+/*
+ * Render the option page template view file.
+ *
+ * @since 1.0.0
+ *
+ * @return void
+ */
+function render_option_page_template() {
+
+	if ( ! current_user_can( 'manage_options' ) ) {
+		return;
+	}
+
+	require _get_plugin_dir() . '/src/admin/views/option-page-template.php';
+}
+
 add_action( 'admin_init', __NAMESPACE__ . '\initialize_option_settings' );
 /*
- * Initialize plugin option settings.
+ * Initialize settings on the option settings admin page.
  *
  * @since 1.0.0
  *
@@ -36,70 +71,54 @@ function initialize_option_settings() {
 		'default'           => 0,
 	];
 
+	// Register the setting.
 	register_setting( plugin_slug_name() . '_options', plugin_slug_name() . '_featured_image_id', $args );
 
+	/* === Settings Sections === */
+
+	// Add settings sections.
 	add_settings_section(
 		'featured-image',
 		'Featured Image',
-		'render_settings_option_label',
-		'settings'
+		__NAMESPACE__ . '\render_featured_image_section_label',
+		'extend-give-wp-options'
 	);
 
+	/* === Settings Fields === */
+
+	// Featured image fields.
 	add_settings_field(
 		'featured-image-id',
 		'Featured Image ID',
-		'option_input_callback',
-		'settings',
+		__NAMESPACE__ . '\render_featured_image_id_field',
+		'extend-give-wp-options',
 		'featured-image-id',
 		[
 			'label_for' => 'featured_image_id',
+			'class'     => 'featured-image-id',
 		]
 	);
 }
 
-add_action( 'admin_menu', __NAMESPACE__ . '\add_option_settings_page' );
 /*
- * Add an option settings page to the plugin admin.
+ * Callback to render featured image section label.
  *
- * @since 1.0.0
+ * @since 1.0.0.
  *
  * @return void
  */
-function add_option_settings_page() {
-	$hookname = add_submenu_page(
-		'options-general.php',
-		'Extend GiveWP -- Donation Form Option Settings',
-		'Extend GiveWP',
-		'manage_options',
-		'extend-give-wp-options',
-		'spiralWebDB\ExtendGiveWP\Admin\render_option_settings_view'
-	);
-
-	add_action( 'load-' . $hookname, __NAMESPACE__ . '\submit_plugin_option_settings' );
+function render_featured_image_section_label() {
+	require_once _get_plugin_dir() . '/src/admin/views/featured_image_section_label.php';
 }
 
 /*
- * Render the option settings view file.
+ * Callback to process the featured image id field.
  *
- * @since 1.0.0
- *
- * @return void
- */
-function render_option_settings_view() {
-	if ( ! current_user_can( 'manage_options' ) ) {
-		return;
-	}
-
-	require _get_plugin_dir() . '/src/admin/view/option_settings.php';
-}
-
-/*
- * Submit the option settings form.
- *
- * @since 1.0.0
+ * @since 1.0.0.
  *
  * @return void
  */
-function submit_plugin_option_settings() {
-
+function render_featured_image_id_field() {
+	require_once _get_plugin_dir() . '/src/admin/views/featured_image_id_field.php';
 }
+
