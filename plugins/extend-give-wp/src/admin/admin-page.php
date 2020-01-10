@@ -77,7 +77,7 @@ add_action( 'admin_init', __NAMESPACE__ . '\initialize_option_settings' );
 function initialize_option_settings() {
 	$args = [
 		'type'              => 'integer',
-		'group'             => plugin_slug_name() . '_options',
+		'group'             => 'extend-give-wp_options',
 		'description'       => 'The image ID for the donation form featured image.',
 		'sanitize_callback' => 'sanitize_option',
 		'show_in_rest'      => false,
@@ -85,7 +85,10 @@ function initialize_option_settings() {
 	];
 
 	// Register the setting.
-	register_setting( plugin_slug_name() . '_options', plugin_slug_name() . '_featured_image_id', $args );
+	register_setting(
+		'extend-give-wp_options',
+		'extend-give-wp_featured_image_id',
+		$args );
 
 	/* === Settings Sections === */
 
