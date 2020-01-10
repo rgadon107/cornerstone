@@ -35,6 +35,19 @@ function add_option_settings_page() {
 		'extend-give-wp-options',
 		__NAMESPACE__ . '\render_option_page_template'
 	);
+
+	/* Should $hookname be used to build a hook 'load-{$hookname}' that fires
+	 * before the custom callback above is called ( paramater #6 ) and register
+	 * a callback? If so, the callback should do the following:
+	 *
+	 * (1) Check that the form is being submitted ('POST' === $_SERVER['REQUEST_METHOD']).
+	 * (2) Perform CSRF verification ( CSRF = Cross Site Request Forgery )
+	 * (3) Validation
+	 * (4) Sanitization
+	 *
+	 * Each of the 4 items listed above are referenced in the WP Plugin handbook at
+	 * https://developer.wordpress.org/plugins/administration-menus/top-level-menus/#processing-the-form
+	 */
 }
 
 /*
