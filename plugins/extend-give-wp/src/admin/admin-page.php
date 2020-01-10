@@ -114,7 +114,7 @@ function initialize_option_settings() {
 }
 
 /*
- * Callback to render featured image section label.
+ * Callback to render the settings section label.
  *
  * @since 1.0.0.
  *
@@ -125,7 +125,7 @@ function render_featured_image_section_label() {
 }
 
 /*
- * Callback to process the featured image id field.
+ * Callback to render the settings field markup.
  *
  * @since 1.0.0.
  *
