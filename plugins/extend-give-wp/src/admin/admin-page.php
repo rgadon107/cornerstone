@@ -36,6 +36,7 @@ function add_option_settings_page() {
 		__NAMESPACE__ . '\render_option_page_template'
 	);
 
+	add_action( 'load-settings_page_extend-give-wp-options', __NAMESPACE__ . '\sanitize_option' );
 	/* Should $hookname be used to build a hook 'load-{$hookname}' that fires
 	 * before the custom callback above is called ( paramater #6 ) and register
 	 * a callback? If so, the callback should do the following:
@@ -79,41 +80,56 @@ function initialize_option_settings() {
 		'type'              => 'integer',
 		'group'             => 'extend-give-wp_options',
 		'description'       => 'The image ID for the donation form featured image.',
-		'sanitize_callback' => 'sanitize_option',
+		'sanitize_callback' => __NAMESPACE__ . '\sanitize_option',
 		'show_in_rest'      => false,
-		'default'           => 0,
 	];
 
 	// Register the setting.
 	register_setting(
-		'extend-give-wp_options',
-		'extend-give-wp_featured_image_id',
+		'extend-give-wp_options',   // name of option group
+		'extend-give-wp_featured_image_id',     // name of option
 		$args );
 
 	/* === Settings Sections === */
 
 	// Add settings sections.
 	add_settings_section(
-		'featured-image',
-		'Featured Image',
-		__NAMESPACE__ . '\render_featured_image_section_label',
-		'extend-give-wp-options'
+		'featured-image',           // settings_section ID
+		'Featured Image',           // settings_section Title
+		__NAMESPACE__ . '\render_featured_image_section_label', // settings_section custom callback
+		'extend-give-wp-options'    // option name
 	);
 
 	/* === Settings Fields === */
 
 	// Featured image fields.
 	add_settings_field(
-		'featured-image-id',
-		'Featured Image ID',
-		__NAMESPACE__ . '\render_featured_image_id_field',
-		'extend-give-wp-options',
-		'featured-image',
+		'featured-image-id',           // settings_field ID
+		'Featured Image ID',           // settings_field Title
+		__NAMESPACE__ . '\render_featured_image_id_field',  // settings_field custom callback
+		'extend-give-wp-options',      // option name
+		'featured-image',              // section_setting field is assigned to.
 		[
 			'label_for' => 'featured_image_id',
 			'class'     => 'featured-image-id',
 		]
 	);
+}
+
+/*
+ * Sanitization callback declared in $args parameter of register_setting()
+ *
+ * @since 1.0.0.
+ * @param integer $input    Option input.
+ *
+ * @return integer $output  Filtered option.
+ */
+function sanitize_option( $input ) {
+	$output = 0;
+
+	isset( $input ) ? $output = filter_var( $input, FILTER_VALIDATE_INT, $option = [ 'min_range' => 1 ] ) : '';
+
+	return $output;
 }
 
 /*
@@ -135,8 +151,7 @@ function render_featured_image_section_label() {
  * @return void
  */
 function render_featured_image_id_field() {
-	$attachment_id = get_option( 'extend-give-wp_featured_image_id', 0 );
-	$attachment_id = filter_var( $attachment_id, FILTER_VALIDATE_INT, $option = [ 'min_range' => 1 ] );
+	$attachment_id = add_option( 'extend-give-wp_featured_image_id' );
 
 	require_once _get_plugin_dir() . '/src/admin/views/featured_image_id_field.php';
 }
