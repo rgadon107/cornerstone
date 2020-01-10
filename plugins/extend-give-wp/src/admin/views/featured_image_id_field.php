@@ -5,8 +5,8 @@
 ?>
 <label>
     <input id="featured_image_id" class="normal-text" name="featured-image-id" type="number"
-           min="0" aria-describedby="featured-image-attachment-id" placeholder="0"
-           value="<?php filter_var( $attachment_id, FILTER_SANITIZE_NUMBER_INT ); ?>">
+           min="1" aria-describedby="featured-image-attachment-id" placeholder="0"
+           value="<?php $attachment_id; ?>">
     <p id="featured-image-input-label" class="description">Enter the image ID for the donation form featured image in
         the field above.</p>
     <p id="featured-image-input-label" class="description">Get the ID by opening the Media Library, and select the
