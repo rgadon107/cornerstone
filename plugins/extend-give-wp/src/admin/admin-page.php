@@ -35,19 +35,7 @@ function add_option_settings_page() {
 		__NAMESPACE__ . '\render_option_page_template'
 	);
 
-	add_action( 'load-settings_page_extend-give-wp-options', __NAMESPACE__ . '\sanitize_option' );
-	/* Should $hookname be used to build a hook 'load-{$hookname}' that fires
-	 * before the custom callback above is called ( paramater #6 ) and register
-	 * a callback? If so, the callback should do the following:
-	 *
-	 * (1) Check that the form is being submitted ('POST' === $_SERVER['REQUEST_METHOD']).
-	 * (2) Perform CSRF verification ( CSRF = Cross Site Request Forgery )
-	 * (3) Validation
-	 * (4) Sanitization
-	 *
-	 * Each of the 4 items listed above are referenced in the WP Plugin handbook at
-	 * https://developer.wordpress.org/plugins/administration-menus/top-level-menus/#processing-the-form
-	 */
+	add_action( "load-{$hookname}", __NAMESPACE__ . '\sanitize_option' );
 }
 
 /*
@@ -124,7 +112,7 @@ function initialize_option_settings() {
  * @return integer $output  Filtered option.
  */
 function sanitize_option( $input ) {
-	$output = 0;
+	$output = '';
 
 	isset( $input ) ? $output = filter_var( $input, FILTER_VALIDATE_INT, $option = [ 'min_range' => 1 ] ) : '';
 
@@ -150,7 +138,7 @@ function render_featured_image_section_label() {
  * @return void
  */
 function render_featured_image_id_field() {
-	$attachment_id = add_option( 'extend-give-wp_featured_image_id' );
+	$attachment_id = get_option( 'extend-give-wp_featured_image_id' );
 
 	require_once _get_plugin_dir() . '/src/admin/views/featured_image_id_field.php';
 }
