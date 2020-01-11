@@ -67,7 +67,7 @@ function initialize_option_settings() {
 		'type'              => 'integer',
 		'group'             => 'extend-give-wp_options',
 		'description'       => 'The image ID for the donation form featured image.',
-		'sanitize_callback' => __NAMESPACE__ . '\sanitize_option',
+		'sanitize_callback' => __NAMESPACE__ . '\sanitize_options',
 		'show_in_rest'      => false,
 	];
 
@@ -111,7 +111,7 @@ function initialize_option_settings() {
  *
  * @return integer $attachment_id   Filtered option.
  */
-function sanitize_option( $attachment_id ) {
+function sanitize_options( $attachment_id ) {
 
 	isset( $attachment_id ) ? filter_var( $attachment_id, FILTER_VALIDATE_INT, $option = [ 'min_range' => 1 ] ) : '';
 
@@ -141,6 +141,6 @@ function render_featured_image_id_field() {
 
 	require_once _get_plugin_dir() . '/src/admin/views/featured_image_id_field.php';
 
-	return sanitize_option( $attachment_id );
+	return sanitize_options( $attachment_id );
 }
 
