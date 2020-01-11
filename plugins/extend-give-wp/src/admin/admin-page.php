@@ -107,16 +107,15 @@ function initialize_option_settings() {
  * Sanitization callback declared in $args parameter of register_setting()
  *
  * @since 1.0.0.
- * @param integer $input    Option input.
+ * @param integer $attachment_id    Option input.
  *
- * @return integer $output  Filtered option.
+ * @return integer $attachment_id   Filtered option.
  */
-function sanitize_option( $input ) {
-	$output = '';
+function sanitize_option( $attachment_id ) {
 
-	isset( $input ) ? $output = filter_var( $input, FILTER_VALIDATE_INT, $option = [ 'min_range' => 1 ] ) : '';
+	isset( $attachment_id ) ? filter_var( $attachment_id, FILTER_VALIDATE_INT, $option = [ 'min_range' => 1 ] ) : '';
 
-	return $output;
+	return $attachment_id;
 }
 
 /*
