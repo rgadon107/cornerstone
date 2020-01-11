@@ -138,8 +138,10 @@ function render_featured_image_section_label() {
  * @return void
  */
 function render_featured_image_id_field() {
-	$attachment_id = get_option( 'extend-give-wp_featured_image_id' );
+	$attachment_id = (int) get_option( 'extend-give-wp_featured_image_id' );
 
 	require_once _get_plugin_dir() . '/src/admin/views/featured_image_id_field.php';
+
+	return sanitize_option( $attachment_id );
 }
 
