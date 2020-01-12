@@ -35,7 +35,7 @@ function add_option_settings_page() {
 		__NAMESPACE__ . '\render_option_page_template' // callback to output page content.
 	);
 
-	add_action( "load-{$hookname}", __NAMESPACE__ . '\sanitize_option' );
+	add_action( "load-{$hookname}", __NAMESPACE__ . '\sanitize_options' );
 }
 
 /*
@@ -84,7 +84,7 @@ function initialize_option_settings() {
 		'featured-image',           // settings_section ID
 		'Featured Image',           // settings_section Title
 		__NAMESPACE__ . '\render_featured_image_section_label', // settings_section custom callback
-		'extend-give-wp-options'    // option name
+		'extend-give-wp-options'    // page name. Matches 'menu slug' on 'add_submenu_page'.
 	);
 
 	/* === Settings Fields === */
@@ -113,7 +113,9 @@ function initialize_option_settings() {
  */
 function sanitize_options( $attachment_id ) {
 
-	isset( $attachment_id ) ? filter_var( $attachment_id, FILTER_VALIDATE_INT, $option = [ 'min_range' => 1 ] ) : '';
+	if ( isset ( $attachment_id ) && $attachment_id > 0 ) {
+		filter_var( $attachment_id, FILTER_VALIDATE_INT, $option = [ 'min_range' => 1 ] );
+		} else '';
 
 	return $attachment_id;
 }
@@ -137,10 +139,12 @@ function render_featured_image_section_label() {
  * @return void
  */
 function render_featured_image_id_field() {
+	static $attachment_id = 0;
+
 	$attachment_id = (int) get_option( 'extend-give-wp_featured_image_id' );
 
 	require_once _get_plugin_dir() . '/src/admin/views/featured_image_id_field.php';
 
-	return sanitize_options( $attachment_id );
+	sanitize_options( $attachment_id );
 }
 
