@@ -65,7 +65,7 @@ add_action( 'admin_init', __NAMESPACE__ . '\initialize_option_settings' );
 function initialize_option_settings() {
 	$args = [
 		'type'              => 'integer',
-		'group'             => 'extend-give-wp_options',
+		'group'             => 'extend-give-wp-options',
 		'description'       => 'The image ID for the donation form featured image.',
 		'sanitize_callback' => __NAMESPACE__ . '\sanitize_options',
 		'show_in_rest'      => false,
@@ -73,8 +73,8 @@ function initialize_option_settings() {
 
 	// Register the setting.
 	register_setting(
-		'extend-give-wp_options',   // name of option group
-		'extend-give-wp_featured_image_id',     // name of option
+		'extend-give-wp-options',   // option group
+		'extend-give-wp-options',   // option name
 		$args );
 
 	/* === Settings Sections === */
@@ -94,10 +94,10 @@ function initialize_option_settings() {
 		'featured-image-id',           // settings_field ID
 		'Featured Image ID',           // settings_field Title
 		__NAMESPACE__ . '\render_featured_image_id_field',  // settings_field custom callback
-		'extend-give-wp-options',      // option name
+		'extend-give-wp-options',      // The menu page on which to display field. Matches 'menu-slug' from 'add_submenu_page'.
 		'featured-image',              // section_setting field is assigned to.
 		[
-			'label_for' => 'featured_image_id',
+			'label_for' => 'featured-image-id',
 			'class'     => 'featured-image-id',
 		]
 	);
