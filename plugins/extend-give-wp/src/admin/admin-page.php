@@ -112,12 +112,11 @@ function initialize_option_settings() {
  * @return integer $attachment_id   Filtered option.
  */
 function sanitize_options( $attachment_id ) {
+	if ( 0 >= $attachment_id  ) {
+		return $attachment_id;
+	}
 
-	if ( isset ( $attachment_id ) && $attachment_id > 0 ) {
-		filter_var( $attachment_id, FILTER_VALIDATE_INT, $option = [ 'min_range' => 1 ] );
-		} else '';
-
-	return $attachment_id;
+	return filter_var( $attachment_id, FILTER_VALIDATE_INT, $option = [ 'min_range' => 1 ] );
 }
 
 /*
@@ -144,6 +143,6 @@ function render_featured_image_id_field() {
 
 	require_once _get_plugin_dir() . '/src/admin/views/featured_image_id_field.php';
 
-//	sanitize_options( $attachment_id );
+	sanitize_options( $attachment_id );
 }
 
