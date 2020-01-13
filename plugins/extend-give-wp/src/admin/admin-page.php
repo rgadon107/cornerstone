@@ -139,12 +139,11 @@ function render_featured_image_section_label() {
  * @return void
  */
 function render_featured_image_id_field() {
-	static $attachment_id = 0;
 
-	$attachment_id = (int) get_option( 'extend-give-wp_featured_image_id' );
+	$attachment_id = (int) get_option( 'extend-give-wp-options' );
 
 	require_once _get_plugin_dir() . '/src/admin/views/featured_image_id_field.php';
 
-	sanitize_options( $attachment_id );
+//	sanitize_options( $attachment_id );
 }
 
