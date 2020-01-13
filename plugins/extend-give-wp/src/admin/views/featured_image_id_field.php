@@ -4,8 +4,8 @@
  */
 ?>
 <label>
-    <input id="featured_image_id" class="normal-text" name="featured-image-id[featured_image_id]" type="number"
-           min="1" aria-describedby="featured-image-attachment-id" placeholder="0"
+    <input id="featured-image-id" class="normal-text" name="extend-give-wp-options[featured-image-id]" type="number"
+           min="1" aria-describedby="featured-image-attachment-id"
            value="<?php echo $attachment_id; ?>">
     <p id="featured-image-input-label" class="description">Enter the image ID for the donation form featured image in
         the field above.</p>
