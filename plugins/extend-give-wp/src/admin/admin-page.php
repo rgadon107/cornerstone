@@ -30,7 +30,7 @@ function add_option_settings_page() {
 		'options-general.php',  // parent slug
 		'Extend GiveWP -- Donation Form Option Settings', // page title
 		'Extend GiveWP', // menu title
-		'manage_options', // capability
+		'manage_categories', // capability
 		'extend-give-wp-options', // menu slug
 		__NAMESPACE__ . '\render_option_page_template' // callback to output page content.
 	);
@@ -47,7 +47,7 @@ function add_option_settings_page() {
  */
 function render_option_page_template() {
 
-	if ( ! current_user_can( 'manage_options' ) ) {
+	if ( ! current_user_can( 'manage_categories' ) ) {
 		return;
 	}
 
