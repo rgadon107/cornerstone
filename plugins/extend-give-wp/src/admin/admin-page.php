@@ -2,11 +2,11 @@
 /**
  *  The Extend GiveWP plugin option settings page.
  *
- * @package    spiralWebDB\ExtendGiveWP\Admin
- *
  * @since      1.0.0
  *
  * @author     Robert A. Gadon
+ *
+ * @package    spiralWebDB\ExtendGiveWP\Admin
  *
  * @link       http://spiralwebdb.com
  *
@@ -26,16 +26,14 @@ add_action( 'admin_menu', __NAMESPACE__ . '\add_option_settings_page' );
  * @return void
  */
 function add_option_settings_page() {
-	$hookname = add_submenu_page(
+	add_submenu_page(
 		'options-general.php',  // parent slug
 		'Extend GiveWP -- Donation Form Option Settings', // page title
 		'Extend GiveWP', // menu title
 		'manage_categories', // capability
-		'extend-give-wp-options', // menu slug
+		'extend-give-wp', // menu slug
 		__NAMESPACE__ . '\render_option_page_template' // callback to output page content.
 	);
-
-	add_action( "load-{$hookname}", __NAMESPACE__ . '\sanitize_options' );
 }
 
 /*
@@ -63,39 +61,28 @@ add_action( 'admin_init', __NAMESPACE__ . '\initialize_option_settings' );
  * @return void
  */
 function initialize_option_settings() {
-	$args = [
-		'type'              => 'integer',
-		'group'             => 'extend-give-wp-options',
-		'description'       => 'The image ID for the donation form featured image.',
-		'sanitize_callback' => 'absint',
-		'show_in_rest'      => false,
-	];
-
-	// Register the setting.
-	register_setting(
-		'extend-give-wp-options',   // option group
-		'extend-give-wp-options',   // option name
-		$args );
+	register_setting( 'extend-give-wp', 'extend-give-wp' );
 
 	/* === Settings Sections === */
 
 	// Add settings sections.
 	add_settings_section(
-		'featured-image',           // settings_section ID
-		'Featured Image',           // settings_section Title
+		'featured-image-section', // settings_section ID
+		'Featured Image', // settings_section Title
 		__NAMESPACE__ . '\render_featured_image_section_label', // settings_section custom callback
-		'extend-give-wp-options'    // page name. Matches 'menu slug' on 'add_submenu_page'.
+		'extend-give-wp' // page name. Matches 'menu slug' on 'add_submenu_page'.
 	);
 
 	/* === Settings Fields === */
 
 	// Featured image fields.
 	add_settings_field(
-		'featured-image-id',           // settings_field ID
-		'Featured Image ID',           // settings_field Title
-		__NAMESPACE__ . '\render_featured_image_id_field',  // settings_field custom callback
-		'extend-give-wp-options',      // The menu page on which to display field. Matches 'menu-slug' from 'add_submenu_page'.
-		'featured-image',              // section_setting field is assigned to.
+		'featured-image-id', // settings_field ID and the key for this option.
+		'Featured Image ID', // settings_field Title
+		__NAMESPACE__ . '\render_featured_image_id_field', // settings_field custom callback
+		// The menu page on which to display field. Matches 'menu-slug' from 'add_submenu_page'.
+		'extend-give-wp',
+		'featured-image-section', // section_setting field is assigned to.
 		[
 			'label_for' => 'featured-image-id',
 			'class'     => 'featured-image-id',
@@ -104,27 +91,9 @@ function initialize_option_settings() {
 }
 
 /*
- * Sanitization callback declared in $args parameter of register_setting()
- *
- * @since 1.0.0.
- * @param integer $attachment_id    Option input.
- *
- * @return integer $attachment_id   Filtered option.
- */
-function sanitize_options( $attachment_id ) {
-	if ( 0 >= $attachment_id ) {
-		return $attachment_id;
-	}
-
-	return filter_var( $attachment_id, FILTER_VALIDATE_INT, $option = [ 'min_range' => 1 ] );
-}
-
-/*
  * Callback to render the settings section label.
  *
- * @since 1.0.0.
- *
- * @return void
+ * @since 1.0.0
  */
 function render_featured_image_section_label() {
 	require_once _get_plugin_dir() . '/src/admin/views/featured_image_section_label.php';
@@ -133,13 +102,10 @@ function render_featured_image_section_label() {
 /*
  * Callback to render the settings field markup.
  *
- * @since 1.0.0.
- *
- * @return void
+ * @since 1.0.0
  */
 function render_featured_image_id_field() {
-	$options = get_option( 'extend-give-wp-options' );
-
+	$options       = get_option( 'extend-give-wp', [] );
 	$attachment_id = isset( $options['featured-image-id'] ) ? (int) $options['featured-image-id'] : 0;
 
 	require_once _get_plugin_dir() . '/src/admin/views/featured_image_id_field.php';
