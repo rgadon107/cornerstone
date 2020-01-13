@@ -112,7 +112,7 @@ function initialize_option_settings() {
  * @return integer $attachment_id   Filtered option.
  */
 function sanitize_options( $attachment_id ) {
-	if ( 0 >= $attachment_id  ) {
+	if ( 0 >= $attachment_id ) {
 		return $attachment_id;
 	}
 
@@ -138,8 +138,9 @@ function render_featured_image_section_label() {
  * @return void
  */
 function render_featured_image_id_field() {
+	$options = get_option( 'extend-give-wp-options' );
 
-	$attachment_id = (int) get_option( 'extend-give-wp-options' );
+	$attachment_id = isset( $options['featured-image-id'] ) ? (int) $options['featured-image-id'] : 0;
 
 	require_once _get_plugin_dir() . '/src/admin/views/featured_image_id_field.php';
 
