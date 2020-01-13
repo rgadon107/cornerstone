@@ -67,7 +67,7 @@ function initialize_option_settings() {
 		'type'              => 'integer',
 		'group'             => 'extend-give-wp-options',
 		'description'       => 'The image ID for the donation form featured image.',
-		'sanitize_callback' => __NAMESPACE__ . '\sanitize_options',
+		'sanitize_callback' => 'absint',
 		'show_in_rest'      => false,
 	];
 
@@ -143,7 +143,5 @@ function render_featured_image_id_field() {
 	$attachment_id = isset( $options['featured-image-id'] ) ? (int) $options['featured-image-id'] : 0;
 
 	require_once _get_plugin_dir() . '/src/admin/views/featured_image_id_field.php';
-
-	sanitize_options( $attachment_id );
 }
 
