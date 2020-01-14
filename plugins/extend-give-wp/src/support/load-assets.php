@@ -30,16 +30,19 @@ add_action( 'give_pre_form', __NAMESPACE__ . '\render_form_featured_image_and_ca
  *
  * @since 1.0.1
  * @param int $form_id            Post ID of the donation form.
- * @param int $attachment_id  Post ID of the rendered featured image.
- * @param string|array $size  Optional. Image size. Accepts any valid image size, or an array of width
+ * @param string|array $size      Optional. Image size. Accepts any valid image size, or an array of width
  *                                    and height values in pixels (in that order). Default 'thumbnail'.
  * @return void
  */
-function render_form_featured_image_and_caption( $form_id, $attachment_id, $size = 'large' ) {
+function render_form_featured_image_and_caption( $form_id, $size = 'large' ) {
 	$form_id = get_give_donation_form_id( $form_id );
-	$post    = get_post( $attachment_id );
 
-	require _get_plugin_dir() . '/src/views/donation-form/featured-image-view.php';
+	// Get the featured-image ID to render the image and caption on the donation page.
+	$options       = get_option( 'extend-give-wp', [] );
+	$attachment_id = isset( $options['featured-image-id'] ) ? (int) $options['featured-image-id'] : 0;
+	$post          = get_post( $attachment_id );
+
+	require_once _get_plugin_dir() . '/src/views/donation-form/featured-image-view.php';
 }
 
 add_action( 'give_pre_form', __NAMESPACE__ . '\render_donation_levels_label', 20 );
