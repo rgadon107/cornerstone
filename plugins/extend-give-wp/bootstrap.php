@@ -44,7 +44,7 @@ function _get_plugin_dir() {
  */
 function autoload_files() {
 	$files = [
-		'/src/admin/admin-page.php',
+		'/src/admin/option-settings-admin.php',
 		'/src/support/load-assets.php',
 	];
 
