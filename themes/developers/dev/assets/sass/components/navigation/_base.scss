@@ -10,6 +10,7 @@
 	width: 100%;
 	display: flex;
 	justify-content: space-around;
+  	align-items: baseline;
 
 	@media only screen and (max-width: 1023px) {
 		text-align: center;
@@ -26,17 +27,6 @@
 		margin-bottom: 0;
 		padding-bottom: 0;
 		text-align: center;
-
-		&-1357:first-of-type > a {
-			background-color: $nav--donate-background-color;
-			color: $nav--donate-link-color;
-		}
-
-		&-1357:first-of-type > a:hover,
-		&-1357:first-of-type > a:focus {
-			text-decoration: underline;
-			background-color: $nav--donate-focus-background-color;
-		}
 
 		a {
 			color: $nav--link-color;
