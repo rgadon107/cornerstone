@@ -16,14 +16,17 @@
  * @link        https://knowthecode.io
  * @license     GNU General Public License 2.0+
  */
+
 namespace spiralWebDB\Developers;
+
+use function spiralWebDB\Developers\get_theme_dir;
 
 /**
  * Loads non admin files.
  *
- * @since 1.0.1
- *
+ * @since 1.0.2
  * @return void
+ *
  */
 function load_nonadmin_files() {
 	$filenames = array(
@@ -33,6 +36,7 @@ function load_nonadmin_files() {
 		'functions/formatting.php',
 		'functions/load-assets.php',
 		'functions/markup.php',
+		'functions/menu.php',
 //		'structure/archive.php',
 		'structure/comments.php',
 		'structure/footer.php',
@@ -42,6 +46,7 @@ function load_nonadmin_files() {
 //		'structure/sidebar.php',
 		'components/customizer/customizer.php',
 		'widgets/widget-areas.php',
+		'views/primary-nav-menu.php',
 	);
 
 	load_specified_files( $filenames );
@@ -52,13 +57,11 @@ function load_nonadmin_files() {
  * Load admin files.
  *
  * @since 1.0.1
- *
  * @return void
+ *
  */
 function load_admin_files() {
-	$filenames = array(
-
-	);
+	$filenames = array();
 
 	load_specified_files( $filenames );
 }
@@ -66,18 +69,18 @@ function load_admin_files() {
 /**
  * Load each of the specified files.
  *
- * @since 1.0.0
+ * @since 1.0.1
  *
- * @param array $filenames
+ * @param array  $filenames
  * @param string $folder_root
  *
  * @return void
  */
 function load_specified_files( array $filenames, $folder_root = '' ) {
-	$folder_root = $folder_root ?: CHILD_THEME_DIR . '/lib/';
+	$folder_root = $folder_root ?: get_theme_dir() . '/lib/';
 
-	foreach( $filenames as $filename ) {
-		include( $folder_root . $filename );
+	foreach ( $filenames as $filename ) {
+		include $folder_root . $filename;
 	}
 }
 
