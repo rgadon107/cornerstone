@@ -10,8 +10,8 @@
  */
 
 namespace spiralWebDB\Developers;
-?>
-<nav class="nav-primary" aria-label="Main" itemscope itemtype="https://schema.org/SiteNavigationElement" id="genesis-nav-primary">
+
+return '<nav class="nav-primary" aria-label="Main" itemscope itemtype="https://schema.org/SiteNavigationElement" id="genesis-nav-primary">
 	<div class="wrap">
 		<ul id="menu-primary" class="menu genesis-nav-menu menu-primary js-superfish">
 			<li id="menu-item-1357" class="donate menu-item menu-item-type-post_type menu-item-object-page menu-item-1357">
@@ -39,4 +39,5 @@ namespace spiralWebDB\Developers;
 				<a href="http://cornerstonephp56.local/contact-cornerstone/" itemprop="url"><span itemprop="name">Contact Us</span></a></li>
 		</ul>
 	</div>
-</nav>
+</nav>';
+

@@ -43,10 +43,9 @@ function load_nonadmin_files() {
 		'structure/header.php',
 		'structure/menu.php',
 		'structure/post.php',
-//		'structure/sidebar.php',
+		'structure/sidebar.php',
 		'components/customizer/customizer.php',
-		'widgets/widget-areas.php',
-		'views/primary-nav-menu.php',
+		'widgets/widget-areas.php'
 	);
 
 	load_specified_files( $filenames );
