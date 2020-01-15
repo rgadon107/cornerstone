@@ -1,6 +1,6 @@
 <?php
 /**
- *  HTML markup for the site primary navigation menu.
+ *  Filtered HTML view for the site primary navigation menu.
  *
  * @package    spiralWebDB\Developers
  * @since      1.0.0
