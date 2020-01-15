@@ -26,6 +26,3 @@ function add_class_attribute_to_nav_menu_item( $nav_output ) {
 	return require_once get_theme_dir() . '/lib/views/primary-nav-menu.php';
 }
 
-
-
-
