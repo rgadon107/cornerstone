@@ -13,7 +13,7 @@
 }
 
 // Flex container for the form's featured image & caption.
-.donation-form-featured-image {
+.donate-page-featured-image {
 	display: flex;
 	flex-direction: column;
 	flex-wrap: nowrap;
@@ -28,7 +28,7 @@
 	}
 
 	// Image caption on donation form.
-	.post-1411-caption {
+	.featured-image-caption {
 		padding: 10px 0 10px;
 		order: 2;
 		flex-grow: 1;
