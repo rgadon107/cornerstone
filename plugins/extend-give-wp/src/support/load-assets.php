@@ -21,7 +21,7 @@ add_action( 'give_pre_form', __NAMESPACE__ . '\get_give_donation_form_id', 5 );
  * @return  int  $form_id    The post ID.
  */
 function get_give_donation_form_id( $form_id ) {
-	return $form_id;
+	return (int) $form_id;
 }
 
 add_action( 'give_pre_form', __NAMESPACE__ . '\render_form_featured_image_and_caption' );
