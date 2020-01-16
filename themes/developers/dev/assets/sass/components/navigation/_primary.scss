@@ -2,6 +2,21 @@
 --------------------------------------------- */
 
 .nav-primary {
-  background-color: $primary-nav--background-color;
-  //border-top: 1px solid $primary-nav--border-color;
+	background-color: $primary-nav--background-color;
+
+	& .genesis-nav-menu:first-of-type > li.donate {
+	  background-color: $nav--donate-background-color;
+	}
+
+	& .genesis-nav-menu:first-of-type > li.donate > a {
+	  color: $nav--donate-link-color;
+	}
+
+	& .genesis-nav-menu:first-of-type > li.donate > a:hover,
+	& .genesis-nav-menu:first-of-type > li.donate > a:focus {
+	  color: $nav--hover-color;
+	  text-decoration: underline;
+	  background-color: $nav--donate-focus-background-color;
+	}
 }
+
