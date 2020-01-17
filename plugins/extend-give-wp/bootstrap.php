@@ -20,6 +20,8 @@
 
 namespace spiralWebDB\ExtendGiveWP;
 
+use spiralWebDb\Module\Custom;
+
 defined( 'ABSPATH' ) || exit;
 
 /**
@@ -53,4 +55,17 @@ function autoload_files() {
 	}
 }
 
-autoload_files();
+/**
+ * Launch the plugin.
+ *
+ * @since 1.0.0
+ *
+ * @return void
+ */
+function launch() {
+	autoload_files();
+
+	Custom\register_plugin( __FILE__ );
+}
+
+launch();
