@@ -22,6 +22,7 @@
 /plugins/give-recurring
 /plugins/give-stripe
 /plugins/give-tributes
+/plugins/google-site-kit
 /plugins/jetpack
 /plugins/members
 /plugins/members-role-hierarchy
@@ -35,6 +36,7 @@
 /plugins/wordpress-seo
 /plugins/wp-migrate-db-pro
 /plugins/wp-migrate-db-pro-media-files
+/plugins/wp-migrate-db-pro-theme-plugin-files
 /themes/Beans
 /themes/genesis
 /upgrade
