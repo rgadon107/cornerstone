@@ -1,3 +1,10 @@
+## 1.0.5 @20.Jan.2020
+
+- Update normalize.css partial styles from v4.1.1 to v8.0.1.
+- Update font-size & padding for `.wp-caption-text` class attribute.
+- Add font-size property for `$figure-caption` variable in `/utilities/variables/_typography.scss`.
+- Uptick Developers theme version from 1.0.4 to 1.0.5 in `/style.scss`.
+
 ## 1.0.4 @16.Jan.2020
 
 - Added theme root level `/dev/` directory.
@@ -8,7 +15,7 @@
 - Added to `/dev/` directory: theme config files for browserlist, editorconfig, and stylelint, updated `.gitignore`, and `composer.json` file. 
 - Added theme styles for the 'extend-give-wp' plugin at `/dev/assets/sass/plugins/_give.scss`.
 - Added theme styles for the primary navigation menu at `/dev/assets/sass/components/navigation/_primary.scss`.
-- Uptick theme `style.css` version from 1.0.3 to 1.0.4.
+- Uptick Developers theme version from 1.0.4 to 1.0.5 in `/style.scss`.
 
 ## 1.0.3 @17.Feb.2017
 

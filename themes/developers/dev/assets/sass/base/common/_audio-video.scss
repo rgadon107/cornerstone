@@ -7,9 +7,9 @@
 }
 
 .wp-caption-text {
-  font-size: 14px;
-  font-size: 1.4rem;
+  @include rem( font-size, $figure-caption--font-size );
   font-weight: 600;
+  padding: 10px 0 10px;
   margin: 0;
   text-align: center;
 }
