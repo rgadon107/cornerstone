@@ -9,7 +9,7 @@
  * @license    GPL-2.0+
  */
 
-namespace spiralWebDB\CornerstoneTours;
+namespace spiralWebDb\CornerstoneTours;
 
 return [
 	/************************************************************

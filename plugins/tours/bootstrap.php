@@ -2,7 +2,7 @@
 /**
  * Cornerstone Past Tours Plugin
  *
- * @package     spiralWebDB\CornerstoneTours
+ * @package     spiralWebDb\CornerstoneTours
  * @author      r_gadon
  * @license     GPL-2.0+
  *
@@ -20,7 +20,7 @@
  * License URI:     http://www.gnu.org/licenses/gpl-2.0.txt
  */
 
-namespace spiralWebDB\CornerstoneTours;
+namespace spiralWebDb\CornerstoneTours;
 
 use spiralWebDb\Module\Custom;
 
@@ -77,7 +77,8 @@ function _is_in_development_mode() {
  * @return void
  */
 function autoload_files() {
-	$files = [// add the list of files to load here.
+	$files = [
+		'config-loader.php',
 	];
 
 	foreach ( $files as $file ) {
