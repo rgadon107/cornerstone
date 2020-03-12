@@ -32,16 +32,7 @@ return [
 			'title'         => 'Cornerstone Tours Custom Fields',
 			// The screen or screens on which to show the box
 			// such as a post type, link, comment, etc.
-			'screen'        => null,
-			// (Optional) The context within the screen where this will display.
-			// Choices: normal, side, or advanced (default).
-			'context'       => 'advanced',
-			// (Optional) Sets the priority of when the meta box will render.
-			// Choices: high, low, or default (which is the default).
-			'priority'      => 'default',
-			// (Optional) You can send arguments to your render callback.
-			// Send as an array of arguments.
-			'callback_args' => null,
+			'screen'        => [ 'tours' ],
 		],
 
 		/************************************************************
@@ -50,7 +41,7 @@ return [
 		 ***********************************************************/
 		'custom_fields' => [
 			// specify this field's meta key.  It's used in the database.
-			'tour-year' => [
+			'tour-year'     => [
 				// True - means it's a single
 				// False - means it's an array
 				'is_single'    => true,
@@ -64,7 +55,7 @@ return [
 				'sanitize'     => 'sanitize_text_field',
 			],
 			// specify this field's meta key.  It's used in the database.
-			'tour-dates' => [
+			'tour-dates'    => [
 				// True - means it's a single
 				// False - means it's an array
 				'is_single'    => true,
@@ -78,7 +69,7 @@ return [
 				'sanitize'     => 'sanitize_text_field',
 			],
 			// specify this field's meta key.  It's used in the database.
-			'tour-region' => [
+			'tour-region'   => [
 				// True - means it's a single
 				// False - means it's an array
 				'is_single'    => true,
