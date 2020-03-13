@@ -11,14 +11,14 @@
 
 namespace spiralWebDb\CornerstoneTours;
 
-return [
+return array(
 	/************************************************************
 	 * Configure a unique ID for your meta box.
 	 *
 	 * This ID is used when running add_meta_box, for storing
 	 * in the Config Store, for the view file, and save $_POST.
 	 ***********************************************************/
-	'meta_box.tours' => [
+	'meta_box.tours' => array(
 
 		/************************************************************
 		 * Configuration parameters for adding the meta box.
@@ -26,22 +26,22 @@ return [
 		 * article in Codex:
 		 * @link https://developer.wordpress.org/reference/functions/add_meta_box/#parameters
 		 ***********************************************************/
-		'add_meta_box'  => [
+		'add_meta_box'  => array(
 			// 'id' is not needed as the meta box id/key is defined above
 			// Title of the meta box
 			'title'         => 'Cornerstone Tours Custom Fields',
 			// The screen or screens on which to show the box
 			// such as a post type, link, comment, etc.
-			'screen'        => [ 'tours' ],
-		],
+			'screen'        => array( 'tours' ),
+		),
 
 		/************************************************************
 		 * Configure each custom field, specifying its meta_key, default
 		 * value, delete_state, and sanitizing function.
 		 ***********************************************************/
-		'custom_fields' => [
+		'custom_fields' => array(
 			// specify this field's meta key.  It's used in the database.
-			'tour-year'     => [
+			'tour-year'     => array(
 				// True - means it's a single
 				// False - means it's an array
 				'is_single'    => true,
@@ -53,9 +53,9 @@ return [
 				// callable sanitizer function such as
 				// sanitize_text_field, sanitize_email, strip_tags, intval, etc.
 				'sanitize'     => 'sanitize_text_field',
-			],
+			),
 			// specify this field's meta key.  It's used in the database.
-			'tour-dates'    => [
+			'tour-dates'    => array(
 				// True - means it's a single
 				// False - means it's an array
 				'is_single'    => true,
@@ -67,9 +67,9 @@ return [
 				// callable sanitizer function such as
 				// sanitize_text_field, sanitize_email, strip_tags, intval, etc.
 				'sanitize'     => 'sanitize_text_field',
-			],
+			),
 			// specify this field's meta key.  It's used in the database.
-			'tour-region'   => [
+			'tour-region'   => array(
 				// True - means it's a single
 				// False - means it's an array
 				'is_single'    => true,
@@ -81,9 +81,9 @@ return [
 				// callable sanitizer function such as
 				// sanitize_text_field, sanitize_email, strip_tags, intval, etc.
 				'sanitize'     => 'sanitize_text_field',
-			],
+			),
 			// specify this field's meta key.  It's used in the database.
-			'tour-comments' => [
+			'tour-comments' => array(
 				// True - means it's a single
 				// False - means it's an array
 				'is_single'    => true,
@@ -95,13 +95,13 @@ return [
 				// callable sanitizer function such as
 				// sanitize_text_field, sanitize_email, strip_tags, intval, etc.
 				'sanitize'     => 'sanitize_text_field',
-			],
-		],
+			),
+		),
 
 		/************************************************************
 		 * Configure the absolute path to your meta box's view file.
 		 ***********************************************************/
 		'view'          => _get_plugin_directory() . '/src/meta-box/views/tours.php',
-	],
-];
+	),
+);
 
