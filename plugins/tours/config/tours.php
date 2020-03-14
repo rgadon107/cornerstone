@@ -41,7 +41,7 @@ return array(
 		 ***********************************************************/
 		'custom_fields' => array(
 			// specify this field's meta key.  It's used in the database.
-			'tour-year'     => array(
+			'tour_year'     => array(
 				// True - means it's a single
 				// False - means it's an array
 				'is_single'    => true,
@@ -55,7 +55,7 @@ return array(
 				'sanitize'     => 'sanitize_text_field',
 			),
 			// specify this field's meta key.  It's used in the database.
-			'tour-dates'    => array(
+			'tour_dates'    => array(
 				// True - means it's a single
 				// False - means it's an array
 				'is_single'    => true,
@@ -69,7 +69,7 @@ return array(
 				'sanitize'     => 'sanitize_text_field',
 			),
 			// specify this field's meta key.  It's used in the database.
-			'tour-region'   => array(
+			'tour_region'   => array(
 				// True - means it's a single
 				// False - means it's an array
 				'is_single'    => true,
@@ -83,7 +83,7 @@ return array(
 				'sanitize'     => 'sanitize_text_field',
 			),
 			// specify this field's meta key.  It's used in the database.
-			'tour-comments' => array(
+			'tour_comments' => array(
 				// True - means it's a single
 				// False - means it's an array
 				'is_single'    => true,
