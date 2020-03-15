@@ -80,6 +80,7 @@ function autoload_files() {
 	$files = [
 		'config-loader.php',
 		'admin/edit-form-advanced.php',
+		'admin/wp-list-table.php',
 	];
 
 	foreach ( $files as $file ) {
