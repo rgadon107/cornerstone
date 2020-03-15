@@ -79,6 +79,7 @@ function _is_in_development_mode() {
 function autoload_files() {
 	$files = [
 		'config-loader.php',
+		'admin/edit-form-advanced.php',
 	];
 
 	foreach ( $files as $file ) {
