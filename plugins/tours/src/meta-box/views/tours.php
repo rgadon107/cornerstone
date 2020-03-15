@@ -3,7 +3,7 @@
 <p class="tour-year">
     <label for="tour"><strong>Tour Year</strong></label>
     <p>
-        <input id="tour_year" type="text" name="<?php echo $meta_box_id; ?>[tour_year]"
+        <input id="tour_year" type="number" min="1988" name="<?php echo $meta_box_id; ?>[tour_year]"
                value="<?php echo esc_attr( $custom_fields['tour_year'] ); ?>">
     </p>
     <span class="description">The year of this Cornerstone tour.</span>
