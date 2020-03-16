@@ -13,7 +13,7 @@ namespace spiralWebDb\CornerstoneTours;
 
 add_filter( 'manage_tours_posts_columns', __NAMESPACE__ . '\set_custom_columns' );
 /**
- * Add custom columns to Events Admin.
+ * Add custom columns to the Tours admin page.
  *
  * @return array Array of columns.
  * @since 1.0.0
@@ -56,7 +56,7 @@ function _render_custom_column_content( $column_name, $tour_id ) {
 
 add_filter( 'manage_edit-tours_sortable_columns', __NAMESPACE__ . '\_set_sortable_columns' );
 /**
- * Set sortable columns on Events Admin page.
+ * Set sortable columns on the Tours admin page.
  *
  * @return array New sortable columns.
  * @since 1.0.0
