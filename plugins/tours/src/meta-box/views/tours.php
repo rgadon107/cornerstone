@@ -27,7 +27,7 @@
 <p class="tour-comments">
     <label class="description"><strong>Comments About Tour</strong></label>
     <p>
-        <input id="tour_comments" type="text" name="<?php echo $meta_box_id; ?>[tour_comments]"
+        <input id="tour_comments" class="large-text" type="text" name="<?php echo $meta_box_id; ?>[tour_comments]"
                value="<?php echo esc_attr( $custom_fields['tour_comments'] ); ?>">
     </p>
     <span class="description">Notable events ( e.g. Performance at Carnegie Hall, NYC )</span>
