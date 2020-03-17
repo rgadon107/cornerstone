@@ -23,13 +23,14 @@ return [
 	/**==============================================================
 	 *
 	 * Label configuration for the Custom Post Type.
+	 * @see https://codex.wordpress.org/Function_Reference/register_post_type
+	 *      for details on the function parameters and label args.
 	 *
 	 * ===============================================================*/
 	'labels'    => array(
-		'custom_type'       => 'Tours', // The post type from above.
-		'singular_label'    => 'Tour',
-		'plural_label'      => 'Tours',
-		'in_sentance_label' => 'Tour', // The label used within a sentance.
+		'singular_label'    => 'Past Tour',
+		'plural_label'      => 'Past Tours',
+		'in_sentance_label' => 'Tours', // The label used within a sentance.
 		'text_domain'       => 'cornerstone-tours',
 	),
 
@@ -71,7 +72,7 @@ return [
 		'show_in_rest' => true,
 		'menu_icon'    => 'dashicons-admin-site',
 		'supports'     => '', // automatically generate the support features.
-		'has_archive'  => false,
+		'has_archive'  => true,
 	),
 ];
 
