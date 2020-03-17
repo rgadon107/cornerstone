@@ -79,6 +79,7 @@ function _is_in_development_mode() {
 function autoload_files() {
 	$files = [
 		'config-loader.php',
+		'meta.php',
 		'plugin.php',
 		'admin/edit-form-advanced.php',
 		'admin/wp-list-table.php',
