@@ -1,15 +1,15 @@
 <?php
 /**
- * Cornerstone Past Tours Plugin
+ * Past Cornerstone Tours Plugin
  *
  * @package     spiralWebDb\CornerstoneTours
  * @author      r_gadon
  * @license     GPL-2.0+
  *
  * @wordpress-plugin
- * Plugin Name:     Past Tours
+ * Plugin Name:     Past Cornerstone Tours
  * Plugin URI:      https://github.com/rgadon107/cornerstone
- * Description:     Display information about Cornerstone's past tours.
+ * Description:     Display information about past Cornerstone tours to display as an archive. 
  * Version:         1.0.0
  * Requires WP:     5.0
  * Requires PHP:    5.6
