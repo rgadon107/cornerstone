@@ -47,7 +47,7 @@ function load_configurations() {
 	);
 }
 
-//add_filter( 'register_templates_with_template_loader', __NAMESPACE__ . '\register_the_template_files' );
+add_filter( 'register_templates_with_template_loader', __NAMESPACE__ . '\register_the_template_files' );
 /**
  * Register this plugin's template files with the Template Loader.
  *
@@ -59,6 +59,7 @@ function load_configurations() {
  */
 function register_the_template_files( array $templates ) {
 	$config = require _get_plugin_directory() . '/config/templates.php';
+
 	if ( empty( $config ) ) {
 		return $templates;
 	}
