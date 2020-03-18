@@ -11,20 +11,18 @@
 
 namespace spiralWebDb\CornerstoneTours;
 
-add_action( 'pre_get_posts', __NAMESPACE__ . '\set_past_tours_order_number' );
+add_action( 'pre_get_posts', __NAMESPACE__ . '\set_past_tours_by_order_number' );
 /*
- * Modify the WP_Query object to order the past tours on the admin page.
+ * Modify the WP_Query object and order tours on the admin & post archive pages.
  *
  * @since 1.0.0
  *
  * @param WP_Query $query Instance of the query.
  */
-function set_past_tours_order_number( $query ) {
+function set_past_tours_by_order_number( $query ) {
 
-	if ( ! is_admin() ) {
-		return;
+	if ( is_post_type_archive() ) {
+		$query->set( 'orderby', 'menu_order' );
+		$query->set( 'order', 'DESC' );
 	}
-
-	$query->set( 'order', 'DESC' );
-	$query->set( 'orderby', 'menu_order' );
 }
