@@ -29,23 +29,6 @@ function render_the_tour_year( $tour_id ) {
 }
 
 /*
- * Render the date range for the past tour
- *
- * @since 1.0.0
- *
- * @param int  $tour_id  The tour ID.
- */
-function render_the_date_range( $tour_id ) {
-	$range = (string) get_post_meta( $tour_id, 'tour_dates', true );
-
-	if ( empty( $range ) ) {
-		return;
-	}
-
-	echo 'Tour dates: ' . esc_html( $range );
-}
-
-/*
  * Render the region(s) visited during the past tour.
  *
  * @since 1.0.0
@@ -59,7 +42,7 @@ function render_the_tour_regions( $tour_id ) {
 		return;
 	}
 
-	echo 'Tour Region: ' . esc_html( $region );
+	echo esc_html( $region );
 }
 
 /*
@@ -76,6 +59,6 @@ function render_tour_comments( $tour_id ) {
 		return;
 	}
 
-	echo 'Comments: ' . esc_html( $comments );
+	echo esc_html( $comments );
 }
 
