@@ -19,7 +19,7 @@ namespace spiralWebDb\CornerstoneTours;
  * @param int $tour_id  The tour ID.
  */
 function render_the_tour_year( $tour_id ) {
-	$year = (integer) get_post_meta( $tour_id, 'tour_year', true );
+	$year = (int) get_post_meta( $tour_id, 'tour_year', true );
 
 	if ( empty( $year ) ) {
 		return;
