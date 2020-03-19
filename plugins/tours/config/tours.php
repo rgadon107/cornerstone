@@ -55,20 +55,6 @@ return array(
 				'sanitize'     => 'sanitize_text_field',
 			),
 			// specify this field's meta key.  It's used in the database.
-			'tour_dates'    => array(
-				// True - means it's a single
-				// False - means it's an array
-				'is_single'    => true,
-				// Specify the custom field's default value.
-				'default'      => '',
-				// What is the state that signals to delete this meta key
-				// from the database.
-				'delete_state' => '',
-				// callable sanitizer function such as
-				// sanitize_text_field, sanitize_email, strip_tags, intval, etc.
-				'sanitize'     => 'sanitize_text_field',
-			),
-			// specify this field's meta key.  It's used in the database.
 			'tour_region'   => array(
 				// True - means it's a single
 				// False - means it's an array
