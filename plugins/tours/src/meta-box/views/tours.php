@@ -8,14 +8,6 @@
     </p>
     <span class="description">The year of this Cornerstone tour.</span>
 </p>
-<p class="tour-dates">
-    <label class="description"><strong>Tour Dates</strong></label>
-    <p>
-        <input id="tour_dates" type="text" name="<?php echo $meta_box_id; ?>[tour_dates]"
-               value="<?php echo esc_attr( $custom_fields['tour_dates'] ); ?>">
-    </p>
-    <span class="description">The date range for the year of this tour.</span>
-</p>
 <p class="tour-region">
     <label class="description"><strong>Geographic Region</strong></label>
     <p>
