@@ -12,23 +12,6 @@
 namespace spiralWebDb\CornerstoneTours;
 
 /*
- * Render the year of the past Cornerstone tour.
- *
- * @since 1.0.0
- *
- * @param int $tour_id  The tour ID.
- */
-function render_the_tour_year( $tour_id ) {
-	$year = (int) get_post_meta( $tour_id, 'tour_year', true );
-
-	if ( empty( $year ) ) {
-		return;
-	}
-
-	echo esc_html( $year );
-}
-
-/*
  * Render the region(s) visited during the past tour.
  *
  * @since 1.0.0
