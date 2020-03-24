@@ -67,4 +67,3 @@ function register_the_template_files( array $templates ) {
 	return array_merge_recursive( $templates, $config );
 }
 
-//register_shortcode( _get_plugin_directory() . '/config/shortcode.php' );
