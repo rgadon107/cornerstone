@@ -4,3 +4,20 @@
  */
 
 namespace spiralWebDb\CornerstoneTours;
+
+?>
+<div class="past-tour past-tour-entry-content tour-<?php echo esc_attr( $tour_id ); ?>" itemprop="" itemscope
+     itemtype="http://schema.org/XXX">
+    <div class="revealer--visible">
+        <span class="revealer--icon <?php echo $show_icon; ?>" aria-hidden="true"
+              data-show-icon="<?php echo $show_icon; ?>"
+              data-hide-icon="<?php echo $hide_icon; ?>">
+        </span>
+        <h3 class="revealer--tour-content-header">See past tour performances.</h3>
+        <span class="screen-reader-text">See past tour performances.</span>
+    </div>
+    <div class="revealer--hidden" itemprop="description" style="display: none;">
+		<?php echo get_the_content(); ?>
+    </div>
+
+</div>
