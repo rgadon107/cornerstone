@@ -11,6 +11,8 @@
 
 namespace spiralWebDb\CornerstoneTours\Template;
 
+use function spiralWebDb\FAQ\Asset\enqueue_script_ondemand;
+
 remove_action( 'genesis_entry_header', 'genesis_post_info', 12 );
 
 add_filter( 'genesis_post_title_text', __NAMESPACE__ . '\render_post_title_text' );
@@ -21,9 +23,9 @@ add_filter( 'genesis_post_title_text', __NAMESPACE__ . '\render_post_title_text'
  */
 function render_post_title_text( $tour_id ) {
 	$post       = get_post();
-	$menu_order = $post->menu_order;
-	$tour_id    = get_the_ID();
-	
+	$menu_order = (int) $post->menu_order;
+	$tour_id    = (int) get_the_ID();
+
 	require dirname( __DIR__ ) . '/views/tour-title.php';
 }
 
@@ -34,9 +36,24 @@ add_action( 'genesis_before_entry_content', __NAMESPACE__ . '\render_postmeta_be
  * @param int $tour_id Past tour ID.
  */
 function render_postmeta_before_content( $tour_id ) {
-	$tour_id = get_the_ID();
+	$tour_id = (int) get_the_ID();
 
 	require dirname( __DIR__ ) . '/views/tour-postmeta.php';
+}
+
+add_action( 'genesis_entry_content', __NAMESPACE__ . '\modify_tours_entry_content' );
+/*
+ * Modify display of past tours entry content.
+ */
+function modify_tours_entry_content() {
+	$tour_id = (int) get_the_ID();
+
+	$show_icon = esc_attr( 'dashicons dashicons-arrow-down' );
+	$hide_icon = esc_attr( 'dashicons dashicons-arrow-up' );
+
+	enqueue_script_ondemand();
+
+	require dirname( __DIR__ ) . '/views/tour-content.php';
 }
 
 genesis();
