@@ -41,11 +41,17 @@ function render_postmeta_before_content( $tour_id ) {
 	require dirname( __DIR__ ) . '/views/tour-postmeta.php';
 }
 
-add_action( 'genesis_entry_content', __NAMESPACE__ . '\modify_tours_entry_content' );
+remove_action( 'genesis_entry_content', 'genesis_do_post_content' );
+
+add_action( 'genesis_entry_content', __NAMESPACE__ . '\render_tours_entry_content' );
 /*
  * Modify display of past tours entry content.
  */
-function modify_tours_entry_content() {
+function render_tours_entry_content() {
+	if ( '' === get_the_content() && 'tours' == get_post_type() ) {
+		return;
+	}
+
 	$tour_id = (int) get_the_ID();
 
 	$show_icon = esc_attr( 'dashicons dashicons-arrow-down' );
