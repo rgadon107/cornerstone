@@ -1,6 +1,6 @@
 <?php
 /**
- * The single past Cornerstone tour year view.
+ * The single past tour title view.
  */
 
 namespace spiralWebDb\CornerstoneTours;
