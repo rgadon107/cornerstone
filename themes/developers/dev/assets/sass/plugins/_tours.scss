@@ -8,7 +8,7 @@
 
 .dashicons.dashicons-arrow-down,
 .dashicons.dashicons-arrow-up {
-  font-size: 30px;
+  @include rem(font-size, $dashicons-arrow--font-size);
   width: 30px;
   order: 1;
 }
