@@ -49,8 +49,11 @@ header.table-row,
 .table-row .table-cell:first-child {
   text-align: center;
 
+  /* To maintain accessibility, keep the column and move it out of view.*/
   @media only screen and (max-width: $breakpoint__screen-size--small) {
-	display: none;
+	position: absolute;
+	top: -9999px;
+	left: -9999px;
   }
 }
 
