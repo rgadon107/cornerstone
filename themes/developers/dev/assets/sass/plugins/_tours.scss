@@ -1,0 +1,79 @@
+/* ## Past Cornerstone Tours add-on plugin
+---------------------------------------------------*/
+
+.tours .revealer--visible {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.dashicons.dashicons-arrow-down,
+.dashicons.dashicons-arrow-up {
+  font-size: 30px;
+  width: 30px;
+  order: 1;
+}
+
+.past-tour .revealer--tour-content-header {
+  order: 2;
+
+  @media only screen and (max-width: $breakpoint__screen-size--small) {
+	@include rem(font-size, $tours__Table_Content_Header_Mobile--font-size);
+	line-height: 1.3;
+  }
+}
+
+.revealer--hidden {
+  display: flex;
+  justify-content: left;
+}
+
+#table .past-tour {
+  display: table;
+  order: 1;
+  flex-grow: 1;
+}
+
+header.table-row,
+.table-row {
+  display: table-row;
+}
+
+.table-row {
+  text-align: left;
+}
+
+.table-row:nth-child(2n+1) {
+  background-color: $yellow--light;
+}
+
+.table-row .table-cell:first-child {
+  text-align: center;
+
+  @media only screen and (max-width: $breakpoint__screen-size--small) {
+	display: none;
+  }
+}
+
+header > .table-cell {
+  @include rem(font-size, $tours__Table_Header_Row_Desktop--font-size);
+  font-weight: 900;
+
+  @media only screen and (max-width: $breakpoint__screen-size--small) {
+	@include rem(font-size, $tours__Table_Header_Row_Mobile--font-size);
+  }
+}
+
+.table-cell {
+  display: table-cell;
+  @include rem(font-size, $tours__Table_Cell_Desktop--font-size);
+  font-weight: 400;
+  line-height: 1.5;
+  padding: 5px 20px;
+
+  @media only screen and (max-width: $breakpoint__screen-size--small) {
+	@include rem(font-size, $tours__Table_Cell_Mobile--font-size);
+	line-height: 1.3;
+	padding: 5px 5px;
+  }
+}
+
