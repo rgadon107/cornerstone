@@ -17,7 +17,7 @@ add_filter( 'enter_title_here', __NAMESPACE__ . '\change_title_placeholder_text'
  *
  * @since 1.0.0
  *
- * @param string $text Placeholder text. WordPress default 'Enter title here'.
+ * @param string $text Placeholder text. WordPress default 'Add title'.
  *
  * @return string $text
  */
