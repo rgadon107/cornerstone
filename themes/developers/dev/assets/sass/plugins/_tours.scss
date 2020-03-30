@@ -33,36 +33,27 @@
   flex-grow: 1;
 }
 
-header.table-row,
-.table-row {
-  display: table-row;
-}
-
 .table-row {
   text-align: left;
-}
 
-.table-row:nth-child(2n+1) {
-  background-color: $yellow--light;
-}
-
-.table-row .table-cell:first-child {
-  text-align: center;
-
-  /* To maintain accessibility, keep the column and move it out of view.*/
-  @media only screen and (max-width: $breakpoint__screen-size--small) {
-	position: absolute;
-	top: -9999px;
-	left: -9999px;
+  &,
+  header.& {
+	display: table-row;
   }
-}
 
-header > .table-cell {
-  @include rem(font-size, $tours__Table_Header_Row_Desktop--font-size);
-  font-weight: 900;
+  &:nth-child(2n+1) {
+	background-color: $yellow--light;
+  }
 
-  @media only screen and (max-width: $breakpoint__screen-size--small) {
-	@include rem(font-size, $tours__Table_Header_Row_Mobile--font-size);
+  & .table-cell:first-child {
+	text-align: center;
+
+	/* To maintain accessibility, keep the column and move it out of view.*/
+	@media only screen and (max-width: $breakpoint__screen-size--small) {
+	  position: absolute;
+	  top: -9999px;
+	  left: -9999px;
+	}
   }
 }
 
@@ -77,6 +68,15 @@ header > .table-cell {
 	@include rem(font-size, $tours__Table_Cell_Mobile--font-size);
 	line-height: 1.3;
 	padding: 5px 5px;
+  }
+
+	header > & {
+	  @include rem(font-size, $tours__Table_Header_Row_Desktop--font-size);
+	  font-weight: 900;
+
+	  @media only screen and (max-width: $breakpoint__screen-size--small) {
+		@include rem(font-size, $tours__Table_Header_Row_Mobile--font-size);
+	  }
   }
 }
 
