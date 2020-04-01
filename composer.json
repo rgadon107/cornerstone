@@ -52,8 +52,8 @@
 			"@phpcs-src",
 			"@phpcs-tests"
 		],
-		"run-unit-tests": "\"tests/vendor/bin/phpunit\" --testsuite unit --configuration tests/phpunit/unit/phpunit.xml.dist --color=always",
-		"run-integration-tests": "\"tests/vendor/bin/phpunit\" --testsuite integration --configuration tests/phpunit/integration/phpunit.xml.dist --color=always",
+		"test-unit": "\"tests/vendor/bin/phpunit\" --testsuite unit --configuration tests/phpunit/unit/phpunit.xml.dist --color=always",
+		"test-integration": "\"tests/vendor/bin/phpunit\" --testsuite integration --configuration tests/phpunit/integration/phpunit.xml.dist --color=always",
 		"run-tests": [
 			"@run-unit-tests",
 			"@run-integration-tests"
