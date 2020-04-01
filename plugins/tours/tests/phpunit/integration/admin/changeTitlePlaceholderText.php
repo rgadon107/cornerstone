@@ -41,6 +41,13 @@ class Tests_ChangeTitlePlaceholderText extends Test_Case {
 	}
 
 	/**
+	 * Clean up the test environment after each test.
+	 */
+	public function tearDown() {
+		parent::tearDown();
+	}
+
+	/**
 	 * Test change_title_placeholder_text() should return the given text when post type is 'post'.
 	 */
 	public function test_should_return_given_text_when_post_type_is_not_tours() {
