@@ -20,6 +20,7 @@
 			<directory suffix=".php">../../../plugins/faq/tests/phpunit/unit/</directory>
 			<directory suffix=".php">../../../plugins/recordings/tests/phpunit/unit/</directory>
 			<directory suffix=".php">../../../plugins/reviews/tests/phpunit/unit/</directory>
+			<directory suffix=".php">../../../plugins/tours/tests/phpunit/unit/</directory>
 			<exclude>./*/*/fixtures/</exclude>
 		</testsuite>
 	</testsuites>

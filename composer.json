@@ -35,7 +35,9 @@
 			"spiralWebDb\\Recordings\\Tests\\Unit\\": "plugins/recordings/tests/phpunit/unit",
 			"spiralWebDb\\Recordings\\Tests\\Integration\\": "plugins/recordings/tests/phpunit/integration",
 			"spiralWebDb\\Reviews\\Tests\\Unit\\": "plugins/reviews/tests/phpunit/unit",
-			"spiralWebDb\\Reviews\\Tests\\Integration\\": "plugins/reviews/tests/phpunit/integration"
+			"spiralWebDb\\Reviews\\Tests\\Integration\\": "plugins/reviews/tests/phpunit/integration",
+			"spiralWebDb\\Tours\\Tests\\Unit\\": "plugins/tours/tests/phpunit/unit",
+			"spiralWebDb\\Tours\\Tests\\Integration\\": "plugins/tours/tests/phpunit/integration"
 		}
 	},
 	"minimum-stability": "dev",
