@@ -24,6 +24,13 @@ use function spiralWebDb\CornerstoneTours\change_title_placeholder_text;
 class Tests_ChangeTitlePlaceholderText extends Test_Case {
 
 	/**
+	 * Instance of the post object for each test.
+	 *
+	 * @var WP_Post
+	 */
+	protected $post;
+
+	/**
 	 * Set up each test.
 	 */
 	public function setUp() {
