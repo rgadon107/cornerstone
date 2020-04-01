@@ -29,18 +29,29 @@ class Tests_ChangeTitlePlaceholderText extends Test_Case {
 	public function setUp() {
 		parent::setUp();
 
-	// Create and get the post object via the factory method.
-	$this->post = self::factory()->post->create_and_get();
+		// Create and get the post object via the factory method.
+		$this->post = self::factory()->post->create_and_get();
 	}
 
 	/**
-	 * Test change_title_placeholder_text() should return the given text when the post type is not 'tours'.
+	 * Test change_title_placeholder_text() should return the given text when post type is 'post'.
 	 */
 	public function test_should_return_given_text_when_post_type_is_not_tours() {
-		$this->post;
-		var_dump( $this->post );
-		$this->assertTrue( true );
-//		$text = 'original text';
-//		$this->assertSame( $text, change_title_placeholder_text( $text ) );
+		get_post_type( $this->post );
+		$text = 'Add title.';
+
+		$this->assertSame( $text, change_title_placeholder_text( $text ) );
+	}
+
+	/**
+	 * Test change_title_placeholder_text() should return modified text when post type is 'tours'.
+	 */
+	public function test_should_return_modified_text_when_post_type_is_tours() {
+		$post_id = $this->factory()->post->create( [ 'post_type' => 'tours' ] );
+		get_post_type( $post_id ); // returns (string) 'tours'.
+		$text     = 'Add title.';
+		$expected = '<em>' . 'Theme of this Cornerstone tour.' . '</em>';
+
+		$this->assertSame( $expected, change_title_placeholder_text( $text ) );
 	}
 }
