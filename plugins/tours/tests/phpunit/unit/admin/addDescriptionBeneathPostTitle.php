@@ -11,7 +11,7 @@
 
 namespace spiralWebDb\CornerstoneTours\Tests\Unit;
 
-use Brain\Monkey\Functions;
+use Brain\Monkey;
 use spiralWebDb\Cornerstone\Tests\Unit\Test_Case;
 use function spiralWebDb\CornerstoneTours\add_description_beneath_post_title;
 
@@ -37,7 +37,7 @@ class Tests_AddDescriptionBeneathPostTitle extends Test_Case {
 	 * Test add_description_beneath_post_title() should return empty when the post type is not 'tours'.
 	 */
 	public function test_should_return_empty_when_post_type_is_not_tours() {
-		Functions\expect( 'get_post_type' )
+		Monkey\Functions\expect( 'get_post_type' )
 			->once()
 			->andReturn( 'post' );
 
@@ -48,7 +48,7 @@ class Tests_AddDescriptionBeneathPostTitle extends Test_Case {
 	 * Test add_description_beneath_post_title() should return string when the post type is 'tours'.
 	 */
 	public function test_should_return_string_when_post_type_is_tours() {
-		Functions\expect( 'get_post_type' )
+		Monkey\Functions\expect( 'get_post_type' )
 			->once()
 			->andReturn( 'tours' );
 
