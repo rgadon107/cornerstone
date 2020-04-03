@@ -48,29 +48,29 @@ class Tests_ChangeTitlePlaceholderText extends Test_Case {
 	 * Test change_title_placeholder_text() should return the given text when post type is 'post'.
 	 */
 	public function test_should_return_given_text_when_post_type_is_not_tours() {
-		// Create and get the post ID for the 'post' post_type via the factory method.
-		$post_id = self::factory()->post->create();
-		get_post_type( $post_id );
+		// Create and get the post object with 'post' post_type set via the factory method.
+		$post = self::factory()->post->create_and_get();
+		get_post_type( $post );
 		$text = 'Add title.';
 
-		$this->assertSame( $text, change_title_placeholder_text( $text ) );
+		$this->assertSame( $text, change_title_placeholder_text( $text, $post ) );
 	}
 
 	/**
 	 * Test change_title_placeholder_text() should return modified text when post type is 'tours'.
 	 */
 	public function test_should_return_modified_text_when_post_type_is_tours() {
-		// Create and get the post ID and for the 'tours' post_type via the factory method.
-		$post_id = $this->factory()->post->create( [ 'post_type' => 'tours' ] );
-		get_post_type( $post_id );
+		// Create and get the post ID with 'tours' post_type set via the factory method.
+		$post = $this->factory()->post->create( [ 'post_type' => 'tours' ] );
+		'tours' === get_post_type( $post );
 		$text          = 'Add title.';
 		$expected_html = <<<PLACEHOLDER
-'<em>' . 'Theme of this Cornerstone tour.' . '</em>'
+Theme of this Cornerstone tour.
 PLACEHOLDER;
 
 		// Fire the function under test and grab the HTML out of the buffer.
 		ob_start();
-		echo change_title_placeholder_text( $text );
+		echo change_title_placeholder_text( $text, $post );
 		$actual_html = ob_get_clean();
 
 		// Test the HTML.
