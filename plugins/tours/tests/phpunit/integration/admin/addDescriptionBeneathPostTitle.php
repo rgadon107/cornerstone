@@ -32,20 +32,6 @@ class Tests_AddDescriptionBeneathPostTitle extends Test_Case {
 	protected $post;
 
 	/**
-	 * Set up each test.
-	 */
-	public function setUp() {
-		parent::setUp();
-	}
-
-	/**
-	 * Clean up the test environment after each test.
-	 */
-	public function tearDown() {
-		parent::tearDown();
-	}
-
-	/**
 	 * Test add_description_beneath_post_title() should return empty when post type is 'post'.
 	 */
 	public function test_should_return_empty_when_post_type_is_post() {
