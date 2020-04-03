@@ -11,6 +11,7 @@
 
 namespace spiralWebDb\CornerstoneTours\Tests\Unit;
 
+use Mockery as m;
 use Brain\Monkey\Functions;
 use spiralWebDb\Cornerstone\Tests\Unit\Test_Case;
 use function spiralWebDb\CornerstoneTours\change_title_placeholder_text;
@@ -25,12 +26,21 @@ use function spiralWebDb\CornerstoneTours\change_title_placeholder_text;
 class Tests_ChangeTitlePlaceholderText extends Test_Case {
 
 	/**
+	 * Instance of the post object for each test.
+	 *
+	 * @var Mockery
+	 */
+	protected $post;
+
+	/**
 	 * Prepares the test environment before each test.
 	 */
 	protected function setUp() {
 		parent::setUp();
 
 		require_once TOURS_ROOT_DIR . '/src/admin/edit-form-advanced.php';
+
+		$this->post          = m::mock( 'post' );
 	}
 
 	/**
@@ -40,9 +50,10 @@ class Tests_ChangeTitlePlaceholderText extends Test_Case {
 		$text = 'Add title.';
 		Functions\expect( 'get_post_type' )
 			->once()
+			->with( 'post' )
 			->andReturn( 'post' );
 
-		$this->assertSame( $text, change_title_placeholder_text( $text ) );
+		$this->assertSame( $text, change_title_placeholder_text( $text, $this->post ) );
 	}
 
 	/**
@@ -51,10 +62,11 @@ class Tests_ChangeTitlePlaceholderText extends Test_Case {
 	public function test_should_return_modified_text_when_post_type_is_tours() {
 		Functions\expect( 'get_post_type' )
 			->once()
+			->with( 'post' )
 			->andReturn( 'tours' );
 		$text     = 'Add title.';
 		$expected = '<em>' . "Theme of this Cornerstone tour." . '</em>';
 
-		$this->assertSame( $expected, change_title_placeholder_text( $text ) );
+		$this->assertSame( $expected, change_title_placeholder_text( $text, $this->post ) );
 	}
 }
