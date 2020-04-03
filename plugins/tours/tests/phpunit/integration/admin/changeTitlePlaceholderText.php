@@ -38,17 +38,10 @@ class Tests_ChangeTitlePlaceholderText extends Test_Case {
 	}
 
 	/**
-	 * Clean up the test environment after each test.
-	 */
-	public function tearDown() {
-		parent::tearDown();
-	}
-
-	/**
 	 * Test change_title_placeholder_text() should return the given text when post type is 'post'.
 	 */
 	public function test_should_return_given_text_when_post_type_is_not_tours() {
-		// Create and get the post object with 'post' post_type set via the factory method.
+		// Create and get the post object via the factory method with 'post' post_type.
 		$post = self::factory()->post->create_and_get();
 		get_post_type( $post );
 		$text = 'Add title.';
@@ -60,7 +53,7 @@ class Tests_ChangeTitlePlaceholderText extends Test_Case {
 	 * Test change_title_placeholder_text() should return modified text when post type is 'tours'.
 	 */
 	public function test_should_return_modified_text_when_post_type_is_tours() {
-		// Create and get the post ID with 'tours' post_type set via the factory method.
+		// Get the ID from the post object via the factory method and set post_type to 'tours' .
 		$post = $this->factory()->post->create( [ 'post_type' => 'tours' ] );
 		'tours' === get_post_type( $post );
 		$text          = 'Add title.';
@@ -70,6 +63,7 @@ PLACEHOLDER;
 
 		// Fire the function under test and grab the HTML out of the buffer.
 		ob_start();
+		// Echo the value returned by the function so we can compare in assert below. 
 		echo change_title_placeholder_text( $text, $post );
 		$actual_html = ob_get_clean();
 
