@@ -18,15 +18,16 @@ add_filter( 'enter_title_here', __NAMESPACE__ . '\change_title_placeholder_text'
  * @since 1.0.0
  *
  * @param string $text Placeholder text. WordPress default 'Add title'.
+ * @param WP_Post $post Post object.
  *
  * @return string $text
  */
-function change_title_placeholder_text( $text ) {
-	if ( 'tours' !== get_post_type() ) {
+function change_title_placeholder_text( $text, $post ) {
+	if ( 'tours' !== get_post_type( $post ) ) {
 		return $text;
 	}
 
-	return '<em>' . 'Theme of this Cornerstone tour.' . '</em>';
+	return '<em>' . "Theme of this Cornerstone tour." . '</em>';
 }
 
 add_action( 'edit_form_before_permalink', __NAMESPACE__ . '\add_description_beneath_post_title' );
