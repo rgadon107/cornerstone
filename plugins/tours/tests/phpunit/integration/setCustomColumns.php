@@ -22,10 +22,10 @@ use function spiralWebDb\CornerstoneTours\set_custom_columns;
  * @group   admin
  */
 class Tests_SetCustomColumns extends Test_Case {
-	
+
 	/*
-    * Test set_custom_columns() should return array of default admin columns for 'post' post type.
-    */
+     * Test set_custom_columns() should return array of default admin columns for 'post' post type.
+     */
 	public function test_should_return_array_of_default_post_admin_columns() {
 		$post_columns = [
 			'cb'    => '<input type="checkbox"/>',
@@ -39,9 +39,9 @@ class Tests_SetCustomColumns extends Test_Case {
 	}
 
 	/*
-	 * Test set_custom_columns() should return array of additional admin columns for 'tours' post type.
+	 * Test set_custom_columns() should return filtered array of additional admin columns for 'tours' post type.
 	 */
-	public function test_should_return_array_of_additional_tours_admin_columns() {
+	public function test_should_return_filtered_array_of_additional_tours_admin_columns() {
 		$post_columns = [
 			'cb'    => '<input type="checkbox"/>',
 			'title' => _x( 'Title', 'column name' ),
