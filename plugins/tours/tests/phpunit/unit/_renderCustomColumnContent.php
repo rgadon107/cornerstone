@@ -24,28 +24,7 @@ use function spiralWebDb\CornerstoneTours\_render_custom_column_content;
  * @group   admin
  */
 class Tests_RenderCustomColumnContent extends Test_Case {
-
-	/**
-	 * Instance of the post object for each test.
-	 *
-	 * @var Mockery
-	 */
-	protected $post;
-
-	/**
-	 * The post ID
-	 *
-	 * @var integer
-	 */
-	protected $ID;
-
-	/**
-	 * The post type
-	 *
-	 * @var string
-	 */
-	protected $post_type;
-
+	
 	/**
 	 * Prepares the test environment before each test.
 	 */
