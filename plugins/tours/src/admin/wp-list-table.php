@@ -11,7 +11,7 @@
 
 namespace spiralWebDb\CornerstoneTours;
 
-add_filter( 'manage_tours_posts_columns', __NAMESPACE__ . '\set_custom_columns' );
+add_filter( 'manage_tours_posts_columns', __NAMESPACE__ . '\_set_custom_columns' );
 /**
  * Add custom columns to the Tours admin page.
  *
@@ -20,7 +20,7 @@ add_filter( 'manage_tours_posts_columns', __NAMESPACE__ . '\set_custom_columns' 
  *
  * @return array An array of custom column headings.
  */
-function set_custom_columns( $post_columns ) {
+function _set_custom_columns( $post_columns ) {
 	return array(
 		'cb'         => '<input type="checkbox"/>',
 		'title'      => 'Tour Name',
