@@ -20,13 +20,13 @@ add_filter( 'manage_tours_posts_columns', __NAMESPACE__ . '\_set_custom_columns'
  * @return array An array of custom column headings.
  */
 function _set_custom_columns() {
-	return array(
+	return [
 		'cb'         => '<input type="checkbox"/>',
 		'title'      => 'Tour Name',
 		'tour_id'    => 'Tour ID',
 		'tour_year'  => 'Tour Year',
 		'menu_order' => 'Order Number',
-	);
+	];
 }
 
 add_action( 'manage_tours_posts_custom_column', __NAMESPACE__ . '\_render_custom_column_content', 10, 2 );
