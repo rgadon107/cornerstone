@@ -11,7 +11,6 @@
 
 namespace spiralWebDb\CornerstoneTours\Tests\Unit;
 
-use Mockery as m;
 use Brain\Monkey;
 use spiralWebDb\Cornerstone\Tests\Unit\Test_Case;
 use function spiralWebDb\CornerstoneTours\_render_custom_column_content;
@@ -24,18 +23,14 @@ use function spiralWebDb\CornerstoneTours\_render_custom_column_content;
  * @group   admin
  */
 class Tests_RenderCustomColumnContent extends Test_Case {
-	
+
 	/**
 	 * Prepares the test environment before each test.
 	 */
-	protected function setUp() {
+	protected function setUpBeforeClass() {
 		parent::setUp();
 
 		require_once TOURS_ROOT_DIR . '/src/admin/wp-list-table.php';
-
-		$this->post = m::mock( 'post' );
-		$this->post->ID = (int) 99;
-		$this->post->post_type = 'tours';
 	}
 
 	/**
