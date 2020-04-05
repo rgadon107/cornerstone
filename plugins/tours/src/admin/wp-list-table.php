@@ -16,11 +16,10 @@ add_filter( 'manage_tours_posts_columns', __NAMESPACE__ . '\_set_custom_columns'
  * Add custom columns to the Tours admin page.
  *
  * @since 1.0.0
- * @param array[] $post_columns An associative array of column headings.
  *
  * @return array An array of custom column headings.
  */
-function _set_custom_columns( $post_columns ) {
+function _set_custom_columns() {
 	return array(
 		'cb'         => '<input type="checkbox"/>',
 		'title'      => 'Tour Name',
