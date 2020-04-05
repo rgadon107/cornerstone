@@ -69,7 +69,7 @@ class Tests_RenderCustomColumnContent extends Test_Case {
 			->andReturn( 99 );
 		$expected = $this->post->ID;
 
-		$this->assertNotNull( _render_custom_column_content( $column_name, $this->post->ID ) );
+		$this->assertSame( $expected, _render_custom_column_content( $column_name, $this->post->ID ) );
 	}
 }
 
