@@ -16,7 +16,7 @@ use spiralWebDb\Cornerstone\Tests\Unit\Test_Case;
 use function spiralWebDb\CornerstoneTours\_render_custom_column_content;
 
 /**
- * Class Tests_RenderCustomColumnContent
+ * Class Tests__RenderCustomColumnContent
  *
  * @package spiralWebDb\CornerstoneTours\Tests\Unit
  * @group   tours
