@@ -62,5 +62,27 @@ class Tests__RenderCustomColumnContent extends Test_Case {
 		// Clean up database.
 		delete_post_meta( $post->ID, 'tour_year' );
 	}
+
+	/*
+	 * Test _render_custom_column_content() should echo $menu_order when column_name is 'menu_order'.
+	 */
+	public function test_should_echo_menu_order_when_column_name_is_menu_order() {
+		// Create and get the $tour_id for the 'tours' post_type using WordPress' factory method.
+		$post        = self::factory()->post->create_and_get(
+			[
+				'post_type'  => 'tours',
+				'menu_order' => 5
+			]
+		);
+		$column_name = 'menu_order';
+		$expected    = $post->menu_order;
+
+		// Run the output buffer to fire the event to which the callback is registered.
+		ob_start();
+		do_action( "manage_{$post->post_type}_posts_custom_column", $column_name, $post->ID );
+		$actual = (int) ob_get_clean();
+
+		$this->assertSame( $expected, $actual );
+	}
 }
 
