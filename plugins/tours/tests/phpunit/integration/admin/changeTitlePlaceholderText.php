@@ -61,10 +61,10 @@ class Tests_ChangeTitlePlaceholderText extends Test_Case {
 Theme of this Cornerstone tour.
 PLACEHOLDER;
 
-		// Fire the function under test and grab the HTML out of the buffer.
+		// Run the output buffer to fire the event to which the callback is registered.
 		ob_start();
-		// Echo the value returned by the function so we can compare in assert below. 
-		echo change_title_placeholder_text( $text, $post );
+		// Echo the value returned by the registered callback to compare in assert below.
+		echo apply_filters( 'enter_title_here', __( 'Add title' ), $post );
 		$actual_html = ob_get_clean();
 
 		// Test the HTML.
