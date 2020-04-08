@@ -12,8 +12,6 @@
 namespace spiralWebDb\CornerstoneTours\Tests\Integration;
 
 use spiralWebDb\Cornerstone\Tests\Integration\Test_Case;
-use Brain\Monkey;
-use function spiralWebDb\CornerstoneTours\add_description_beneath_post_title;
 
 /**
  * Class Tests_AddDescriptionBeneathPostTitle
@@ -25,43 +23,40 @@ use function spiralWebDb\CornerstoneTours\add_description_beneath_post_title;
 class Tests_AddDescriptionBeneathPostTitle extends Test_Case {
 
 	/**
-	 * Instance of the post object for each test.
-	 *
-	 * @var WP_Post
+	 * Test add_description_beneath_post_title() should npt contain view when the post type is 'post'.
 	 */
-	protected $post;
-
-	/**
-	 * Test add_description_beneath_post_title() should return empty when post type is 'post'.
-	 */
-	public function test_should_return_empty_when_post_type_is_post() {
-		// Create and get the post ID for the 'post' post_type via factory method.
-		$post_id = self::factory()->post->create();
-		get_post_type( $post_id );
-
-		$this->assertEmpty( add_description_beneath_post_title() );
-	}
-
-	/**
-	 * Test add_description_beneath_post_title() should return string when post type is 'tours'.
-	 */
-	public function test_should_contain_string_when_post_type_is_tours() {
-		// Create and get the post ID and 'tours' post_type via the factory method.
-		$post_id = $this->factory()->post->create( [ 'post_type' => 'tours' ] );
-		get_post_type( $post_id );
-
-		$expected_view_html = <<<VIEW
+	public function test_should_not_contain_view_when_post_type_is_post() {
+		// Create and get the post object for the 'post' post_type via the factory method.
+		$post = self::factory()->post->create_and_get();
+		$expected_html = <<<VIEW
 <span class="description">Enter the theme name above for this Cornerstone tour. In the editor below, add each of the venues and locations (city, state) where Cornerstone performed on this tour. Below the editor, enter additional tour information in the box labeled "Past Tour Custom Fields".</span>
 VIEW;
 
-		// Fire the function under test and grab the HTML out of the buffer.
+		// Run the output buffer to fire the event to which the callback is registered.
 		ob_start();
-		Monkey\Functions\when( 'get_post_type' )->justReturn( 'tours' );
-		add_description_beneath_post_title();
+		do_action( 'edit_form_before_permalink', $post );
+		$actual_html = ob_get_clean();
+
+		$this->assertNotContains( $expected_html, $actual_html );
+	}
+
+	/**
+	 * Test add_description_beneath_post_title() should contain view when the post type is 'tours'.
+	 */
+	public function test_should_contain_view_when_post_type_is_tours() {
+		// Create and get the post object with 'tours' post_type via the factory method.
+		$post = $this->factory()->post->create_and_get( [ 'post_type' => 'tours' ] );
+		$expected_html = <<<VIEW
+<span class="description">Enter the theme name above for this Cornerstone tour. In the editor below, add each of the venues and locations (city, state) where Cornerstone performed on this tour. Below the editor, enter additional tour information in the box labeled "Past Tour Custom Fields".</span>
+VIEW;
+
+		// Run the output buffer to fire the event to which the callback is registered.
+		ob_start();
+		do_action( 'edit_form_before_permalink', $post );
 		$actual_html = ob_get_clean();
 
 		// Test the HTML
-		$this->assertContains( $expected_view_html, $actual_html );
+		$this->assertSame( $expected_html, $actual_html );
 	}
 }
 
