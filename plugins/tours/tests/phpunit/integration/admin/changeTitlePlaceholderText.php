@@ -54,7 +54,6 @@ class Tests_ChangeTitlePlaceholderText extends Test_Case {
 		// Create and get the post object via the factory method and set post_type to 'tours' .
 		$post = $this->factory()->post->create_and_get( [ 'post_type' => 'tours' ] );
 		'tours' === get_post_type( $post );
-		$text          = 'Add title.';
 		$expected_html = <<<PLACEHOLDER
 Theme of this Cornerstone tour.
 PLACEHOLDER;
