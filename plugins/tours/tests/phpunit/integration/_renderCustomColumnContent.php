@@ -12,7 +12,6 @@
 namespace spiralWebDb\CornerstoneTours\Tests\Integration;
 
 use spiralWebDb\Cornerstone\Tests\Integration\Test_Case;
-use function spiralWebDb\CornerstoneTours\_render_custom_column_content;
 
 /**
  * Class Tests__RenderCustomColumnContent
