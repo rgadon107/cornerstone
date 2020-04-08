@@ -34,32 +34,43 @@ class Tests_AddDescriptionBeneathPostTitle extends Test_Case {
 	}
 
 	/**
-	 * Test add_description_beneath_post_title() should return empty when the post type is not 'tours'.
+	 * Test add_description_beneath_post_title() should npt contain view when the post type is 'post'.
 	 */
-	public function test_should_return_empty_when_post_type_is_not_tours() {
+	public function test_should_not_contain_view_when_post_type_is_post() {
 		Monkey\Functions\expect( 'get_post_type' )
 			->once()
 			->andReturn( 'post' );
-
-		$this->assertEmpty( add_description_beneath_post_title() );
-	}
-
-	/**
-	 * Test add_description_beneath_post_title() should return string when the post type is 'tours'.
-	 */
-	public function test_should_return_string_when_post_type_is_tours() {
-		Monkey\Functions\expect( 'get_post_type' )
-			->once()
-			->andReturn( 'tours' );
+		$expected_html = <<<VIEW
+<span class="description">Enter the theme name above for this Cornerstone tour. In the editor below, add each of the venues and locations (city, state) where Cornerstone performed on this tour. Below the editor, enter additional tour information in the box labeled "Past Tour Custom Fields".</span>
+VIEW;
 
 		// Fire the rendering function and grab the HTML out of the buffer.
 		ob_start();
-		add_description_beneath_post_title();
+		add_description_beneath_post_title( $post );
+		$actual_html = ob_get_clean();
+
+		$this->assertEmpty( $actual_html );
+		$this->assertNotContains( $expected_html, $actual_html );
+	}
+
+	/**
+	 * Test add_description_beneath_post_title() should contain view when the post type is 'tours'.
+	 */
+	public function test_should_contain_view_when_post_type_is_tours() {
+		Monkey\Functions\expect( 'get_post_type' )
+			->once()
+			->andReturn( 'tours' );
+		$expected_html = <<<VIEW
+<span class="description">Enter the theme name above for this Cornerstone tour. In the editor below, add each of the venues and locations (city, state) where Cornerstone performed on this tour. Below the editor, enter additional tour information in the box labeled "Past Tour Custom Fields".</span>
+VIEW;
+
+		// Fire the rendering function and grab the HTML out of the buffer.
+		ob_start();
+		add_description_beneath_post_title( $post );
 		$actual_html = ob_get_clean();
 
 		// Test the HTML.
-		$this->assertContains( '<span class="description">', $actual_html );
-		$this->assertContains( 'Enter the theme name above for this Cornerstone tour.', $actual_html );
-		$this->assertContains( 'In the editor below, add each of the venues and locations (city, state) where Cornerstone performed on this tour.', $actual_html );
+		$this->assertSame( $expected_html, $actual_html );
 	}
 }
+
