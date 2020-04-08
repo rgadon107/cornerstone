@@ -29,13 +29,14 @@ class Tests__RenderCustomColumnContent extends Test_Case {
 		// Create and get the $tour_id for the 'tours' post_type using WordPress' factory method.
 		$post        = self::factory()->post->create_and_get( [ 'post_type' => 'tours' ] );
 		$column_name = 'tour_id';
+		$expected    = $post->ID;
 
 		// Run the output buffer to fire the event to which the callback is registered.
 		ob_start();
 		do_action( "manage_{$post->post_type}_posts_custom_column", $column_name, $post->ID );
 		$actual = (int) ob_get_clean();
 
-		$this->assertSame( $post->ID, $actual );
+		$this->assertSame( $expected, $actual );
 	}
 
 	/*
