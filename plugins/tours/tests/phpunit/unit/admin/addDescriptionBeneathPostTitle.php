@@ -40,7 +40,7 @@ class Tests_AddDescriptionBeneathPostTitle extends Test_Case {
 		Monkey\Functions\expect( 'get_post_type' )
 			->once()
 			->andReturn( 'post' );
-		$expected_html = <<<VIEW
+		$view_html = <<<VIEW
 <span class="description">Enter the theme name above for this Cornerstone tour. In the editor below, add each of the venues and locations (city, state) where Cornerstone performed on this tour. Below the editor, enter additional tour information in the box labeled "Past Tour Custom Fields".</span>
 VIEW;
 
@@ -50,7 +50,7 @@ VIEW;
 		$actual_html = ob_get_clean();
 
 		$this->assertEmpty( $actual_html );
-		$this->assertNotContains( $expected_html, $actual_html );
+		$this->assertNotContains( $view_html, $actual_html );
 	}
 
 	/**
@@ -60,7 +60,7 @@ VIEW;
 		Monkey\Functions\expect( 'get_post_type' )
 			->once()
 			->andReturn( 'tours' );
-		$expected_html = <<<VIEW
+		$view_html = <<<VIEW
 <span class="description">Enter the theme name above for this Cornerstone tour. In the editor below, add each of the venues and locations (city, state) where Cornerstone performed on this tour. Below the editor, enter additional tour information in the box labeled "Past Tour Custom Fields".</span>
 VIEW;
 
@@ -70,7 +70,7 @@ VIEW;
 		$actual_html = ob_get_clean();
 
 		// Test the HTML.
-		$this->assertSame( $expected_html, $actual_html );
+		$this->assertSame( $view_html, $actual_html );
 	}
 }
 

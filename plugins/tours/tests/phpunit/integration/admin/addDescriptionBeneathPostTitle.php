@@ -28,7 +28,7 @@ class Tests_AddDescriptionBeneathPostTitle extends Test_Case {
 	public function test_should_not_contain_view_when_post_type_is_post() {
 		// Create and get the post object for the 'post' post_type via the factory method.
 		$post = self::factory()->post->create_and_get();
-		$expected_html = <<<VIEW
+		$view_html = <<<VIEW
 <span class="description">Enter the theme name above for this Cornerstone tour. In the editor below, add each of the venues and locations (city, state) where Cornerstone performed on this tour. Below the editor, enter additional tour information in the box labeled "Past Tour Custom Fields".</span>
 VIEW;
 
@@ -37,7 +37,7 @@ VIEW;
 		do_action( 'edit_form_before_permalink', $post );
 		$actual_html = ob_get_clean();
 
-		$this->assertNotContains( $expected_html, $actual_html );
+		$this->assertNotContains( $view_html, $actual_html );
 	}
 
 	/**
@@ -46,7 +46,7 @@ VIEW;
 	public function test_should_contain_view_when_post_type_is_tours() {
 		// Create and get the post object with 'tours' post_type via the factory method.
 		$post = $this->factory()->post->create_and_get( [ 'post_type' => 'tours' ] );
-		$expected_html = <<<VIEW
+		$view_html = <<<VIEW
 <span class="description">Enter the theme name above for this Cornerstone tour. In the editor below, add each of the venues and locations (city, state) where Cornerstone performed on this tour. Below the editor, enter additional tour information in the box labeled "Past Tour Custom Fields".</span>
 VIEW;
 
@@ -56,7 +56,7 @@ VIEW;
 		$actual_html = ob_get_clean();
 
 		// Test the HTML
-		$this->assertSame( $expected_html, $actual_html );
+		$this->assertSame( $view_html, $actual_html );
 	}
 }
 
