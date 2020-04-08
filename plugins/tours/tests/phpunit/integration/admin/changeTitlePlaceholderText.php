@@ -12,7 +12,6 @@
 namespace spiralWebDb\CornerstoneTours\Tests\Integration;
 
 use spiralWebDb\Cornerstone\Tests\Integration\Test_Case;
-use function spiralWebDb\CornerstoneTours\change_title_placeholder_text;
 
 /**
  * Class Tests_ChangeTitlePlaceholderText
@@ -22,13 +21,6 @@ use function spiralWebDb\CornerstoneTours\change_title_placeholder_text;
  * @group   admin
  */
 class Tests_ChangeTitlePlaceholderText extends Test_Case {
-
-	/**
-	 * Instance of the post object for each test.
-	 *
-	 * @var WP_Post
-	 */
-	protected $post;
 
 	/**
 	 * Set up each test.
@@ -44,9 +36,15 @@ class Tests_ChangeTitlePlaceholderText extends Test_Case {
 		// Create and get the post object via the factory method with 'post' post_type.
 		$post = self::factory()->post->create_and_get();
 		get_post_type( $post );
-		$text = 'Add title.';
+		$expected = __( 'Add title' );
 
-		$this->assertSame( $text, change_title_placeholder_text( $text, $post ) );
+		// Run the output buffer to fire the event to which the callback is registered.
+		ob_start();
+		// Echo the value returned by the registered callback to compare in assert below.
+		echo apply_filters( 'enter_title_here', __( 'Add title' ), $post );
+		$actual_html = ob_get_clean();
+
+		$this->assertSame( $expected, $actual_html );
 	}
 
 	/**
@@ -71,3 +69,4 @@ PLACEHOLDER;
 		$this->assertContains( $expected_html, $actual_html );
 	}
 }
+
