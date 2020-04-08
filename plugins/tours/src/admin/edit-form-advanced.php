@@ -11,7 +11,7 @@
 
 namespace spiralWebDb\CornerstoneTours;
 
-add_filter( 'enter_title_here', __NAMESPACE__ . '\change_title_placeholder_text' );
+add_filter( 'enter_title_here', __NAMESPACE__ . '\change_title_placeholder_text', 10, 2 );
 /**
  *  Filter the placeholder text for the post title.
  *
