@@ -35,7 +35,6 @@ class Tests_ChangeTitlePlaceholderText extends Test_Case {
 	public function test_should_return_given_text_when_post_type_is_not_tours() {
 		// Create and get the post object via the factory method with 'post' post_type.
 		$post = self::factory()->post->create_and_get();
-		get_post_type( $post );
 		$expected = __( 'Add title' );
 
 		// Run the output buffer to fire the event to which the callback is registered.
@@ -53,7 +52,6 @@ class Tests_ChangeTitlePlaceholderText extends Test_Case {
 	public function test_should_return_modified_text_when_post_type_is_tours() {
 		// Create and get the post object via the factory method and set post_type to 'tours' .
 		$post = $this->factory()->post->create_and_get( [ 'post_type' => 'tours' ] );
-		'tours' === get_post_type( $post );
 		$expected_html = <<<PLACEHOLDER
 Theme of this Cornerstone tour.
 PLACEHOLDER;
