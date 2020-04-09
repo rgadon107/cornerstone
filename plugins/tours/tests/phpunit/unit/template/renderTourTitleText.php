@@ -36,26 +36,44 @@ class Tests_RenderPostTitleText extends Test_Case {
 			->andReturn();
 
 		require_once TOURS_ROOT_DIR . '/src/template/single-tours.php';
+
 	}
 
 	/*
 	 * Test render_post_title_text() echoes the title when the filter event fires.
 	 */
 	public function test_title_is_echoed_when_filter_event_fires() {
-		$tour_id    = 71;
-		$menu_order = 15;
-		Monkey\Functions\expect( 'get_post' )->never();
-		Monkey\Functions\expect( 'get_the_ID' )->never();
+		$tour_id    = (int) 1542;
+		$menu_order = (int) 15;
+
+		Monkey\Functions\expect( 'get_post' )
+			->once()
+			->with()
+			->andReturn();
+		Monkey\Functions\expect( 'get_the_ID' )
+			->once()
+			->with()
+			->andReturn( 'tour_id' );
 		Monkey\Functions\expect( 'get_post_meta' )
 			->once()
 			->with( 'tour_id', 'tour_year', true )
 			->andReturn( '2011' );
 		Monkey\Functions\expect( 'get_the_title' )
 			->once()
-			->with( 'tour_id' )
+			->with()
 			->andReturn( 'I Make All Things New' );
 
-		$this->expectOutputString( $tour_id );
+		$expected_html = <<<VIEW
+<h2 class="entry-title tour-title" itemprop="headline">
+        Tour 15 | 2011 | I Make All Things New</h2>
+VIEW;
+
+//		ob_start();
+//		render_post_title_text( $tour_id );
+//		$actual_html = ob_get_clean();
+//
+		$this->expectOutputString( $expected_html );
 		render_post_title_text( $tour_id );
 	}
 }
+
