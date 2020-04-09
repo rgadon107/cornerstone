@@ -21,7 +21,7 @@ use function spiralWebDb\CornerstoneTours\_set_custom_columns;
  * @group   tours
  * @group   admin
  */
-class Tests_SetCustomColumns extends Test_Case {
+class Tests__SetCustomColumns extends Test_Case {
 
 	/*
      * Test _set_custom_columns() should return expected array of custom admin columns.
