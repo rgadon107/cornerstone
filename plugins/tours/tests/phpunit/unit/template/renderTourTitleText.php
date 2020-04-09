@@ -30,9 +30,12 @@ class Tests_RenderPostTitleText extends Test_Case {
 	public static function setUpBeforeClass() {
 		parent::setUpBeforeClass();
 
-		require_once TOURS_ROOT_DIR . '/src/template/single-tours.php';
-		require_once get_template_directory() . '/lib/framework.php';
+		Monkey\Functions\expect( 'genesis' )
+			->once()
+			->with()
+			->andReturn();
 
+		require_once TOURS_ROOT_DIR . '/src/template/single-tours.php';
 	}
 
 	/*
@@ -41,6 +44,8 @@ class Tests_RenderPostTitleText extends Test_Case {
 	public function test_title_is_echoed_when_filter_event_fires() {
 		$tour_id    = 71;
 		$menu_order = 15;
+		Monkey\Functions\expect( 'get_post' )->never();
+		Monkey\Functions\expect( 'get_the_ID' )->never();
 		Monkey\Functions\expect( 'get_post_meta' )
 			->once()
 			->with( 'tour_id', 'tour_year', true )
@@ -49,10 +54,6 @@ class Tests_RenderPostTitleText extends Test_Case {
 			->once()
 			->with( 'tour_id' )
 			->andReturn( 'I Make All Things New' );
-		Monkey\Functions\expect( 'genesis' )
-			->once()
-			->with()
-			->never();
 
 		$this->expectOutputString( $tour_id );
 		render_post_title_text( $tour_id );
