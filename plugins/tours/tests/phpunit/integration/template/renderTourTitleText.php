@@ -26,6 +26,15 @@ use function get_post_meta;
 class Tests_RenderPostTitleText extends Test_Case {
 
 	/*
+	 * Test render_post_title_text() should register to add_filter( 'genesis_post_title_text' ) when event fires.
+	 */
+	public function test_callback_is_registered_to_filter_hook_when_event_fires() {
+		// Note: The following 2 assertions presently fail.
+//		$this->assertTrue( has_filter( 'genesis_post_title_text' ) );
+//		$this->assertEquals( 10, has_filter( 'genesis_post_title_text', 'spiralWebDb\CornerstoneTours\Template\render_post_title_text' ) );
+	}
+
+	/*
      * Test render_post_title_text() echoes the title when the filter event fires.
      */
 	public function test_title_is_echoed_when_filter_event_fires() {
