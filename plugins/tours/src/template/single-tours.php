@@ -12,7 +12,6 @@
 namespace spiralWebDb\CornerstoneTours\Template;
 
 use function spiralWebDb\FAQ\Asset\enqueue_script_ondemand;
-use function genesis;
 
 remove_action( 'genesis_entry_header', 'genesis_post_info', 12 );
 
