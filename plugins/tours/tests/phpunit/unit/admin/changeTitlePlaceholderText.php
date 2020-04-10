@@ -65,7 +65,7 @@ class Tests_ChangeTitlePlaceholderText extends Test_Case {
 			->with( 'post' )
 			->andReturn( 'tours' );
 		$text     = 'Add title.';
-		$expected = '<em>' . "Theme of this Cornerstone tour." . '</em>';
+		$expected = '<em>Theme of this Cornerstone tour.</em>';
 
 		$this->assertSame( $expected, change_title_placeholder_text( $text, $this->post ) );
 	}
