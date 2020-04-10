@@ -27,7 +27,7 @@ function change_title_placeholder_text( $text, $post ) {
 		return $text;
 	}
 
-	return '<em>' . "Theme of this Cornerstone tour." . '</em>';
+	return '<em>Theme of this Cornerstone tour.</em>';
 }
 
 add_action( 'edit_form_before_permalink', __NAMESPACE__ . '\add_description_beneath_post_title' );
