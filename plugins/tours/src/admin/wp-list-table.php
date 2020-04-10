@@ -58,14 +58,14 @@ add_filter( 'manage_edit-tours_sortable_columns', __NAMESPACE__ . '\_set_sortabl
 /**
  * Set sortable columns on the Tours admin page.
  *
- * @return array New sortable columns.
  * @since 1.0.0
  *
+ * @return array  Array of new sortable columns.
  */
 function _set_sortable_columns() {
-	return array(
+	return [
 		'tour_id'    => 'Tour ID',
 		'tour_year'  => 'Tour Year',
 		'menu_order' => 'Order Number',
-	);
+	];
 }
