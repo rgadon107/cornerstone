@@ -46,7 +46,7 @@ class Tests_ChangeTitlePlaceholderText extends Test_Case {
 		// Create and get the post object via the factory method and set post_type to 'tours' .
 		$post = $this->factory()->post->create_and_get( [ 'post_type' => 'tours' ] );
 		$expected_html = <<<PLACEHOLDER
-Theme of this Cornerstone tour.
+<em>Theme of this Cornerstone tour.</em>
 PLACEHOLDER;
 
 		// Run the output buffer to fire the event to which the callback is registered.
@@ -56,7 +56,7 @@ PLACEHOLDER;
 		$actual_html = ob_get_clean();
 
 		// Test the HTML.
-		$this->assertContains( $expected_html, $actual_html );
+		$this->assertSame( $expected_html, $actual_html );
 	}
 }
 
