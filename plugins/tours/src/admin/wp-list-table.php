@@ -11,22 +11,22 @@
 
 namespace spiralWebDb\CornerstoneTours;
 
-add_filter( 'manage_tours_posts_columns', __NAMESPACE__ . '\set_custom_columns' );
+add_filter( 'manage_tours_posts_columns', __NAMESPACE__ . '\_set_custom_columns' );
 /**
  * Add custom columns to the Tours admin page.
  *
- * @return array Array of columns.
  * @since 1.0.0
  *
+ * @return array An array of custom column headings.
  */
-function set_custom_columns() {
-	return array(
+function _set_custom_columns() {
+	return [
 		'cb'         => '<input type="checkbox"/>',
 		'title'      => 'Tour Name',
 		'tour_id'    => 'Tour ID',
 		'tour_year'  => 'Tour Year',
 		'menu_order' => 'Order Number',
-	);
+	];
 }
 
 add_action( 'manage_tours_posts_custom_column', __NAMESPACE__ . '\_render_custom_column_content', 10, 2 );
