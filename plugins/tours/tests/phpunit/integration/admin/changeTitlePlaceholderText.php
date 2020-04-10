@@ -21,14 +21,7 @@ use spiralWebDb\Cornerstone\Tests\Integration\Test_Case;
  * @group   admin
  */
 class Tests_ChangeTitlePlaceholderText extends Test_Case {
-
-	/**
-	 * Set up each test.
-	 */
-	public function setUp() {
-		parent::setUp();
-	}
-
+	
 	/**
 	 * Test change_title_placeholder_text() should return the given text when post type is 'post'.
 	 */
