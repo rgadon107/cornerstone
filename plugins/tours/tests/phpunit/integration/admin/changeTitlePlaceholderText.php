@@ -21,19 +21,19 @@ use spiralWebDb\Cornerstone\Tests\Integration\Test_Case;
  * @group   admin
  */
 class Tests_ChangeTitlePlaceholderText extends Test_Case {
-	
+
 	/**
 	 * Test change_title_placeholder_text() should return the given text when post type is 'post'.
 	 */
 	public function test_should_return_given_text_when_post_type_is_not_tours() {
 		// Create and get the post object via the factory method with 'post' post_type.
 		$post = self::factory()->post->create_and_get();
-		$expected = __( 'Add title' );
+		$expected = 'Add title';
 
 		// Run the output buffer to fire the event to which the callback is registered.
 		ob_start();
 		// Echo the value returned by the registered callback to compare in assert below.
-		echo apply_filters( 'enter_title_here', __( 'Add title' ), $post );
+		echo apply_filters( 'enter_title_here', 'Add title', $post );
 		$actual_html = ob_get_clean();
 
 		$this->assertSame( $expected, $actual_html );
@@ -52,7 +52,7 @@ PLACEHOLDER;
 		// Run the output buffer to fire the event to which the callback is registered.
 		ob_start();
 		// Echo the value returned by the registered callback to compare in assert below.
-		echo apply_filters( 'enter_title_here', __( 'Add title' ), $post );
+		echo apply_filters( 'enter_title_here', 'Add title', $post );
 		$actual_html = ob_get_clean();
 
 		// Test the HTML.
