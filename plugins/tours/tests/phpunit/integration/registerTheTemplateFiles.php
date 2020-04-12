@@ -13,6 +13,7 @@ namespace spiralWebDb\CornerstoneTours\Tests\Integration;
 
 use spiralWebDb\Cornerstone\Tests\Integration\Test_Case;
 use function has_filter;
+use function spiralWebDb\CornerstoneTours\_get_plugin_directory;
 use function spiralWebDb\CornerstoneTours\register_the_template_files;
 
 /**
@@ -30,6 +31,18 @@ class Tests_RegisterTheTemplateFiles extends Test_Case {
 	public function test_callback_is_registered_to_filter_hook_when_event_fires() {
 		$this->assertTrue( has_filter( 'register_templates_with_template_loader' ) );
 		$this->assertEquals( 10, has_filter( 'register_templates_with_template_loader', 'spiralWebDb\CornerstoneTours\register_the_template_files' ) );
+	}
+
+	/*
+     * Test register_the_template_files() should return template files when given valid path to plugin config.
+     */
+	public function test_should_return_template_files_given_valid_path_to_plugin_config() {
+		$templates = [];
+
+		$this->assertArrayHasKey( 'single', register_the_template_files( (array) $templates ) );
+		$this->assertArraySubset( [ 'single' => [ 'tours' => _get_plugin_directory() . '/src/template/single-tours.php' ] ], register_the_template_files( (array) $templates ) );
+		$this->assertArrayHasKey( 'post_type_archive', register_the_template_files( (array) $templates ) );
+		$this->assertArraySubset( [ 'post_type_archive' => [ 'tours' => _get_plugin_directory() . '/src/template/archive-tours.php' ] ], register_the_template_files( (array) $templates ) );
 	}
 }
 
