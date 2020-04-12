@@ -38,12 +38,67 @@ class Tests_RegisterCustomConfigs extends Test_Case {
 	public function test_should_add_runtime_post_type_config_to_existing_configs() {
 		$configurations = [];
 		Monkey\Functions\expect( '_get_plugin_directory' )
-			->twice()
+			->times(5)
 			->with()
 			->andReturn( TOURS_ROOT_DIR );
+		$expected_subarray_1 = [
+			'tours' => [
+				'post_type' => 'tours'
+			]
+		];
+		$expected_subarray_2 = [
+			'tours' => [
+				'labels' => [
+					'singular_label'    => 'Past Tour',
+					'plural_label'      => 'Past Tours',
+					'in_sentance_label' => 'Tours', // The label used within a sentance.
+					'text_domain'       => 'cornerstone-tours',
+				]
+			]
+		];
+		$expected_subarray_3 = [
+			'tours' => [
+				'features' => [
+					'base_post_type' => 'post',
+					'exclude'        => [
+						'excerpt',
+						'comments',
+						'trackbacks',
+//			            'custom-fields',
+						'thumbnail', // also known as the 'featured image'.
+						'author',
+						'post-formats',
+						'genesis-seo',
+						'genesis-scripts',
+						'genesis-layouts',
+						'genesis-rel-author',
+					],
+					'additional'     => [
+						'page-attributes',
+					],
+				],
+			]
+		];
+		$expected_subarray_4 = [
+			'tours' => [
+				'args'      => [
+					'description'  => '', // For informational purposes only.
+					'label'        => '',
+					'labels'       => '', // automatically generate the labels.
+					'public'       => true,
+					'show_in_rest' => true,
+					'menu_icon'    => 'dashicons-admin-site',
+					'supports'     => '', // automatically generate the support features.
+					'has_archive'  => true,
+				],
+			]
+		];
 
 		$this->assertArrayHasKey( 'tours', register_custom_configs( (array) $configurations ) );
-		$this->assertArraySubset( [ 'tours' => [ 'post_type' => 'tours' ] ], register_custom_configs( (array) $configurations ) );
+		$this->assertArraySubset( $expected_subarray_1, register_custom_configs( (array) $configurations ) );
+		$this->assertArraySubset( $expected_subarray_2, register_custom_configs( (array) $configurations ) );
+		$this->assertArraySubset( $expected_subarray_3, register_custom_configs( (array) $configurations ) );
+		$this->assertArraySubset( $expected_subarray_4, register_custom_configs( (array) $configurations ) );
 	}
 }
 
