@@ -20,9 +20,11 @@ add_action( 'pre_get_posts', __NAMESPACE__ . '\set_past_tours_by_order_number' )
  * @param WP_Query $query Instance of the query.
  */
 function set_past_tours_by_order_number( $query ) {
-
-	if ( is_post_type_archive() ) {
-		$query->set( 'orderby', 'menu_order' );
-		$query->set( 'order', 'DESC' );
+	if ( ! is_post_type_archive( $post_types = 'tours' ) )  {
+		return $query;
 	}
+
+	$query->set( 'orderby', 'menu_order' );
+	$query->set( 'order', 'DESC' );
 }
+
