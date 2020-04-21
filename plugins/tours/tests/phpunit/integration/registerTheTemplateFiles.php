@@ -25,22 +25,35 @@ use function spiralWebDb\CornerstoneTours\register_the_template_files;
 class Tests_RegisterTheTemplateFiles extends Test_Case {
 
 	/**
-	 * Test register_the_template_files() is registered to filter 'register_templates_with_template_loader' when event fires.
+	 * Test register_the_template_files() is registered to filter 'register_templates_with_template_loader' when event
+	 * fires.
 	 */
 	public function test_callback_is_registered_to_filter_hook_when_event_fires() {
 		$this->assertEquals( 10, has_filter( 'register_templates_with_template_loader', 'spiralWebDb\CornerstoneTours\register_the_template_files' ) );
 	}
 
-	/*
-     * Test register_the_template_files() should return template files when given valid path to plugin config.
-     */
-	public function test_should_return_template_files_given_valid_path_to_plugin_config() {
-		$templates = [];
+	/**
+	 * Test register_the_template_files() should return an array of configuration template files when given an empty templates array.
+	 */
+	public function test_should_return_an_array_of_configuration_template_files_given_an_empty_templates_array() {
+		$config = require _get_plugin_directory() . '/config/templates.php';
 
-		$this->assertArrayHasKey( 'single', register_the_template_files( (array) $templates ) );
-		$this->assertArraySubset( [ 'single' => [ 'tours' => _get_plugin_directory() . '/src/template/single-tours.php' ] ], register_the_template_files( (array) $templates ) );
-		$this->assertArrayHasKey( 'post_type_archive', register_the_template_files( (array) $templates ) );
-		$this->assertArraySubset( [ 'post_type_archive' => [ 'tours' => _get_plugin_directory() . '/src/template/archive-tours.php' ] ], register_the_template_files( (array) $templates ) );
+		$this->assertSame( $config, register_the_template_files( [] ) );
+	}
+
+	/**
+	 * Test register_the_template_files() should return a merged array of configuration template files when given a templates array.
+	 */
+	public function test_should_return_a_merged_array_of_config_template_files_when_given_a_templates_array()   {
+		$templates = [
+			'single' => [
+				'baz' => __DIR__ . '/baz/templates.php',
+			]
+		];
+		$config = require _get_plugin_directory() . '/config/templates.php';
+
+		$this->assertSame( array_merge_recursive( $templates, $config ), register_the_template_files( (array) $templates ) );
 	}
 }
+
 
