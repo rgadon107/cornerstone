@@ -80,5 +80,3 @@ class Tests_RegisterTheTemplateFiles extends Test_Case {
 	}
 }
 
-
-
