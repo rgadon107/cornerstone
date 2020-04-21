@@ -24,11 +24,10 @@ use function spiralWebDb\CornerstoneTours\register_the_template_files;
  */
 class Tests_RegisterTheTemplateFiles extends Test_Case {
 
-	/*
+	/**
 	 * Test register_the_template_files() is registered to filter 'register_templates_with_template_loader' when event fires.
 	 */
 	public function test_callback_is_registered_to_filter_hook_when_event_fires() {
-		$this->assertTrue( has_filter( 'register_templates_with_template_loader' ) );
 		$this->assertEquals( 10, has_filter( 'register_templates_with_template_loader', 'spiralWebDb\CornerstoneTours\register_the_template_files' ) );
 	}
 
