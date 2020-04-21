@@ -12,7 +12,6 @@
 namespace spiralWebDb\CornerstoneTours\Tests\Integration;
 
 use spiralWebDb\Cornerstone\Tests\Integration\Test_Case;
-use function has_filter;
 use function spiralWebDb\CornerstoneTours\_get_plugin_directory;
 use function spiralWebDb\CornerstoneTours\register_the_template_files;
 
