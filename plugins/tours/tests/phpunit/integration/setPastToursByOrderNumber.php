@@ -47,20 +47,27 @@ class Tests_SetPastToursByOrderNumber extends Test_Case {
 	}
 
 	/**
-     * Test set_past_tours_by_order_number() should return modified query object from WP_Query when post_type_is 'tours'.
-     */
-	public function test_should_return_modified_query_when_post_type_is_tours() {
-		// Create and get a post object for 'post' post_type with WordPress' factory method.
-		$post = self::factory()->post->create_and_get( [ 'post_type' => 'tours' ] );
-		// Instantiate a new WP_Query object.
-		$query = new WP_Query();
-		$query->query_vars( [ 'orderby' => 'menu_order', 'order' => 'DESC' ] );
-		
-		set_past_tours_by_order_number( $query );
+	 * Test set_past_tours_by_order_number() should return tours in DESC order by each tour's menu_order.
+	 */
+	public function test_should_return_tours_in_desc_order_menu_order() {
+		$post_ids       = [];
+		$expected_order = [
+			0 => 4,
+			1 => 3,
+			2 => 2,
+			3 => 1,
+		];
+		foreach ( $expected_order as $order => $menu_order ) {
+			$post_ids[ $order ] = $this->factory()->post->create(
+				[
+					'post_type'  => 'tours',
+					'menu_order' => $menu_order,
+				]
+			);
+		}
+		$this->go_to( '?post_type=tours' );
 
-		// When post_type is 'tours', $query object should contain updated query_vars.
-		$this->assertContains( $query->query_vars( [ 'orderby' ] ), $query );
-		$this->assertContains( $query->query_vars( [ 'order' ] ), $query );
+		$this->assertEqualSets( $post_ids, wp_list_pluck( $GLOBALS['wp_query']->posts, 'ID' ) );
 	}
 }
 
