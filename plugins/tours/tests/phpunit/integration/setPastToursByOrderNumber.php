@@ -77,5 +77,3 @@ class Tests_SetPastToursByOrderNumber extends Test_Case {
 	}
 }
 
-
-
