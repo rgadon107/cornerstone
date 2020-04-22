@@ -23,7 +23,7 @@ use function spiralWebDb\CornerstoneTours\set_past_tours_by_order_number;
  * @group   tours
  */
 class Tests_SetPastToursByOrderNumber extends Test_Case {
-	
+
 	/**
 	 * Prepares the test environment before each test.
 	 */
@@ -32,21 +32,21 @@ class Tests_SetPastToursByOrderNumber extends Test_Case {
 
 		require_once TOURS_ROOT_DIR . '/src/plugin.php';
 
-		$query = m::mock( 'WP_Query' );
+		$this->query = m::mock( 'WP_Query' );
 	}
 
 	/*
      * Test set_past_tours_by_order_number() should return unmodified query_vars from WP_Query when post_type_archive is false.
      */
 	public function test_should_return_unmodified_query_vars_when_post_type_archive_is_false() {
-		$expected = $query;
+		$expected = $this->query;
 
 		Monkey\Functions\expect( 'is_post_type_archive' )
 			->once()
-			->with()
+			->with( 'tours')
 			->andReturn( false );
 
-		$this->assertSame( $expected, set_past_tours_by_order_number( $query ) );
+		$this->assertSame( $expected, set_past_tours_by_order_number( $this->query ) );
 	}
 
 	/*
@@ -57,20 +57,20 @@ class Tests_SetPastToursByOrderNumber extends Test_Case {
 			->once()
 			->with( 'tours' )
 			->andReturn( true );
-		$query->shouldReceive( 'set' )
+		$this->query->shouldReceive( 'set' )
 		      ->once()
 		      ->with( 'orderby', 'menu_order' )
 		      ->andReturn();
-		$query->shouldReceive( 'set' )
+		$this->query->shouldReceive( 'set' )
 		      ->once()
 		      ->with( 'order', 'DESC' )
 		      ->andReturn();
-		$expected = $query->query_vars = [
+		$expected = $this->query->query_vars = [
 			'order'   => 'ASC',
 			'orderby' => 'menu_order'
 		];
 
-		$this->assertSame( $expected, set_past_tours_by_order_number( $query ) );
+		$this->assertSame( $expected, set_past_tours_by_order_number( $this->query ) );
 	}
 }
 
