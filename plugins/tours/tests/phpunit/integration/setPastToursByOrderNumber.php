@@ -43,7 +43,6 @@ class Tests_SetPastToursByOrderNumber extends Test_Case {
 	 * Test set_past_tours_by_order_number() is registered to do_action_ref_array( 'pre_get_posts' ) when event fires.
 	 */
 	public function test_callback_is_registered_to_action_hook_when_event_fires() {
-		$this->assertTrue( has_action( 'pre_get_posts' ) );
 		$this->assertEquals( 10, has_action( 'pre_get_posts', 'spiralWebDb\CornerstoneTours\set_past_tours_by_order_number' ) );
 	}
 
