@@ -12,9 +12,6 @@
 namespace spiralWebDb\CornerstoneTours\Tests\Integration;
 
 use spiralWebDb\Cornerstone\Tests\Integration\Test_Case;
-use function has_action;
-use WP_Query;
-use function spiralWebDb\CornerstoneTours\set_past_tours_by_order_number;
 
 /**
  * Class Tests_SetPastToursByOrderNumber
@@ -24,7 +21,7 @@ use function spiralWebDb\CornerstoneTours\set_past_tours_by_order_number;
  * @group   admin
  */
 class Tests_SetPastToursByOrderNumber extends Test_Case {
-	
+
 	/**
 	 * Test set_past_tours_by_order_number() is registered to do_action_ref_array( 'pre_get_posts' ) when event fires.
 	 */
