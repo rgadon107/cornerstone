@@ -35,7 +35,7 @@ class Tests_SetPastToursByOrderNumber extends Test_Case {
 		$this->query = m::mock( 'WP_Query' );
 	}
 
-	/*
+	/**
      * Test set_past_tours_by_order_number() should return unmodified query_vars from WP_Query when post_type_archive is false.
      */
 	public function test_should_return_unmodified_query_vars_when_post_type_archive_is_false() {
@@ -49,7 +49,7 @@ class Tests_SetPastToursByOrderNumber extends Test_Case {
 		$this->assertSame( $expected, set_past_tours_by_order_number( $this->query ) );
 	}
 
-	/*
+	/**
 	 * Test set_past_tours_by_order_number() should modify query_var default when post_type_archive is true.
 	 */
 	public function test_should_modify_query_var_default_when_post_type_archive_is_true() {
