@@ -30,6 +30,11 @@ class Tests_RegisterTheTemplateFiles extends Test_Case {
 		parent::setUp();
 
 		require_once TOURS_ROOT_DIR . '/src/config-loader.php';
+
+		Monkey\Functions\expect( 'spiralWebDb\CornerstoneTours\_get_plugin_directory' )
+			->times( 3 )
+			->with()
+			->andReturn( TOURS_ROOT_DIR );
 	}
 
 	/**
@@ -37,10 +42,6 @@ class Tests_RegisterTheTemplateFiles extends Test_Case {
 	 * templates array.
 	 */
 	public function test_should_return_an_array_of_configuration_template_files_given_an_empty_templates_array() {
-		Monkey\Functions\expect( 'spiralWebDb\CornerstoneTours\_get_plugin_directory' )
-			->times( 3 )
-			->with()
-			->andReturn( TOURS_ROOT_DIR );
 		$templates = [];
 		$config = [
 			'single' => [
@@ -58,10 +59,6 @@ class Tests_RegisterTheTemplateFiles extends Test_Case {
 	 * Test register_the_template_files() should return a merged array of configuration template files when given a templates array.
 	 */
 	public function test_should_return_a_merged_array_of_config_template_files_when_given_a_templates_array()   {
-		Monkey\Functions\expect( 'spiralWebDb\CornerstoneTours\_get_plugin_directory' )
-			->times( 3 )
-			->with()
-			->andReturn( TOURS_ROOT_DIR );
 		$templates = [
 			'single' => [
 				'baz' => __DIR__ . '/baz/templates.php',
