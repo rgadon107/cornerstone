@@ -39,29 +39,16 @@ class Tests_SetPastToursByOrderNumber extends Test_Case {
 	 */
 	public $query_vars = array();
 
-	/*
+	/**
 	 * Test set_past_tours_by_order_number() is registered to do_action_ref_array( 'pre_get_posts' ) when event fires.
 	 */
 	public function test_callback_is_registered_to_action_hook_when_event_fires() {
 		$this->assertEquals( 10, has_action( 'pre_get_posts', 'spiralWebDb\CornerstoneTours\set_past_tours_by_order_number' ) );
 	}
 
-	/*
-     * Test set_past_tours_by_order_number() should return unmodified query object from WP_Query when post_type_is 'post'.
+	/**
+     * Test set_past_tours_by_order_number() should return modified query object from WP_Query when post_type_is 'tours'.
      */
-	public function test_should_return_unmodified_query_when_post_type_is_post() {
-		// Create and get a post object for 'post' post_type with WordPress' factory method.
-		$post = self::factory()->post->create_and_get();
-		// Instantiate a new WP_Query object.
-		$query = new WP_Query();
-
-		// When post_type is 'post', there should be no change to the $query object.
-		$this->assertSame( $query, set_past_tours_by_order_number( $query ) );
-	}
-
-	/*
- * Test set_past_tours_by_order_number() should return modified query object from WP_Query when post_type_is 'tours'.
- */
 	public function test_should_return_modified_query_when_post_type_is_tours() {
 		// Create and get a post object for 'post' post_type with WordPress' factory method.
 		$post = self::factory()->post->create_and_get( [ 'post_type' => 'tours' ] );
