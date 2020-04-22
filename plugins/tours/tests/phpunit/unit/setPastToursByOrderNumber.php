@@ -23,21 +23,7 @@ use function spiralWebDb\CornerstoneTours\set_past_tours_by_order_number;
  * @group   tours
  */
 class Tests_SetPastToursByOrderNumber extends Test_Case {
-
-	/**
-	 * Instance of WP_Query for each test.
-	 *
-	 * @var Mockery
-	 */
-	protected $query;
-
-	/**
-	 * Query vars, after parsing
-	 *
-	 * @var array
-	 */
-	public $query_vars = array();
-
+	
 	/**
 	 * Prepares the test environment before each test.
 	 */
