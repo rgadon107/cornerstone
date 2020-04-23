@@ -31,14 +31,13 @@ class Tests_SetPastToursByOrderNumber extends Test_Case {
 		parent::setUp();
 
 		require_once TOURS_ROOT_DIR . '/src/plugin.php';
-
-		$this->query = m::mock( 'WP_Query' );
 	}
 
 	/**
      * Test set_past_tours_by_order_number() should return unmodified query_vars from WP_Query when post_type_archive is false.
      */
 	public function test_should_return_unmodified_query_vars_when_post_type_archive_is_false() {
+		$this->query = m::mock( 'WP_Query' );
 		$expected = $this->query;
 
 		Monkey\Functions\expect( 'is_post_type_archive' )
@@ -50,27 +49,47 @@ class Tests_SetPastToursByOrderNumber extends Test_Case {
 	}
 
 	/**
-	 * Test set_past_tours_by_order_number() should modify query_var default when post_type_archive is true.
+	 * Test set_past_tours_by_order_number() should modify query_var default when tours post_type_archive is true.
 	 */
-	public function test_should_modify_query_var_default_when_post_type_archive_is_true() {
+	public function test_should_modify_query_var_default_when_tours_post_type_archive_is_true() {
 		Monkey\Functions\expect( 'is_post_type_archive' )
 			->once()
 			->with( 'tours' )
 			->andReturn( true );
-		$this->query->shouldReceive( 'set' )
+
+		$query             = m::mock( 'WP_Query' );
+		$query->query_vars = [
+			'order'   => 'ASC',
+			'orderby' => 'menu_order',
+		];
+		$query->shouldReceive( 'set' )
 		      ->once()
 		      ->with( 'orderby', 'menu_order' )
-		      ->andReturn();
-		$this->query->shouldReceive( 'set' )
+		      ->andReturnUsing(
+			      function ( $key, $value ) use ( $query ) {
+				      $this->setQueryVar( $query, $key, $value );
+			      }
+		      );
+		$query->shouldReceive( 'set' )
 		      ->once()
 		      ->with( 'order', 'DESC' )
-		      ->andReturn();
-		$expected = $this->query->query_vars = [
-			'order'   => 'ASC',
-			'orderby' => 'menu_order'
-		];
+		      ->andReturnUsing(
+			      function ( $key, $value ) use ( $query ) {
+				      $this->setQueryVar( $query, $key, $value );
+			      }
+		      );
 
-		$this->assertSame( $expected, set_past_tours_by_order_number( $this->query ) );
+		$this->assertNull( set_past_tours_by_order_number( $query ) );
+
+		$expected = [
+			'order'   => 'DESC',
+			'orderby' => 'menu_order',
+		];
+		$this->assertSame( $expected, $query->query_vars );
+	}
+
+	protected function setQueryVar( $query, $key, $value ) {
+		$query->query_vars[ $key ] = $value;
 	}
 }
 
