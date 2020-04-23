@@ -52,16 +52,17 @@ class Tests_SetPastToursByOrderNumber extends Test_Case {
 	 * Test set_past_tours_by_order_number() should modify query_var default when tours post_type_archive is true.
 	 */
 	public function test_should_modify_query_var_default_when_tours_post_type_archive_is_true() {
-		Monkey\Functions\expect( 'is_post_type_archive' )
-			->once()
-			->with( 'tours' )
-			->andReturn( true );
-
 		$query             = m::mock( 'WP_Query' );
 		$query->query_vars = [
 			'order'   => 'ASC',
 			'orderby' => 'menu_order',
 		];
+
+		Monkey\Functions\expect( 'is_post_type_archive' )
+			->once()
+			->with( 'tours' )
+			->andReturn( true );
+		
 		$query->shouldReceive( 'set' )
 		      ->once()
 		      ->with( 'orderby', 'menu_order' )
