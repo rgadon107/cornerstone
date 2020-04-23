@@ -11,6 +11,7 @@
 
 namespace spiralWebDb\CornerstoneTours\Tests\Unit;
 
+use Mockery as m;
 use Brain\Monkey;
 use spiralWebDb\Cornerstone\Tests\Unit\Test_Case;
 use function spiralWebDb\CornerstoneTours\Template\render_post_title_text;
@@ -43,20 +44,18 @@ class Tests_RenderPostTitleText extends Test_Case {
 	 * Test render_post_title_text() echoes the title when the filter event fires.
 	 */
 	public function test_title_is_echoed_when_filter_event_fires() {
-		$tour_id    = (int) 1542;
-		$menu_order = (int) 15;
+		Monkey\Functions\when( 'get_post' )->justReturn( 'WP_Post' );
+		$post             = m::mock( 'WP_Post' );
+		$post->ID         = (int) 1542;
+		$post->menu_order = (int) 15;
 
-		Monkey\Functions\expect( 'get_post' )
-			->once()
-			->with()
-			->andReturn();
 		Monkey\Functions\expect( 'get_the_ID' )
 			->once()
 			->with()
-			->andReturn( 'tour_id' );
+			->andReturn( $post->ID );
 		Monkey\Functions\expect( 'get_post_meta' )
 			->once()
-			->with( 'tour_id', 'tour_year', true )
+			->with( $post->ID, 'tour_year', true )
 			->andReturn( '2011' );
 		Monkey\Functions\expect( 'get_the_title' )
 			->once()
