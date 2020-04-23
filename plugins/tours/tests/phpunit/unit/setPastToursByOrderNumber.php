@@ -71,6 +71,7 @@ class Tests_SetPastToursByOrderNumber extends Test_Case {
 				      $this->setQueryVar( $query, $key, $value );
 			      }
 		      );
+
 		$query->shouldReceive( 'set' )
 		      ->once()
 		      ->with( 'order', 'DESC' )
