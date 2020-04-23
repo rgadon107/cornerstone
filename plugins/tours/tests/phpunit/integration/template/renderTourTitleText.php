@@ -13,8 +13,6 @@ namespace spiralWebDb\CornerstoneTours\Tests\Integration;
 
 use spiralWebDb\Cornerstone\Tests\Integration\Test_Case;
 use function spiralWebDb\CornerstoneTours\Template\render_post_title_text;
-use function add_post_meta;
-use function get_post_meta;
 
 /**
  * Class Tests_RenderPostTitleText
@@ -29,8 +27,7 @@ class Tests_RenderPostTitleText extends Test_Case {
 	 * Test render_post_title_text() should register to add_filter( 'genesis_post_title_text' ) when event fires.
 	 */
 	public function test_callback_is_registered_to_filter_hook_when_event_fires() {
-		// Note: The following 2 assertions presently fail.
-//		$this->assertTrue( has_filter( 'genesis_post_title_text' ) );
+		// Note: The following assertions presently fails.
 //		$this->assertEquals( 10, has_filter( 'genesis_post_title_text', 'spiralWebDb\CornerstoneTours\Template\render_post_title_text' ) );
 	}
 
@@ -52,10 +49,11 @@ class Tests_RenderPostTitleText extends Test_Case {
 
 		// Test that the post_meta was added to the database.
 		$this->assertEquals( (int) 2011, (int) get_post_meta( $tour_id, 'tour_year', true ) );
-
+		
 		ob_start();
 		apply_filters( 'genesis_post_title_text', get_the_title() );
 		$actual_html = ob_get_clean();
+		var_dump( $actual_html );
 
 	}
 }
