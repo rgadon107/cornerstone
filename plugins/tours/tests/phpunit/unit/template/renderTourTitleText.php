@@ -45,17 +45,16 @@ class Tests_RenderPostTitleText extends Test_Case {
 	 */
 	public function test_title_is_echoed_when_filter_event_fires() {
 		Monkey\Functions\when( 'get_post' )->justReturn( 'WP_Post' );
-		$post             = m::mock( 'WP_Post' );
-		$post->ID         = (int) 1542;
-		$post->menu_order = (int) 15;
+		$tour_id    = (int) 1542;
+		$menu_order = (int) 15;
 
 		Monkey\Functions\expect( 'get_the_ID' )
 			->once()
 			->with()
-			->andReturn( $post->ID );
+			->andReturn( $tour_id );
 		Monkey\Functions\expect( 'get_post_meta' )
 			->once()
-			->with( $post->ID, 'tour_year', true )
+			->with( $tour_id, 'tour_year', true )
 			->andReturn( '2011' );
 		Monkey\Functions\expect( 'get_the_title' )
 			->once()
@@ -67,12 +66,12 @@ class Tests_RenderPostTitleText extends Test_Case {
         Tour 15 | 2011 | I Make All Things New</h2>
 VIEW;
 
-//		ob_start();
-//		render_post_title_text( $tour_id );
-//		$actual_html = ob_get_clean();
-//
-		$this->expectOutputString( $expected_html );
+		ob_start();
 		render_post_title_text( $tour_id );
+		$actual_html = ob_get_clean();
+		var_dump( $actual_html );
+//		$this->expectOutputString( $expected_html );
+//		render_post_title_text( $tour_id );
 	}
 }
 
