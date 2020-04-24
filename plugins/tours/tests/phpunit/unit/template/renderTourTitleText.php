@@ -11,7 +11,6 @@
 
 namespace spiralWebDb\CornerstoneTours\Tests\Unit;
 
-use Mockery as m;
 use Brain\Monkey;
 use spiralWebDb\Cornerstone\Tests\Unit\Test_Case;
 use function spiralWebDb\CornerstoneTours\Template\render_post_title_text;
@@ -37,7 +36,6 @@ class Tests_RenderPostTitleText extends Test_Case {
 			->andReturn();
 
 		require_once TOURS_ROOT_DIR . '/src/template/single-tours.php';
-
 	}
 
 	/**
