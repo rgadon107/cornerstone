@@ -44,10 +44,11 @@ class Tests_RenderPostTitleText extends Test_Case {
 	 * Test render_post_title_text() echoes the title when the filter event fires.
 	 */
 	public function test_title_is_echoed_when_filter_event_fires() {
-		Monkey\Functions\when( 'get_post' )->justReturn( 'WP_Post' );
-		$tour_id    = (int) 1542;
-		$menu_order = (int) 15;
-
+		$tour_id = (int) 1542;
+		Monkey\Functions\expect( 'get_post_field' )
+			->once()
+			->with( 'menu_order')
+			->andReturn( '15' );
 		Monkey\Functions\expect( 'get_the_ID' )
 			->once()
 			->with()
@@ -63,15 +64,14 @@ class Tests_RenderPostTitleText extends Test_Case {
 
 		$expected_html = <<<VIEW
 <h2 class="entry-title tour-title" itemprop="headline">
-        Tour 15 | 2011 | I Make All Things New</h2>
+       Tour 15 | 2011 | I Make All Things New</h2>
 VIEW;
 
 		ob_start();
 		render_post_title_text( $tour_id );
 		$actual_html = ob_get_clean();
-		var_dump( $actual_html );
-//		$this->expectOutputString( $expected_html );
-//		render_post_title_text( $tour_id );
+		
+		$this->assertSame( $expected_html, $actual_html );
 	}
 }
 
