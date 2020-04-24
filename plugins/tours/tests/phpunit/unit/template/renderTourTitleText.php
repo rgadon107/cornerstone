@@ -40,7 +40,7 @@ class Tests_RenderPostTitleText extends Test_Case {
 
 	}
 
-	/*
+	/**
 	 * Test render_post_title_text() echoes the title when the filter event fires.
 	 */
 	public function test_title_is_echoed_when_filter_event_fires() {
