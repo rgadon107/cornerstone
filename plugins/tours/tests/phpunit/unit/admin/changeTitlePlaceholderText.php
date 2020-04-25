@@ -2,16 +2,16 @@
 /**
  * Tests for change_title_placeholder_text().
  *
- * @package     spiralWebDb\CornerstoneTours\Tests\Unit
  * @since       1.0.0
  * @author      Robert Gadon <rgadon107>
+ * @package     spiralWebDb\CornerstoneTours\Tests\Unit
  * @link        https://github.com/rgadon107/cornerstone
  * @license     GNU-2.0+
  */
 
 namespace spiralWebDb\CornerstoneTours\Tests\Unit;
 
-use Mockery as m;
+use Mockery;
 use Brain\Monkey\Functions;
 use spiralWebDb\Cornerstone\Tests\Unit\Test_Case;
 use function spiralWebDb\CornerstoneTours\change_title_placeholder_text;
@@ -24,48 +24,51 @@ use function spiralWebDb\CornerstoneTours\change_title_placeholder_text;
  */
 class Tests_ChangeTitlePlaceholderText extends Test_Case {
 
-	/**
-	 * Instance of the post object for each test.
-	 *
-	 * @var Mockery
-	 */
-	protected $post;
-
-	/**
-	 * Prepares the test environment before each test.
-	 */
-	protected function setUp() {
+	public function setUp() {
 		parent::setUp();
 
 		require_once TOURS_ROOT_DIR . '/src/admin/edit-form-advanced.php';
-
-		$this->post          = m::mock( 'post' );
 	}
 
 	/**
-	 * Test change_title_placeholder_text() should return original text when the post type is not 'tours'.
+	 * @dataProvider addTestData
 	 */
-	public function test_should_return_given_text_when_post_type_is_not_tours() {
-		$text = 'Add title.';
+	public function test_should_return_expected_html( $text, $post_data, $expected_html ) {
+		$post = Mockery::mock( 'WP_Post' );
 		Functions\expect( 'get_post_type' )
 			->once()
-			->with( 'post' )
-			->andReturn( 'post' );
+			->with( $post )
+			->andReturn( $post_data['post_type'] );
 
-		$this->assertSame( $text, change_title_placeholder_text( $text, $this->post ) );
+		$this->assertSame( $expected_html, change_title_placeholder_text( $text, $post ) );
 	}
 
-	/**
-	 * Test change_title_placeholder_text() should return modified text when post type is 'tours'.
-	 */
-	public function test_should_return_modified_text_when_post_type_is_tours() {
-		Functions\expect( 'get_post_type' )
-			->once()
-			->with( 'post' )
-			->andReturn( 'tours' );
-		$text     = 'Add title.';
-		$expected = '<em>Theme of this Cornerstone tour.</em>';
-
-		$this->assertSame( $expected, change_title_placeholder_text( $text, $this->post ) );
+	public function addTestData() {
+		return [
+			[
+				'text'          => 'Lorem ipsum',
+				'post_data'     => [
+					'post_type' => 'post',
+				],
+				'expected_html' => 'Lorem ipsum',
+			],
+			[
+				'text'          => 'Lorem ipsum',
+				'post_data'     => [
+					'post_type' => 'events',
+				],
+				'expected_html' => 'Lorem ipsum',
+			],
+			[
+				'text'          => 'Lorem ipsum',
+				'post_data'     => [
+					'post_type' => 'tours',
+				],
+				'expected_html' => <<<PLACEHOLDER
+<em>Theme of this Cornerstone tour.</em>
+PLACEHOLDER
+				,
+			],
+		];
 	}
 }
