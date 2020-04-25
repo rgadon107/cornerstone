@@ -17,9 +17,8 @@ use spiralWebDb\Cornerstone\Tests\Unit\Test_Case;
 use function spiralWebDb\CornerstoneTours\change_title_placeholder_text;
 
 /**
- * Class Tests_ChangeTitlePlaceholderText
+ * @covers ::\spiralWebDb\CornerstoneTours\change_title_placeholder_text
  *
- * @package spiralWebDb\CornerstoneTours\Tests\Unit
  * @group   tours
  * @group   admin
  */
