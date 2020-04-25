@@ -43,14 +43,12 @@ function _render_custom_column_content( $column_name, $tour_id ) {
 	switch ( $column_name ) {
 		case 'tour_id':
 			echo (int) $tour_id;
-			break;
+			return;
 		case 'tour_year':
-			$tour_year = (int) get_post_meta( $tour_id, 'tour_year', true );
-			echo esc_html( $tour_year );
-			break;
+			echo (int) get_post_meta( $tour_id, 'tour_year', true );
+			return;
 		case 'menu_order':
 			echo (int) get_post_field( 'menu_order', $tour_id );
-			break;
 	}
 }
 
