@@ -24,8 +24,8 @@ use function spiralWebDb\CornerstoneTours\add_description_beneath_post_title;
  */
 class Tests_AddDescriptionBeneathPostTitle extends Test_Case {
 
-	protected function setUp() {
-		parent::setUp();
+	public static function setUpBeforeClass() {
+		parent::setUpBeforeClass();
 
 		require_once TOURS_ROOT_DIR . '/src/admin/edit-form-advanced.php';
 	}

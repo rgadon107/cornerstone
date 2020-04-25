@@ -24,9 +24,6 @@ use function spiralWebDb\CornerstoneTours\_render_custom_column_content;
  */
 class Tests__RenderCustomColumnContent extends Test_Case {
 
-	/**
-	 * Prepares the test environment before each test.
-	 */
 	public static function setUpBeforeClass() {
 		parent::setUpBeforeClass();
 
@@ -58,7 +55,7 @@ class Tests__RenderCustomColumnContent extends Test_Case {
 
 		ob_start();
 		_render_custom_column_content( $column_name, $data['tour_id'] );
-		$this->assertSame( $expected, ob_get_clean() );
+		$this->assertEquals( $expected, ob_get_clean() );
 	}
 
 	public function addTestData() {
@@ -70,7 +67,7 @@ class Tests__RenderCustomColumnContent extends Test_Case {
 					'tour_year'  => 2018,
 					'menu_order' => 0,
 				],
-				'expected'  => '99',
+				'expected'  => 99,
 			],
 			[
 				'column_name' => 'tour_year',
@@ -78,7 +75,7 @@ class Tests__RenderCustomColumnContent extends Test_Case {
 					'tour_id'    => 157,
 					'tour_year'  => 2018,
 				],
-				'expected'  => '2018',
+				'expected'  => 2018,
 			],
 			[
 				'column_name' => 'menu_order',
@@ -86,7 +83,7 @@ class Tests__RenderCustomColumnContent extends Test_Case {
 					'tour_id'    => 211,
 					'menu_order' => 5,
 				],
-				'expected'  => '5',
+				'expected'  => 5,
 			],
 		];
 	}
