@@ -25,68 +25,107 @@ use spiralWebDb\Cornerstone\Tests\Unit\Test_Case;
  */
 class Tests_RegisterMetaBoxes extends Test_Case {
 
-	/**
-	 * Prepares the test environment before each test.
-	 */
-	protected function setUp() {
-		parent::setUp();
+	public static function setUpBeforeClass() {
+		parent::setUpBeforeClass();
 
 		require_once CENTRAL_HUB_ROOT_DIR . '/src/meta-data/meta-box.php';
 	}
 
-	/*
-	 * Test register_meta_boxes() will add a meta box for each store key that starts with 'metabox.'.
+	/**
+	 * @dataProvider addTestData
 	 */
-	function test_function_will_add_a_meta_box_for_each_store_key_that_starts_with_metabox() {
-		$config = [
-			'title'         => 'Events',
-			'screen'        => [ 'events' ],
-			'context'       => 'advanced',
-			'priority'      => 'default',
-			'callback_args' => null,
-		];
-
+	public function test_should_register_metaboxes( $store_keys, $data ) {
 		Functions\expect( 'spiralWebDB\Metadata\get_meta_box_keys' )
 			->once()
 			->withNoArgs()
-			->andReturn( [ 'meta_box.events' ] );
-		Functions\expect( 'KnowTheCode\ConfigStore\getConfigParameter' )
-			->once()
-			->with( 'meta_box.events', 'add_meta_box' )
-			->andReturn( $config );
-		Functions\expect( 'spiralWebDB\Metadata\get_meta_box_id' )
-			->once()
-			->with( 'meta_box.events' )
-			->andReturn( 'events' );
-		Functions\expect( 'spiralWebDB\Metadata\add_meta_box' )
-			->once()
-			->with(
-				'events',
-				$config['title'],
-				'spiralWebDB\Metadata\render_meta_box',
-				$config['screen'],
-				$config['context'],
-				$config['priority'],
-				$config['callback_args']
-			)
-			->andReturnNull();
+			->andReturn( $store_keys );
+
+		if ( empty( $store_keys ) ) {
+			Functions\expect( 'KnowTheCode\ConfigStore\getConfigParameter' )->never();
+			Functions\expect( 'add_meta_box' )->never();
+			Functions\expect( 'spiralWebDB\Metadata\get_meta_box_id' )->never();
+		}
+
+		foreach ( $store_keys as $store_key ) {
+			$config      = $data[ $store_key ]['config'];
+			$meta_box_id = $data[ $store_key ]['meta_box_id'];
+
+			Functions\expect( '\KnowTheCode\ConfigStore\getConfigParameter' )
+				->once()
+				->with( $store_key, 'add_meta_box' )
+				->andReturn( $config );
+			Functions\expect( 'spiralWebDB\Metadata\get_meta_box_id' )
+				->once()
+				->with( $store_key )
+				->andReturn( $meta_box_id );
+			Functions\expect( 'spiralWebDB\Metadata\add_meta_box' )
+				->once()
+				->with(
+					$meta_box_id,
+					$config['title'],
+					'spiralWebDB\Metadata\render_meta_box',
+					$config['screen'],
+					$config['context'],
+					$config['priority'],
+					$config['callback_args']
+				)
+				->andReturnNull();
+		}
 
 		register_meta_boxes();
 	}
 
-	/*
-	 * Test register_meta_boxes() returns null when no store key starts with 'metabox.'.
-	 */
-	public function test_function_should_return_null_when_no_store_key_starts_with_metabox() {
-		Functions\expect( 'spiralWebDB\Metadata\get_meta_box_keys' )
-			->once()
-			->withNoArgs()
-			->andReturn( [] );
-
-		Functions\expect( 'KnowTheCode\ConfigStore\getConfigParameter' )->never();
-		Functions\expect( 'add_meta_box' )->never();
-		Functions\expect( 'spiralWebDB\Metadata\get_meta_box_id' )->never();
-
-		register_meta_boxes();
+	public function addTestData() {
+		return [
+			[
+				'store_keys' => [],
+				'data'       => [],
+			],
+			[
+				'store_keys' => [
+					'meta_box.events',
+				],
+				'data'       => [
+					'meta_box.events' => [
+						'config'      => [
+							'title'         => 'Events',
+							'screen'        => [ 'events' ],
+							'context'       => 'advanced',
+							'priority'      => 'default',
+							'callback_args' => null,
+						],
+						'meta_box_id' => 'events',
+					],
+				],
+			],
+			[
+				'store_keys' => [
+					'meta_box.events',
+					'meta_box.tours',
+				],
+				'data'       => [
+					'meta_box.events' => [
+						'config'      => [
+							'title'         => 'Events',
+							'screen'        => [ 'events' ],
+							'context'       => 'advanced',
+							'priority'      => 'default',
+							'callback_args' => null,
+						],
+						'meta_box_id' => 'events',
+					],
+					'meta_box.tours'  => [
+						'config'      => [
+							'title'         => 'Tours',
+							'screen'        => [ 'tours' ],
+							'context'       => 'advanced',
+							'priority'      => 'default',
+							'callback_args' => null,
+						],
+						'meta_box_id' => 'tours',
+					],
+				],
+			],
+		];
 	}
 }
