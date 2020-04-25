@@ -11,22 +11,22 @@
 
 namespace spiralWebDb\CornerstoneTours;
 
-add_filter( 'manage_tours_posts_columns', __NAMESPACE__ . '\set_custom_columns' );
+add_filter( 'manage_tours_posts_columns', __NAMESPACE__ . '\_set_custom_columns' );
 /**
  * Add custom columns to the Tours admin page.
  *
- * @return array Array of columns.
  * @since 1.0.0
  *
+ * @return array An array of custom column headings.
  */
-function set_custom_columns() {
-	return array(
+function _set_custom_columns() {
+	return [
 		'cb'         => '<input type="checkbox"/>',
 		'title'      => 'Tour Name',
 		'tour_id'    => 'Tour ID',
 		'tour_year'  => 'Tour Year',
 		'menu_order' => 'Order Number',
-	);
+	];
 }
 
 add_action( 'manage_tours_posts_custom_column', __NAMESPACE__ . '\_render_custom_column_content', 10, 2 );
@@ -43,14 +43,12 @@ function _render_custom_column_content( $column_name, $tour_id ) {
 	switch ( $column_name ) {
 		case 'tour_id':
 			echo (int) $tour_id;
-			break;
+			return;
 		case 'tour_year':
-			$tour_year = (int) get_post_meta( $tour_id, 'tour_year', true );
-			echo esc_html( $tour_year );
-			break;
+			echo (int) get_post_meta( $tour_id, 'tour_year', true );
+			return;
 		case 'menu_order':
 			echo (int) get_post_field( 'menu_order', $tour_id );
-			break;
 	}
 }
 
@@ -58,14 +56,14 @@ add_filter( 'manage_edit-tours_sortable_columns', __NAMESPACE__ . '\_set_sortabl
 /**
  * Set sortable columns on the Tours admin page.
  *
- * @return array New sortable columns.
  * @since 1.0.0
  *
+ * @return array  Array of new sortable columns.
  */
 function _set_sortable_columns() {
-	return array(
+	return [
 		'tour_id'    => 'Tour ID',
 		'tour_year'  => 'Tour Year',
 		'menu_order' => 'Order Number',
-	);
+	];
 }

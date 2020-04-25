@@ -36,10 +36,12 @@ add_action( 'edit_form_before_permalink', __NAMESPACE__ . '\add_description_bene
  *
  * @since 1.0.0
  *
+ * @param WP_Post $post Post object.
+ *
  * @return void
  */
-function add_description_beneath_post_title() {
-	if ( 'tours' !== get_post_type() ) {
+function add_description_beneath_post_title( $post ) {
+	if ( 'tours' !== get_post_type( $post ) ) {
 		return;
 	}
 
