@@ -2,9 +2,9 @@
 /**
  * Tests for add_description_beneath_post_title().
  *
- * @package     spiralWebDb\CornerstoneTours\Tests\Integration
  * @since       1.0.0
  * @author      Robert Gadon <rgadon107>
+ * @package     spiralWebDb\CornerstoneTours\Tests\Integration
  * @link        https://github.com/rgadon107/cornerstone
  * @license     GNU-2.0+
  */
@@ -14,9 +14,8 @@ namespace spiralWebDb\CornerstoneTours\Tests\Integration;
 use spiralWebDb\Cornerstone\Tests\Integration\Test_Case;
 
 /**
- * Class Tests_AddDescriptionBeneathPostTitle
+ * @covers ::\spiralWebDb\Members\add_description_beneath_post_title
  *
- * @package spiralWebDb\CornerstoneTours\Tests\Integration
  * @group   tours
  * @group   admin
  */
@@ -27,7 +26,8 @@ class Tests_AddDescriptionBeneathPostTitle extends Test_Case {
 	 */
 	public function test_should_not_contain_view_when_post_type_is_post() {
 		// Create and get the post object for the 'post' post_type via the factory method.
-		$post = self::factory()->post->create_and_get();
+		$post = $this->factory->post->create_and_get();
+
 		$view_html = <<<VIEW
 <span class="description">Enter the theme name above for this Cornerstone tour. In the editor below, add each of the venues and locations (city, state) where Cornerstone performed on this tour. Below the editor, enter additional tour information in the box labeled "Past Tour Custom Fields".</span>
 VIEW;
@@ -45,7 +45,8 @@ VIEW;
 	 */
 	public function test_should_contain_view_when_post_type_is_tours() {
 		// Create and get the post object with 'tours' post_type via the factory method.
-		$post = $this->factory()->post->create_and_get( [ 'post_type' => 'tours' ] );
+		$post = $this->factory->post->create_and_get( [ 'post_type' => 'tours' ] );
+
 		$view_html = <<<VIEW
 <span class="description">Enter the theme name above for this Cornerstone tour. In the editor below, add each of the venues and locations (city, state) where Cornerstone performed on this tour. Below the editor, enter additional tour information in the box labeled "Past Tour Custom Fields".</span>
 VIEW;
@@ -59,4 +60,3 @@ VIEW;
 		$this->assertSame( $view_html, $actual_html );
 	}
 }
-

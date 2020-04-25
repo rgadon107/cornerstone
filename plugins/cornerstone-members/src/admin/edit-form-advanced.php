@@ -35,11 +35,9 @@ function change_title_placeholder_text( $text ) {
 
 add_action( 'edit_form_before_permalink', __NAMESPACE__ . '\add_description_beneath_post_title' );
 /**
- *  Add description beneath post title custom field.
+ * Add description beneath post title custom field.
  *
  * @since 1.0.0
- *
- * @return void
  */
 function add_description_beneath_post_title() {
 	if ( 'members' == get_post_type() ) {
