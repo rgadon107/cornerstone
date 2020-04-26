@@ -17,24 +17,14 @@ use spiralWebDb\Cornerstone\Tests\Unit\Test_Case;
 use function spiralWebDb\CornerstoneTours\change_title_placeholder_text;
 
 /**
- * @covers ::spiralWebDb\CornerstoneTours\change_title_placeholder_text
+ * @covers ::\spiralWebDb\CornerstoneTours\change_title_placeholder_text
  *
  * @group   tours
  * @group   admin
  */
 class Tests_ChangeTitlePlaceholderText extends Test_Case {
 
-	/**
-	 * Instance of the post object for each test.
-	 *
-	 * @var Mockery
-	 */
-	protected $post;
-
-	/**
-	 * Prepares the test environment before each test.
-	 */
-	protected function setUp() {
+	public function setUp() {
 		parent::setUp();
 
 		require_once TOURS_ROOT_DIR . '/src/admin/edit-form-advanced.php';
@@ -43,29 +33,41 @@ class Tests_ChangeTitlePlaceholderText extends Test_Case {
 	/**
 	 * @dataProvider addTestData
 	 */
-	public function test_should_render_placeholder_text_depending_on_post_type( $post_type, $view ) {
+	public function test_should_return_expected_html( $text, $post_data, $expected_html ) {
 		$post = Mockery::mock( 'WP_Post' );
 		Functions\expect( 'get_post_type' )
 			->once()
 			->with( $post )
-			->andReturn( $post_type );
+			->andReturn( $post_data['post_type'] );
 
-		ob_start();
-		change_title_placeholder_text( $text, $post );
-		$actual_html = ob_get_clean();
-
-		$this->assertEquals( $expected, $actual_html );
+		$this->assertSame( $expected_html, change_title_placeholder_text( $text, $post ) );
 	}
 
 	public function addTestData() {
 		return [
-			'test_should_contain_default_placeholder_text_when_post_type_is_post' => [
-				'post_type' => 'post',
-				'expected'  => 'Add title.',
+			[
+				'text'          => 'Lorem ipsum',
+				'post_data'     => [
+					'post_type' => 'post',
+				],
+				'expected_html' => 'Lorem ipsum',
 			],
-			'test_should_contain_custom_placeholder_text_when_post_type_is_tours' => [
-				'post_type' => 'tours',
-				'expected'  => '<em>Theme of this Cornerstone tour.</em>',
+			[
+				'text'          => 'Lorem ipsum',
+				'post_data'     => [
+					'post_type' => 'events',
+				],
+				'expected_html' => 'Lorem ipsum',
+			],
+			[
+				'text'          => 'Lorem ipsum',
+				'post_data'     => [
+					'post_type' => 'tours',
+				],
+				'expected_html' => <<<PLACEHOLDER
+<em>Theme of this Cornerstone tour.</em>
+PLACEHOLDER
+				,
 			],
 		];
 	}
