@@ -12,7 +12,6 @@
 namespace spiralWebDb\CornerstoneTours;
 
 use spiralWebDb\Metadata;
-use function spiralWebDb\Module\Custom\Shortcode\register_shortcode;
 
 add_filter( 'add_custom_post_type_runtime_config', __NAMESPACE__ . '\register_custom_configs', 7 );
 /**
