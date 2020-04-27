@@ -39,30 +39,31 @@ class Tests_ChangeTitlePlaceholderText extends Test_Case {
 
 	public function addTestData() {
 		return [
-			[
-				'text'          => 'Lorem ipsum',
+			'post_type_is_post'  => [
+				'text'          => 'Add title',
 				'post_data'     => [
 					'post_type' => 'post',
 				],
-				'expected_html' => 'Lorem ipsum',
+				'expected_html' => 'Add title',
 			],
-			[
-				'text'          => 'Lorem ipsum',
+			'post_type_is_events'  => [
+				'text'          => 'Add title',
 				'post_data'     => [
 					'post_type' => 'events',
 				],
-				'expected_html' => 'Lorem ipsum',
+				'expected_html' => 'Add title',
 			],
-			[
-				'text'          => 'Lorem ipsum',
+			'post_type_is_tours' => [
+				'text'          => 'Add title',
 				'post_data'     => [
 					'post_type' => 'tours',
 				],
 				'expected_html' => <<<PLACEHOLDER
 <em>Theme of this Cornerstone tour.</em>
 PLACEHOLDER
-	,
+				,
 			],
 		];
 	}
 }
+
