@@ -46,21 +46,21 @@ class Tests_ChangeTitlePlaceholderText extends Test_Case {
 	public function addTestData() {
 		return [
 			'post_type_is_post'   => [
-				'text'          => 'Lorem ipsum',
+				'text'          => 'Add title',
 				'post_data'     => [
 					'post_type' => 'post',
 				],
-				'expected_html' => 'Lorem ipsum',
+				'expected_html' => 'Add title',
 			],
 			'post_type_is_events' => [
-				'text'          => 'Lorem ipsum',
+				'text'          => 'Add title',
 				'post_data'     => [
 					'post_type' => 'events',
 				],
-				'expected_html' => 'Lorem ipsum',
+				'expected_html' => 'Add title',
 			],
 			'post_type_is_tours'  => [
-				'text'          => 'Lorem ipsum',
+				'text'          => 'Add title',
 				'post_data'     => [
 					'post_type' => 'tours',
 				],
