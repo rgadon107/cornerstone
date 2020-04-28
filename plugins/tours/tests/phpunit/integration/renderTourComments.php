@@ -2,9 +2,9 @@
 /**
  * Tests for render_tour_comments().
  *
- * @package     spiralWebDb\CornerstoneTours\Tests\Integration
  * @since       1.0.0
  * @author      Robert Gadon <rgadon107>
+ * @package     spiralWebDb\CornerstoneTours\Tests\Integration
  * @link        https://github.com/rgadon107/cornerstone
  * @license     GNU-2.0+
  */
@@ -12,25 +12,21 @@
 namespace spiralWebDb\CornerstoneTours\Tests\Integration;
 
 use spiralWebDb\Cornerstone\Tests\Integration\Test_Case;
-use function add_post_meta;
-use function get_post_meta;
-use function delete_post_meta;
 use function spiralWebDb\CornerstoneTours\render_tour_comments;
 
 /**
- * Class Tests_RenderTourComments
+ * @covers ::\spiralWebDb\CornerstoneTours\render_tour_comments
  *
- * @package spiralWebDb\CornerstoneTours\Tests\Integration
  * @group   tours
  */
 class Tests_RenderTourComments extends Test_Case {
 
-	/*
-	 * Test render_the_tour_regions() should echo 'tour_comments' when post_meta is available.
+	/**
+	 * @dataProvider addTestData
 	 */
-	public function test_should_echo_tour_comments_when_post_meta_is_available_from_database() {
+	public function test_should_echo_tour_comments_when_post_meta_is_available_from_database( $post_data ) {
 		// Create and get the $tour_id for the 'tours' post_type using WordPress' factory method.
-		$post    = self::factory()->post->create_and_get( [ 'post_type' => 'tours' ] );
+		$post = $this->factory->post->create_and_get( $post_data );
 
 		// Add post_meta to the database so we can call it.
 		add_post_meta(
@@ -39,7 +35,7 @@ class Tests_RenderTourComments extends Test_Case {
 			'Note: Performed in Zankel Hall at Carnegie Hall, New York, NY'
 		);
 
-		$expected    = (string) get_post_meta( $post->ID, 'tour_comments', true );
+		$expected = (string) get_post_meta( $post->ID, 'tour_comments', true );
 
 		// Run the output buffer to fire the callback and return the output.
 		ob_start();
@@ -60,7 +56,7 @@ class Tests_RenderTourComments extends Test_Case {
 			'Note: Performed at Alice Tully Hall, Lincoln Center, New York, NY'
 		);
 
-		$expected    = (string) get_post_meta( $post->ID, 'tour_comments', true );
+		$expected = (string) get_post_meta( $post->ID, 'tour_comments', true );
 
 		// Run the output buffer to fire the callback and return the output.
 		ob_start();
@@ -71,6 +67,16 @@ class Tests_RenderTourComments extends Test_Case {
 
 		// Clean up database.
 		delete_post_meta( $post->ID, 'tour_region' );
+	}
+
+	public function addTestData() {
+		return [
+			'init_post_data' => [
+				'post_data' => [
+					'post_type' => 'tours'
+				]
+			]
+		];
 	}
 }
 
