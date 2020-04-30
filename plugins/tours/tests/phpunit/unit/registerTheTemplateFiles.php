@@ -52,7 +52,7 @@ class Tests_RegisterTheTemplateFiles extends Test_Case {
 
 	public function addTestData() {
 		return [
-			'templates_array_empty' => [
+			'empty_templates_array' => [
 				'templates' => [],
 				'config'    => [
 					'single'            => [
@@ -63,7 +63,7 @@ class Tests_RegisterTheTemplateFiles extends Test_Case {
 					],
 				],
 			],
-			'templates_to_merge'    => [
+			'non_empty_templates_array'    => [
 				'templates' => [
 					'single' => [
 						'baz' => __DIR__ . '/baz/templates.php',
