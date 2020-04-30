@@ -2,9 +2,9 @@
 /**
  * Tests for register_the_template_files().
  *
- * @package     spiralWebDb\CornerstoneTours\Tests\Integration
  * @since       1.0.0
  * @author      Robert Gadon <rgadon107>
+ * @package     spiralWebDb\CornerstoneTours\Tests\Integration
  * @link        https://github.com/rgadon107/cornerstone
  * @license     GNU-2.0+
  */
@@ -16,9 +16,8 @@ use function spiralWebDb\CornerstoneTours\_get_plugin_directory;
 use function spiralWebDb\CornerstoneTours\register_the_template_files;
 
 /**
- * Class Tests_RegisterTheTemplateFiles
+ * @covers ::\spiralWebDb\CornerstoneTours\register_the_template_files
  *
- * @package spiralWebDb\CornerstoneTours\Tests\Integration
  * @group   tours
  * @group   admin
  */
@@ -33,27 +32,48 @@ class Tests_RegisterTheTemplateFiles extends Test_Case {
 	}
 
 	/**
-	 * Test register_the_template_files() should return an array of configuration template files when given an empty templates array.
+	 * @dataProvider addTestData
+	 *
+	 * @param array $templates Array of templates to merge with configuration array.
+	 * @param array $config    Configuration of templates array loaded from plugin.
 	 */
-	public function test_should_return_an_array_of_configuration_template_files_given_an_empty_templates_array() {
-		$config = require _get_plugin_directory() . '/config/templates.php';
-
-		$this->assertSame( $config, register_the_template_files( [] ) );
+	public function test_merge_of_configuration_template_files_with_templates_array( array $templates, array $config ) {
+		if ( empty( $templates ) ) {
+			$this->assertSame( $config, register_the_template_files( (array) $templates ) );
+		} else {
+			$this->assertSame( array_merge_recursive( $templates, $config ), register_the_template_files( (array) $templates ) );
+		}
 	}
 
-	/**
-	 * Test register_the_template_files() should return a merged array of configuration template files when given a templates array.
-	 */
-	public function test_should_return_a_merged_array_of_config_template_files_when_given_a_templates_array()   {
-		$templates = [
-			'single' => [
-				'baz' => __DIR__ . '/baz/templates.php',
+	public function addTestData() {
+		return [
+			'empty_templates_array' => [
+				'templates' => [],
+				'config'    => [
+					'single'            => [
+						'tours' => _get_plugin_directory() . '/src/template/single-tours.php',
+					],
+					'post_type_archive' => [
+						'tours' => _get_plugin_directory() . '/src/template/archive-tours.php',
+					],
+				],
+			],
+			'non_empty_templates_array'    => [
+				'templates' => [
+					'single' => [
+						'baz' => __DIR__ . '/baz/templates.php',
+					]
+				],
+				'config'    => [
+					'single'            => [
+						'tours' => _get_plugin_directory() . '/src/template/single-tours.php',
+					],
+					'post_type_archive' => [
+						'tours' => _get_plugin_directory() . '/src/template/archive-tours.php',
+					],
+				],
 			]
 		];
-		$config = require _get_plugin_directory() . '/config/templates.php';
-
-		$this->assertSame( array_merge_recursive( $templates, $config ), register_the_template_files( (array) $templates ) );
 	}
 }
-
 
