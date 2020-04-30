@@ -22,24 +22,23 @@ use spiralWebDb\Cornerstone\Tests\Integration\Test_Case;
 class Tests_RenderPostTitleText extends Test_Case {
 
 	/**
-	 * @dataProvider addTestData
+	 * Test render_post_title_text() should render the post title when the filter event fires.
 	 */
-	public function echo_post_title_when_filter_event_fires( $post_data ) {
-		$post = $this->factory->post->create_and_get( $post_data );
+	public function echo_post_title_when_filter_event_fires() {
+		$post = $this->factory->post->create_and_get(
+			[
+				'post_type'  => 'tours',
+				'post_title' => 'I Make All Things New',
+			]
+		);
+		$expected_title = $post->post_title;
 		$this->go_to( '?tours=i-make-all-things-new' );
 
-		$this->assertSame( $post_data['post_title'], apply_filters( 'genesis_post_title_text', get_the_title() ) );
-	}
+		ob_start();
+		apply_filters( 'genesis_post_title_text', get_the_title() );
+		$actual_title = ob_get_clean();
 
-	public function addTestData() {
-		return [
-			'past tour title' => [
-				'post_data' => [
-					'post_type'  => 'tours',
-					'post_title' => 'I Make All Things New',
-				]
-			]
-		];
+		$this->assertEquals( $expected_title, $actual_title );
 	}
 }
 
