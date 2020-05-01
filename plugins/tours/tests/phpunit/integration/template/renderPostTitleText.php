@@ -24,7 +24,7 @@ class Tests_RenderPostTitleText extends Test_Case {
 	/**
 	 * Test render_post_title_text() should render the post title when the filter event fires.
 	 */
-	public function echo_post_title_when_filter_event_fires() {
+	public function test_should_echo_post_title_when_filter_event_fires() {
 		$post = $this->factory->post->create_and_get(
 			[
 				'post_type'  => 'tours',
