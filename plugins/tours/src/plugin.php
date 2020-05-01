@@ -2,9 +2,9 @@
 /**
  *  Plugin specific tasks.
  *
- * @package    spiralWebDb\CornerstoneTours
  * @since      1.0.0
  * @author     Robert A. Gadon
+*  @package    spiralWebDb\CornerstoneTours
  * @link       http://spiralwebdb.com
  * @license    GNU General Public License 2.0+
  */

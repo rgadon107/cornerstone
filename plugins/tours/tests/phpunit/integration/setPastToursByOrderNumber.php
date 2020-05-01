@@ -2,9 +2,9 @@
 /**
  * Tests for set_past_tours_by_order_number().
  *
- * @package     spiralWebDb\CornerstoneTours\Tests\Integration
  * @since       1.0.0
  * @author      Robert Gadon <rgadon107>
+ * @package     spiralWebDb\CornerstoneTours\Tests\Integration
  * @link        https://github.com/rgadon107/cornerstone
  * @license     GNU-2.0+
  */
@@ -14,11 +14,9 @@ namespace spiralWebDb\CornerstoneTours\Tests\Integration;
 use spiralWebDb\Cornerstone\Tests\Integration\Test_Case;
 
 /**
- * Class Tests_SetPastToursByOrderNumber
+ * @covers ::\spiralWebDb\CornerstoneTours\set_past_tours_by_order_number
  *
- * @package spiralWebDb\CornerstoneTours\Tests\Integration
  * @group   tours
- * @group   admin
  */
 class Tests_SetPastToursByOrderNumber extends Test_Case {
 
