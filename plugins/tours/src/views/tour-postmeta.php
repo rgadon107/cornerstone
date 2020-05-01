@@ -13,5 +13,3 @@ namespace spiralWebDb\CornerstoneTours;
 	<?php else: return;
 	endif; ?>
 </h3>
-
-
