@@ -48,40 +48,45 @@ class Tests_RenderPostmetaBeforeContent extends Test_Case {
 		Functions\expect( 'render_the_tour_regions' )
 			->once()
 			->with( 'tour_id' )
-			->andReturn( $post_meta['tour_region'] );
-		Functions\expect( 'get_post_meta' )
-			->once()
-			->with( $tour_id, 'tour_comments', true )
-			->andReturn( $post_meta['tour_comments'] );
-		Functions\expect( 'render_tour_comments' )
-			->once()
-			->with( 'tour_id' )
-			->andReturn( $post_meta['tour_comments'] );
+			->andReturn( $post_meta['tour_regions'] );
 
-		ob_start();
-		render_postmeta_before_content( $tour_id );
-		$actual_html = ob_get_clean();
+		if ( empty( get_post_meta( $tour_id, 'tour_comments', true ) ) ) {
+			Functions\expect( 'get_post_meta' )->never();
+			} else {
+			Functions\expect( 'get_post_meta' )
+				->once()
+				->with( $tour_id, 'tour_comments', true )
+				->andReturn( $post_meta['tour_comments'] );
+			Functions\expect( 'render_tour_comments' )
+				->once()
+				->with( 'tour_id' )
+				->andReturn( $post_meta['tour_comments'] );
+			}
 
-		$this->assertEquals( $expected_html, $actual_html );
-	}
+			ob_start();
+			render_postmeta_before_content( $tour_id );
+			$actual_html = ob_get_clean();
 
-	public function addTestData() {
-		return [
-			'data_set' => [
-				'tour_id'       => 99,
-				'post_meta'     => [
-					'tour_region'   => 'Mountain West/West Coast/Southwest',
-					'tour_comments' => 'Performed at the Walt Disney Concert Hall in Los Angeles, CA',
-				],
-				'expected_html' => <<<POSTMETA_VIEW
+			$this->assertEquals( $expected_html, $actual_html );
+		}
+
+		public function addTestData() {
+			return [
+				'data_set' => [
+					'tour_id'       => 99,
+					'post_meta'     => [
+						'tour_regions'  => 'Mountain West/West Coast/Southwest',
+						'tour_comments' => 'Performed at the Walt Disney Concert Hall in Los Angeles, CA',
+					],
+					'expected_html' => <<<POSTMETA_VIEW
 <h3 class="tour-post-meta">
     <p><em class="tour-region">Region: Mountain West/West Coast/Southwest</em></p>
-    <p class="tour-comments"><em>Note: Performed at the Walt Disney Concert Hall in Los Angeles, CA</em></p>
+    <p class="tour-comments"><em>Note: Performed at Walt Disney Concert Hall in Los Angeles, CA</em></p>
 </h3>
 POSTMETA_VIEW
-				,
-			]
-		];
-	}
+					,
+				]
+			];
+		}
 }
 
