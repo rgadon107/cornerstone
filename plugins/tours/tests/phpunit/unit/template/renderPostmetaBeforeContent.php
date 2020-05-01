@@ -13,12 +13,10 @@ namespace spiralWebDb\CornerstoneTours\Template;
 
 use Brain\Monkey\Functions;
 use spiralWebDb\Cornerstone\Tests\Unit\Test_Case;
-use function spiralWebDb\CornerstoneTours\render_the_tour_regions;
-use function spiralWebDb\CornerstoneTours\render_tour_comments;
 use function spiralWebDb\CornerstoneTours\Template\render_postmeta_before_content;
 
 /**
- * @covers ::\spiralWebDb\CornerstoneTours\Template\render_post_title_text
+ * @covers ::\spiralWebDb\CornerstoneTours\Template\render_postmeta_before_content
  *
  * @group tours
  * @group template
@@ -42,7 +40,7 @@ class Tests_RenderPostmetaBeforeContent extends Test_Case {
 	/**
 	 * @dataProvider addTestData
 	 */
-	public function render_postmeta_before_entry_content( $tour_id, $region, $comments, $expected_html ) {
+	public function test_should_render_postmeta_before_entry_content( $tour_id, $post_meta, $expected_html ) {
 		Functions\expect( 'get_the_ID' )
 			->once()
 			->with()
@@ -50,11 +48,15 @@ class Tests_RenderPostmetaBeforeContent extends Test_Case {
 		Functions\expect( 'render_the_tour_regions' )
 			->once()
 			->with( 'tour_id' )
-			->andReturn( $region );
+			->andReturn( $post_meta['tour_region'] );
+		Functions\expect( 'get_post_meta' )
+			->once()
+			->with( $tour_id, 'tour_comments', true )
+			->andReturn( $post_meta['tour_comments'] );
 		Functions\expect( 'render_tour_comments' )
 			->once()
 			->with( 'tour_id' )
-			->andReturn( $comments );
+			->andReturn( $post_meta['tour_comments'] );
 
 		ob_start();
 		render_postmeta_before_content( $tour_id );
@@ -65,22 +67,21 @@ class Tests_RenderPostmetaBeforeContent extends Test_Case {
 
 	public function addTestData() {
 		return [
-			$tour_id       => 99,
-			$tour_region   => 'Mountain West/West Coast/Southwest',
-			$tour_comments => 'Performed at the Walt Disney Concert Hall in Los Angeles, CA',
-			$expected_html => <<<POSTMETA_VIEW
+			'data_set' => [
+				'tour_id'       => 99,
+				'post_meta'     => [
+					'tour_region'   => 'Mountain West/West Coast/Southwest',
+					'tour_comments' => 'Performed at the Walt Disney Concert Hall in Los Angeles, CA',
+				],
+				'expected_html' => <<<POSTMETA_VIEW
 <h3 class="tour-post-meta">
-    <p><em class="tour-region">Region: <?php render_the_tour_regions( $tour_id ); ?></em></p>
-	<?php if ( get_post_meta( $tour_id, 'tour_comments', true ) ):
-		?>
-        <p class="tour-comments"><em>Note: <?php render_tour_comments( $tour_id ); ?></em></p>
-	<?php else: return;
-	endif; ?>
+    <p><em class="tour-region">Region: Mountain West/West Coast/Southwest</em></p>
+    <p class="tour-comments"><em>Note: Performed at the Walt Disney Concert Hall in Los Angeles, CA</em></p>
 </h3>
 POSTMETA_VIEW
-			,
+				,
+			]
 		];
 	}
-
 }
- 
+
