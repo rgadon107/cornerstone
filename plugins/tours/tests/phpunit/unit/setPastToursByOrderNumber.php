@@ -2,9 +2,9 @@
 /**
  * Tests for set_past_tours_by_order_number().
  *
- * @package     spiralWebDb\CornerstoneTours\Tests\Unit
  * @since       1.0.0
  * @author      Robert Gadon <rgadon107>
+ * @package     spiralWebDb\CornerstoneTours\Tests\Unit
  * @link        https://github.com/rgadon107/cornerstone
  * @license     GNU-2.0+
  */
@@ -12,14 +12,13 @@
 namespace spiralWebDb\CornerstoneTours\Tests\Unit;
 
 use Mockery as m;
-use Brain\Monkey;
+use Brain\Monkey\Functions;
 use spiralWebDb\Cornerstone\Tests\Unit\Test_Case;
 use function spiralWebDb\CornerstoneTours\set_past_tours_by_order_number;
 
 /**
- * Class Tests_SetPastToursByOrderNumber
+ * @covers ::\spiralWebDb\CornerstoneTours\set_past_tours_by_order_number
  *
- * @package spiralWebDb\CornerstoneTours\Tests\Unit
  * @group   tours
  */
 class Tests_SetPastToursByOrderNumber extends Test_Case {
@@ -40,7 +39,7 @@ class Tests_SetPastToursByOrderNumber extends Test_Case {
 		$this->query = m::mock( 'WP_Query' );
 		$expected = $this->query;
 
-		Monkey\Functions\expect( 'is_post_type_archive' )
+		Functions\expect( 'is_post_type_archive' )
 			->once()
 			->with( 'tours')
 			->andReturn( false );
@@ -58,7 +57,7 @@ class Tests_SetPastToursByOrderNumber extends Test_Case {
 			'orderby' => 'menu_order',
 		];
 
-		Monkey\Functions\expect( 'is_post_type_archive' )
+		Functions\expect( 'is_post_type_archive' )
 			->once()
 			->with( 'tours' )
 			->andReturn( true );
