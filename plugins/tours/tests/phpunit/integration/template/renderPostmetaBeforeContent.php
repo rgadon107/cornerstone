@@ -15,7 +15,7 @@ use spiralWebDb\Cornerstone\Tests\Integration\Test_Case;
 use function spiralWebDb\CornerstoneTours\Template\render_post_title_text;
 
 /**
- * @covers ::\spiralWebDb\CornerstoneTours\Template\render_post_title_text
+ * @covers ::\spiralWebDb\CornerstoneTours\Template\render_postmeta_before_content
  *
  * @group tours
  * @group template
