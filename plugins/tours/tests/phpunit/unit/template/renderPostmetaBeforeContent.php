@@ -49,19 +49,14 @@ class Tests_RenderPostmetaBeforeContent extends Test_Case {
 			->once()
 			->with( 'tour_id' )
 			->andReturn( $post_meta['tour_regions'] );
-
-		if ( empty( get_post_meta( $tour_id, 'tour_comments', true ) ) ) {
-			Functions\expect( 'get_post_meta' )->never();
-			} else {
-			Functions\expect( 'get_post_meta' )
-				->once()
-				->with( $tour_id, 'tour_comments', true )
-				->andReturn( $post_meta['tour_comments'] );
-			Functions\expect( 'render_tour_comments' )
-				->once()
-				->with( 'tour_id' )
-				->andReturn( $post_meta['tour_comments'] );
-			}
+		Functions\expect( 'get_post_meta' )
+			->once()
+			->with( $tour_id, 'tour_comments', true )
+			->andReturn( $post_meta['tour_comments'] );
+		Functions\expect( 'render_tour_comments' )
+			->once()
+			->with( 'tour_id' )
+			->andReturn( $post_meta['tour_comments'] );
 
 			ob_start();
 			render_postmeta_before_content( $tour_id );
