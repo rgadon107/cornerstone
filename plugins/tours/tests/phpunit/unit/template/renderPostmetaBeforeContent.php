@@ -67,16 +67,29 @@ class Tests_RenderPostmetaBeforeContent extends Test_Case {
 
 		public function addTestData() {
 			return [
-				'data_set' => [
+				'regions_post_meta' => [
 					'tour_id'       => 99,
 					'post_meta'     => [
 						'tour_regions'  => 'Mountain West/West Coast/Southwest',
-						'tour_comments' => 'Performed at the Walt Disney Concert Hall in Los Angeles, CA',
+						'tour_comments' => '',
 					],
 					'expected_html' => <<<POSTMETA_VIEW
 <h3 class="tour-post-meta">
     <p><em class="tour-region">Region: Mountain West/West Coast/Southwest</em></p>
-    <p class="tour-comments"><em>Note: Performed at Walt Disney Concert Hall in Los Angeles, CA</em></p>
+</h3>
+POSTMETA_VIEW
+					,
+				],
+				'regions_and_comment_post_meta' => [
+					'tour_id'=> 108,
+					'post_meta' => [
+						'tour_regions' => 'Midwest/Mid-South/Southeast',
+						'tour_comments' => 'Performed at Atlanta Symphony Hall in the Woodruff Arts Center, Atlanta, GA',
+					],
+					'expected_html' => <<<POSTMETA_VIEW
+<h3 class="tour-post-meta">
+    <p><em class="tour-region">Region: Midwest/Mid-South/Southeast</em></p>
+    <p class="tour-comments"><em>Note: Performed at Atlanta Symphony Hall in the Woodruff Arts Center, Atlanta, GA</em></p>
 </h3>
 POSTMETA_VIEW
 					,
