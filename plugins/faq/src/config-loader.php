@@ -34,7 +34,7 @@ function register_custom_configs( array $configurations ) {
 
 	$runtime_config = (array) require _get_plugin_directory() . '/config/' . $filename . '.php';
 
-	if ( ! $runtime_config ) {
+	if ( empty( $runtime_config ) ) {
 		return $configurations;
 	}
 
