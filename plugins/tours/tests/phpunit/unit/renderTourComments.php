@@ -34,23 +34,29 @@ class Tests_RenderTourComments extends Test_Case {
 	/**
 	 * @dataProvider addTestData
 	 */
-	public function test_should_echo_tour_comments_when_post_meta_is_available_from_database( $post_data ) {
+	public function test_should_echo_meta_key_values_when_postmeta_exists( $tour_id, $postmeta ) {
 		Functions\expect( 'get_post_meta' )
 			->once()
-			->with( $post_data['tour_id'], 'tour_comments', true )
-			->andReturn( $post_data['tour_comments'] );
+			->with( $tour_id, 'tour_comments', true )
+			->andReturn( $postmeta );
 
-		$this->expectOutputString( $post_data['tour_id'] );
-		render_tour_comments( $post_data['tour_id'] );
+		$this->expectOutputString( $tour_id );
+		render_tour_comments( $tour_id );
 	}
 
 	public function addTestData() {
 		return [
-			'init_post_meta' => [
-				'post_data' => [
-					'tour_id'       => 359,
-					'tour_comments' => 'Note: Performed in Zankel Hall at Carnegie Hall, New York, NY',
-				]
+			'empty postmeta key value'   => [
+				'tour_id'       => 143,
+				'tour_comments' => '',
+			],
+			'postmeta key value1 exists' => [
+				'tour_id'       => 359,
+				'tour_comments' => 'Note: Performed in Zankel Hall at Carnegie Hall, New York, NY',
+			],
+			'postmeta key value2 exists' => [
+				'tour_id'       => 502,
+				'tour_comments' => 'Note: Performed at Alice Tully Hall, Lincoln Center, New York, NY',
 			]
 		];
 	}
