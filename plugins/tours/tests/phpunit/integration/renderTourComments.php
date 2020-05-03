@@ -24,56 +24,51 @@ class Tests_RenderTourComments extends Test_Case {
 	/**
 	 * @dataProvider addTestData
 	 */
-	public function test_should_echo_tour_comments_when_post_meta_is_available_from_database( $post_data ) {
-		// Create and get the $tour_id for the 'tours' post_type using WordPress' factory method.
-		$post = $this->factory->post->create_and_get( $post_data );
+	public function test_should_echo_meta_key_values_when_postmeta_exists( $post_data, $meta ) {
+		// Create and get the $tour_id using WordPress' factory method.
+		$tour_id = $this->factory->post->create( $post_data );
 
 		// Add post_meta to the database so we can call it.
-		add_post_meta(
-			$post->ID,
-			'tour_comments',
-			'Note: Performed in Zankel Hall at Carnegie Hall, New York, NY'
+		add_post_meta( $tour_id, 'tour_comments', $meta['tour_comments']
 		);
 
-		$expected = (string) get_post_meta( $post->ID, 'tour_comments', true );
+		$expected = (string) get_post_meta( $tour_id, 'tour_comments', true );
 
 		// Run the output buffer to fire the callback and return the output.
 		ob_start();
-		render_tour_comments( $post->ID );
+		render_tour_comments( $tour_id );
 		$actual = ob_get_clean();
 
 		$this->assertSame( $expected, $actual );
 
 		// Clean up database.
-		delete_post_meta( $post->ID, 'tour_region' );
-
-		// Let's add some different post_meta and test the callback again.
-
-		// Add post_meta to the database so we can call it.
-		add_post_meta(
-			$post->ID,
-			'tour_comments',
-			'Note: Performed at Alice Tully Hall, Lincoln Center, New York, NY'
-		);
-
-		$expected = (string) get_post_meta( $post->ID, 'tour_comments', true );
-
-		// Run the output buffer to fire the callback and return the output.
-		ob_start();
-		render_tour_comments( $post->ID );
-		$actual = ob_get_clean();
-
-		$this->assertSame( $expected, $actual );
-
-		// Clean up database.
-		delete_post_meta( $post->ID, 'tour_region' );
+		delete_post_meta( $tour_id, 'tour_comments' );
 	}
 
 	public function addTestData() {
 		return [
-			'init_post_data' => [
+			'empty postmeta key value'  => [
 				'post_data' => [
 					'post_type' => 'tours'
+				],
+				'post_meta' => [
+					'tour_comments' => ''
+				]
+			],
+			'postmeta key value1 exists' => [
+				'post_data' => [
+					'post_type' => 'tours'
+				],
+				'post_meta' => [
+					'tour_comments' => 'Note: Performed in Zankel Hall at Carnegie Hall, New York, NY'
+				]
+			],
+			'postmeta key value2 exists' => [
+				'post_data' => [
+					'post_type' => 'tours'
+				],
+				'post_meta' => [
+					'tour_comments' => 'Note: Performed at Alice Tully Hall, Lincoln Center, New York, NY'
 				]
 			]
 		];
