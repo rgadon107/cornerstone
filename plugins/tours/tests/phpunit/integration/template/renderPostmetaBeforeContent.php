@@ -24,15 +24,26 @@ use function spiralWebDb\CornerstoneTours\render_tour_comments;
 class Tests_RenderPostmetaBeforeContent extends Test_Case {
 
 	/**
+	 * Clean up the test environment after each test.
+	 */
+	public function tearDown() {
+		parent::tearDown();
+
+		// Database cleanup.
+		delete_post_meta( $tour_id, 'tour_regions' );
+		delete_post_meta( $tour_id, 'tour_comments' );
+	}
+
+	/**
 	 * @dataProvider addTestData
 	 */
 	public function test_should_render_postmeta_before_entry_content( $post_data, $post_meta, $expected_html ) {
-		$post    = $this->factory->post->create_and_get( $post_data );
-		$tour_id = $post->ID;
+		$tour_id = $this->factory->post->create( $post_data );
 
 		// Add post_meta so that it can be called during test assertion.
-		add_post_meta( $tour_id, 'tour_regions', $post_meta['tour_regions'] );
-		add_post_meta( $tour_id, 'tour_comments', $post_meta['tour_comments'] );
+		foreach ( $post_meta as $key => $meta ) {
+			add_post_meta( $tour_id, $key, $meta );
+		}
 
 		// Invoke postmeta functions from plugin.
 		render_the_tour_regions( $tour_id );
@@ -42,10 +53,6 @@ class Tests_RenderPostmetaBeforeContent extends Test_Case {
 		ob_start();
 		do_action( 'genesis_before_entry_content' );
 		$this->assertEquals( $expected_html, ob_get_clean() );
-
-		// Database cleanup.
-		delete_post_meta( $tour_id, 'tour_regions' );
-		delete_post_meta( $tour_id, 'tour_comments' );
 	}
 
 	public function addTestData() {
@@ -58,11 +65,11 @@ class Tests_RenderPostmetaBeforeContent extends Test_Case {
 					'tour_regions'  => 'Mountain West/West Coast/Southwest',
 					'tour_comments' => '',
 				],
-				'expected_html' => <<<POSTMETA_VIEW
+				'expected_html' => <<<POSTMETA_VIEW_WITHOUT_COMMENTS
 <h3 class="tour-post-meta">
     <p><em class="tour-region">Region: Mountain West/West Coast/Southwest</em></p>
 </h3>
-POSTMETA_VIEW
+POSTMETA_VIEW_WITHOUT_COMMENTS
 				,
 			],
 			'regions_and_comment_post_meta' => [
@@ -73,12 +80,12 @@ POSTMETA_VIEW
 					'tour_regions'  => 'Midwest/Mid-South/Southeast',
 					'tour_comments' => 'Performed at Atlanta Symphony Hall in the Woodruff Arts Center, Atlanta, GA',
 				],
-				'expected_html' => <<<POSTMETA_VIEW
+				'expected_html' => <<<POSTMETA_VIEW_WITH_COMMENTS
 <h3 class="tour-post-meta">
     <p><em class="tour-region">Region: Midwest/Mid-South/Southeast</em></p>
     <p class="tour-comments"><em>Note: Performed at Atlanta Symphony Hall in the Woodruff Arts Center, Atlanta, GA</em></p>
 </h3>
-POSTMETA_VIEW
+POSTMETA_VIEW_WITH_COMMENTS
 				,
 			]
 		];
