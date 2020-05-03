@@ -26,13 +26,10 @@ class Tests_RenderPostmetaBeforeContent extends Test_Case {
 	/**
 	 * Prepares the test environment before each test.
 	 */
-	public static function setUpBeforeClass() {
-		parent::setUpBeforeClass();
+	public function setUp() {
+		parent::setUp();
 
-		Functions\expect( 'genesis' )
-			->once()
-			->with()
-			->andReturn();
+		Functions\expect( 'genesis' )->with()->andReturnNull();
 
 		require_once TOURS_ROOT_DIR . '/src/template/single-tours.php';
 	}
@@ -73,11 +70,11 @@ class Tests_RenderPostmetaBeforeContent extends Test_Case {
 						'tour_regions'  => 'Mountain West/West Coast/Southwest',
 						'tour_comments' => '',
 					],
-					'expected_html' => <<<POSTMETA_VIEW
+					'expected_html' => <<<POSTMETA_VIEW_WITHOUT_COMMENTS
 <h3 class="tour-post-meta">
     <p><em class="tour-region">Region: Mountain West/West Coast/Southwest</em></p>
 </h3>
-POSTMETA_VIEW
+POSTMETA_VIEW_WITHOUT_COMMENTS
 					,
 				],
 				'regions_and_comment_post_meta' => [
@@ -86,12 +83,12 @@ POSTMETA_VIEW
 						'tour_regions' => 'Midwest/Mid-South/Southeast',
 						'tour_comments' => 'Performed at Atlanta Symphony Hall in the Woodruff Arts Center, Atlanta, GA',
 					],
-					'expected_html' => <<<POSTMETA_VIEW
+					'expected_html' => <<<POSTMETA_VIEW_WITH_COMMENTS
 <h3 class="tour-post-meta">
     <p><em class="tour-region">Region: Midwest/Mid-South/Southeast</em></p>
     <p class="tour-comments"><em>Note: Performed at Atlanta Symphony Hall in the Woodruff Arts Center, Atlanta, GA</em></p>
 </h3>
-POSTMETA_VIEW
+POSTMETA_VIEW_WITH_COMMENTS
 					,
 				]
 			];
