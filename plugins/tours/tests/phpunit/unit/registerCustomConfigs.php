@@ -45,7 +45,7 @@ class Tests_RegisterCustomConfigs extends Test_Case {
 
 	public function addTestData() {
 		return [
-			'testShouldIncludeToursConfig'            => [
+			'testShouldIncludeToursConfig' => [
 				'existing_configs' => [],
 			],
 		];
