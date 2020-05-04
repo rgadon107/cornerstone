@@ -28,7 +28,7 @@ class Tests_RenderTourComments extends Test_Case {
 		parent::tearDown();
 
 		// Clean up database.
-		delete_post_meta( $this->tour_id, 'tour_comments' );
+		delete_post_meta( $this->tour_id, $this->meta );
 	}
 
 	/**
@@ -37,6 +37,8 @@ class Tests_RenderTourComments extends Test_Case {
 	public function test_should_echo_meta_key_values_when_postmeta_exists( $post_data, $meta ) {
 		// Get the $tour_id using WordPress' factory method.
 		$this->tour_id = $this->factory->post->create( $post_data );
+		// Assign the $meta parameter to a property of the test class.
+		$this->meta = $meta;
 
 		// Add post_meta to the database so we can call it.
 		foreach ( $meta as $key => $value ) {
