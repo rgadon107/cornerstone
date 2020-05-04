@@ -34,55 +34,20 @@ class Tests_RegisterCustomConfigs extends Test_Case {
 	/**
 	 * @dataProvider addTestData
 	 */
-	public function test_should_add_runtime_post_type_config_to_existing_configs( array $configurations, array $tours ) {
+	public function test_should_add_runtime_post_type_config_to_existing_configs( array $existing ) {
 		Functions\expect( '_get_plugin_directory' )
 			->times( 1 )
 			->with()
 			->andReturn( TOURS_ROOT_DIR );
 
-		$this->assertArrayHasKey( 'tours', register_custom_configs( (array) $configurations ) );
-		$this->assertContains( $tours['post_type'], (array) $tours );
-		$this->assertContains( $tours['features'], (array) $tours );
-		$this->assertContains( $tours['args'], (array) $tours );
+		$this->assertArrayHasKey( 'tours', register_custom_configs( (array) $existing ) );
 	}
 
 	public function addTestData() {
 		return [
-			'post type config' => [
-				'configurations' => [],
-				'tours'          => [
-					'post_type' => 'tours',
-					'features'  => [
-						'base_post_type' => 'post',
-						'exclude'        => [
-							'excerpt',
-							'comments',
-							'trackbacks',
-//			            'custom-fields',
-							'thumbnail', // also known as the 'featured image'.
-							'author',
-							'post-formats',
-							'genesis-seo',
-							'genesis-scripts',
-							'genesis-layouts',
-							'genesis-rel-author',
-						],
-						'additional'     => [
-							'page-attributes',
-						],
-					],
-					'args'      => [
-						'description'  => '', // For informational purposes only.
-						'label'        => '',
-						'labels'       => '', // automatically generate the labels.
-						'public'       => true,
-						'show_in_rest' => true,
-						'menu_icon'    => 'dashicons-admin-site',
-						'supports'     => '', // automatically generate the support features.
-						'has_archive'  => true,
-					],
-				]
-			]
+			'testShouldIncludeToursConfig'            => [
+				'existing_configs' => [],
+			],
 		];
 	}
 }
