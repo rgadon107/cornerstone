@@ -22,31 +22,43 @@ use function spiralWebDb\CornerstoneTours\render_the_tour_regions;
 class Tests_RenderTheTourRegions extends Test_Case {
 
 	/**
+	 * Cleans up the test environment after each test.
+	 */
+	public function tearDown() {
+		parent::tearDown();
+
+		// Clean up database.
+		delete_post_meta( $this->tour_id, $this->meta );
+	}
+
+	/**
 	 * @dataProvider addTestData
 	 */
 	public function test_should_echo_meta_key_values_when_postmeta_exists( $post_data, $meta ) {
-		// Create and get the $tour_id using WordPress' factory method.
-		$tour_id = $this->factory->post->create( $post_data );
+		// Get the $tour_id using WordPress' factory method.
+		$this->tour_id = $this->factory->post->create( $post_data );
+		// Assign the $meta parameter to a property of the test class.
+		$this->meta = $meta;
 
 		// Add post_meta to the database so we can call it.
-		add_post_meta( $tour_id, 'tour_region', $meta['tour_region'] );
+		foreach ( $meta as $key => $value ) {
+			add_post_meta( $this->tour_id, $key, $value );
+		}
 
-		$expected = (string) get_post_meta( $tour_id, 'tour_region', true );
+		$region   = (string) get_post_meta( $this->tour_id, 'tour_region', true );
+		$expected = esc_html( $region );
 
 		// Run the output buffer to fire the callback and return the output.
 		ob_start();
-		render_the_tour_regions( $tour_id );
+		render_the_tour_regions( $this->tour_id );
 		$actual = ob_get_clean();
 
 		$this->assertSame( $expected, $actual );
-
-		// Clean up database.
-		delete_post_meta( $tour_id, 'tour_region' );
 	}
 
 	public function addTestData() {
 		return [
-			'postmeta key value is empty'     => [
+			'postmeta key value is empty' => [
 				'post_data' => [
 					'post_type' => 'tours'
 				],
@@ -54,7 +66,7 @@ class Tests_RenderTheTourRegions extends Test_Case {
 					'tour_region' => ''
 				]
 			],
-			'postmeta key value1 exists' => [
+			'postmeta key value1 exists'  => [
 				'post_data' => [
 					'post_type' => 'tours'
 				],
@@ -62,7 +74,7 @@ class Tests_RenderTheTourRegions extends Test_Case {
 					'tour_region' => 'Midwest/West/Southwest'
 				]
 			],
-			'postmeta key value2 exists' => [
+			'postmeta key value2 exists'  => [
 				'post_data' => [
 					'post_type' => 'tours'
 				],
