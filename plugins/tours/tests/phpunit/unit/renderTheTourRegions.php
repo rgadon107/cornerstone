@@ -34,13 +34,16 @@ class Tests_RenderTheTourRegions extends Test_Case {
 	/**
 	 * @dataProvider addTestData
 	 */
-	public function test_should_echo_meta_key_values_when_postmeta_exists( $tour_id, $postmeta ) {
+	public function test_should_echo_meta_key_values_when_postmeta_exists( $tour_id, $meta, $expected ) {
 		Functions\expect( 'get_post_meta' )
-			->once()
+			->times( 1 )
 			->with( $tour_id, 'tour_region', true )
-			->andReturn( $postmeta );
+			->andReturn( $meta );
 
-		$this->expectOutputString( $tour_id );
+		if ( ! is_null( $expected ) ) {
+			$this->expectOutputString( $expected );
+		}
+
 		render_the_tour_regions( $tour_id );
 	}
 
@@ -49,14 +52,17 @@ class Tests_RenderTheTourRegions extends Test_Case {
 			'postmeta key value is empty' => [
 				'tour_id'     => 79,
 				'tour_region' => '',
+				'expected'    => '',
 			],
 			'postmeta key value1 exists'  => [
 				'tour_id'     => 106,
 				'tour_region' => 'Midwest/Mid-Atlantic/Southeast',
+				'expected'    => 'Midwest/Mid-Atlantic/Southeast',
 			],
 			'postmeta key value2 exists'  => [
 				'tour_id'     => 147,
 				'tour_region' => 'Midwest/West Coast/Southwest',
+				'expected'    => 'Midwest/West Coast/Southwest',
 			],
 		];
 	}
