@@ -44,12 +44,12 @@ class Tests_RegisterCustomConfigs extends Test_Case {
 		$tours = (array) require _get_plugin_directory() . '/config/post-type.php';
 
 		return [
-			'testShouldIncludToursConfig' => [
+			'testShouldIncludeToursConfig' => [
 				'existing_configs' => [],
 				'tours'            => $tours,
 			],
 
-			'testShouldMergeToursWithExistinConfigs' => [
+			'testShouldMergeToursWithExistingConfigs' => [
 				'existing_configs' => [
 					'ipseum' => [
 						'post_type' => 'ipseum',
