@@ -22,32 +22,41 @@ use function spiralWebDb\CornerstoneTours\render_tour_comments;
 class Tests_RenderTourComments extends Test_Case {
 
 	/**
+	 * Cleans up the test environment after each test.
+	 */
+	public function tearDown() {
+		parent::tearDown();
+
+		// Clean up database.
+		delete_post_meta( $this->tour_id, 'tour_comments' );
+	}
+
+	/**
 	 * @dataProvider addTestData
 	 */
 	public function test_should_echo_meta_key_values_when_postmeta_exists( $post_data, $meta ) {
-		// Create and get the $tour_id using WordPress' factory method.
-		$tour_id = $this->factory->post->create( $post_data );
+		// Get the $tour_id using WordPress' factory method.
+		$this->tour_id = $this->factory->post->create( $post_data );
 
 		// Add post_meta to the database so we can call it.
-		add_post_meta( $tour_id, 'tour_comments', $meta['tour_comments']
-		);
+		foreach ( $meta as $key => $value ) {
+			add_post_meta( $this->tour_id, $key, $value );
+		}
 
-		$expected = (string) get_post_meta( $tour_id, 'tour_comments', true );
-
+		$comments = (string) get_post_meta( $this->tour_id, 'tour_comments', true );
+		$expected = esc_html( $comments );
+		
 		// Run the output buffer to fire the callback and return the output.
 		ob_start();
-		render_tour_comments( $tour_id );
+		render_tour_comments( $this->tour_id );
 		$actual = ob_get_clean();
 
 		$this->assertSame( $expected, $actual );
-
-		// Clean up database.
-		delete_post_meta( $tour_id, 'tour_comments' );
 	}
 
 	public function addTestData() {
 		return [
-			'empty postmeta key value'  => [
+			'empty postmeta key value'   => [
 				'post_data' => [
 					'post_type' => 'tours'
 				],
