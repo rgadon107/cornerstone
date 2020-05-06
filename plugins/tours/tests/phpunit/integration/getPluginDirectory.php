@@ -24,7 +24,7 @@ class Tests_GetPluginDirectory extends Test_Case {
 	public function test_should_return_absolute_path_to_plugin_root_directory() {
 		$expected_path = dirname( dirname( dirname( __DIR__ ) ) );
 
-		$this->assertEquals( $expected_path,_get_plugin_directory() );
+		$this->assertEquals( $expected_path, _get_plugin_directory() );
 	}
 }
  
