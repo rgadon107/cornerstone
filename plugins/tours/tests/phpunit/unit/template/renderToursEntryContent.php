@@ -73,6 +73,7 @@ class Tests_RenderToursEntryContent extends Test_Case {
 					'tour_id'      => 47,
 					'post_type'    => 'tours',
 					'post_content' => <<<POST_CONTENT_HTML
+<!--Begin post content-->
 <section id="table" class="past-tour">
     <header class="table-row">
         <div class="table-cell">Concert</div>
@@ -89,6 +90,7 @@ class Tests_RenderToursEntryContent extends Test_Case {
         </div>
     </div>
 </section>
+<!--End post content-->
 POST_CONTENT_HTML
 					,
 				],
@@ -104,22 +106,24 @@ POST_CONTENT_HTML
         <h3 class="revealer--tour-content-header" itemprop="text">See performance locations and venues for this tour.</h3>
     </div>
     <div class="revealer--hidden" itemprop="description" style="display: none;">
-		<section id="table" class="past-tour">
-		    <header class="table-row">
-		        <div class="table-cell">Concert</div>
-		        <div class="table-cell">City</div>
-		        <div class="table-cell">State</div>
-		        <div class="table-cell">Venue</div>
-		    </header>
-		    <div class="table-row" itemprop="pastConcert" itemscope itemtype="https://schema.org/MusicEvent">
-		        <div class="table-cell">1</div>
-		        <div class="table-cell" itemprop="locationCity" itemscope itemtype="https://schema.org/MusicEvent">Topeka</div>
-		        <div class="table-cell" itemprop="locationState" itemscope itemtype="https://schema.org/MusicEvent">KS</div>
-		        <div class="table-cell" itemprop="organizer" itemscope itemtype="https://schema.org/MusicEvent">First Congregational United Church
-		            of Christ
-		        </div>
-		    </div>
-		</section>	
+<!--Begin post content-->
+<section id="table" class="past-tour">
+    <header class="table-row">
+        <div class="table-cell">Concert</div>
+        <div class="table-cell">City</div>
+        <div class="table-cell">State</div>
+        <div class="table-cell">Venue</div>
+    </header>
+    <div class="table-row" itemprop="pastConcert" itemscope itemtype="https://schema.org/MusicEvent">
+        <div class="table-cell">1</div>
+        <div class="table-cell" itemprop="locationCity" itemscope itemtype="https://schema.org/MusicEvent">Topeka</div>
+        <div class="table-cell" itemprop="locationState" itemscope itemtype="https://schema.org/MusicEvent">KS</div>
+        <div class="table-cell" itemprop="organizer" itemscope itemtype="https://schema.org/MusicEvent">First Congregational United Church
+            of Christ
+        </div>
+    </div>
+</section>	
+<!--End post content-->
 	</div>
 </div>
 PAST_TOUR_VIEW
