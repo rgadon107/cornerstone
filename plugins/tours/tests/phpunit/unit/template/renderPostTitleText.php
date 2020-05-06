@@ -26,13 +26,10 @@ class Tests_RenderPostTitleText extends Test_Case {
 	/**
 	 * Prepare the test environment before each test.
 	 */
-	public static function setUpBeforeClass() {
-		parent::setUpBeforeClass();
+	public function setUp() {
+		parent::setUp();
 
-		Functions\expect( 'genesis' )
-			->once()
-			->with()
-			->andReturn();
+		Functions\expect( 'genesis' )->andReturnNull();
 
 		require_once TOURS_ROOT_DIR . '/src/template/single-tours.php';
 	}
@@ -40,43 +37,45 @@ class Tests_RenderPostTitleText extends Test_Case {
 	/**
 	 * @dataProvider addTestData
 	 */
-	public function test_title_is_echoed_when_filter_event_fires( $tour_id, $title, $menu_order ) {
+	public function test_title_is_echoed_when_filter_event_fires( $post_data, $meta, $expected ) {
 		Functions\expect( 'get_post_field' )
 			->once()
 			->with( 'menu_order' )
-			->andReturn( $menu_order );
+			->andReturn( $post_data['menu_order'] );
 		Functions\expect( 'get_the_ID' )
 			->once()
-			->with()
-			->andReturn( $tour_id );
+			->andReturn( $post_data['tour_id'] );
 		Functions\expect( 'get_post_meta' )
 			->once()
-			->with( $tour_id, 'tour_year', true )
-			->andReturn( 2011 );
+			->with( $post_data['tour_id'], 'tour_year', true )
+			->andReturn( $meta['tour_year'] );
 		Functions\expect( 'get_the_title' )
 			->once()
-			->with()
-			->andReturn( $title );
-
-		$expected_html = <<<VIEW
-<h2 class="entry-title tour-title" itemprop="headline">
-	Tour 15 | 2011 | I Make All Things New</h2>
-VIEW;
-
+			->andReturn( $post_data['title'] );
 
 		ob_start();
 		render_post_title_text( $tour_id );
-		$actual_html = ob_get_clean();
+		$actual = ob_get_clean();
 
-		$this->assertEquals( $expected_html, $actual_html );
+		$this->assertEquals( $expected, $actual );
 	}
 
 	public function addTestData() {
 		return [
-			'post_data' => [
-				'tour_id'    => (int) 1542,
-				'title'      => 'I Make All Things New',
-				'menu_order' => (int) 15,
+			'add post data' => [
+				'post_data'     => [
+					'tour_id'    => (int) 1542,
+					'title'      => 'I Make All Things New',
+					'menu_order' => (int) 15,
+				],
+				'post_meta'     => [
+					'tour_year' => (int) 2011
+				],
+				'expected_view' => <<<PAST_TOUR_TITLE_VIEW
+<h2 class="entry-title tour-title" itemprop="headline">
+	Tour 15 | 2011 | I Make All Things New</h2>
+PAST_TOUR_TITLE_VIEW
+				,
 			]
 		];
 	}
