@@ -19,7 +19,7 @@ use function spiralWebDb\CornerstoneTours\_get_plugin_directory;
  *
  * @group   tours
  */
-class Tests_GetPluginDirectory extends Test_Case {
+class Tests__GetPluginDirectory extends Test_Case {
 
 	public function test_should_return_absolute_path_to_plugin_root_directory() {
 		$expected_path = dirname( dirname( dirname( __DIR__ ) ) );
