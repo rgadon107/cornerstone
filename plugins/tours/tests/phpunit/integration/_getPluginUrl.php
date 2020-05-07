@@ -20,7 +20,7 @@ use function spiralWebDb\CornerstoneTours\_get_plugin_url;
  *
  * @group   tours
  */
-class Tests_GetPluginUrl extends Test_Case {
+class Tests__GetPluginUrl extends Test_Case {
 
 	public function test_should_get_the_url_to_the_plugin_root_directory() {
 		$expected = plugins_url( 'tours', _get_plugin_directory() );
