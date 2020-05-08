@@ -26,21 +26,23 @@ class Tests_AutoloadFiles extends Test_Case {
 	 * @dataProvider addTestData
 	 */
 	public function test_should_load_a_path_to_a_plugin_file_given_array_of_file_names( $plugin_files, $expected ) {
-		$files = $plugin_files;
+		$files_to_autoload = [];
+		$files             = $plugin_files;
 
 		foreach ( $files as $file ) {
-			require _get_plugin_directory() . '/src/' . $file;
+			$load_file           = require _get_plugin_directory() . '/src/' . $file;
+			$files_to_autoload[] = $load_file;
 		}
 
 		autoload_files();
 
-		$this->assertSame( $expected, autoload_files() );
+		$this->assertSame( $expected, $files_to_autoload );
 	}
 
 	public function addTestData() {
 		return [
 			'plugin files and paths' => [
-				'plugin_files_to_autoload' => [
+				'plugin_files_to_autoload'    => [
 					'config-loader.php',
 					'meta.php',
 					'plugin.php',
@@ -58,4 +60,4 @@ class Tests_AutoloadFiles extends Test_Case {
 		];
 	}
 }
- 
+
