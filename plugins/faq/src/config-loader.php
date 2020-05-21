@@ -32,9 +32,9 @@ function register_custom_configs( array $configurations ) {
 		? 'post-type'
 		: 'taxonomy';
 
-	$runtime_config = (array) require_once _get_plugin_directory() . '/config/' . $filename . '.php';
+	$runtime_config = (array) require _get_plugin_directory() . '/config/' . $filename . '.php';
 
-	if ( ! $runtime_config ) {
+	if ( empty( $runtime_config ) ) {
 		return $configurations;
 	}
 
