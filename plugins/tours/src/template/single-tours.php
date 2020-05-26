@@ -22,8 +22,7 @@ add_filter( 'genesis_post_title_text', __NAMESPACE__ . '\render_post_title_text'
  * @param int $tour_id  The tour ID.
  */
 function render_post_title_text( $tour_id ) {
-	$post       = get_post();
-	$menu_order = (int) $post->menu_order;
+	$menu_order = (int) get_post_field( 'menu_order' );
 	$tour_id    = (int) get_the_ID();
 
 	require dirname( __DIR__ ) . '/views/tour-title.php';
