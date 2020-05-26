@@ -74,6 +74,7 @@ class Tests_RenderPostmetaBeforeContent extends Test_Case {
 <h3 class="tour-post-meta">
     <p><em class="tour-region">Region: Mountain West/West Coast/Southwest</em></p>
 </h3>
+
 POSTMETA_VIEW_WITHOUT_COMMENTS
 					,
 				],
@@ -88,6 +89,7 @@ POSTMETA_VIEW_WITHOUT_COMMENTS
     <p><em class="tour-region">Region: Midwest/Mid-South/Southeast</em></p>
     <p class="tour-comments"><em>Note: Performed at Atlanta Symphony Hall in the Woodruff Arts Center, Atlanta, GA</em></p>
 </h3>
+
 POSTMETA_VIEW_WITH_COMMENTS
 					,
 				]
