@@ -19,5 +19,4 @@ namespace spiralWebDb\CornerstoneTours;
     <div class="revealer--hidden" itemprop="description" style="display: none;">
 		<?php echo get_the_content(); ?>
     </div>
-
 </div>
