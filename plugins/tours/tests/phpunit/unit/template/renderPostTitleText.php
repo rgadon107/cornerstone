@@ -54,7 +54,7 @@ class Tests_RenderPostTitleText extends Test_Case {
 			->andReturn( $post_data['title'] );
 
 		ob_start();
-		render_post_title_text( $tour_id );
+		render_post_title_text( $post_data['tour_id'] );
 		$actual = ob_get_clean();
 
 		$this->assertEquals( $expected, $actual );
