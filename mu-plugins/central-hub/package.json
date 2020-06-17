@@ -46,7 +46,7 @@
   },
   "dependencies": {
     "app-root-path": "^1.0.0",
-    "npm": "^5.7.1"
+    "npm": "^6.13.4"
   },
   "gulpConfig": "./config/gulp/config.js"
 }
