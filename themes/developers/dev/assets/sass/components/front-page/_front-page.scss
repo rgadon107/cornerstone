@@ -9,7 +9,7 @@
 .events-title {
   background-color: $widget--background-color;
   @include rem( font-size, $front-page__Section-Title--font-size );
-  padding: 25px 0;
+  padding: 25px 20px;
   margin-bottom: 30px;
   text-align: center;
   font-style: italic;
@@ -17,6 +17,11 @@
   @media only screen and (max-width: $breakpoint__screen-size--small ) {
     font-weight: 400;
   }
+}
+
+.intro-content	{
+  margin: 0 2% 2%;
+  padding: 0 2%;
 }
 
 .welcome-content {
