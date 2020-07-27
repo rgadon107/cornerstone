@@ -29,6 +29,10 @@ function render_the_venue( $review_id ) {
 	$city  = (string) get_post_meta( $review_id, 'review_location_city', true );
 	$state = (string) get_post_meta( $review_id, 'review_location_state', true );
 
+	if ( ! ( $city && $state ) )    {
+		return;
+	}
+
 	if ( $venue && ( $city || $state ) ) {
 		echo '<br>';
 	}
